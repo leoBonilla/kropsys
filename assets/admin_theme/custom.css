@@ -1,0 +1,27 @@
+#reasignaciones_table_length,
+#agendamientos_table_length,
+#confirmaciones_table_length,
+#otros_table_length,
+#sms_table_length,
+#llamadas_table_length,
+#cupos_table_length,
+#documentos_table_length,
+#history_table_length,
+#calls_table_length,
+#adjuntos_table_length,
+#email_table_length
+{
+
+	margin-bottom:-35px;
+	margin-top:5px;
+}
+.dataTables_length{
+
+	margin:0px;
+
+}
+
+.btn.btn-default.buttons-excel.buttons-html5{
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
