@@ -179,37 +179,44 @@ class Documents_model extends CI_Model {
 
       
        if($adjuntos){
-          $this->db->where('id', $id);
-           $history = array(
-                   'observaciones' => $data['observaciones'],
-              'asignado_por' => $data['asignado_por'],
-              'usuario_asignado'  => $data['responsable'],
-              'fecha_asignacion' => date('Y-m-d H:i:s'),
-              'estado' => $data['estado']
 
-              );
-       $this->db->update('documentos', $history); 
+                          $this->load->model('Documents/documents_model', 'doc');
 
-       if ($this->db->affected_rows() > 0)
-          {
+                          $this->db->where('id', $id);
+                           $history = array(
+                                   'observaciones' => $data['observaciones'],
+                              'asignado_por' => $data['asignado_por'],
+                              'usuario_asignado'  => $data['responsable'],
+                              'fecha_asignacion' => date('Y-m-d H:i:s'),
+                              'estado' => $data['estado']
 
-            
-              unset($data['asignado_por']);
-              $id_email = $data['id_email'];
-              unset($data['id_email']);
-            $this->db->insert('historial_documento', $data);
-            if ($this->db->affected_rows() > 0){
-              $this->updateEmailState($id_email, $data['estado']);
-              return TRUE;
-            }
-            return FALSE;
-          }
-        return FALSE;
-      }else{
+                              );
+                       $this->db->update('documentos', $history); 
 
-      }
+                       if ($this->db->affected_rows() > 0)
+                          {
 
-      }
+                             $result =  $this->doc->changeState($id,1, $this->auth_user_id, $data['observaciones'], $data['id_email']);
+                            
+                            //   unset($data['asignado_por']);
+                            //   $id_email = $data['id_email'];
+                            //   unset($data['id_email']);
+                            // $this->db->insert('historial_documento', $data);
+                            // if ($this->db->affected_rows() > 0){
+                            //   $this->updateEmailState($id_email, $data['estado']);
+                            //   return TRUE;
+                            // }
+                            if($result != false){
+                              return TRUE;
+                            }
+                            return FALSE;
+                          }
+                        return FALSE;
+                }else{
+
+                }
+
+                }
 
       public function getHistory($id){
           $this->db->where('id', $id);
@@ -275,7 +282,7 @@ class Documents_model extends CI_Model {
           $max = $query->row();
           $maxid = $max->id;
 
-         echo ''. $maxid;
+         //echo ''. $maxid;
          $this->db->where('id' , $maxid);
          $this->db->update('historial_documento', array('fecha_fin' => date('Y-m-d H:i:s') ));
 
@@ -290,22 +297,17 @@ class Documents_model extends CI_Model {
          $insert_id = $this->db->insert_id();
          $data = $this->updateEmailState($id_email,$state);
          }
-       
-     
-                   
-                          
+           
 
 
-        if ($this->db->trans_status() === FALSE)
-    {
+        if ($this->db->trans_status() === FALSE){
             $this->db->trans_rollback();
-
-             return FALSE;
+                return FALSE;
     }
     else
     {
             $this->db->trans_commit();
-            return TRUE;
+            //return TRUE;
            return $insert_id;
     }   
         

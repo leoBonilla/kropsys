@@ -38,7 +38,7 @@
         <tbody>
           <?php foreach($history as $row): ?>
 
-
+                  
                 <tr>
                     <td><input type="hidden" name="start" class="start" value="<?php echo $row->fecha_cambio_estado; ?>">
                         <?php   echo $row->fecha_cambio_estado; ?>
@@ -58,7 +58,7 @@
                                 <input type="hidden" name="inicio" class="inicio" value="<?php echo $row->fecha_inicio ?>">
                                 <input type="hidden" name="fin"  class="fin" value="<?php echo $row->fecha_fin_estado ?>">
                             </span>
-                        <?php echo ''?></td>
+                        <?php echo $row->tiempo; ?></td>
                     <td><?php echo $row->h_observaciones; ?></td>
                                         <td> <?php 
              if($row->adjunto == 1){
