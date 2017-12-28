@@ -270,23 +270,28 @@ class Documents_model extends CI_Model {
          $this->db->order_by('id', 'DESC');
          $this->db->limit(1);
          $query = $this->db->get();
+
          if($query->num_rows() > 0){
           $max = $query->row();
-         }
-         $maxid = $max->id;
+          $maxid = $max->id;
+
+         echo ''. $maxid;
          $this->db->where('id' , $maxid);
          $this->db->update('historial_documento', array('fecha_fin' => date('Y-m-d H:i:s') ));
 
 
          $this->db->where('id', $id);
          $this->db->update('documentos', array('estado' => $state));
-         $history = array('id_documento' => $id, 'responsable'=> $user,'fecha' => date('Y-m-d H:i:s'),'estado' => $state, 'adjunto' => $adjunto);
+        $history = array('id_documento' => $id, 'responsable'=> $user,'fecha' => date('Y-m-d H:i:s'),'estado' => $state, 'adjunto' => $adjunto);
          if($observacion != false){
           $history['observaciones'] = $observacion;
          }
          $this->db->insert('historial_documento',$history);
          $insert_id = $this->db->insert_id();
          $data = $this->updateEmailState($id_email,$state);
+         }
+       
+     
                    
                           
 
@@ -294,13 +299,14 @@ class Documents_model extends CI_Model {
         if ($this->db->trans_status() === FALSE)
     {
             $this->db->trans_rollback();
+
              return FALSE;
     }
     else
     {
             $this->db->trans_commit();
-            //return TRUE;
-            return $insert_id;
+            return TRUE;
+           return $insert_id;
     }   
         
        }
