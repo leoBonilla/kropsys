@@ -40,7 +40,8 @@ class MailReader{
 
 		public function synchronize(){
 			ini_set('max_execution_time', 0);
-				$emails = imap_search($this->mailbox, 'FROM "@kropsys.cl"');
+				//$emails = imap_search($this->mailbox, 'OR FROM "@kropsys.cl"');
+				$emails = imap_search($this->mailbox, 'ALL');
 				/* if emails are returned, cycle through each... */
 				
 			if($emails) {
