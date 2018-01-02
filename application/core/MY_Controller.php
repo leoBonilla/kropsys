@@ -20,9 +20,11 @@ class MY_Controller extends Auth_Controller
 	/**
 	 * Class constructor
 	 */
+
 	public function __construct()
 	{
 		parent::__construct();
+
 	}
 }
 

@@ -13,24 +13,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @link        http://community-auth.com
  */
 
-class Test extends CI_Controller
+class Test extends MY_Controller
 {
 
 public function __construct(){
 	parent::__construct();
 }
 
-public function test(){}
+
+
 
 public function index(){
-        $this->template->set('title', 'Email');
-        
-            $this->template->set('page_header', 'Email');
+
+            if($this->require_min_level(1)){
+                 $this->template->set('title', 'Documentos');
+             $this->template->set('page_header', 'Documentos');
              $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
                         'vendor/clockpicker/dist/bootstrap-clockpicker.css',
-                        'custom.css'
+                         'vendor/switch/bootstrap-switch.min.css'
 
                     );
 
@@ -42,6 +44,9 @@ public function index(){
                          'vendor/datatables-responsive/responsive.bootstrap.min.js',
                          'vendor/clockpicker/dist/bootstrap-clockpicker.js',
                          'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         'vendor/fileupload/js/vendor/jquery.ui.widget.js',
+                         'vendor/fileupload/js/jquery.fileupload.js',
                          //buttons js
                          'vendor/datatables-plugins/dataTables.buttons.min.js',
                'vendor/datatables-plugins/buttons.bootstrap.min.js',
@@ -51,19 +56,27 @@ public function index(){
                          'vendor/datatables-plugins/vfs_fonts.js',
                          'vendor/datatables-plugins/buttons.html5.min.js',
                          'vendor/datatables-plugins/buttons.print.min.js',
-                         'vendor/moments/moments.js',
-               '../init_tables.js',
-               'pages/tareas/email.js'
-                         
+                         //global
+                         'pages/test/test.js'                      
                          );
             $this->template->set('css', $css);
             $this->template->set('scripts', $scripts);
+  //    $options = array(
+  //   'cluster' => 'us2',
+  //   'encrypted' => true
+  // );
+  // $pusher = new Pusher\Pusher(
+  //   'd2cee8a3e04c9befaf5d',
+  //   'dfba06368a2378a61987',
+  //   '451334',
+  //   $options
+  // );
 
-	$this->load->model('documents/documents_model', 'doc');
-	$this->doc->changeState(1, 2, 'adfa');
-	$this->template->load('default_layout', 'contents' , 'test/index');
-	
+  // $data['message'] = 'hello world';
+  // $pusher->trigger('my-channel', 'my-event', $data);
+      $this->template->load('default_layout', 'contents' , 'test/index');
 
+            }
 }
 
 	

@@ -151,4 +151,111 @@ class Users extends MY_Controller
 		}
     }
 
+
+    public function listado(){
+    	if($this->require_min_level(9)){
+    		$this->template->set('title', 'Usuarios');
+        
+            $this->template->set('page_header', 'Usuarios');
+             $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'custom.css'
+
+                    );
+
+
+             $scripts = array( 
+                        'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'pages/users/listado.js'
+                         
+                         );
+              $this->template->set('css', $css);
+            $this->template->set('scripts', $scripts);
+             $this->template->load('default_layout', 'contents' , 'users/listado');
+    	}
+    }
+
+
+        public function listar_usuarios(){
+         if($this->require_min_level(1)){
+          $inicio = '';
+          $fin= '';
+          $users;
+            if($this->input->post()){
+
+           
+                  $this->load->model('datatables/users_model', 'users');
+                  $list = $this->users->get_datatables();
+					        $data = array();
+					        $no = $_POST['start'];
+					        foreach ($list as $fila) {
+					          //var_dump($tareas);
+					            $no++;
+					            $row = array();
+					            $row[] = $fila->nombre;
+					            $row[] = $fila->apellido;
+					            $row[] = $fila->rut;
+					            $row[] = '<span class="label label-default">'.$fila->anexo.'</span>';
+					            $row[] = $fila->email;
+					           // $row[] = $fila->banned;
+					            if($fila->banned == 1){
+					            	$estado = '<span class="label label-danger">ACTIVO</span>';
+					            }else{
+					            	$estado = '<span class="label label-success">INACTIVO</span>';
+					            }
+					            
+					            $row[] = $estado;
+					            $row[] = '<div class="btn-group btn-group-xs">
+  <button type="button" class="btn btn-warning btn-edit" data-user-id="'.$fila->user_id.'"><i class="fa fa-edit"></i></button>
+</div>';
+
+
+					 
+					 
+					            $data[] = $row;
+					        }
+					 
+					        $output = array(
+					                        "draw" => $_POST['draw'],
+					                        "recordsTotal" => $this->users->count_all(),
+					                        "recordsFiltered" => $this->users->count_filtered(),
+					                        "data" => $data,
+					                );
+					        //output to json format
+					        echo json_encode($output);
+
+              }
+
+            }
+          }
+
+
+public function editUserHtml(){
+	if($this->require_min_level(9)){
+		$this->load->model('global_model', 'global');
+		if($this->input->post()){
+			$id = $this->input->post('user_id');
+		}
+	}
+}
+
 }

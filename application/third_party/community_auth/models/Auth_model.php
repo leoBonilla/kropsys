@@ -595,6 +595,20 @@ class Auth_model extends MY_Model {
 	}
 	
 	// -----------------------------------------------------------------------
+	// 
+	
+
+	    public function getByUser($user, $seen = false){
+     		$this->db->select('*');
+     		$this->db->from('notifications');
+     		$this->db->where('user_id', $user);
+     		$this->db->where('seen', $seen);
+     		$query = $this->db->get();
+     		if($query->num_rows() > 0){
+     			return $query->result();
+     		}
+     		return false;
+     }
 
 }
 

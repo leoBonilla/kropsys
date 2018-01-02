@@ -13,7 +13,7 @@ class Apicall extends MY_Controller {
 		if($this->require_min_level(1)){
 			if($this->input->post()){
 				$telefono = $this->input->post('numero');
-				$anexo = $this->input->post('anexo');
+				//$anexo = $this->input->post('anexo');
 				return $this->makeCall($telefono,$anexo);
 				//echo json_encode(array('respuestaOk' => true, 'message' => 'mensaje', 'uniqueId' => '3434322.3443' ));
 		}
@@ -29,11 +29,12 @@ class Apicall extends MY_Controller {
 								          		"verify_peer_name"=>false,
 		        							),
 		      							);
-
-				$xml = file_get_contents("https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension", false, stream_context_create($arrContextOptions));
-	   			$obj = json_decode($xml);
+			   	$xml = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension";
+			   	echo $xml;
+				//$xml = file_get_contents("https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension", false, stream_context_create($arrContextOptions));
+	   			//$obj = json_decode($xml);
 	    		
-	    		echo json_encode($obj);
+	    		//echo json_encode($obj);
 	   } catch (Exception $e) {
 	   	return json_encode(array('result' => false));
 	   }

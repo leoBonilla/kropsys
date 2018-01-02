@@ -55,6 +55,8 @@ class Auth_Controller extends CI_Controller {
      */
     public $auth_email;
 
+    public $notifications;
+
 	/**
 	 * The logged-in user's authentication data,
 	 * which is their user table record, but could
@@ -425,6 +427,7 @@ class Auth_Controller extends CI_Controller {
 		$this->auth_level    = $this->auth_data->auth_level;
 		$this->auth_role     = $this->authentication->roles[$this->auth_data->auth_level];
 		$this->auth_email    = $this->auth_data->email;
+		$this->notifications = $this->auth_model->getByUser($this->auth_user_id);
 
 		// Set user specific variables to be available in all views
 		$data = [
@@ -432,7 +435,8 @@ class Auth_Controller extends CI_Controller {
 			'auth_username' => $this->auth_username,
 			'auth_level'    => $this->auth_level,
 			'auth_role'     => $this->auth_role,
-			'auth_email'    => $this->auth_email
+			'auth_email'    => $this->auth_email,
+			'notifications' => $this->notifications
 		];
 
 		// Set user specific variables to be available as config items
@@ -441,6 +445,7 @@ class Auth_Controller extends CI_Controller {
 		$this->config->set_item( 'auth_level',    $this->auth_level );
 		$this->config->set_item( 'auth_role',     $this->auth_role );
 		$this->config->set_item( 'auth_email',    $this->auth_email );
+
 
 		// Add ACL permissions if ACL query turned on
 		if( config_item('add_acl_query_to_auth_functions') )

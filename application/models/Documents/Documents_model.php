@@ -196,16 +196,8 @@ class Documents_model extends CI_Model {
                        if ($this->db->affected_rows() > 0)
                           {
 
-                             $result =  $this->doc->changeState($id,1, $this->auth_user_id, $data['observaciones'], $data['id_email']);
+                             $result =  $this->doc->changeState($id,1, $data['responsable'], $data['observaciones'], $data['id_email']);
                             
-                            //   unset($data['asignado_por']);
-                            //   $id_email = $data['id_email'];
-                            //   unset($data['id_email']);
-                            // $this->db->insert('historial_documento', $data);
-                            // if ($this->db->affected_rows() > 0){
-                            //   $this->updateEmailState($id_email, $data['estado']);
-                            //   return TRUE;
-                            // }
                             if($result != false){
                               return TRUE;
                             }
@@ -270,7 +262,7 @@ class Documents_model extends CI_Model {
 
        public function changeState($id,$state,$user ,$observacion = false, $id_email= false, $adjunto=0 ){
         $this->db->trans_begin();
-
+        $date = date('Y-m-d H:i:s');
          $this->db->select('id');
          $this->db->from('historial_documento');
          $this->db->where('id_documento',$id);
@@ -284,7 +276,19 @@ class Documents_model extends CI_Model {
 
          //echo ''. $maxid;
          $this->db->where('id' , $maxid);
-         $this->db->update('historial_documento', array('fecha_fin' => date('Y-m-d H:i:s') ));
+         $this->db->update('historial_documento', array('fecha_fin' => $date ));
+         //si el estado es asignar entonces crear notificacion
+         if($state === 1){
+              //tipos de eventos 
+              //1- tarea asignada
+            $this->db->insert('notifications', array('title' => 'Nueva tarea asignada', 
+                                                      'time' => $date, 
+                                                      'description' => 'Tiene una nueva tarea asignada',
+                                                      'seen' => 0,
+                                                      'event_type' => 1,
+                                                      'user_id' => $user
+                                                    ));
+         }
 
 
          $this->db->where('id', $id);
@@ -460,6 +464,16 @@ class Documents_model extends CI_Model {
         }
         return false;
     }
+
+     public function createNotification($data){
+        $this->db->insert('notifications', $data);
+            if ( $this->db->affected_rows() == '1' ) {
+                return TRUE;
+              }
+              else {
+                return FALSE;
+            }
+     }
 
 
 }

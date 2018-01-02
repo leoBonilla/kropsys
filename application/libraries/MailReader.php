@@ -194,7 +194,7 @@ class MailReader{
 
              public function sincronizar(){
              	ini_set('max_execution_time', 0);
-             	$emails = imap_search($this->mailbox, 'FROM "@kropsys.cl"');
+             	$emails = imap_search($this->mailbox, 'ALL');
              	if($emails) {
              		 rsort($emails);
              		$count = 0 ; 
@@ -322,19 +322,19 @@ class MailReader{
              }
 
 
-             function flattenParts($messageParts, $flattenedParts = array(), $prefix = '', $index = 1, $fullPrefix = true) {
+public function flattenParts($messageParts, $flattenedParts = array(), $prefix = '', $index = 1, $fullPrefix = true) {
 
 						foreach($messageParts as $part) {
 							$flattenedParts[$prefix.$index] = $part;
 							if(isset($part->parts)) {
 								if($part->type == 2) {
-									$flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix.$index.'.', 0, false);
+									$flattenedParts = $this->flattenParts($part->parts, $flattenedParts, $prefix,$index.'.', 0, false);
 								}
 								elseif($fullPrefix) {
 									$flattenedParts = $this->flattenParts($part->parts, $flattenedParts, $prefix.$index.'.');
 								}
 								else {
-									$flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix);
+									$flattenedParts = $this->flattenParts($part->parts, $flattenedParts, $prefix);
 								}
 								unset($flattenedParts[$prefix.$index]->parts);
 							}

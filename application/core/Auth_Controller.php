@@ -55,6 +55,9 @@ class Auth_Controller extends CI_Controller {
      */
     public $auth_email;
 
+
+    public $auth_notifications;
+
 	/**
 	 * The logged-in user's authentication data,
 	 * which is their user table record, but could
@@ -425,6 +428,8 @@ class Auth_Controller extends CI_Controller {
 		$this->auth_level    = $this->auth_data->auth_level;
 		$this->auth_role     = $this->authentication->roles[$this->auth_data->auth_level];
 		$this->auth_email    = $this->auth_data->email;
+		$this->notifications = false;
+
 
 		// Set user specific variables to be available in all views
 		$data = [
@@ -432,7 +437,8 @@ class Auth_Controller extends CI_Controller {
 			'auth_username' => $this->auth_username,
 			'auth_level'    => $this->auth_level,
 			'auth_role'     => $this->auth_role,
-			'auth_email'    => $this->auth_email
+			'auth_email'    => $this->auth_email,
+			'notifications' => $this->notifications
 		];
 
 		// Set user specific variables to be available as config items

@@ -531,9 +531,10 @@ public function misTareas(){
             
             
            if( $this->documents_model->asignar($data, $file)){ 
-            $result = true;
+                $this->sendNotification($usuario,'notification', array('message' => 'Nueva Tarea asignada'));
+                $result = true;
            }else{
-            $result  = false;
+                $result  = false;
            }
              
             }
@@ -692,6 +693,21 @@ public function validar(){
             echo json_encode(array('result' => $result));
         }
     }
+}
+
+
+private function sendNotification($channel,$event, $data){
+           $options = array(
+                    'cluster' => 'us2',
+                    'encrypted' => true
+                  );
+                  $pusher = new Pusher\Pusher(
+                    'd2cee8a3e04c9befaf5d',
+                    'dfba06368a2378a61987',
+                    '451334',
+                    $options
+                  );
+            $pusher->trigger($channel, $event , $data);
 }
 
 

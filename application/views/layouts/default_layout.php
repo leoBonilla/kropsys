@@ -35,12 +35,19 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/admin_theme')?>/vendor/datatables-plugins/buttons.dataTables.min.css?v=<?php echo VERSION; ?>">
 
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+  crossorigin="anonymous">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
 
 </head>
 
@@ -49,7 +56,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-light navbar-static-top bg-inverse" role="navigation" style="margin-bottom: 0;">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -64,6 +71,83 @@
             <!-- /.navbar-header -->
 
        <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown ">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                        <i class="fa fa-bell fa-fw"></i>
+                            <?php if($notifications){ ?>
+                                   <span class="badge badge-notify" id="notification-count"><?php echo count($notifications); ?></span> 
+                                <?php } ?><i class="fa fa-caret-down"></i>
+                    </a>
+                  
+                    <?php if($notifications != false) :?>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <?php foreach ($notifications as $row) : ?>
+                                <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-tasks"></i> <?php echo $row->title; ?>
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php  endif; ?>
+            <!--         <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul> -->
+                    <!-- /.dropdown-alerts -->
+                </li>
                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -255,6 +339,33 @@
      <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/bootstrap-select/dist/js/bootstrap-select.js?v=<?php echo VERSION; ?>"></script>
      <script src="<?php echo base_url('assets')?>/global.js?v=<?php echo VERSION; ?>"></script>
          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/snow/snowfall.jquery.min.js?v=<?php echo VERSION; ?>"></script>
+
+         <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+  <script>
+ // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('d2cee8a3e04c9befaf5d', {
+      cluster: 'us2',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('<?php echo $auth_user_id; ?>');
+    var notifi_count = $('#notification-count');
+///console.log(notifi_count.text());
+    channel.bind('notification', function(notification){
+            var message = notification.message;
+            
+            var counter = notifi_count.text();
+            counter = Number(counter) + 1;
+
+            notifi_count.text('' + counter);
+           notifi_count.addClass('animated flash infinite');
+            toastr["success"](message);
+
+        });
+  
+  </script>
   
  <?php foreach ($scripts as $js) :?>
         <script src="<?php echo base_url('assets/admin_theme/').$js.'?v='.VERSION; ?>"></script>
