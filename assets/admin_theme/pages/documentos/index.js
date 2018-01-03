@@ -4,10 +4,19 @@ $(document).ready(function(){
 });
 
 
+$('#documentos_table tbody').on( 'click', 'button', function () {
+       // console.log($(this).data('id'));
+       var id  = $(this).data('id');
+       $.post(BASE_URL+'/notification/seen', { id : id }, function(resp){
+
+       });
+    } );
+
+
 $(document).on("click", ".btn-modal", function () {
-       var modal = $('#modal');
-       var btn = $(this);
-     modal.modal('show');
+        var modal = $('#modal');
+        var btn = $(this);
+        modal.modal('show');
         var body = modal.find('.modal-body');
         var id = btn.data('id');
         var id_email = btn.data('id_email');
@@ -26,7 +35,6 @@ $(document).on("click", ".btn-modal", function () {
               $('#file_required').val('1');
               $('input[name="userfile"]').prop('required',true);
             }
-            console.log($('#file_required').val());
           });
 	$('input[name="chk-gestion"]').on('switchChange.bootstrapSwitch',  function(event, state) {
 			 if(state){
@@ -73,7 +81,7 @@ $(document).on("click", ".btn-call", function () {
         btncallf =  function(){
           if($('#numero').val() != ''){
               $.post(BASE_URL+'/apicall/callV2',{ anexo: $('input[name="anexo"]').val(), numero: $('#numero').val(), documento: $('input[name="doc_id"]').val()}, function(result){
-            //console.log(result);
+
             
              if(result.result == true){
               toastr["success"]("GENERANDO LLAMADA");
@@ -93,7 +101,6 @@ $(document).on("click", ".btn-call", function () {
                     });
                 },
                 success: function(res, status, xhr, form) {
-                       // console.log(res);
                        if(res.result == true){
                         toastr["success"]("LLAMADA REGISTRADA");
                             modal.modal('toggle');
@@ -129,8 +136,6 @@ $('#modalCall').on('show.bs.modal', function(e) {
     //get data-id attribute of the clicked element
     var id = $(e.relatedTarget).data('id');
     $(e.currentTarget).find('input[name="doc_id"]').val(id);
-   // alert('asdf');
-   console.log('el valor es : ' + id);
     $(this).off('show.bs.modal');
 
 });
@@ -148,7 +153,6 @@ $(document).on("click", ".btn-history", function () {
 
             table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
                 var data = this.data();
-                console.log(data);
             } );
             var table2 = $('#calls_table').DataTable(); 
           });

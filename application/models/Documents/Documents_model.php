@@ -286,14 +286,15 @@ class Documents_model extends CI_Model {
                                                       'description' => 'Tiene una nueva tarea asignada',
                                                       'seen' => 0,
                                                       'event_type' => 1,
-                                                      'user_id' => $user
+                                                      'user_id' => $user,
+                                                      'id_documento' => $id
                                                     ));
          }
 
 
          $this->db->where('id', $id);
          $this->db->update('documentos', array('estado' => $state));
-        $history = array('id_documento' => $id, 'responsable'=> $user,'fecha' => date('Y-m-d H:i:s'),'estado' => $state, 'adjunto' => $adjunto);
+        $history = array('id_documento' => $id, 'responsable'=> $user,'fecha' => date('Y-m-d H:i:s'),'estado' => $state, 'adjunto' => $adjunto,'id_documento' => $id);
          if($observacion != false){
           $history['observaciones'] = $observacion;
          }
@@ -308,12 +309,12 @@ class Documents_model extends CI_Model {
             $this->db->trans_rollback();
                 return FALSE;
     }
-    else
-    {
-            $this->db->trans_commit();
-            //return TRUE;
-           return $insert_id;
-    }   
+        else
+          {
+                  $this->db->trans_commit();
+                  //return TRUE;
+                 return $insert_id;
+          }   
         
        }
 
@@ -330,28 +331,7 @@ class Documents_model extends CI_Model {
 
        }
 
-
-
-
-       // public function saveModificado($data){
-       //     $this->db->insert('documento_modificado', $data);
-       //     //var_dump($this->db->affected_rows());
-       //      if ( $this->db->affected_rows() == 1 ) {  
-       //       //var_dump($data);
-       //       //return true;
-       //       if($this->changeState($data['id_original'], 3 , $data['id_usuario'], $data['observaciones'],$data['id_email'],1)){
-       //         $last_id =  $this->db->insert_id();
-       //         $data['id_historial'] = $last_id;
-       //         $this->db->insert('documento_modificado', $data);
-       //         return TRUE;
-       //       }
-       //       return FALSE;
-       //        }
-       //        return FALSE;
-       // }
-       
-
-            public function saveModificado($data){
+       public function saveModificado($data){
             $last_id = $this->changeState($data['id_original'], 3 , $data['id_usuario'], $data['observaciones'],$data['id_email'],1);
               // var_dump($last_id);
             if($last_id != false){
@@ -465,15 +445,7 @@ class Documents_model extends CI_Model {
         return false;
     }
 
-     public function createNotification($data){
-        $this->db->insert('notifications', $data);
-            if ( $this->db->affected_rows() == '1' ) {
-                return TRUE;
-              }
-              else {
-                return FALSE;
-            }
-     }
+     
 
 
 }

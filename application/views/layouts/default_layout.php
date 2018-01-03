@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -70,28 +71,49 @@
             </div>
             <!-- /.navbar-header -->
 
-       <ul class="nav navbar-top-links navbar-right">
+       <ul class="nav navbar-top-links navbar-right notifications-nav">
                 <li class="dropdown ">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
                         <i class="fa fa-bell fa-fw"></i>
                             <?php if($notifications){ ?>
-                                   <span class="badge badge-notify" id="notification-count"><?php echo count($notifications); ?></span> 
-                                <?php } ?><i class="fa fa-caret-down"></i>
+                                   <span class="badge badge-notify" id="notification-count" ><?php echo count($notifications); ?></span> 
+                                <?php }
+                                    else{ ?>
+                                    <span class="badge badge-notify" id="notification-count" style="display:none">0</span> 
+                                    <?php }
+
+                                 ?><i class="fa fa-caret-down"></i>
                     </a>
                   
                     <?php if($notifications != false) :?>
-                        <ul class="dropdown-menu dropdown-alerts">
+                        <ul class="dropdown-menu dropdown-alerts" id="navbar-notifications">
                             <?php foreach ($notifications as $row) : ?>
                                 <li>
-                            <a href="#">
+                            <a href="<?php echo base_url('documentos'); ?> " data-noti-id="<?php echo $row->id; ?>" class="notification-link">
                                 <div>
                                     <i class="fa fa-comment fa-tasks"></i> <?php echo $row->title; ?>
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <span class="pull-right text-muted small"><time class="timeago" datetime="<?php echo $row->time ?>"><?php echo $row->time ?></time></span>
                                 </div>
                             </a>
                         </li>
+                        <li class="divider"></li>
                             <?php endforeach; ?>
+             <!--            <li>
+                           <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-tasks"></i> 
+                                    <span class="pull-right text-muted small">Eliminar todas</span>
+                                </div>
+                            </a>
+                        </li> -->
                         </ul>
+
+                    <?php else: ?>
+                        <ul class="dropdown-menu dropdown-alerts" id="navbar-notifications" style="display: none">
+                            
+                        </ul>
+
+
                     <?php  endif; ?>
             <!--         <ul class="dropdown-menu dropdown-alerts">
                         <li>
@@ -341,6 +363,7 @@
          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/snow/snowfall.jquery.min.js?v=<?php echo VERSION; ?>"></script>
 
          <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+         <script src="<?php echo base_url('assets/admin_theme/vendor')?>/timeago/jquery.timeago.js?v=<?php echo VERSION; ?>" type="text/javascript"></script>
   <script>
  // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
@@ -352,16 +375,25 @@
 
     var channel = pusher.subscribe('<?php echo $auth_user_id; ?>');
     var notifi_count = $('#notification-count');
+
 ///console.log(notifi_count.text());
     channel.bind('notification', function(notification){
             var message = notification.message;
             
             var counter = notifi_count.text();
+
             counter = Number(counter) + 1;
 
             notifi_count.text('' + counter);
-           notifi_count.addClass('animated flash infinite');
+            if($(notifi_count).is(":visible") === false){
+                    $(notifi_count).toggle();
+                     $('#navbar-notifications').toggle();
+            }
+            notifi_count.addClass('animated flash infinite');
             toastr["success"](message);
+
+
+             $('#navbar-notifications').prepend('<li><a href="" class="notification-link"><div><i class="fa fa-tasks"></i> '+message+'<span class="pull-right text-muted small">Hace menos de un minuto</span></div></a></li><li class="divider"></li>').find('li:first').addClass('animated flash');
 
         });
   

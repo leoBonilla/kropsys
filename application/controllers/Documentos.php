@@ -417,5 +417,13 @@ public function changeState(){
     }
 
 
+    public function seenNotification(){
+        if($this->input->post()){
+            $id = $this->input->post('id');
+            $this->documents_model->setSeed($id);
+        }
+    }
+
+
 	
 }

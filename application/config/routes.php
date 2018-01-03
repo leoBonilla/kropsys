@@ -60,3 +60,5 @@ $route['sms/enviar']   = 'index/sendsms';
 
 
 $route['usuarios/crear'] = 'users/nuevo';
+
+$route['documentos/(:num)'] = 'documentos/index/$1';

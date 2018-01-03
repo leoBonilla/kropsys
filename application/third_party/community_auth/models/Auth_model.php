@@ -603,6 +603,7 @@ class Auth_model extends MY_Model {
      		$this->db->from('notifications');
      		$this->db->where('user_id', $user);
      		$this->db->where('seen', $seen);
+     		$this->db->order_by('id', 'DESC');
      		$query = $this->db->get();
      		if($query->num_rows() > 0){
      			return $query->result();

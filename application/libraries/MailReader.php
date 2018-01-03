@@ -19,7 +19,7 @@ class MailReader{
 				$this->email = $email;
 				$this->port = $port;
 				$this->password = $password;
-				$this->limitMsg = 10;
+				$this->limitMsg = 50;
 				$this->userid = $userid;
 				$this->connect();
 				$this->filetypes= array('xlsx','pdf','docx','png','jpg','jpeg','rar');
@@ -213,7 +213,7 @@ class MailReader{
              			$overview = imap_fetch_overview($this->mailbox,$messageNumber,0);
  						$header = imap_headerinfo ( $this->mailbox, $messageNumber);
  						$overview = $overview[0];
-						$subject = isset($overview->subject) ? $overview->subject : false;
+						$subject = isset($overview->subject) ? utf8_encode($overview->subject) : false;
 						$sender = $header->from[0]->mailbox ."@". $header->from[0]->host;
 						$date = $overview->date;
 
@@ -236,7 +236,7 @@ class MailReader{
 											case 0:
 												// the HTML or plain text part of the email
 												$message = $this->getPart($this->mailbox, $messageNumber, $partNumber, $part->encoding);
-												$data['message'] =$message;
+												$data['message'] =utf8_encode($message);;
 
 												// now do something with the message, e.g. render it
 											break;
