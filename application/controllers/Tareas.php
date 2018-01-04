@@ -466,7 +466,7 @@ public function misTareas(){
 public function emailsdescartados(){
   if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Emails descartados');
-
+        $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('tareas/email').'"><i class="fa fa-envelope-o"></i></a>');
         $this->template->set('page_header', 'Emails descartados');
           //           $this->template->set('page_header', 'Email');
              $css =  array(
@@ -776,10 +776,10 @@ public function list_descartados(){
             $row[] = $emails->enviado_por;
             $row[] = $emails->s_descartado_por;
             $row[] = $emails->fecha_descarte;
-            $row[] = $emails->motivo;
+            //$row[] = $emails->motivo;
       
 
-            //$row[] = "<a class='btn btn-warning btn-xs' href='editarcita/".$llamadas->id_subtarea."'>Editar</a>";
+            $row[] = "<button class='btn btn-warning btn-xs btn-modal' data-idmail='".$emails->id_email."'><i class='fa fa-info'></i></button>";
 
  
             $data[] = $row;

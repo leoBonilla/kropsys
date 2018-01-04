@@ -26,3 +26,16 @@ $(document).ready(function(){
 
     });
 });
+
+
+$(document).on("click", ".btn-modal", function () {
+  
+      var modal = $('#infoModal');
+      modal.modal('show');
+      var body = modal.find('.modal-body');
+        body.load("ajaxInfo", { id: $(this).data('idmail')},function(){
+       
+        });
+  
+
+});
