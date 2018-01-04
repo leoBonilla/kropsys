@@ -411,7 +411,7 @@ public function misTareas(){
  public function email(){
   if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Email');
-        
+        $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('tareas/emailsdescartados').'"><i class="fa fa-envelope-o"></i></a>');
             $this->template->set('page_header', 'Email');
              $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
@@ -466,6 +466,7 @@ public function misTareas(){
 public function emailsdescartados(){
   if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Emails descartados');
+
         $this->template->set('page_header', 'Emails descartados');
           //           $this->template->set('page_header', 'Email');
              $css =  array(

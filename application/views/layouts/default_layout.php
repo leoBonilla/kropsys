@@ -308,7 +308,13 @@
                     
                         <div class="col-md-9"><h3 class="" style="margin-left:-16px;"><?php echo $page_header; ?></div>
                         <div class="col-md-3" >
-                            <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url(); ?>" style="margin-top:10px;"><i class="fa fa-home"></i></a>
+                           
+                            <div class="btn-group btn-group-xs pull-right" style="margin-right:-15px;margin-top: 10px;">
+                                <?php if(isset($buttons)){
+                                    echo $buttons; 
+                                }?>
+                        <a class="btn btn-sm btn-default " href="<?php echo base_url(); ?>" ><i class="fa fa-home"></i></a>
+                            </div>
                         </div>
                     
                     <h3 class="page-header"></h3>
