@@ -26,7 +26,7 @@ class Api extends MY_Controller {
 	public function sendSms()
 	{
       header('Content-Type: application/json');
-        if( $this->verify_min_level(1) ){
+        if( $this->verify_min_level(EJECUTIVE_LEVEL) ){
             if(($_SERVER['REQUEST_METHOD'] == 'POST') ){
               // $doctor = strtoupper($_POST['doctor']);
                $profesional = $_POST['profesional'];

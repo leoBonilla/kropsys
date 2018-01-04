@@ -35,7 +35,7 @@ class Crud extends MY_Controller
 
 	public function index()
 	{
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 		$this->_example_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
 	}
 	}
@@ -44,7 +44,7 @@ class Crud extends MY_Controller
 
 	public function profesionales()
 	{
-		if($this->require_min_level(9)){
+		if($this->require_min_level(ADMIN_LEVEL)){
 			try{
 			$crud = new grocery_CRUD();
 
@@ -72,7 +72,7 @@ class Crud extends MY_Controller
 	}
 
 	public function users(){
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 		try{
 			$crud = new grocery_CRUD();
 
@@ -95,7 +95,7 @@ class Crud extends MY_Controller
 
 
     public function profesionales_v2(){
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 		try{
 			$crud = new grocery_CRUD();
 
@@ -142,7 +142,7 @@ class Crud extends MY_Controller
 
 	public function especialidades()
 	{
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 		try{
 			$crud = new grocery_CRUD();
 

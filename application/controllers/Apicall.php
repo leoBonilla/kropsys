@@ -10,7 +10,7 @@ class Apicall extends MY_Controller {
 
 	public function call(){
 		header('Content-Type: application/json');
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			if($this->input->post()){
 				$telefono = $this->input->post('numero');
 				//$anexo = $this->input->post('anexo');
@@ -43,7 +43,7 @@ class Apicall extends MY_Controller {
 
 	public function callLog(){
 		header('Content-Type: application/json');
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			if($this->input->post()){
 			     //$intento = $this->input->post('intento');
 			     $task_id = $this->input->post('task_id');
@@ -75,7 +75,7 @@ class Apicall extends MY_Controller {
 }
 	public function closeSubTask(){
 		header('Content-Type: application/json');
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			if($this->input->post()){
 				//si viene del popup
 				if($this->input->post('popup') == 1){

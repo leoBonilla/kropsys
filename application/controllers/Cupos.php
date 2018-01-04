@@ -24,7 +24,7 @@ class Cupos extends My_Controller
 	}
 
 	public function index(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
     	$this->load->model('global_model');
     	$especialidades = $this->global_model->getEspecialidades();
     		   $data = array();
@@ -52,7 +52,7 @@ class Cupos extends My_Controller
 
 	public function processCupos(){
 		header('Content-Type: application/json');
-     if($this->require_min_level(1)){
+     if($this->require_min_level(EJECUTIVE_LEVEL)){
 		 		if($this->input->post()){
 		    $this->form_validation->set_rules('profesional','Profesional', 'required');
 			$this->form_validation->set_rules('especialidad','Especialidad', 'required');
@@ -83,7 +83,7 @@ class Cupos extends My_Controller
 	}
 	
 	public function listado(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			 $css =  array(
        					'vendor/datatables-plugins/dataTables.bootstrap.css',
        					'vendor/datatables-responsive/dataTables.responsive.css',
@@ -117,7 +117,7 @@ class Cupos extends My_Controller
 
 
 	public function detalle(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			$id_especialidad = trim($this->uri->segment(3));
 			$fecha = trim($this->uri->segment(4));
 			if(is_numeric($id_especialidad) == false or (preg_match('/\d{4}-\d{2}-\d{2}/',$fecha) == false)){

@@ -20,14 +20,13 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-		if( $this->require_min_level(1) )
+		if( $this->require_min_level(EJECUTIVE_LEVEL) )
 		{
 			$this->template->set('title', 'Inicio');
 			$this->template->set('page_header', 'Inicio');
 			$this->template->set('css', array());
 			$this->template->set('scripts', array());
 			$this->template->load('default_layout', 'contents' , 'welcome_message', null);
-				//$this->load->view('welcome_message');
 	     }
 	}
 }

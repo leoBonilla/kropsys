@@ -78,8 +78,14 @@
 
                    </td>
 
-                   <td><button class="btn btn-xs btn-info btn-modal" data-idmail="<?php echo $email->id_email; ?>" data-toggle="modal" data-sender="<?php echo $email->enviado_por; ?>" data-subject="<?php echo $email->asunto; ?>" ><i class="fa fa-info"></i></button> <button class="btn btn-warning btn-xs btn-asignar" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-user"></i>&nbsp;</button>
-                    <a class="btn btn-xs btn-info btn-files" href="<?php echo base_url().'tareas/adjuntos/'.$email->id_email; ?>"><i class="fa fa-files-o"></i></a>
+                   <td>
+                      <div class="btn-group btn-group-xs">
+ <button class="btn btn-xs btn-info btn-modal" data-idmail="<?php echo $email->id_email; ?>" data-toggle="modal" data-sender="<?php echo $email->enviado_por; ?>" data-subject="<?php echo $email->asunto; ?>" >&nbsp;<i class="fa fa-info">&nbsp;</i></button> <button class="btn btn-warning btn-xs btn-asignar" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-user"></i>&nbsp;</button>
+                    <a class="btn btn-xs btn-success btn-files" href="<?php echo base_url().'tareas/adjuntos/'.$email->id_email; ?>"><i class="fa fa-files-o"></i></a>
+
+                    <button class="btn btn-danger btn-xs btn-discard" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-ban"></i>&nbsp;</button>
+  </div>
+                   
                    </td>
 
                   
@@ -94,7 +100,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Detalle de email</h5>
@@ -102,7 +108,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="modal-body">
+        <div class="modal-body" style="overflow-x:auto;">
                 
                 <form class="form-horizontal" role="form">
                   <div class="form-group">
@@ -221,7 +227,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Detalle de email</h5>

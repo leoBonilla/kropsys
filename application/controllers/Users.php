@@ -26,7 +26,7 @@ class Users extends MY_Controller
 	}
 
     public function nuevo(){
-    	if( $this->require_min_level(9) )
+    	if( $this->require_min_level(ADMIN_LEVEL) )
 		{
 
 			 $this->load->model('anexos_model');
@@ -52,7 +52,7 @@ class Users extends MY_Controller
     	$this->load->helper('auth');
 		$this->load->model('examples/examples_model');
 		$this->load->model('examples/validation_callables');
-    	if( $this->require_min_level(9) )
+    	if( $this->require_min_level(ADMIN_LEVEL) )
 		{
 			if($this->input->post()){
 
@@ -153,7 +153,7 @@ class Users extends MY_Controller
 
 
     public function listado(){
-    	if($this->require_min_level(9)){
+    	if($this->require_min_level(ADMIN_LEVEL)){
     		$this->template->set('title', 'Usuarios');
         
             $this->template->set('page_header', 'Usuarios');
@@ -196,7 +196,7 @@ class Users extends MY_Controller
 
 
         public function listar_usuarios(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $users;
@@ -250,7 +250,7 @@ class Users extends MY_Controller
 
 
 public function editUserHtml(){
-	if($this->require_min_level(9)){
+	if($this->require_min_level(ADMIN_LEVEL)){
 		$this->load->model('global_model', 'global');
 		if($this->input->post()){
 			$id = $this->input->post('user_id');

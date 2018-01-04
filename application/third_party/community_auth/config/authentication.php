@@ -28,8 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config['levels_and_roles'] = [
-	'1' => 'cliente_interno',
-	'2' => 'cliente_externo',
+	'1' => 'usuario_externo',
+	'3' => 'usuario_interno',
 	'9' => 'admin',
 	'12' => 'superuser'
 ];
@@ -43,7 +43,7 @@ $config['levels_and_roles'] = [
 */
 
 $config['groups'] = [
-	'clientes' => 'cliente_interno,cliente_externo',
+	'usuarios' => 'usuario_interno,usuario_externo',
 	'administradores' => 'admin,superuser'
 ];
 
@@ -143,7 +143,7 @@ $config['seconds_on_hold'] = 600;
 |
 */
 
-$config['disallow_multiple_logins'] = FALSE;
+$config['disallow_multiple_logins'] = TRUE;
 
 /*
 | -----------------------------------------------------------------

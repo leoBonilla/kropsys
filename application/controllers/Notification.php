@@ -21,7 +21,7 @@ class Notification extends MY_Controller
 	}
 
 	public function getNotifications(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			if($this->input->post()){
 				$doc = $this->input->post('doc_id');
 				$user = $this->auth_user_id;
@@ -36,7 +36,7 @@ class Notification extends MY_Controller
 
 
 	public function seen(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			if($this->input->post()){
 				$doc = $this->input->post('id');
 				$user = $this->auth_user_id;

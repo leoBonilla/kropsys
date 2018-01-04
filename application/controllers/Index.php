@@ -31,7 +31,7 @@ class Index extends MY_Controller {
 
 
 	public function sendSms(){
-		if( $this->require_min_level(1) )
+		if( $this->require_min_level(EJECUTIVE_LEVEL) )
 		{
 
 			$this->load->model('locations_model');

@@ -21,7 +21,7 @@ class Documentos extends MY_Controller
 	}
 
 	public function index(){
-			  if($this->require_min_level(1)){
+			  if($this->require_min_level(EJECUTIVE_LEVEL)){
         $this->template->set('title', 'Tareas');
         
             $this->template->set('page_header', 'Tareas');
@@ -71,7 +71,7 @@ class Documentos extends MY_Controller
 
 
 	public function getMyDocuments(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
     	if($this->input->post()){
     			$userid = $this->input->post('userid');
     			$this->load->model('documents/documents_model');
@@ -99,7 +99,7 @@ class Documentos extends MY_Controller
 
 
 	public function loadModal(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
     	if($this->input->post()){
     			$id = $this->input->post('id');
                 $idmail = $this->input->post('id_email');
@@ -139,7 +139,7 @@ class Documentos extends MY_Controller
 
 public function changeState(){
 	header('Content-Type: application/json');
-    	if($this->require_min_level(1)){
+    	if($this->require_min_level(EJECUTIVE_LEVEL)){
     	if($this->input->post()){
     			$id = $this->input->post('id');
     			$state = $this->input->post('state');
@@ -158,7 +158,7 @@ public function changeState(){
 
         public function call(){
         header('Content-Type: application/json');
-        if($this->require_min_level(1)){
+        if($this->require_min_level(EJECUTIVE_LEVEL)){
             if($this->input->post()){
                 $telefono = $this->input->post('numero');
                 $anexo = $this->input->post('anexo');
@@ -190,7 +190,7 @@ public function changeState(){
 
 
     public function completarTarea(){
-       if($this->require_min_level(1)){
+       if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->template->set('title', 'Completar tarea');
            $this->template->set('page_header', '');
             $this->load->model('documents/documents_model', 'doc');
@@ -329,7 +329,7 @@ public function changeState(){
             $this->template->set('css', $css);
             $this->template->set('scripts', $scripts);
 
-      if($this->require_min_level(1)){
+      if($this->require_min_level(EJECUTIVE_LEVEL)){
          $config['upload_path']   = './uploads/archivos'; 
          $config['allowed_types'] = 'gif|jpg|png|xlsx|docx|pdf'; 
          $config['max_size']      = 25600; 
@@ -381,7 +381,7 @@ public function changeState(){
 
 
     public function documentHistory(){
-       if($this->require_min_level(1)){
+       if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->load->model('global_model');
          $this->load->model('documents/documents_model');
          $id = $this->input->post('id');
@@ -398,7 +398,7 @@ public function changeState(){
 
 
     public function guardarLLamada(){
-        if($this->require_min_level(1)){
+        if($this->require_min_level(EJECUTIVE_LEVEL)){
             if($this->input->post()){
                 $this->load->model('documents/documents_model');
                 $obs = $this->input->post('observaciones');

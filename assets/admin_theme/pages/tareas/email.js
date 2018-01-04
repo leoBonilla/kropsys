@@ -1,7 +1,10 @@
 $(document).ready(function(){
 	$('#email_table').DataTable({
 		responsive : true,
-		 "order": [[ 0, "desc" ]]
+		 "order": [[ 0, "desc" ]],
+     "columnDefs": [
+    { "width": "12%", "targets": 5 }
+  ]
 	});
 });
 

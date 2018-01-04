@@ -21,7 +21,7 @@
                         </a>
                     </div>
             </div>
-         <?php if($auth_level >= 9) {?>
+         <?php if($auth_level >= ADMIN_LEVEL) {?>
             <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -114,7 +114,7 @@
                     </div>
             </div>
 
-               <?php if($auth_level >= 9) {?>
+               <?php if($auth_level >= ADMIN_LEVEL) {?>
         <!--        <div class="col-lg-3 col-md-6">
                   <div class="panel panel-default">
                         <div class="panel-heading">

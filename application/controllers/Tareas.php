@@ -21,7 +21,7 @@ public function __construct(){
 }
 
 public function index(){
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 			$this->template->set('title', 'Gestionar tareas');
 			$this->template->set('page_header', 'Gestionar tareas');
 			$this->template->set('css', array());
@@ -31,7 +31,7 @@ public function index(){
 }
 
 public function asignarUsuarios(){
-	if($this->require_min_level(9)){
+	if($this->require_min_level(ADMIN_LEVEL)){
 		if($this->input->post()){
 			$this->load->model('tasks/task_model');
 			$tasks = $this->input->post('id[]');
@@ -43,7 +43,7 @@ public function asignarUsuarios(){
 }
 
 public function uploadExcel(){
-			if($this->require_min_level(9)){
+			if($this->require_min_level(ADMIN_LEVEL)){
 								$config['upload_path']          = './uploads/excel_files/';
                 $config['allowed_types']        = 'xlsx';
                 $config['max_size']             = 100;
@@ -99,7 +99,7 @@ public function uploadExcel(){
 
 
 public function cargar(){
-	if($this->require_min_level(9)){
+	if($this->require_min_level(ADMIN_LEVEL)){
 			$this->template->set('title', 'Tareas');
 			$this->template->set('page_header', 'Tareas');
 			$this->template->set('css', array( 'vendor/clockpicker/dist/bootstrap-clockpicker.css'));
@@ -113,7 +113,7 @@ public function cargar(){
 
 public function cargarPorEmail(){
         
-            if($this->require_min_level(9)){
+            if($this->require_min_level(ADMIN_LEVEL)){
             $this->load->library('mailreader');
             $mail = new MailReader('imap.gmail.com','leobonillab@gmail.com','993','leonardo84');
             $mail->connect();
@@ -165,7 +165,7 @@ return $data;
 }
 
 public function listado(){
-	if($this->require_min_level(9)){
+	if($this->require_min_level(ADMIN_LEVEL)){
 			$this->template->set('title', 'Listado de tareas');
 			$this->template->set('page_header', 'Listado de tareas');
 			 $css =  array(
@@ -201,7 +201,7 @@ public function listado(){
 public function detalle($id){
 		//echo $id;
 
-		if($this->require_min_level(9)){
+		if($this->require_min_level(ADMIN_LEVEL)){
 			$this->template->set('title', 'Detalle de tarea');
 			$this->template->set('page_header', 'Detalle de tarea');
 			 $css =  array(
@@ -245,7 +245,7 @@ public function detalle($id){
 
 
 public function misTareas(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			$this->template->set('title', 'Mis tareas');
 			$this->template->set('page_header', 'Mis tareas');
 			 $css =  array(
@@ -309,7 +309,7 @@ public function misTareas(){
     }
 
  public function listar_mis_tareas(){
- 	if($this->require_min_level(1)){
+ 	if($this->require_min_level(EJECUTIVE_LEVEL)){
  			$this->load->model('datatables/subtareas_model', 'subtareas');
  			$where = 'id_responsable = '. $this->auth_user_id. ' and finalizada is null' ;
         $list = $this->subtareas->get_datatables($where);
@@ -350,7 +350,7 @@ public function misTareas(){
  }
 
  public function procesartarea($id){
- 	if($this->require_min_level(1)){
+ 	if($this->require_min_level(EJECUTIVE_LEVEL)){
  		   $this->load->model('tasks/task_model','tareas');
  		   $this->load->model('global_model','global');
            $this->load->model('locations_model');
@@ -409,7 +409,7 @@ public function misTareas(){
 
 
  public function email(){
-  if($this->require_min_level(6)){
+  if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Email');
         
             $this->template->set('page_header', 'Email');
@@ -464,7 +464,7 @@ public function misTareas(){
 
 
  public function ajaxmodal(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->load->model('global_model');
          $this->load->model('documents/documents_model');
          $idmail = $this->input->post('id');
@@ -493,7 +493,7 @@ public function misTareas(){
 
 
   public function ajaxInfo(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->load->model('global_model');
          $this->load->model('documents/documents_model');
          $id = $this->input->post('id');
@@ -507,7 +507,7 @@ public function misTareas(){
 
 
  public function asignar(){
-     if($this->require_min_level(9)){
+     if($this->require_min_level(ADMIN_LEVEL)){
         $usuario = $this->input->post('usuario');
         $observaciones = $this->input->post('observaciones');
         $this->load->model('documents/documents_model');
@@ -547,7 +547,7 @@ public function misTareas(){
  }
 
 public function ajaxhistory(){
-    if($this->require_min_level(9)){
+    if($this->require_min_level(ADMIN_LEVEL)){
          $this->load->model('global_model');
          $this->load->model('documents/documents_model');
          $id = $this->input->post('id');
@@ -562,7 +562,7 @@ public function ajaxhistory(){
 }
 
 public function ajaxCalls(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->load->model('global_model');
          $this->load->model('documents/documents_model');
          $id = $this->input->post('id');
@@ -580,7 +580,7 @@ public function ajaxCalls(){
 
 
 public function adjuntos($id){
-    if($this->require_min_level(9)){
+    if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Adjuntos');
         
             $this->template->set('page_header', 'Adjuntos');
@@ -643,7 +643,7 @@ public function adjuntos($id){
 
 
 public function getState(){
-    if($this->require_min_level(6)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
         if($this->input->post()){
             $id = $this->input->post('id');
             $this->load->model('documents/documents_model', 'doc');
@@ -653,7 +653,7 @@ public function getState(){
 }
 
 public function getEmailState($email_id){
-    if($this->require_min_level(6)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
         $this->load->model('documents/documents_model', 'doc');
         $data = $this->doc->test();
 
@@ -661,7 +661,7 @@ public function getEmailState($email_id){
 }
 
 public function test(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
     //    // $this->load->model('global_model');
     // // $users = $this->global_model->getAllUsers();
      $this->load->library('gmail');
@@ -676,7 +676,7 @@ public function test(){
 
 
 public function validar(){
-    if($this->require_min_level(9)){
+    if($this->require_min_level(ADMIN_LEVEL)){
         $this->load->model('documents/documents_model', 'doc');
         if($this->input->post()){
             $result = false;
@@ -708,6 +708,11 @@ private function sendNotification($channel,$event, $data){
                     $options
                   );
             $pusher->trigger($channel, $event , $data);
+}
+
+
+public function descartarEmail(){
+            if($this->require_min_level(1))
 }
 
 

@@ -10,7 +10,7 @@ class Registros extends MY_Controller {
 		}
 
 		public function index(){
-			if($this->require_min_level(1)){
+			if($this->require_min_level(EJECUTIVE_LEVEL)){
 				$this->template->set('title', 'Registros');
 			$this->template->set('page_header', 'Mis registros');
 			$this->template->set('css', array());
@@ -20,7 +20,7 @@ class Registros extends MY_Controller {
 		}
 
 		public function confirmaciones(){
-			if($this->require_min_level(1)){
+			if($this->require_min_level(EJECUTIVE_LEVEL)){
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
@@ -57,7 +57,7 @@ class Registros extends MY_Controller {
 
 
     public function editarAgendamiento($id){
-        if($this->require_min_level(1)){
+        if($this->require_min_level(EJECUTIVE_LEVEL)){
             $this->load->model('global_model');
             $especialidades = $this->global_model->getEspecialidades();
             $registro = $this->registros_model->findAgendamiento($id);
@@ -79,7 +79,7 @@ class Registros extends MY_Controller {
     }
 
 	   public function reasignaciones(){
-        if($this->require_min_level(1)){
+        if($this->require_min_level(EJECUTIVE_LEVEL)){
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 
@@ -118,7 +118,7 @@ class Registros extends MY_Controller {
 
 
 		public function agendamientos(){
-				if($this->require_min_level(1)){
+				if($this->require_min_level(EJECUTIVE_LEVEL)){
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
@@ -154,7 +154,7 @@ class Registros extends MY_Controller {
 			}
 		}
 		public function otros(){
-			if($this->require_min_level(1)){
+			if($this->require_min_level(EJECUTIVE_LEVEL)){
          $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
@@ -191,7 +191,7 @@ class Registros extends MY_Controller {
 		}
 
 		public function sms(){
-			if($this->require_min_level(1)){
+			if($this->require_min_level(EJECUTIVE_LEVEL)){
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
@@ -226,7 +226,7 @@ class Registros extends MY_Controller {
 
 
  public function listar_mis_llamadas(){
-  if($this->require_min_level(1)){
+  if($this->require_min_level(EJECUTIVE_LEVEL)){
       $this->load->model('datatables/llamadas_model', 'llamadas');
        $inicio = '';
           $fin= '';
@@ -244,7 +244,7 @@ class Registros extends MY_Controller {
       //   $where = false;
       // }
 
-                 if($this->auth_level < 9){
+                 if($this->auth_level < ADMIN_LEVEL){
          $where = "id_responsable = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha_llamada) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -311,7 +311,7 @@ class Registros extends MY_Controller {
 
 
     public function listar_reasignaciones(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $users = null;
@@ -325,7 +325,7 @@ class Registros extends MY_Controller {
                $this->load->model('datatables/reasignaciones_model', 'reasignaciones');
 
               }
-      if($this->auth_level < 9){
+      if($this->auth_level < ADMIN_LEVEL){
          $where = "id_usuario = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -401,7 +401,7 @@ class Registros extends MY_Controller {
 
 
     public function listar_agendamientos(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $users = null;
@@ -414,7 +414,7 @@ class Registros extends MY_Controller {
                $this->load->model('datatables/agendamientos_model', 'agendamientos');
 
               }
-      if($this->auth_level < 9){
+      if($this->auth_level < ADMIN_LEVEL){
          $where = "id_usuario = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -489,7 +489,7 @@ class Registros extends MY_Controller {
 
 
 public function listar_confirmaciones(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $userId = '';
@@ -504,7 +504,7 @@ public function listar_confirmaciones(){
                 //$userId = ($this->input->post('userId') != '') ? $this->input->post('userId') : '';
                 $users = ($this->input->post('userId') != null) ? $this->input->post('userId') : '';   
             }
-      if($this->auth_level < 9){
+      if($this->auth_level < ADMIN_LEVEL){
          $where = "id_usuario = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -582,7 +582,7 @@ public function listar_confirmaciones(){
 
 
   public function listar_otros(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $users = null;
@@ -595,7 +595,7 @@ public function listar_confirmaciones(){
                $this->load->model('datatables/otros_model', 'otros');
 
               }
-      if($this->auth_level < 9){
+      if($this->auth_level < ADMIN_LEVEL){
          $where = "id_usuario = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -674,7 +674,7 @@ public function listar_confirmaciones(){
 
 
     public function listar_sms(){
-         if($this->require_min_level(1)){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
           $inicio = '';
           $fin= '';
           $users;
@@ -686,7 +686,7 @@ public function listar_confirmaciones(){
                $this->load->model('datatables/sms_model', 'sms');
 
               }
-      if($this->auth_level < 9){
+      if($this->auth_level < ADMIN_LEVEL){
          $where = "sender_id = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(created_at) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -758,7 +758,7 @@ public function listar_confirmaciones(){
 
 
       public function editarcita($id){
-          if($this->require_min_level(1)){
+          if($this->require_min_level(EJECUTIVE_LEVEL)){
                 $this->load->model('registros_model','registros');
                 $this->load->model('global_model','global');
                 $this->load->model('locations_model','lugares');
@@ -793,7 +793,7 @@ public function listar_confirmaciones(){
 
 
        public function llamadas(){
-              if($this->require_min_level(1)){
+              if($this->require_min_level(EJECUTIVE_LEVEL)){
                $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
@@ -833,7 +833,7 @@ public function listar_confirmaciones(){
 
   public function updateCalls(){
      header('Content-Type: application/json');
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
       if($this->input->post()){
          $id_llamada = $this->input->post('id_llamada');
          $id= $this->input->post('id_llamada');
@@ -896,14 +896,14 @@ public function listar_confirmaciones(){
 
 
   public function updateRegistro(){
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
 
     }
   }
 
 
 public function edit_agendamiento_ajax(){
-  if($this->require_min_level(1)){
+  if($this->require_min_level(EJECUTIVE_LEVEL)){
 
       if($this->input->post()){
         header('Content-Type: application/json');

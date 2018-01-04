@@ -366,7 +366,7 @@
          <script src="<?php echo base_url('assets/admin_theme/vendor')?>/timeago/jquery.timeago.js?v=<?php echo VERSION; ?>" type="text/javascript"></script>
   <script>
  // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+   // Pusher.logToConsole = true;
 
     var pusher = new Pusher('d2cee8a3e04c9befaf5d', {
       cluster: 'us2',

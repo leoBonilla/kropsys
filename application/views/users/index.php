@@ -46,8 +46,8 @@
             <label for="tipo">Tipo de usuario</label>
                <select name="tipo" id="" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required">
                 <option value="">SELECCIONE TIPO</option>
-                <option value="1">Usuario Interno</option>
-                <option value="2">Usuario Externo</option>
+                <option value="3">Usuario Interno</option>
+                <option value="1">Usuario Externo</option>
                 <option value="9">Administrador</option>
               </select>
             </div>

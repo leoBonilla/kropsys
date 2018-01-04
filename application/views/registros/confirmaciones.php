@@ -10,7 +10,7 @@
           </div>
        </div>
       </div>
-<?php if($auth_level >= 9 ) :?>
+<?php if($auth_level >= ADMIN_LEVEL ) :?>
       <div class="col-md-4">
           <select class="form-control selectpicker" name="userId" id="userId" data-show-subtext="true" data-live-search="true" multiple data-actions-box="true" data-select-all-text="Seleccionar todos" data-deselect-all-text="Deseleccionar todos" title="Filtrar usuarios">
             <?php if($users != false) :?>

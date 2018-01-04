@@ -23,19 +23,9 @@ class Agendamiento extends MY_Controller
 
 	}
 
-	// public function index(){
-	// 	header('Access-Control-Allow-Origin: *');
-	// 	if( $this->verify_min_level(1) ){
-	// 	$this->load->model('global_model');
-	// 	$especialidades = $this->global_model->getEspecialidades();
-	// 	$prestaciones= $this->global_model->getPrestaciones();
-	// 	$this->load->view('agendamiento', array('espec'=> $especialidades,'prestaciones'=> $prestaciones));
-	// }
-	// }
-
 	public function processAgendamiento(){
 		header('Content-Type: application/json');
-		if( $this->verify_min_level(1) ){
+		if( $this->verify_min_level(EJECUTIVE_LEVEL) ){
 		if($this->input->post()){
             $this->form_validation->set_rules('profesional', 'Profesional', 'required');
              $this->form_validation->set_rules('', 'Especialidad', 'required');
@@ -75,7 +65,7 @@ class Agendamiento extends MY_Controller
 
 	public function processReasignaciones(){
 		header('Content-Type: application/json');
-		if( $this->verify_min_level(1) ){
+		if( $this->verify_min_level(EJECUTIVE_LEVEL) ){
 		if($this->input->post()){
             $this->form_validation->set_rules('profesional', 'Profesional', 'required');
              $this->form_validation->set_rules('', 'Especialidad', 'required');
@@ -117,7 +107,7 @@ class Agendamiento extends MY_Controller
 
 	public function processConfirmaciones(){
 		header('Content-Type: application/json');
-		if( $this->verify_min_level(1) ){
+		if( $this->verify_min_level(EJECUTIVE_LEVEL) ){
 		if($this->input->post()){
             $this->form_validation->set_rules('profesional', 'Profesional', 'required');
              $this->form_validation->set_rules('', 'Especialidad', 'required');
@@ -161,7 +151,7 @@ class Agendamiento extends MY_Controller
 
 		public function processOtros(){
 		header('Content-Type: application/json');
-		if( $this->verify_min_level(1) ){
+		if( $this->verify_min_level(EJECUTIVE_LEVEL) ){
 		if($this->input->post()){
             $this->form_validation->set_rules('profesional', 'Profesional', 'required');
              $this->form_validation->set_rules('especialidad', 'Especialidad', 'required');
@@ -202,7 +192,7 @@ class Agendamiento extends MY_Controller
 
 
 	public function index(){
-		if($this->require_min_level(1)){
+		if($this->require_min_level(EJECUTIVE_LEVEL)){
 			$this->load->model('global_model');
 		$especialidades = $this->global_model->getEspecialidades();
 		$prestaciones= $this->global_model->getPrestaciones();

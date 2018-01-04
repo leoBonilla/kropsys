@@ -86,3 +86,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 defined('VERSION')    OR define('VERSION', '1.1.123234545');
+
+
+defined('EXTERNAL_LEVEL') OR define('EXTERNAL_LEVEL', 1);
+defined('EJECUTIVE_LEVEL') OR define('EJECUTIVE_LEVEL', 3);
+defined('ADMIN_LEVEL') OR define('ADMIN_LEVEL', 9);
+defined('ROOT_LEVEL') OR define('ROOT_LEVEL', 12);
