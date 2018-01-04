@@ -9,7 +9,7 @@
                 <th>Asunto</th>
                 <th>De</th>
                 <th>Descartado por</th>
-                <th>Fecha Descarte</th>
+                <th>Descartado el</th>
                 <th>Acciones</th>
               
 
@@ -26,7 +26,7 @@
                 <th>Asunto</th>
                 <th>De</th>
                 <th>Descartado por</th>
-                <th>Fecha Descarte</th>
+                <th>Descartado el</th>
                 <th>Acciones</th>
                
                 
