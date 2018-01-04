@@ -304,7 +304,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><?php echo $page_header; ?></h3>
+                    <!-- <h3 class="page-header"><?php echo $page_header; ?></h3> -->
+                    
+                        <div class="col-md-9"><h3 class="" style="margin-left:-16px;"><?php echo $page_header; ?></div>
+                        <div class="col-md-3" >
+                            <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url(); ?>" style="margin-top:10px;"><i class="fa fa-home"></i></a>
+                        </div>
+                    
+                    <h3 class="page-header"></h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
