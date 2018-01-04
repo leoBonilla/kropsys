@@ -712,7 +712,9 @@ private function sendNotification($channel,$event, $data){
 
 
 public function descartarEmail(){
-            if($this->require_min_level(1))
+            if($this->require_min_level(1)){
+                
+            }
 }
 
 
