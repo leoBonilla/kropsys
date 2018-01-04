@@ -59,4 +59,14 @@ class Emails_model extends CI_Model {
 		}
 		
 	}
+
+	public function getDescartdos(){
+		$this->db->select('*');
+		$this->db->from('emails_dismiss');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result();
+		}
+		return false;
+	}
 }
