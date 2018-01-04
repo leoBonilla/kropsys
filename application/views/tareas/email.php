@@ -83,7 +83,7 @@
  <button class="btn btn-xs btn-info btn-modal" data-idmail="<?php echo $email->id_email; ?>" data-toggle="modal" data-sender="<?php echo $email->enviado_por; ?>" data-subject="<?php echo $email->asunto; ?>" >&nbsp;<i class="fa fa-info">&nbsp;</i></button> <button class="btn btn-warning btn-xs btn-asignar" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-user"></i>&nbsp;</button>
                     <a class="btn btn-xs btn-success btn-files" href="<?php echo base_url().'tareas/adjuntos/'.$email->id_email; ?>"><i class="fa fa-files-o"></i></a>
 
-                    <button class="btn btn-danger btn-xs btn-discard" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-ban"></i>&nbsp;</button>
+                    <button class="btn btn-danger btn-xs btn-discard" data-toggle="confirmation" data-title="Está seguro?" data-btn-ok-label="Si" data-btn-cancel-label="No" data-btn-ok-class="btn-success" data-btn-cancel-class="btn-danger" data-placement="left" data-idmail="<?php echo $email->id_email; ?>" >&nbsp;<i class="fa fa-ban"></i>&nbsp;</button>
   </div>
                    
                    </td>

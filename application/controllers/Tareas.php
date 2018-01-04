@@ -712,8 +712,26 @@ private function sendNotification($channel,$event, $data){
 
 
 public function descartarEmail(){
-            if($this->require_min_level(1)){
-                
+            if($this->require_min_level(ADMIN_LEVEL)){
+                if($this->input->post()){
+                    $this->load->model('emails/emails_model','emails');
+                    $id = $this->input->post('id');
+                     header('Content-Type: application/json');
+                     $data = array(
+                        'descartado_por' => $this->auth_user_id,
+                        'fecha_descarte' => date('Y-m-d H:i:s'),
+                        'motivo' => null
+                    );
+                     if($this->emails->discard($id,$data)){
+                        echo json_encode(array('result' => true));
+                     }else{
+                        echo json_encode(array('result' => false));
+                     }
+
+
+                      
+                    
+                }
             }
 }
 

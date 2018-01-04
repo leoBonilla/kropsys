@@ -1,25 +1,33 @@
 $(document).ready(function(){
-	$('#email_table').DataTable({
+var	table =  $('#email_table').DataTable({
 		responsive : true,
 		 "order": [[ 0, "desc" ]],
      "columnDefs": [
     { "width": "12%", "targets": 5 }
   ]
 	});
+$('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+});
+$('#email_table tbody').on("click", ".btn-discard", function () {
+      var tr = $(this).parents('tr') ;
+    $.post(BASE_URL+ "/tareas/descartaremail", {id : $(this).data('idmail')}, function(resp){
+     if(resp.result == true){
+       tr.addClass('animated fadeOutRight');
+            setTimeout(function(){
+               table.row(tr).remove().draw();
+             }, 500);     
+        toastr["success"]("EMAIL DESCARTADO");
+     }else{
+      toastr["error"]("SE PRODUJO UN PROBLEMA");
+     }
+    });
+
+});
 });
 
-// $(document).on("click", ".btn-modal", function () {
-//     // var myBookId = $(this).data('id');
-//      //$(".modal-body #bookId").val( myBookId );
-//      // As pointed out in comments, 
-//      // it is superfluous to have to manually call the modal.
-//       $('#email').val($(this).data('sender'));
-//       $('#subject').val($(this).data('subject'));
-//       $('#message').html($(this).closest('tr').find('.td-msg').html());
-//       $('#adjuntos').html($(this).closest('tr').find('.attachments').html())
-//       $('#exampleModal').modal('show');
 
-// });
 
 $(document).on("click", ".btn-asignar", function () {
 	  var modal = $('#asignarModal');
@@ -64,4 +72,7 @@ $(document).on("click", ".btn-modal", function () {
   
 
 });
+
+
+
 

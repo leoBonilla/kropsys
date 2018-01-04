@@ -71,6 +71,8 @@ class Documents_model extends CI_Model {
 
 
        public function getMails(){
+          //traer todos los emails que no han sido descartados
+          $this->db->where('descartado',0);
           $query = $this->db->get('emails_view');
            if ($query->num_rows() > 0){
             // return $query->result();
