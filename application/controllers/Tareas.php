@@ -448,12 +448,12 @@ public function misTareas(){
             $this->load->model('global_model');
              $users = $this->global_model->getAllUsers();
     $this->load->library('mailreader');
-     $email = new MailReader('crm@kropsys.cl','kropsys!2018',$this->auth_user_id);
-     $email->sincronizar();
-     $email->close();
-     $this->load->model('documents/documents_model');
-     $list = $this->documents_model->getMails();
-     $this->template->load('default_layout', 'contents' , 'tareas/email',array('list' => $list, 'users' => $users));
+    $email = new MailReader('crm@kropsys.cl','kropsys!2018',$this->auth_user_id);
+    $email->sincronizar();
+    $email->close();
+    $this->load->model('documents/documents_model');
+    $list = $this->documents_model->getMails();
+    $this->template->load('default_layout', 'contents' , 'tareas/email',array('list' => $list, 'users' => $users));
   }
 
 

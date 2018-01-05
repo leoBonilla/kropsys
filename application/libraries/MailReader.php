@@ -12,6 +12,8 @@ class MailReader{
 	    protected $filetypes;
 	    protected $userid;
 	    protected $CI;
+	    protected $last_update;
+	    protected $search;
 
 
 		public function __construct($email= 'soporte@kropsys.cl',$password= 'pandora!x2012',$userid = false, $server = 'imap.gmail.com', $port = 993){
@@ -25,6 +27,18 @@ class MailReader{
 				$this->filetypes= array('xlsx','pdf','docx','png','jpg','jpeg','rar');
 				$this->CI =& get_instance();
 				$this->CI->load->model('documents/documents_model');
+				$this->CI->load->model('emails/emails_model');
+				$this->last_update = $this->CI->emails_model->lastUpdate();
+				if($this->last_update != false){
+					$this->last_update = explode(' ', $this->last_update);
+					$this->last_update = $this->last_update[0];
+					$this->last_update = date_create($this->last_update);
+					$this->last_update = date_format($this->last_update,'d-M-Y');
+               	    $this->search = 'SINCE '.$this->last_update;
+				}else {
+					$this->search = 'ALL';
+				}
+				
 		    }
 
 		public function connect(){
@@ -38,164 +52,13 @@ class MailReader{
 		}
 
 
-		public function synchronize(){
-			ini_set('max_execution_time', 0);
-				//$emails = imap_search($this->mailbox, 'OR FROM "@kropsys.cl"');
-				$emails = imap_search($this->mailbox, 'ALL');
-				/* if emails are returned, cycle through each... */
-				
-			if($emails) {
-
-			  /* begin output var */
-			  $output = '';
-
-			   /* put the newest emails on top */
-			   rsort($emails);
-
-			   $list = array();
-			   $count = 0;
-			    foreach($emails as $email_number) {
-			     //var_dump($count);
-			     //$inDB = $this->CI->documents_model->emailExists($this->userid, $email_number);
-			     $inDB = $this->CI->documents_model->emailExists($email_number);
-
-			   //  echo 'count : '.$count .'<br>';
-			     if($count == $this->limitMsg){
-			     		break;
-			     	}
-
-			     if($inDB){
-			     	$count = $count + 1;
-			     	continue;
-			     }else{
-
-			     	//echo 'NO EXISTE'.$count.'<br />';
-							    /* informacion especifica del email*/
-							    $overview = imap_fetch_overview($this->mailbox,$email_number,0);
-							    $message = quoted_printable_decode(imap_fetchbody($this->mailbox,$email_number,'2'));
-							    $structure = imap_fetchstructure($this->mailbox,$email_number);
-							    $header = imap_headerinfo ( $this->mailbox, $email_number);
 
 
-							   //pre($overview);
-
-
-							     $attachments = array();
-							       if(isset($structure->parts) && count($structure->parts)) {
-							         for($i = 0; $i < count($structure->parts); $i++) {
-							           $attachments[$i] = array(
-							              'is_attachment' => false,
-							              'filename' => '',
-							              'name' => '',
-							              'attachment' => '');
-							           $extension = '';
-
-							           if($structure->parts[$i]->ifdparameters) {
-							             foreach($structure->parts[$i]->dparameters as $object) {
-							               if(strtolower($object->attribute) == 'filename') {
-							               			$sub = explode('.', $object->value);
-							               			$ext = end($sub);
-							               			
-							               	if(in_array($ext, $this->filetypes)){
-							               		$attachments[$i]['is_attachment'] = true;
-							                	 $attachments[$i]['filename'] = $object->value;
-							               	}
-							                 
-							               }
-							             }
-							           }
-
-							           if($structure->parts[$i]->ifparameters) {
-							             foreach($structure->parts[$i]->parameters as $object) {
-							               if(strtolower($object->attribute) == 'name') {
-							               	 $sub = explode('.', $object->value);
-							               			$ext = end($sub);
-							               	if(in_array($ext,$this->filetypes)){
-							                 $attachments[$i]['is_attachment'] = true;
-							                 $attachments[$i]['name'] = $object->value;
-							                }
-							                }
-							             }
-							           }
-
-							           if($attachments[$i]['is_attachment']) {
-							             $attachments[$i]['attachment'] = imap_fetchbody($this->mailbox, $email_number, $i+1);
-							             if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
-							               $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
-							             }
-							             elseif($structure->parts[$i]->encoding == 4) { // 4 = QUOTED-PRINTABLE
-							               $attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
-							             }
-							           }             
-							         } // for($i = 0; $i < count($structure->parts); $i++)
-							       } // if(isset($structure->parts) && count($structure->parts))
-
-
-							     $overview = $overview[0];
-							     $subject = isset($overview->subject) ? $overview->subject : false;
-							     $sender = $header->from[0]->mailbox ."@". $header->from[0]->host;
-							     $date = $overview->date;
-							     $this->CI->documents_model->saveEmail(array( 
-							     											/* 'id_user' =>$this->userid, */
-							     											 'numero_email' =>$email_number,
-							     											 'asunto' => $subject,
-							     											 'enviado_por' => $sender,
-							     											 'estado' => null,
-							     											 'fecha_envio' => date('Y-m-d H:i:s', strtotime($date)),
-							     											 'mensaje' => null,
-							     											 'estado' => 0,
-							     											 ));
-							    $last_id = $this->CI->db->insert_id();
-
-                             
-							    if(count($attachments)!=0){
-							     $attcont = 0;
-							        foreach($attachments as $at){
-
-
-							            if($at['is_attachment']==1){
-							            	 $sub = explode('.', $at['filename']);
-							               	 $ext = end($sub);
-							                 if(in_array($ext, $this->filetypes)) {                  
-							                     $path = 'archivos/'.$this->userid.'/'. $email_number;  
-									            	if(!empty($at['filename'])){						            		
-									            		if (!is_dir($path)) {				  									
-							  								mkdir($path,0777,true);
-							  								file_put_contents($path.'/'.$at['filename'], $at['attachment']);
-							  							}
-									            	}
-
-									            $object->attachments[] =  $path.'/'.$at['filename'];   
-									             $this->CI->documents_model->saveDocument(array('nombre' => $at['filename'], 'ubicacion' => $path.'/'.$at['filename'], 'id_email' => $last_id, 'es_archivo' => 1 ));  
-							                 }
-
-							                }else{
-							                	if($attcont == 0){
-							                		if($at['is_attachment'] == false){
-							                			$this->CI->documents_model->saveDocument(array('nombre' => 'SIN ADJUNTOS', 'ubicacion' => 'NO APLICA', 'id_email' => $last_id, 'es_archivo' => 0 ));
-							                		}
-							                	}
-							                	  
-							                }
-							              $attcont++;
-							            }
-							            
-							            
-							        }
-			 					$count = $count+1;
-                            }
-                        }
-			
-
-				}
-
-}
-
-
-             public function sincronizar(){
+        public function sincronizar(){
              	ini_set('max_execution_time', 0);
-             	$emails = imap_search($this->mailbox, 'ALL');
-             	if($emails) {
+
+             	$emails = imap_search($this->mailbox, $this->search ,SE_UID);
+                if($emails) {
              		 rsort($emails);
              		$count = 0 ; 
              		foreach ($emails as $messageNumber) {
@@ -217,8 +80,6 @@ class MailReader{
 						$sender = $header->from[0]->mailbox ."@". $header->from[0]->host;
 						$date = $overview->date;
 
-						//echo $subject.'<br />';
-						//echo $sender;
 
 									$data= array(	'message' => false, 
 													'messageNumber' => $messageNumber,

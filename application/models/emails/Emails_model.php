@@ -69,4 +69,14 @@ class Emails_model extends CI_Model {
 		}
 		return false;
 	}
+
+	public function lastUpdate(){
+		$this->db->select('max(fecha_envio) as ultimo_recibido');
+		$this->db->from('emails');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->row()->ultimo_recibido;
+		}
+		return false;
+	}
 }
