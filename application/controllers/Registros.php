@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Registros extends MY_Controller {
 
+
+
+
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('webapi_model');
@@ -12,10 +15,10 @@ class Registros extends MY_Controller {
 		public function index(){
 			if($this->require_min_level(EJECUTIVE_LEVEL)){
 				$this->template->set('title', 'Registros');
-			$this->template->set('page_header', 'Mis registros');
-			$this->template->set('css', array());
-			$this->template->set('scripts', array());
-			$this->template->load('default_layout', 'contents' , 'registros/index', null);
+  			$this->template->set('page_header', 'Mis registros');
+  			$this->template->set('css', array());
+  			$this->template->set('scripts', array());
+  			$this->template->load('default_layout', 'contents' , 'registros/index', null);
 			}
 		}
 
@@ -48,6 +51,7 @@ class Registros extends MY_Controller {
     					 'pages/registros/confirmaciones.js'
     					 );
 			$this->template->set('title', 'Confirmaciones');
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->set('page_header', 'Mis registros | Confirmaciones');
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
@@ -109,6 +113,7 @@ class Registros extends MY_Controller {
                );
       $this->template->set('title', 'Reasignaciones');
       $this->template->set('page_header', 'Mis registros | Reasignaciones');
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
       $this->template->set('css', $css);
       $this->template->set('scripts', $scripts);
       $this->template->load('default_layout', 'contents' , 'registros/reasignaciones', array('users' => $users));
@@ -148,6 +153,7 @@ class Registros extends MY_Controller {
     					 );
 			$this->template->set('title', 'Agendamientos');
 			$this->template->set('page_header', 'Mis registros | Agendamientos');
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
 			$this->template->load('default_layout', 'contents' , 'registros/agendamientos', array('users'=> $users));
@@ -184,6 +190,7 @@ class Registros extends MY_Controller {
     					 );
 			$this->template->set('title', 'Otros');
 			$this->template->set('page_header', 'Mis registros | otros');
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
 			$this->template->load('default_layout', 'contents' , 'registros/otros', array('users' => $users));
@@ -220,6 +227,7 @@ class Registros extends MY_Controller {
 			$this->template->set('page_header', 'Mis registros | SMS');
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->load('default_layout', 'contents' , 'registros/sms', array('users' => $users));
 			}
 		}
@@ -824,6 +832,7 @@ public function listar_confirmaciones(){
                        );
               $this->template->set('title', 'LLamadas registrados');
               $this->template->set('page_header', 'Mis registros | LLAMADAS');
+              $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
               $this->template->set('css', $css);
               $this->template->set('scripts', $scripts);
               $this->template->load('default_layout', 'contents' , 'registros/llamados', null);
