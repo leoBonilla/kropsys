@@ -60,6 +60,11 @@ class MailReader{
              	$emails = imap_search($this->mailbox, $this->search ,SE_UID);
                 if($emails) {
              		 rsort($emails);
+             	     $last = $emails[0];
+             	     // revisar si el ultimo correo ya esta en la base de datos
+             	     if($this->CI->documents_model->emailExists($last)){
+             	     	return false;
+             	     }
              		$count = 0 ; 
              		foreach ($emails as $messageNumber) {
              			if($count == $this->limitMsg){
