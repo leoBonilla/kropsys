@@ -447,6 +447,20 @@ class Documents_model extends CI_Model {
         return false;
     }
 
+
+    public function findDocumentoAprobado($id){
+      $this->db->select('*');
+      $this->db->from('documentos_modificados_view');
+      $this->db->where('id_original', $id);
+      $this->db->where('h_estado','APROBADO');
+      $this->db->limit(1);
+      $query = $this->db->get();
+        if($query->num_rows()>0){
+          return $query->row();
+        }
+        return false;
+    }
+
      
 
 

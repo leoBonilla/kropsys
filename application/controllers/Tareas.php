@@ -615,6 +615,20 @@ public function ajaxCalls(){
 }
 
 
+public function ajaxDespachar(){
+    if($this->require_min_level(ADMIN_LEVEL)){
+         $this->load->model('global_model');
+         $this->load->model('documents/documents_model');
+         $id = $this->input->post('id');
+         $original = $this->documents_model->getDocumentsById($id);
+         $email_id = $original->id_email;
+         $email = $this->documents_model->getEmailById($email_id);
+         $documento = $this->documents_model->findDocumentoAprobado($id);
+         $this->load->view('tareas/despachar', array('documento' => $documento,'email' => $email, 'original' => $original));   
+    }
+}
+
+
 public function adjuntos($id){
     if($this->require_min_level(ADMIN_LEVEL)){
         $this->template->set('title', 'Adjuntos');
@@ -669,7 +683,10 @@ public function adjuntos($id){
                     }
                 $i++;
                }
+
+
             }
+
             $this->template->load('default_layout', 'contents' , 'tareas/adjuntos',array('list' => $list, 'users' => $users));
   }
 
@@ -689,13 +706,6 @@ public function getState(){
     }
 }
 
-public function getEmailState($email_id){
-    if($this->require_min_level(EJECUTIVE_LEVEL)){
-        $this->load->model('documents/documents_model', 'doc');
-        $data = $this->doc->test();
-
-    }
-}
 
 
 
@@ -794,6 +804,95 @@ public function list_descartados(){
         //output to json format
         echo json_encode($output);
    }
+}
+
+
+
+public function test(){
+    $this->load->library('MailReader');
+   // $email = new MailReader();
+     $email = new MailReader('crm@kropsys.cl','kropsys!2018',$this->auth_user_id);
+    $email->sincronizar();
+    $email->close();
+}
+
+
+public function listar_emails(){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
+     $this->load->model('datatables/emails_model', 'emails');
+      $list = $this->emails->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $emails) {
+          //var_dump($tareas);
+            $no++;
+            $row = array();
+            $row[] = $emails->fecha_envio;
+            $row[] = $emails->asunto;
+            $row[] = $emails->enviado_por;
+            //$row[] = $emails->s_descartado_por;
+            //$row[] = $emails->fecha_descarte;
+            //$row[] = $emails->motivo;
+      
+
+            $row[] = "<button class='btn btn-warning btn-xs btn-modal' data-idmail='".$emails->id_email."'><i class='fa fa-info'></i></button>";
+
+ 
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->emails->count_all(),
+                        "recordsFiltered" => $this->emails->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+   }
+}
+
+
+public function emailsv2(){
+      if($this->require_min_level(ADMIN_LEVEL)){
+        $this->template->set('title', 'Emails ');
+       
+        $this->template->set('page_header', 'Emails');
+          //           $this->template->set('page_header', 'Email');
+             $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                        'custom.css'
+
+                    );
+
+
+             $scripts = array( 
+                        'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+                         'vendor/moments/moments.js',
+               '../init_tables.js',
+               'pages/tareas/emailsv2.js'
+                         
+                         );
+         $this->template->set('css', $css);
+         $this->template->set('scripts', $scripts);
+        $this->template->load('default_layout', 'contents' , 'tareas/emailsv2');
+    }
 }
 
 

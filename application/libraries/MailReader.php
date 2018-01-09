@@ -81,7 +81,11 @@ class MailReader{
              			$overview = imap_fetch_overview($this->mailbox,$messageNumber,0);
  						$header = imap_headerinfo ( $this->mailbox, $messageNumber);
  						$overview = $overview[0];
-						$subject = isset($overview->subject) ? utf8_encode($overview->subject) : false;
+						$subject = isset($overview->subject) ? $overview->subject : '';
+						$subject  = str_replace('=?UTF-8?B?' , '' , $subject);
+						//$subject  = str_replace('=?UTF-8?Q?' , '' , $subject);
+  						//$subject  = str_replace('?=' , '' , $subject);  
+  						$subject = utf8_decode(imap_utf8($subject));
 						$sender = $header->from[0]->mailbox ."@". $header->from[0]->host;
 						$date = $overview->date;
 

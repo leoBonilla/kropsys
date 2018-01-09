@@ -87,3 +87,29 @@ $(document).on("click", ".btn-calls", function () {
       
 
 });
+
+
+$(document).on("click", ".btn-despachar", function () {
+          var modal =  $('#modalDespachar');
+          modal.modal('show');
+            var body = modal.find('.modal-body');
+              body.load("../ajaxdespachar",{id: $(this).data('id') }, function(){
+                var form = $('#form-send');
+                form.ajaxForm({
+                  beforeSubmit: function(form){
+                    $('#btn-send-email').attr('disabled', true);
+                  },
+                  success: function(data){
+                     if(data.result == true){
+                         toastr["success"]("EMAIL ENVIADO CORRECTAMENTE");
+                     }else{
+                         toastr["error"]("HA OCURRIDO UN ERROR INESPERADO, CONTACTAR CON EL ADMINISTRADOR");
+                     }
+                  }
+                });
+            
+
+          });
+      
+
+});

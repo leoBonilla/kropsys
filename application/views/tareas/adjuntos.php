@@ -39,15 +39,22 @@
                 	<?php
                 	if($list != false)
                 	foreach($list as $l) :?>
+
+
         		<tr>
         			<td><input type="hidden" name="inicio" id="#inicio" val=""><?php echo $l->fecha_modificacion; ?></td>
-        			<td><?php echo $l->asunto; ?></td>
+        			<td><?php echo utf8_encode($l->asunto); ?></td>
         			<td><span class="label label-success"><?php echo $l->estado; ?></span></td>
         	
         			<td><?php echo $l->asignado_nombre; ?></td>
         			
-        			<td><button class="btn btn-xs btn-primary btn-history" data-id="<?php echo $l->id; ?>">Historial</button> <button data-id="<?php echo $l->id; ?>" class="btn btn-default btn-xs btn-calls">LLamadas</button>
-                 <button class="btn btn-xs btn-success" disabled="disabled">Despachar</button>
+        			<td><button class="btn btn-xs btn-primary btn-history" data-id="<?php echo $l->id; ?>"><i class="fa fa-history"></i></button> <button data-id="<?php echo $l->id; ?>" class="btn btn-default btn-xs btn-calls"><i class="fa fa-phone"></i></button>
+                 <?php  if($l->estado == 'APROBADO'): ?>
+                  <button class="btn btn-xs btn-success btn-despachar" data-id="<?php echo $l->id;?>"><i class="fa fa-send"></i></button>
+
+                <?php else : ?>
+                  <button class="btn btn-xs btn-warning " disabled="disabled"><i class="fa fa-send"></i></button>
+                 <?php endif; ?>
               </td>
         		</tr>
         	<?php endforeach; ?>
@@ -94,6 +101,38 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="historyModalLabel">Historial de llamadas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+        
+           <div style="height:200px">
+                      <span id="searching_spinner_center" style="position: absolute;display: block;top: 50%;left: 50%;">
+                          <i class="fa fa-refresh fa-spin" style="font-size:46px"></i>
+
+                      </span>
+           </div>
+        </div>
+            
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDespachar" tabindex="-1" role="dialog" aria-labelledby="modalDespacharLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyModalLabel">Despachar email</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
