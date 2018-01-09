@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme')?>/vendor/datepicker/datepicker3.css?v=<?php echo VERSION; ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo VERSION; ?>">
 	 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
-
+    
      <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_style.min.css' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/char_counter.min.css?v=<?php echo VERSION; ?>">
@@ -45,7 +45,8 @@
             <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/line_breaker.min.css">
             <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/table.min.css">
             <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/video.min.css">
-             
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+        
     <?php foreach ($css as $css) :?>
     <link href="<?php echo base_url('assets/admin_theme/').$css.'?v='.VERSION ; ?>" rel="stylesheet" />
     <?php endforeach; ?>
@@ -419,6 +420,8 @@
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/table.min.js"></script>
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/url.min.js"></script>
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/video.min.js"></script>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
 
   <script>
  // Enable pusher logging - don't include this in production
