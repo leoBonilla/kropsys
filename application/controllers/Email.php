@@ -50,8 +50,8 @@ class Email extends MY_Controller
 				'protocol' => 'smtp',
 				'smtp_host' => 'ssl://smtp.googlemail.com',
 				'smtp_port' => 465,
-				'smtp_user' => 'leobonillab@gmail.com',// your mail name
-				'smtp_pass' => 'leonardo84',
+				'smtp_user' => 'crm@gmail.com',// your mail name
+				'smtp_pass' => 'kropsys!2018',
 				'mailtype'  => 'html', 
 				'charset'   => 'iso-8859-1',
 				 'wordwrap' => TRUE
