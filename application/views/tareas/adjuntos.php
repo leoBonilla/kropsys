@@ -49,12 +49,7 @@
         			<td><?php echo $l->asignado_nombre; ?></td>
         			
         			<td><button class="btn btn-xs btn-primary btn-history" data-id="<?php echo $l->id; ?>"><i class="fa fa-history"></i></button> <button data-id="<?php echo $l->id; ?>" class="btn btn-default btn-xs btn-calls"><i class="fa fa-phone"></i></button>
-                 <?php  if($l->estado == 'APROBADO'): ?>
-                  <button class="btn btn-xs btn-success btn-despachar" data-id="<?php echo $l->id;?>"><i class="fa fa-send"></i></button>
-
-                <?php else : ?>
-                  <button class="btn btn-xs btn-warning " disabled="disabled"><i class="fa fa-send"></i></button>
-                 <?php endif; ?>
+             <button class="btn btn-xs btn-success btn-despachar" data-id="<?php echo $l->id;?>"><i class="fa fa-send"></i></button>
               </td>
         		</tr>
         	<?php endforeach; ?>

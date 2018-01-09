@@ -95,6 +95,15 @@ $(document).on("click", ".btn-despachar", function () {
             var body = modal.find('.modal-body');
               body.load("../ajaxdespachar",{id: $(this).data('id') }, function(){
                 var form = $('#form-send');
+                $('textarea').froalaEditor({
+                              // Set maximum number of characters.
+                              iframe: true,
+                              toolbarButtons: ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough','indent', 'clearFormatting', 'insertTable','fontFamily', 'fontSize','inlineStyle', 'paragraphStyle','paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent'],
+                              charCounterMax: 2000,
+                               language: 'es',
+                                placeholderText: 'Comience a escribir algo...'
+
+                               });
                 form.ajaxForm({
                   beforeSubmit: function(form){
                     $('#btn-send-email').attr('disabled', true);

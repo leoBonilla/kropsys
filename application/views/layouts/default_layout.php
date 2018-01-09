@@ -30,6 +30,22 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme')?>/vendor/datepicker/datepicker3.css?v=<?php echo VERSION; ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo VERSION; ?>">
 	 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
+
+     <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/char_counter.min.css?v=<?php echo VERSION; ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/fullscreen.min.css?v=<?php echo VERSION; ?>">
+
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/code_view.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/colors.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/emoticons.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/file.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/image.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/image_manager.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/line_breaker.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/table.min.css">
+            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/video.min.css">
+             
     <?php foreach ($css as $css) :?>
     <link href="<?php echo base_url('assets/admin_theme/').$css.'?v='.VERSION ; ?>" rel="stylesheet" />
     <?php endforeach; ?>
@@ -377,6 +393,33 @@
 
          <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
          <script src="<?php echo base_url('assets/admin_theme/vendor')?>/timeago/jquery.timeago.js?v=<?php echo VERSION; ?>" type="text/javascript"></script>
+         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/js/froala_editor.min.js'></script>
+          <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/char_counter.min.js?v=<?php echo VERSION; ?>'></script>
+           <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/fullscreen.min.js?v=<?php echo VERSION; ?>'></script>
+          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/languages/es.js"></script>
+     
+
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/code_view.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/colors.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/emoticons.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/entities.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/file.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/font_family.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/font_size.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/image.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/image_manager.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/inline_style.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/line_breaker.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/link.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/lists.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/paragraph_format.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/paragraph_style.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/quote.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/save.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/table.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/url.min.js"></script>
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/video.min.js"></script>
+
   <script>
  // Enable pusher logging - don't include this in production
    // Pusher.logToConsole = true;
@@ -415,6 +458,8 @@
  <?php foreach ($scripts as $js) :?>
         <script src="<?php echo base_url('assets/admin_theme/').$js.'?v='.VERSION; ?>"></script>
     <?php endforeach; ?>
+
+
 </body>
 
 </html>

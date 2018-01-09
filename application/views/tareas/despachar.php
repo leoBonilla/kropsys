@@ -4,7 +4,7 @@
                     <label  class="col-sm-2 control-label"
                               for="to">Responder a :</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  name="to" id="to" value="<?php echo $email->enviado_por; ?>" readonly="readonly"  />
+                        <input type="email" class="form-control"  name="to" id="to" value="<?php echo $email->enviado_por; ?>" required="required"/>
                     </div>
                   </div>
             
@@ -12,7 +12,7 @@
                     <label  class="col-sm-2 control-label"
                               for="subject">Asunto :</label>
                     <div class="col-sm-10">
-                        <input type="text"  name="subject" class="form-control" id="subject" value="Respuesta a solicitud" />
+                        <input type="text"  name="subject" class="form-control" id="subject" value="Respuesta a solicitud" required="required"/>
                     </div>
                   </div>
       
@@ -21,7 +21,7 @@
                       <label class="col-sm-2 control-label"
                           for="message" >Mensaje :</label>
                           <div class="col-sm-10">
-                          <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
+                          <textarea name="message" id="message" cols="30" rows="20" class="form-control" required="required"></textarea>
                          </div>
                   </div>
 
