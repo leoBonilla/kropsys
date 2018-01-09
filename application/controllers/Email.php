@@ -25,7 +25,7 @@ class Email extends MY_Controller
     public function enviarCorreo(){
         if($this->input->post()){
         	    $this->load->model('documents/documents_model', 'doc');
-        	    //$to = $this->input->post('to')
+        	    $to = $this->input->post('to');
         	    $id = $this->input->post('id');
         	    $original = $this->input->post('original');
         	    $subject = $this->input->post('subject');
@@ -45,6 +45,17 @@ class Email extends MY_Controller
         		
         }
     }
+
+
+    public function test(){
+    	$data = array('subject' => 'THIS IS A TEST, DONT WORRY, BE HAPPY!!!' , 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, animi nemo tempora, quis explicabo accusantium distinctio? Ullam, expedita impedit, libero possimus soluta consequatur molestiae sunt aspernatur in aperiam temporibus. Quos.', 'to' => 'leobonillab@gmail.com');
+    	if($this->send($data, $attach)){
+    				    echo json_encode( array('result' => true) );
+    			}else{
+    				echo json_encode( array('result' => false) );
+    			}
+    }
+    
 	private function send($data, $attach = false){
 		    $config = Array(
 				'protocol' => 'smtp',
@@ -57,8 +68,8 @@ class Email extends MY_Controller
 				 'wordwrap' => TRUE
 			);
 			$this->load->library('email',$config);
-			$this->email->from('leobonillab@gmail.com', 'Sistema Kropsys');
-			$this->email->to('leobonillab@gmail.com');
+			$this->email->from('crm@gmail.com', 'Sistema Kropsys');
+			$this->email->to($data['to']);
 			if(is_array($attach)){
 				foreach ($attach as $e) {
 					$this->email->attach($e);	
