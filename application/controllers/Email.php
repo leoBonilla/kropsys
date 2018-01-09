@@ -35,7 +35,7 @@ class Email extends MY_Controller
         	    if($documento != false){
         	    	$attach = array($documento->ruta);
         	    }
-        	    $data = array('subject' => $subject , 'message' => $message);
+        	    $data = array('subject' => $subject , 'message' => $message, 'to' => $to);
         		header('Content-Type: application/json');
     			if($this->send($data, $attach)){
     				    echo json_encode( array('result' => true) );
