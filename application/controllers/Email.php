@@ -49,13 +49,13 @@ class Email extends MY_Controller
 
     public function test(){
     	$data = array('subject' => 'THIS IS A TEST, DONT WORRY, BE HAPPY!!!' , 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, animi nemo tempora, quis explicabo accusantium distinctio? Ullam, expedita impedit, libero possimus soluta consequatur molestiae sunt aspernatur in aperiam temporibus. Quos.', 'to' => 'leobonillab@gmail.com');
-    	if($this->send($data, $attach)){
+    	if($this->send($data, $attach = false)){
     				    echo json_encode( array('result' => true) );
     			}else{
     				echo json_encode( array('result' => false) );
     			}
     }
-    
+
 	private function send($data, $attach = false){
 		    $config = Array(
 				'protocol' => 'smtp',
