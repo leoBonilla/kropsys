@@ -438,7 +438,7 @@ public function misTareas(){
                          'vendor/datatables-plugins/vfs_fonts.js',
                          'vendor/datatables-plugins/buttons.html5.min.js',
                          'vendor/datatables-plugins/buttons.print.min.js',
-                         'vendor/moments/moments.js',
+
                '../init_tables.js',
                'pages/tareas/email.js'
                          
@@ -494,7 +494,6 @@ public function emailsdescartados(){
                          'vendor/datatables-plugins/vfs_fonts.js',
                          'vendor/datatables-plugins/buttons.html5.min.js',
                          'vendor/datatables-plugins/buttons.print.min.js',
-                         'vendor/moments/moments.js',
                '../init_tables.js',
                'pages/tareas/descartados.js'
                          
