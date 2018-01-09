@@ -83,10 +83,10 @@ class Email extends MY_Controller
 			$this->email->subject($data['subject']);
 			$this->email->message($data['message']);
 
-			// if($this->email->send()){
-			// 	return true;
-			// }
-			// return false;
+			if($this->email->send()){
+				return true;
+			}
+			return false;
 	}
 	
 	
