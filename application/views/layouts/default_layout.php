@@ -422,6 +422,7 @@
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/video.min.js"></script>
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
 
   <script>
  // Enable pusher logging - don't include this in production

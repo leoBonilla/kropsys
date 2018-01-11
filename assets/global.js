@@ -131,7 +131,9 @@ jQuery.timeago.settings.strings = {
 
 jQuery("time.timeago").timeago();
 
-jQuery('textarea').summernote();
+jQuery('textarea').summernote({
+    lang: 'es-ES' // default: 'en-US'
+  });
 
 
     });

@@ -104,7 +104,9 @@ $(document).on("click", ".btn-despachar", function () {
                 //                 placeholderText: 'Comience a escribir algo...'
 
                 //                });
-                $('#message').summernote();
+                $('#message').summernote({
+    lang: 'es-ES' // default: 'en-US'
+  });
                 form.ajaxForm({
                   beforeSubmit: function(form){
                     $('#btn-send-email').attr('disabled', true);
