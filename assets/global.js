@@ -131,6 +131,8 @@ jQuery.timeago.settings.strings = {
 
 jQuery("time.timeago").timeago();
 
+jQuery('textarea').summernote();
+
 
     });
 
