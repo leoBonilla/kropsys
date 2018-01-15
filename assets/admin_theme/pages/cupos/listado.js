@@ -40,6 +40,7 @@ if(jQuery.isEmptyObject(json) == false){
 
   
 }).DataTable({
+        "processing": true,
    	 	"ajax": {
             url : BASE_URL+ '/webapi/listarcupos',
             type: "POST",
