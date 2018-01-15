@@ -40,6 +40,9 @@ $(document).on("click", ".btn-asignar", function () {
           });
       		form.validate();
       		var btn = form.find('#btn-asignar');
+          form.find('#observaciones').summernote({
+                   lang: 'es-ES' // default: 'en-US'
+                  });;
       		btn.on('click', function(e){
       		form.ajaxForm({ // initialize the plugin
 		        beforeSubmit: function () {

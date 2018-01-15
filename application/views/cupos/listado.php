@@ -1,13 +1,34 @@
 <div class="col-md-12">
-           <div class="row filtros">
-              <div class="input-group input-daterange col-md-2" style="margin-bottom:5px;">
-    <input type="text" class="form-control datepicker" name="fecha" id="date_field" value="" placeholder="01/10/2017">
-     <span class="input-group-btn">
-        <button type="button" class="btn btn-warning" id="date_filter_btn" type="button"><i class="fa fa-filter"></i></button>
-      </span>
+      <div class="row filtros">
+        <div class="col-md-4">
+         <div class="row">
+               <div class="input-group input-daterange col-md-12" style="margin-bottom:5px;">
+                    <input type="text" class="form-control datepicker" name="fecha" id="fecha" value="" placeholder="01/10/2017">
+                     <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning date-filter-btn" id="date_btn" type="button"><i class="fa fa-filter"></i></button>
+                      </span>
+              </div>
+         </div>
+
+        </div>
+
+        <div class="col-md-2">
+           <input type="checkbox" name="my-checkbox" data-on-text="SI" data-off-text="NO" data-label-text="Historico">
+        </div>
+
+          <div class="col-md-4" id="moment_filter" style="display:none;">
+         <div class="row">
+               <div class="input-group input-daterange col-md-12" style="margin-bottom:5px;">
+                    <input type="text" class="form-control datepicker" name="momento" id="momento" value="" placeholder="01/10/2017">
+                     <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning date-filter-btn" id="btn_moment" type="button"><i class="fa fa-filter"></i></button>
+                      </span>
+              </div>
+         </div>
+
+        </div>
+       
       </div>
-       <!--</form> -->
-   </div> 
 </div>
 <table id="cupos_table" class="table table-striped table-bordered " cellspacing="0" width="100%">
         <thead>

@@ -28,7 +28,9 @@ class Webapi extends MY_Controller {
 		public function listarCupos(){
            if($this->input->post()){
            			$fecha = $this->input->post('fecha');
-					$data = $this->webapi_model->listarCupos($fecha);
+                $momento = $this->input->post('momento');
+					$data = $this->webapi_model->listarCupos($fecha,$momento);
+          
 				    $this->output($data);
            }
 

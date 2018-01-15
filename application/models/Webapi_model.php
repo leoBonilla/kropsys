@@ -60,8 +60,8 @@ class Webapi_model extends CI_Model {
 		}
 
 
-    public function cuposPorDia($dia){
-         $query = $this->db->query("select e.especialidad, c.fecha, IFNULL(sum(c.cupos),0) as cupos from especialidades e left join cupos c on e.id = c.id_especialidad and c.fecha = '".$dia."' group by 1, 2 order by e.especialidad asc");
+    public function cuposPorDia($dia,$momento){
+         $query = $this->db->query("select e.especialidad, c.fecha,c.fecha_creacion, IFNULL(sum(c.cupos),0) as cupos from especialidades e left join cupos c on (e.id = c.id_especialidad and c.fecha = '".$dia."'  and c.fecha_creacion <= '".$momento."')   group by 1, 2 order by e.especialidad asc");
         if($query->num_rows() > 0){
                 return $query->result();
               }
@@ -81,7 +81,7 @@ class Webapi_model extends CI_Model {
    
 
 
-    public function listarCupos($fecha){
+    public function listarCupos($fecha,$momento){
 
       $fecha= trim($fecha);
       $hoy = date('Y-m-d',strtotime($fecha));
@@ -105,7 +105,11 @@ class Webapi_model extends CI_Model {
        $data = array();
        $especialidades = $this->getAllEspecialidades();
        //var_dump($especialidades);
+       $id_especialidad = null;
+       $especialidad = null; 
        foreach($especialidades as $row){
+        $id_especialidad = $row->id;
+        $especialidad  = $row->especialidad;
            $data[] = array(
                 'especialidad' => $row->especialidad,
                 'id_especialidad' => $row->id,
@@ -126,13 +130,13 @@ class Webapi_model extends CI_Model {
             );
        }
 
-      $fecha1 = $this->cuposPorDia($fechas[0]);
-      $fecha2 = $this->cuposPorDia($fechas[1]);
-      $fecha3 = $this->cuposPorDia($fechas[2]);
-      $fecha4 = $this->cuposPorDia($fechas[3]);
-      $fecha5 = $this->cuposPorDia($fechas[4]);
-      $fecha6 = $this->cuposPorDia($fechas[5]);
-      $fecha7 = $this->cuposPorDia($fechas[6]);
+      $fecha1 = $this->cuposPorDia($fechas[0],$momento);
+      $fecha2 = $this->cuposPorDia($fechas[1],$momento);
+      $fecha3 = $this->cuposPorDia($fechas[2],$momento);
+      $fecha4 = $this->cuposPorDia($fechas[3],$momento);
+      $fecha5 = $this->cuposPorDia($fechas[4],$momento);
+      $fecha6 = $this->cuposPorDia($fechas[5],$momento);
+      $fecha7 = $this->cuposPorDia($fechas[6],$momento);
       $i =0 ;
      foreach ($fecha1 as $row) {
        $data[$i]['cupo_1'] = is_null($row->cupos) ? 0 : $row->cupos  ;
@@ -200,7 +204,28 @@ class Webapi_model extends CI_Model {
 
       }
 
+      if(count($data)==0){
+        $data[] = array(
+                'especialidad' => '',
+                'id_especialidad' => $id_especialidad,
+                'fecha_1' => $fechas[0],
+                'fecha_2' => $fechas[1],
+                'fecha_3' => $fechas[2],
+                'fecha_4' => $fechas[3],
+                'fecha_5' => $fechas[4],
+                'fecha_6' => $fechas[5],
+                'fecha_7' => $fechas[6],
+                'cupo_1' => 0,
+                'cupo_2' => 0,
+                'cupo_3' => 0,
+                'cupo_4' => 0,
+                'cupo_5' => 0,
+                'cupo_6' => 0,
+                'cupo_7' => 0,
+            );
+      }
 
+   
    return $data;
 
 }

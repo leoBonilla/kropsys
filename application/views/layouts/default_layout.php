@@ -238,6 +238,10 @@
                        </ul>
                           
                         </li> 
+                            
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>
+                        </li>
                         <!-- <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>

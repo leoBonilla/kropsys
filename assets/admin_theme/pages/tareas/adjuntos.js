@@ -20,9 +20,6 @@ $(document).on("click", ".btn-history", function () {
                     var start = $(e).find('input.inicio');
                     var end = $(e).find('input.fin');
                     var span = $(e).find('span.time');
-                    // setInterval(function(){
-                    //   span.settimer(start,end);
-                    // },1000);
                 });
 
                var  bvalidate = $('#btn-validate').bootstrapSwitch();
@@ -95,21 +92,13 @@ $(document).on("click", ".btn-despachar", function () {
             var body = modal.find('.modal-body');
               body.load("../ajaxdespachar",{id: $(this).data('id') }, function(){
                 var form = $('#form-send');
-                // $('textarea').froalaEditor({
-                //               // Set maximum number of characters.
-                //               iframe: true,
-                //               toolbarButtons: ['undo', 'redo' , '|', 'bold', 'italic', 'underline', 'strikeThrough','clearFormatting', 'insertTable','fontFamily', 'fontSize','inlineStyle', 'paragraphStyle','paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent'],
-                //               charCounterMax: 2000,
-                //                language: 'es',
-                //                 placeholderText: 'Comience a escribir algo...'
-
-                //                });
                 $('#message').summernote({
-    lang: 'es-ES' // default: 'en-US'
-  });
+                   lang: 'es-ES' // default: 'en-US'
+                  });
                 form.ajaxForm({
                   beforeSubmit: function(form){
-                    $('#btn-send-email').attr('disabled', true);
+                   
+                    $('#btn-send-email').prop('disabled', true);
                   },
                   success: function(data){
                      if(data.result == true){

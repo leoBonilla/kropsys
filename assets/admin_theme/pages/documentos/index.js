@@ -24,6 +24,9 @@ $(document).on("click", ".btn-modal", function () {
       body.load(BASE_URL+"/documentos/loadmodal", { id: id, id_email : id_email },function(){
       		$("[name='chk-gestion']").bootstrapSwitch();
           $("[name='chk-file']").bootstrapSwitch();
+          $('#observaciones').summernote({
+                   lang: 'es-ES' // default: 'en-US'
+                  });
       		//$("#form_gestionar").fileupload();
           $('input[name="chk-file"]').on('switchChange.bootstrapSwitch',  function(event, state) {
             $('.file-control-div').toggle();

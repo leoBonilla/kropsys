@@ -64,7 +64,8 @@ class Cupos extends My_Controller
 					 'fecha' => $this->input->post('fecha'),
 					  'cupos' => $this->input->post('cupos'),
 					   'observaciones' => $this->input->post('observaciones'),
-					   'user_id' => $this->auth_user_id
+					   'user_id' => $this->auth_user_id,
+					   'fecha_creacion' => date('Y-m-d')
 				 );	
 				$fec = explode('/', $data['fecha']);
 				$data['fecha'] = "{$fec[2]}-{$fec[1]}-{$fec[0]}";
@@ -87,6 +88,7 @@ class Cupos extends My_Controller
 			 $css =  array(
        					'vendor/datatables-plugins/dataTables.bootstrap.css',
        					'vendor/datatables-responsive/dataTables.responsive.css',
+       					'vendor/switch/bootstrap-switch.min.css',
        					'custom.css'
 
        				);
@@ -103,8 +105,9 @@ class Cupos extends My_Controller
     					 'vendor/datatables-plugins/vfs_fonts.js',
     					 'vendor/datatables-plugins/buttons.html5.min.js',
     					 'vendor/datatables-plugins/buttons.print.min.js',
-               '../init_tables.js',
-               '../moment-with-locales.min.js',
+    					 'vendor/switch/bootstrap-switch.min.js',
+			               '../init_tables.js',
+			               '../moment-with-locales.min.js',
     					 'pages/cupos/listado.js'
     					 );
 			$this->template->set('title', 'Listado cupos');
