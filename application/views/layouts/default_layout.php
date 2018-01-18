@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo VERSION; ?>">
 	 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
     
-     <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+
 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/char_counter.min.css?v=<?php echo VERSION; ?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/fullscreen.min.css?v=<?php echo VERSION; ?>">
 
@@ -239,9 +238,11 @@
                           
                         </li> 
                             
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>
+                        <?php if($auth_level >= ADMIN_LEVEL) :?>
+                              <li>
+                            <a href="<?php echo base_url('reportes'); ?>"><i class="fa fa-bar-chart-o "></i> Reportes<span class="fa arrow"></span> <span class="label label-default">En proceso</span></h1></a>
                         </li>
+                        <?php endif; ?>
                         <!-- <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
@@ -402,7 +403,7 @@
           <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/char_counter.min.js?v=<?php echo VERSION; ?>'></script>
            <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/fullscreen.min.js?v=<?php echo VERSION; ?>'></script>
           <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/languages/es.js"></script>
-     
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/code_view.min.js"></script>
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/colors.min.js"></script>
