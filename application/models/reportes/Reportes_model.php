@@ -99,43 +99,104 @@ class Reportes_model extends CI_Model {
 
 
 	public function fetchByDistribucion($tabla, $inicio, $fin){
-		$sql = "select COALESCE(sum(r.pacientes),0) as total, p.prestacion, p.id from ".$tabla." r join prestaciones p on p.id = r.id_prestacion  where date(r.fecha) between '".$inicio."' and '".$fin."' 
+
+		if($tabla != 'agendamientos'){
+					$sql = "select COALESCE(sum(r.pacientes),0) as total, p.prestacion, p.id from ".$tabla." r join prestaciones p on p.id = r.id_prestacion  where date(r.fecha) between '".$inicio."' and '".$fin."' 
+							group by r.id_prestacion;";
+		}else{
+					$sql = "select COALESCE(sum(r.pacientes_agendados),0) as total, p.prestacion, p.id from ".$tabla." r join prestaciones p on p.id = r.id_prestacion  where date(r.fecha) between '".$inicio."' and '".$fin."' 
 group by r.id_prestacion;";
+		}
+
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 
 	public function fetchAgendamientosDistribucion($inicio, $fin){
-		$sql = "select p.prestacion , sum(hora_ya_asignada) as hora_ya_asignada, sum(n_erroneo) as n_erroneo, sum(rechazo_anulaciones) as rechazo_anulaciones , sum(no_contestaron) as no_contestaron , sum(pacientes_agendados) as pacientes_agendados  from  agendamientos r join prestaciones p on r.id_prestacion = p.id where date(fecha) between '".$inicio."'  and '".$fin."' group by id_prestacion;";
+		$sql = "select 
+				    p.prestacion,
+				    COALESCE(sum(hora_ya_asignada), 0) as hora_ya_asignada,
+				    COALESCE(sum(n_erroneo), 0) as n_erroneo,
+				    COALESCE(sum(rechazo_anulaciones), 0) as rechazo_anulaciones,
+				    COALESCE(sum(no_contestaron), 0) as no_contestaron,
+				    COALESCE(sum(pacientes_agendados), 0) as pacientes_agendados
+				from
+				    agendamientos r
+				        right join
+				    prestaciones p ON (r.id_prestacion = p.id) and
+					date(fecha) between '".$inicio."' and '".$fin."'
+				group by p.id;";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 
 	public function fetchReasignacionesDistribucion($inicio, $fin){
-		$sql = "select p.prestacion , sum(sin_cupo) as sin_cupo, sum(hora_ya_asignada) as hora_ya_asignada, sum(n_erroneo) as n_erroneo, sum(rechazo_anulaciones) as rechazo_anulaciones , sum(no_contestaron) as no_contestaron , sum(pacientes_agendados) as pacientes_agendados ,sum(pacientes) as pacientes from  reasignaciones r join prestaciones p on r.id_prestacion = p.id where date(fecha) between '".$inicio."'  and '".$fin."' group by id_prestacion;";
+		$sql = "select 
+				    p.prestacion,
+				    COALESCE(sum(sin_cupo), 0) as sin_cupo,
+				    COALESCE(sum(hora_ya_asignada), 0) as hora_ya_asignada,
+				    COALESCE(sum(n_erroneo), 0) as n_erroneo,
+				    COALESCE(sum(rechazo_anulaciones), 0) as rechazo_anulaciones,
+				    COALESCE(sum(no_contestaron), 0) as no_contestaron,
+				    COALESCE(sum(pacientes_agendados), 0) as pacientes_agendados,
+				    COALESCE(sum(pacientes), 0) as pacientes
+				from
+				    reasignaciones r
+				        right join
+				    prestaciones p ON (r.id_prestacion = p.id)
+				        and date(fecha) between '".$inicio."' and '".$fin."'
+				group by p.id";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 	public function fetchConfirmacionesDistribucion($inicio, $fin){
-		$sql = "select p.prestacion , sum(hora_ya_asignada) as hora_ya_asignada, sum(n_erroneo) as n_erroneo, sum(rechazo_anulaciones) as rechazo_anulaciones , sum(no_contestaron) as no_contestaron , sum(confirmadas)  as confirmadas ,sum(pacientes) as pacientes from  confirmaciones r join prestaciones p on r.id_prestacion = p.id where date(fecha) between '".$inicio."'  and '".$fin."' group by id_prestacion;";
+		$sql = "select 
+				    p.prestacion,
+				    COALESCE(sum(hora_ya_asignada), 0) as hora_ya_asignada,
+				    COALESCE(sum(n_erroneo), 0) as n_erroneo,
+				    COALESCE(sum(rechazo_anulaciones), 0) as rechazo_anulaciones,
+				    COALESCE(sum(no_contestaron), 0) as no_contestaron,
+				    COALESCE(sum(confirmadas), 0) as confirmadas,
+				    COALESCE(sum(pacientes), 0) as pacientes
+				from
+				    confirmaciones r
+				        right join
+				    prestaciones p ON (r.id_prestacion = p.id)
+				and 
+				    date(fecha) between '".$inicio."' and '".$fin."'
+				group by p.id;";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 	public function fetchOtrosDistribucion($inicio, $fin){
-		$sql = "select p.prestacion , sum(hora_ya_asignada) as hora_ya_asignada, sum(n_erroneo) as n_erroneo, sum(rechazo_anulaciones) as rechazo_anulaciones , sum(no_contestaron) as no_contestaron , sum(confirmadas)  as confirmadas ,sum(pacientes) as pacientes from  otros r join prestaciones p on r.id_prestacion = p.id where date(fecha) between '".$inicio."'  and '".$fin."' group by id_prestacion;";
+		$sql = "select 
+				    p.prestacion,
+				    COALESCE(sum(hora_ya_asignada), 0) as hora_ya_asignada,
+				    COALESCE(sum(n_erroneo), 0) as n_erroneo,
+				    COALESCE(sum(rechazo_anulaciones), 0) as rechazo_anulaciones,
+				    COALESCE(sum(no_contestaron), 0) as no_contestaron,
+				    COALESCE(sum(confirmadas), 0) as confirmadas,
+				    COALESCE(sum(pacientes), 0) as pacientes
+				from
+				    otros r
+				        right join
+				    prestaciones p ON (r.id_prestacion = p.id)
+				and 
+				    date(fecha) between '".$inicio."' and '".$fin."'
+				group by p.id;";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
 	public function topProfesionales($tabla, $inicio, $fin){
 		if($tabla !='agendamientos_view'){
-			$sql = "select sum(pacientes) as total, profesional from ".$tabla." where date(fecha) between '".$inicio."'  and '".$fin."' group by id_medico order by 1 desc limit 10;";
+			$sql = "select COALESCE(sum(pacientes),0) as total, profesional from ".$tabla." where date(fecha) between '".$inicio."'  and '".$fin."' group by id_medico order by 1 desc limit 10;";
 		}else{
-			$sql = "select sum(pacientes_agendados) as total, profesional from ".$tabla." where date(fecha) between '".$inicio."'  and '".$fin."' group by id_medico order by 1 desc limit 10;";
+			$sql = "select COALESCE(sum(pacientes_agendados),0) as total, profesional from ".$tabla." where date(fecha) between '".$inicio."'  and '".$fin."' group by id_medico order by 1 desc limit 10;";
 		}
 		
 		$query = $this->db->query($sql);
@@ -144,7 +205,7 @@ group by r.id_prestacion;";
 
 
 	public function reasignacionPorEspecialidad($inicio,$fin){
-		$sql ="select id_especialidad, sum(pacientes_agendados) as total , e.especialidad from reasignaciones r join especialidades e on r.id_especialidad = e.id
+		$sql ="select id_especialidad, COALESCE(sum(pacientes_agendados),0) as total , e.especialidad from reasignaciones r join especialidades e on r.id_especialidad = e.id
  where date(fecha) between '".$inicio."'  and '".$fin."' group by 1 order by 2 asc";
  	$query = $this->db->query($sql);
 		return $query->result();

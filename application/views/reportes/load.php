@@ -3,6 +3,12 @@ $ingreso_reasig = $dist_reasignaciones_bar[0];
 $examen_reasig = $dist_reasignaciones_bar[1];
 $control_reasig = $dist_reasignaciones_bar[2];
 $procedimiento_reasig = $dist_reasignaciones_bar[3];
+
+$ingreso_agend = $dist_agendamientos_bar[0];
+$examen_agend = $dist_agendamientos_bar[1];
+$control_agend = $dist_agendamientos_bar[2];
+$procedimiento_agend = $dist_agendamientos_bar[3];
+		
 		
  ?>
 
@@ -358,7 +364,70 @@ $procedimiento_reasig = $dist_reasignaciones_bar[3];
 
 </div>
 </div>
-    <div id="agendamientos" class="tab-pane fade in" ></div>
+    <div id="agendamientos" class="tab-pane fade in" >
+    	     	<br>	
+     	<div class="row">
+	<div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          Distribución de reasignaciones
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           <div id="dist_agendamientos_chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+</div>
+
+
+	<div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          Distribución por Examen
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           <div id="dist_agendamientos_examen_chart" style="display: block;margin:0 auto;"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+</div>
+</div>
+
+     	<div class="row">
+	<div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          Distribución por control
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           <div id="dist_agendamientos_control_chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+</div>
+
+
+	<div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          Distribución por ingreso
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           <div id="dist_agendamientos_ingreso_chart" style="display: block;margin:0 auto;"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+</div>
+</div>
+    </div>
      <div id="reasignaciones" class="tab-pane fade in" >
      	<br>	
      	<div class="row">
@@ -513,6 +582,86 @@ $procedimiento_reasig = $dist_reasignaciones_bar[3];
 										                       is3D:true});
 
 
+
+
+       	//graficos tab agendamientos
+
+
+        var dist_agendamientos = new google.visualization.DataTable();
+        dist_agendamientos.addColumn('string', '');
+        dist_agendamientos.addColumn('number', '');
+        dist_agendamientos.addRows([<?php 
+              $count = 0;
+             foreach($dist_agendamientos as $row) : ?>
+             	[<?php echo "'".$row->prestacion ."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
+        ]);
+
+        var dist_agendamientos_piechart = new google.visualization.PieChart(document.getElementById('dist_agendamientos_chart'));
+        dist_agendamientos_piechart.draw(dist_agendamientos,  {title:'Distribucion de agendamientos',
+                       width:400,
+                       height:300,
+                       pieHole:0.4
+                   		});
+
+
+        var data_agendamientos_examen = new google.visualization.DataTable();
+        data_agendamientos_examen.addColumn('string', '');
+        data_agendamientos_examen.addColumn('number', '');
+        data_agendamientos_examen.addRows([
+            ['Numero erroneo', <?php 	echo $examen_agend->n_erroneo; ?>],
+            ['Hora ya asignada', <?php 	echo $examen_agend->hora_ya_asignada; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $examen_agend->rechazo_anulaciones; ?>],
+            ['No contestaron', <?php 	echo $examen_agend->no_contestaron; ?>]
+        	]);
+
+        var dist_agendamientos_barchart_examen = new google.visualization.BarChart(document.getElementById('dist_agendamientos_examen_chart'));
+        dist_agendamientos_barchart_examen.draw(data_agendamientos_examen,  {title:'Distribucion de agendamientos por examen',
+        	chartArea: {width: '35%'},
+       				   width:400,
+                       height:300
+                   		});
+
+         var data_agendamientos_ingreso = new google.visualization.DataTable();
+        data_agendamientos_ingreso.addColumn('string', '');
+        data_agendamientos_ingreso.addColumn('number', '');
+        data_agendamientos_ingreso.addRows([
+            ['Numero erroneo', <?php 	echo $ingreso_agend->n_erroneo; ?>],
+            ['Hora ya asignada', <?php 	echo $ingreso_agend->hora_ya_asignada; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $ingreso_agend->rechazo_anulaciones; ?>],
+            ['No contestaron', <?php 	echo $ingreso_agend->no_contestaron; ?>]
+        	]);
+
+        var dist_agendamientos_barchart_ingreso = new google.visualization.BarChart(document.getElementById('dist_agendamientos_ingreso_chart'));
+        dist_agendamientos_barchart_ingreso.draw(data_agendamientos_ingreso,  {title:'Distribucion de agendamientos por ingreso',
+        	chartArea: {width: '35%'},
+       				   width:400,
+                       height:300
+                   		});
+
+
+
+         var data_agendamientos_control = new google.visualization.DataTable();
+        data_agendamientos_control.addColumn('string', '');
+        data_agendamientos_control.addColumn('number', '');
+        data_agendamientos_control.addRows([
+            ['Numero erroneo', <?php 	echo $control_agend->n_erroneo; ?>],
+            ['Hora ya asignada', <?php 	echo $control_agend->hora_ya_asignada; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $control_agend->rechazo_anulaciones; ?>],
+            ['No contestaron', <?php 	echo $control_agend->no_contestaron; ?>],
+            ['Pacientes agendados', <?php 	echo $control_agend->pacientes_agendados; ?>],
+        	]);
+
+        var dist_agendamientos_barchart_control = new google.visualization.BarChart(document.getElementById('dist_agendamientos_control_chart'));
+        dist_agendamientos_barchart_control.draw(data_agendamientos_control,  {title:'Distribucion de agendamientos por control',
+        	chartArea: {width: '35%'},
+       				   width:400,
+                       height:300
+                   		});
+
+
+
+       // graficos tab reasignaciones
+
         var data3 = new google.visualization.DataTable();
         data3.addColumn('string', '');
         data3.addColumn('number', '');
@@ -583,14 +732,32 @@ $procedimiento_reasig = $dist_reasignaciones_bar[3];
         	]);
 
         var dist_reasignaciones_barchart_control = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_control_chart'));
-        dist_reasignaciones_barchart_control.draw(data_reasignaciones_control,  {title:'Distribucion de reasignaciones por ingreso',
+        dist_reasignaciones_barchart_control.draw(data_reasignaciones_control,  {title:'Distribucion de reasignaciones por control',
         	chartArea: {width: '35%'},
        				   width:400,
                        height:300
                    		});
  
  
-  
+        //graficos para confirmaciones 
+        
+        var $dist_confirmaciones = new google.visualization.DataTable();
+        $dist_confirmaciones.addColumn('string', '');
+        $dist_confirmaciones.addColumn('number', '');
+        $dist_confirmaciones.addRows([<?php 
+              $count = 0;
+             foreach($dist_reasignaciones as $row) : ?>
+             	[<?php echo "'".$row->prestacion ."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
+        ]);
+
+        var dist_confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('dist_confirmaciones_chart'));
+        dist_confirmaciones_piechart.draw($dist_confirmaciones,  {title:'Distribucion de confirmaciones',
+                       width:400,
+                       height:300,
+                       pieHole:0.4
+                   		});
+
+        
 
 
 

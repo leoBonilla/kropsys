@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"pusher/pusher-php-server": "^3.0"
+		"pusher/pusher-php-server": "^3.0",
+		"phpoffice/phpword": "dev-master"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

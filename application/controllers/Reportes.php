@@ -97,7 +97,7 @@ class Reportes extends My_Controller
 
 			//distribucion de reasignaciones
 			$dist_reasignaciones = $this->reportes->fetchByDistribucion('reasignaciones',$inicio,$fin);
-		//	$dist_agendamientos = $this->reportes->fetchByDistribucion('agendamientos',$inicio,$fin);
+		 	$dist_agendamientos = $this->reportes->fetchByDistribucion('agendamientos',$inicio,$fin);
 
 
 			$dist_reasignaciones_bar = $this->reportes->fetchReasignacionesDistribucion($inicio,$fin);
@@ -136,6 +136,7 @@ class Reportes extends My_Controller
 													'otros_confirmadas' => $otros_confirmadas,
 													'otros_reasignadas' => $otros_reasignadas,
 													'dist_reasignaciones' => $dist_reasignaciones,
+													'dist_agendamientos' => $dist_agendamientos,
 													'dist_reasignaciones_bar' => $dist_reasignaciones_bar,
 													'dist_confirmaciones_bar' => $dist_confirmaciones_bar,
 													'dist_agendamientos_bar' => $dist_agendamientos_bar,
