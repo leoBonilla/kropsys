@@ -22,8 +22,8 @@ $info_r_proced = $dist_reasignaciones[3];
   <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
    <li><a data-toggle="tab" href="#agendamientos"><i class="fa fa-book"></i> Agendamientos</a></li>
   <li><a data-toggle="tab" href="#reasignaciones"><i class="fa fa-exchange"></i> Reasignaciones</a></li>
-  <li><a data-toggle="tab" href="#confirmaciones"><i class="fa  fa-thumbs-o-up"></i> Confirmaciones</a></li>
-  <li><a data-toggle="tab" href="#otros"><i class="fa  fa-asterisk"></i> Otros</a></li>
+<!--   <li><a data-toggle="tab" href="#confirmaciones"><i class="fa  fa-thumbs-o-up"></i> Confirmaciones</a></li>
+  <li><a data-toggle="tab" href="#otros"><i class="fa  fa-asterisk"></i> Otros</a></li> -->
   <li><a data-toggle="tab" href="#menu1">Tablas</a></li>
    <li><a data-toggle="tab" href="#informe">Informe</a></li>
   
@@ -573,6 +573,20 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       		</div>
       	</div>
 
+
+      	      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_confirmaciones_chart"></div>
+      		</div>
+      		<?php 	
+      				$conf_total = $conf_no_contestaron->total + $conf_rechazos_anulaciones->total + $conf_n_erroneo->total + $conf_horas_ya_asignadas->total +$conf_confirmadas->total
+      				+ $conf_reasignadas->total; 
+      		?>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			En relación a las confirmaciones, de un total de <?php 	echo $conf_total; ?> gestiones realizadas, dio como resultado <?php echo $conf_confirmadas->total; ?> pacientes confirmados, <?php echo $conf_rechazos_anulaciones->total; ?>  pacientes que anularon o rechazaron la hora, <?php echo $conf_reasignadas->total; ?>  pacientes con la hora reasignada y <?php echo $conf_no_contestaron->total; ?>  pacientes que no contestaron el llamado telefónico. Se detectaron <?php echo $conf_n_erroneo->total; ?>  números telefónicos erróneos.
+      		</div>
+      	</div>
+
       </div>
 
 
@@ -643,6 +657,9 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         	]);
 
         var confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart'));
+         google.visualization.events.addListener(confirmaciones_piechart, 'ready', function () {
+     	    document.getElementById('info_confirmaciones_chart').innerHTML = '<img src="' + confirmaciones_piechart.getImageURI() + '">';
+    		});
        	confirmaciones_piechart.draw(confirmaciones,  {   title:'Confirmaciones',
 										                       width:400,
 										                       height:300,
