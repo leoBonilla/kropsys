@@ -530,7 +530,7 @@ $info_r_proced = $dist_reasignaciones[3];
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php 	$re_total = $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_pacientes_agendados->total + $re_sin_cupo->total; ?>
-      			En relación a los pacientes reasignados en el mes de Diciembre 2017, se gestionaron <?= $re_total; ?> pacientes, de los cuales, se agendaron <?= $re_pacientes_agendados->total; ?> pacientes, mientras que <?= $re_no_contestaron->total; ?> no contestaron el llamado telefónico, <?= $re_rechazos_anulaciones->total; ?> pacientes rechazaron o anularon la hora y <?= $re_horas_ya_asignadas->total; ?> pacientes ya tenían su hora agendada. Aquí se genera una diferencia de <?= $re_sin_cupo->total; ?> pacientes sobre los cuales no se realiza gestión por no haber disponibilidad de cupos. En el período hubo <?= $re_n_erroneos->total; ?> números telefónicos errados.
+      			En relación a los pacientes reasignados , se gestionaron <?= $re_total; ?> pacientes, de los cuales, se agendaron <?= $re_pacientes_agendados->total; ?> pacientes, mientras que <?= $re_no_contestaron->total; ?> no contestaron el llamado telefónico, <?= $re_rechazos_anulaciones->total; ?> pacientes rechazaron o anularon la hora y <?= $re_horas_ya_asignadas->total; ?> pacientes ya tenían su hora agendada. Aquí se genera una diferencia de <?= $re_sin_cupo->total; ?> pacientes sobre los cuales no se realiza gestión por no haber disponibilidad de cupos. En el período hubo <?= $re_n_erroneos->total; ?> números telefónicos errados.
       		</div>
       	</div>
 
@@ -539,7 +539,7 @@ $info_r_proced = $dist_reasignaciones[3];
       			<div id="info_dist_reasignaciones_chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
-      			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados de Diciembre 2017, <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
+      			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados , <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
       		</div>
       	</div>
 
@@ -549,7 +549,7 @@ $info_r_proced = $dist_reasignaciones[3];
       			<div id="info_dist_reasignaciones_control_chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
-      			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles del mes de Diciembre,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
+      			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
 Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
 
       		</div>
@@ -560,7 +560,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
-      			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos del mes de Diciembre, <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
+      			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos , <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
       		</div>
       	</div>
       	<div class="row">
@@ -569,7 +569,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php 	$total_ingreso_r_examen = $examen_reasig->pacientes_agendados + $examen_reasig->no_contestaron + $examen_reasig->rechazo_anulaciones + $examen_reasig->hora_ya_asignada + $examen_reasig->n_erroneo + $examen_reasig->sin_cupo ; ?>
-      			En cuanto a los <?php 	echo $total_ingreso_r_examen; ?> pacientes reasignados de exámenes en el periodo, <?php 	echo $examen_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $examen_reasig->no_contestaron; ?> no contestaron el llamado telefónico. Hubo <?php 	echo $examen_reasig->rechazo_anulaciones; ?> pacientes que rechazaran o anularan la hora y  hubo <?php 	echo $examen_reasig->hora_ya_asignada; ?> pacientes que señalaran tener ya una hora asignada. Había <?php 	echo $examen_reasig->n_erroneo; ?> números telefónicos errados. Hubo un total de <?php 	echo $examen_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo.
+      			En cuanto a los <?php 	echo $total_ingreso_r_examen; ?> pacientes reasignados de exámenes , <?php 	echo $examen_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $examen_reasig->no_contestaron; ?> no contestaron el llamado telefónico. Hubo <?php 	echo $examen_reasig->rechazo_anulaciones; ?> pacientes que rechazaran o anularan la hora y  hubo <?php 	echo $examen_reasig->hora_ya_asignada; ?> pacientes que señalaran tener ya una hora asignada. Había <?php 	echo $examen_reasig->n_erroneo; ?> números telefónicos errados. Hubo un total de <?php 	echo $examen_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo.
       		</div>
       	</div>
 
@@ -844,19 +844,18 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       }
 
         document.getElementById('convert').addEventListener('click', function(e) {
+        console.log($('#date-picker').val());
       e.preventDefault();
       convertImagesToBase64()
-      // for demo purposes only we are using below workaround with getDoc() and manual
-      // HTML string preparation instead of simple calling the .getContent(). Becasue
-      // .getContent() returns HTML string of the original document and not a modified
-      // one whereas getDoc() returns realtime document - exactly what we need.
-      //var contentDocument = tinymce.get('content').getDoc();
       var contentDocument = document.getElementById('content');
       //console.log(contentDocument.outerHTML);
       var content = '<!DOCTYPE html><html><meta http-equiv="Content-Type" content="text/html; charset=utf-8">' + contentDocument.outerHTML +'</html>';
      // var orientation = document.querySelector('.page-orientation input:checked').value;
       var converted = htmlDocx.asBlob(content, {orientation: 'portrait'});
-      saveAs(converted, 'reporte_informe_operacional.docx');
+      var range = $('#date-picker').val();
+      range = range.replace("/", "_");
+      var filename = 'reporte_informe_operacional_kropsys_' + range +'.docx';
+      saveAs(converted, filename);
       var link = document.createElement('a');
       link.href = URL.createObjectURL(converted);
       link.download = 'document.docx';
@@ -877,45 +876,10 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         canvas.width = imgElement.width;
         canvas.height = imgElement.height;
         ctx.drawImage(imgElement, 0, 0);
-        // by default toDataURL() produces png image, but you can also export to jpeg
-        // checkout function's documentation for more details
+
         var dataURL = canvas.toDataURL();
         imgElement.setAttribute('src', dataURL);
       })
       canvas.remove();
     }
 </script>
-
-<!-- <h1>Pacientes agendados</h1>
-
-<ul>
-<li>Total Registros: <?php echo $ag_pacientes_agendados->total + $ag_no_contestaron->total + $ag_rechazos_anulaciones->total + $ag_n_erroneos->total + $ag_horas_ya_asignadas->total; ?></li>
-<li>Pacientes agendados : <?php echo $ag_pacientes_agendados->total; ?></li>
-<li>No contestaron : <?php echo $ag_no_contestaron->total; ?></li>
-<li>Rechazos anulaciones : <?php echo $ag_rechazos_anulaciones->total; ?></li>
-<li>Erroneos : <?php echo $ag_n_erroneos->total; ?></li>
-<li>Horas ya asignadas : <?php echo $ag_horas_ya_asignadas->total; ?></li>
-
-</ul>
-
-
-<h1>Pacientes gestionados reasigaciones</h1>
-
-<ul>
-<li>Total Registros: <?php echo $re_pacientes_agendados->total + $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_sin_cupo->total ; ?></li>
-<li>Pacientes agendados : <?php echo $re_pacientes_agendados->total; ?></li>
-<li>No contestaron : <?php echo $re_no_contestaron->total; ?></li>
-<li>Rechazos anulaciones : <?php echo $re_rechazos_anulaciones->total; ?></li>
-<li>Erroneos : <?php echo $re_n_erroneos->total; ?></li>
-<li>Horas ya asignadas : <?php echo $re_horas_ya_asignadas->total; ?></li>
-<li>Sin Cupo : <?php echo $re_sin_cupo->total; ?></li>
-</ul>
-
-
-<h1>Distribucion pacientes reasignados</h1>
-
-<ul>
-<?php foreach ($dist_reasignaciones as $row) { ?>
-	<li><?php echo $row->prestacion ." : ".$row->total; ?></li>
-<?php } ?>
-</ul> -->
