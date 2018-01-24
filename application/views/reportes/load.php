@@ -8,6 +8,11 @@ $ingreso_agend = $dist_agendamientos_bar[0];
 $examen_agend = $dist_agendamientos_bar[1];
 $control_agend = $dist_agendamientos_bar[2];
 $procedimiento_agend = $dist_agendamientos_bar[3];
+
+$info_r_ingreso = $dist_reasignaciones[0];
+$info_r_examen = $dist_reasignaciones[1];
+$info_r_control = $dist_reasignaciones[2];
+$info_r_proced = $dist_reasignaciones[3];
 		
 		
  ?>
@@ -20,6 +25,7 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
   <li><a data-toggle="tab" href="#confirmaciones"><i class="fa  fa-thumbs-o-up"></i> Confirmaciones</a></li>
   <li><a data-toggle="tab" href="#otros"><i class="fa  fa-asterisk"></i> Otros</a></li>
   <li><a data-toggle="tab" href="#menu1">Tablas</a></li>
+   <li><a data-toggle="tab" href="#informe">Informe</a></li>
   
 </ul>
 <div class="tab-content">
@@ -499,13 +505,86 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
 
      <div id="confirmaciones" class="tab-pane fade in" ></div>
      <div id="otros" class="tab-pane fade in" ></div>
+      <div id="informe" class="tab-pane fade in" >
+      	      	<div class="row">
+      	      		<br>	
+      		<div class="col-md-12">	
+				<button class="btn btn-success" id="convert">Descargar <i class="fa fa-download">	</i></button>
+  				<div id="download-area"></div>
+      		</div>
+      	</div>
+      	<div id="content">
+      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_agendamientos_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+				<?php 	$ag_total = $ag_no_contestaron->total + $ag_rechazos_anulaciones->total + $ag_n_erroneos->total + $ag_horas_ya_asignadas->total +$ag_pacientes_agendados->total; ?>
+      			Durante el periodo , se agendaron un total de <?= $ag_pacientes_agendados->total; ?> pacientes, mientras que <?= $ag_no_contestaron->total; ?> pacientes no contestaron el llamado telefónico, pese a que a lo menos se realizaron 3 llamados a cada número disponible, <?= $ag_rechazos_anulaciones->total; ?> personas rechazaron o anularon su hora y <?= $ag_horas_ya_asignadas->total; ?> personas señalaron que ya tenían  hora asignada. En el período hubo <?= $ag_n_erroneos->total; ?> números erróneos.
+      		</div>
+      	</div>
+
+      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_reasignaciones_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			<?php 	$re_total = $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_pacientes_agendados->total + $re_sin_cupo->total; ?>
+      			En relación a los pacientes reasignados en el mes de Diciembre 2017, se gestionaron <?= $re_total; ?> pacientes, de los cuales, se agendaron <?= $re_pacientes_agendados->total; ?> pacientes, mientras que <?= $re_no_contestaron->total; ?> no contestaron el llamado telefónico, <?= $re_rechazos_anulaciones->total; ?> pacientes rechazaron o anularon la hora y <?= $re_horas_ya_asignadas->total; ?> pacientes ya tenían su hora agendada. Aquí se genera una diferencia de <?= $re_sin_cupo->total; ?> pacientes sobre los cuales no se realiza gestión por no haber disponibilidad de cupos. En el período hubo <?= $re_n_erroneos->total; ?> números telefónicos errados.
+      		</div>
+      	</div>
+
+      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_dist_reasignaciones_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados de Diciembre 2017, <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
+      		</div>
+      	</div>
+
+
+      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_dist_reasignaciones_control_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles del mes de Diciembre,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
+Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
+
+      		</div>
+      	</div> <?php 	echo $control_reasig->pacientes_agendados; ?>
+      		<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_dist_reasignaciones_ingreso_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
+      			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos del mes de Diciembre, <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
+      		</div>
+      	</div>
+      	<div class="row">
+      		<div class="col-md-4">
+      			<div id="info_dist_reasignaciones_examen_chart"></div>
+      		</div>
+      		<div class="col-md-8" style="padding-top: 50px;">
+      			<?php 	$total_ingreso_r_examen = $examen_reasig->pacientes_agendados + $examen_reasig->no_contestaron + $examen_reasig->rechazo_anulaciones + $examen_reasig->hora_ya_asignada + $examen_reasig->n_erroneo + $examen_reasig->sin_cupo ; ?>
+      			En cuanto a los <?php 	echo $total_ingreso_r_examen; ?> pacientes reasignados de exámenes en el periodo, <?php 	echo $examen_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $examen_reasig->no_contestaron; ?> no contestaron el llamado telefónico. Hubo <?php 	echo $examen_reasig->rechazo_anulaciones; ?> pacientes que rechazaran o anularan la hora y  hubo <?php 	echo $examen_reasig->hora_ya_asignada; ?> pacientes que señalaran tener ya una hora asignada. Había <?php 	echo $examen_reasig->n_erroneo; ?> números telefónicos errados. Hubo un total de <?php 	echo $examen_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo.
+      		</div>
+      	</div>
+
+      </div>
+
+
+
+      </div>
 
 
 
 
 <script>
 	 function drawChart() {
-
+	 	var list = [];
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
         data.addColumn('number', '');
@@ -517,12 +596,16 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
           ['Horas ya asignadas', <?php echo $ag_horas_ya_asignadas->total; ?>]
         ]);
         var agendamientos_piechart = new google.visualization.PieChart(document.getElementById('agendamientos_chart'));
+         google.visualization.events.addListener(agendamientos_piechart, 'ready', function () {
+     	    document.getElementById('info_agendamientos_chart').innerHTML = '<img src="' + agendamientos_piechart.getImageURI() + '">';
+    		});
 
        agendamientos_piechart.draw(data,  {title:'Agendamientos',
                        width:400,
                        height:300,
                        is3D:true
                    		});
+       
 
         var data2 = new google.visualization.DataTable();
         data2.addColumn('string', '');
@@ -537,6 +620,9 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
         ]);
 
         var reasignaciones_piechart = new google.visualization.PieChart(document.getElementById('reasignaciones_chart'));
+          google.visualization.events.addListener(reasignaciones_piechart, 'ready', function () {
+     	    document.getElementById('info_reasignaciones_chart').innerHTML = '<img src="' + reasignaciones_piechart.getImageURI() + '">';
+    		});
         reasignaciones_piechart.draw(data2,  {title:'Reasignaciones',
                        width:400,
                        height:300,
@@ -672,6 +758,9 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
         ]);
 
         var dist_reasignaciones_piechart = new google.visualization.PieChart(document.getElementById('dist_reasignaciones_chart'));
+         google.visualization.events.addListener(dist_reasignaciones_piechart, 'ready', function () {
+     	    document.getElementById('info_dist_reasignaciones_chart').innerHTML = '<img src="' + dist_reasignaciones_piechart.getImageURI() + '">';
+    		});
         dist_reasignaciones_piechart.draw(data3,  {title:'Distribucion de reasignaciones',
                        width:400,
                        height:300,
@@ -692,6 +781,9 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
         	]);
 
         var dist_reasignaciones_barchart_exaamen = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_examen_chart'));
+         google.visualization.events.addListener(dist_reasignaciones_barchart_exaamen, 'ready', function () {
+     	    document.getElementById('info_dist_reasignaciones_examen_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_exaamen.getImageURI() + '">';
+    		});
         dist_reasignaciones_barchart_exaamen.draw(data_reasignaciones_examen,  {title:'Distribucion de reasignaciones por examen',
         	chartArea: {width: '35%'},
        				   width:400,
@@ -711,6 +803,9 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
         	]);
 
         var dist_reasignaciones_barchart_ingreso = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_ingreso_chart'));
+         google.visualization.events.addListener(dist_reasignaciones_barchart_ingreso, 'ready', function () {
+     	    document.getElementById('info_dist_reasignaciones_ingreso_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_ingreso.getImageURI() + '">';
+    		});
         dist_reasignaciones_barchart_ingreso.draw(data_reasignaciones_ingreso,  {title:'Distribucion de reasignaciones por ingreso',
         	chartArea: {width: '35%'},
        				   width:400,
@@ -732,6 +827,10 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
         	]);
 
         var dist_reasignaciones_barchart_control = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_control_chart'));
+         google.visualization.events.addListener(dist_reasignaciones_barchart_control, 'ready', function () {
+     	    document.getElementById('info_dist_reasignaciones_control_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_control.getImageURI() + '">';
+    		});
+
         dist_reasignaciones_barchart_control.draw(data_reasignaciones_control,  {title:'Distribucion de reasignaciones por control',
         	chartArea: {width: '35%'},
        				   width:400,
@@ -740,28 +839,51 @@ $procedimiento_agend = $dist_agendamientos_bar[3];
  
  
         //graficos para confirmaciones 
-        
-        var $dist_confirmaciones = new google.visualization.DataTable();
-        $dist_confirmaciones.addColumn('string', '');
-        $dist_confirmaciones.addColumn('number', '');
-        $dist_confirmaciones.addRows([<?php 
-              $count = 0;
-             foreach($dist_reasignaciones as $row) : ?>
-             	[<?php echo "'".$row->prestacion ."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
-        ]);
-
-        var dist_confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('dist_confirmaciones_chart'));
-        dist_confirmaciones_piechart.draw($dist_confirmaciones,  {title:'Distribucion de confirmaciones',
-                       width:400,
-                       height:300,
-                       pieHole:0.4
-                   		});
-
-        
-
 
 
       }
+
+        document.getElementById('convert').addEventListener('click', function(e) {
+      e.preventDefault();
+      convertImagesToBase64()
+      // for demo purposes only we are using below workaround with getDoc() and manual
+      // HTML string preparation instead of simple calling the .getContent(). Becasue
+      // .getContent() returns HTML string of the original document and not a modified
+      // one whereas getDoc() returns realtime document - exactly what we need.
+      //var contentDocument = tinymce.get('content').getDoc();
+      var contentDocument = document.getElementById('content');
+      //console.log(contentDocument.outerHTML);
+      var content = '<!DOCTYPE html><html><meta http-equiv="Content-Type" content="text/html; charset=utf-8">' + contentDocument.outerHTML +'</html>';
+     // var orientation = document.querySelector('.page-orientation input:checked').value;
+      var converted = htmlDocx.asBlob(content, {orientation: 'portrait'});
+      saveAs(converted, 'reporte_informe_operacional.docx');
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(converted);
+      link.download = 'document.docx';
+      link.appendChild(
+        document.createTextNode('Click aqui si no se descarga el archivo automaticamente'));
+      var downloadArea = document.getElementById('download-area');
+      downloadArea.innerHTML = '';
+      downloadArea.appendChild(link);
+    });
+    function convertImagesToBase64 () {
+      contentDocument = document.getElementById('content');
+      var regularImages = contentDocument.querySelectorAll("img");
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      [].forEach.call(regularImages, function (imgElement) {
+        // preparing canvas for drawing
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.width = imgElement.width;
+        canvas.height = imgElement.height;
+        ctx.drawImage(imgElement, 0, 0);
+        // by default toDataURL() produces png image, but you can also export to jpeg
+        // checkout function's documentation for more details
+        var dataURL = canvas.toDataURL();
+        imgElement.setAttribute('src', dataURL);
+      })
+      canvas.remove();
+    }
 </script>
 
 <!-- <h1>Pacientes agendados</h1>

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+use PhpOffice\PhpWord\Shared\Converter;
 
 /**
  * Community Auth - Examples Controller
@@ -45,6 +46,8 @@ class Reportes extends My_Controller
 		    					 
 		    					 'vendor/moments/moment.js',
 		    					 'vendor/bootstrap-daterangepicker/daterangepicker.js',
+		    					 'vendor/jsdocx/dist/vendor/FileSaver.js',
+		    					 'vendor/jsdocx/dist/html-docx.js',
 		    					 'pages/reportes/index.js'
 		    					 );
 					$this->template->set('title', 'Informe de Operaciones');
@@ -150,4 +153,106 @@ class Reportes extends My_Controller
 		));
 		
 	}
+
+	public function test(){
+			$this->createDoc(array(
+				'fecha_inicio' => '01-12-2017',
+				'fecha_fin' => '31-12-2017',
+				'agend_agendados' => 12,
+				'agend_no_contestaron' => 3,
+				'agend_erroneos'=> 4,
+				'agend_r_anul' => 1,
+				'agend_ya_asig' => 3
+
+			));
+	}
+
+
+	private function createDoc($data){
+
+
+
+// New Word document
+//echo date('H:i:s'), ' Create new PhpWord object', EOL;
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+
+		$fecha_inicio = $data['fecha_inicio'];
+		$fecha_fin = $data['fecha_fin'];
+
+		$phpWord = new \PhpOffice\PhpWord\PhpWord();
+		$img_path = base_url('assets/word');
+		$mes = 'Diciembre';
+		$ano = "2107";
+
+
+		//agregando el header
+		$section = $phpWord->addSection(array('marginTop' => 100));
+		$header = $section->addHeader();
+		$header->addImage($img_path.'/header_img_kropsys.png', array(
+			'align' => 'right',
+    	));
+
+		$section->addText('Informe operación call center Hospital Clínico Metropolitano La Florida '. $mes. ' '.$ano , 
+			array('name' => 'Arial Black', 
+				'size' => 22,
+				'color' => '#002060'
+			));
+
+
+
+		//agregar imagen de portada
+		$section->addImage(
+	    $img_path. '/img_portada.jpg',
+	    array(
+	        'width'         => 500,
+	        'height'        => 400,
+	        'marginTop'     => -1,
+	        'marginLeft'    => -1,
+	        'wrappingStyle' => 'behind'
+	    	));
+
+		//agregar tabla
+        $section->addTextBreak(5);
+        $table = $section->addTable(array('alignment' => 'right'));
+		$table->addRow();
+		$table->addCell()->addText('Sergio Ulloa Valdevenito', array('size' => 12, 'name' => 'Arial'));
+		$table->addRow();
+		$table->addCell()->addText('Gerente General', array('size' => 12, 'name' => 'Arial'));
+
+       	//distribucion de llmados gestionados
+       	//
+         
+
+         /* PACIENTES AGENDADOS */
+         
+        $categories = array('A', 'B', 'C', 'D', 'E');
+        $series = array(1, 3, 2, 5, 4);
+        $chart = $section->addChart('line', $categories, $series);
+
+
+		$section->addTitle(ucfirst('Pacientes agendados'), 2);
+
+		$section = $phpWord->addSection();
+		$section->addImage(
+			    'http://via.placeholder.com/350x350',
+			    array(
+			        'width'         => 100,
+			        'height'        => 100,
+			        'marginTop'     => -1,
+			        'marginLeft'    => -1,
+			        'wrappingStyle' => 'behind'
+			    )
+			);
+
+         $section->addText('Durante el periodo comprendido entre '.$data['fecha_inicio'].' y '.$data['fecha_fin'].', se agendaron un total de '.$data['agend_agendados'].' pacientes, mientras que '.$data['agend_no_contestaron'].' pacientes no contestaron el llamado telefónico, pese a que a lo menos se realizaron 3 llamados a cada número disponible, '.$data['agend_r_anul'].' personas rechazaron o anularon su hora y '.$data['agend_ya_asig'].' personas señalaron que ya tenían  hora asignada. En el período hubo '.$data['agend_erroneos'].' números erróneos.');
+
+
+		// Saving the document as OOXML file...
+		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+		$objWriter->save('helloWorld.docx');
+
+	}
+
+
 }

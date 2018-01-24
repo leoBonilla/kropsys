@@ -101,11 +101,11 @@ class Reportes_model extends CI_Model {
 	public function fetchByDistribucion($tabla, $inicio, $fin){
 
 		if($tabla != 'agendamientos'){
-					$sql = "select COALESCE(sum(r.pacientes),0) as total, p.prestacion, p.id from ".$tabla." r join prestaciones p on p.id = r.id_prestacion  where date(r.fecha) between '".$inicio."' and '".$fin."' 
-							group by r.id_prestacion;";
+					$sql = "select COALESCE(sum(r.pacientes),0) as total, p.prestacion, p.id from ".$tabla." r right join prestaciones p on (p.id = r.id_prestacion)  and date(r.fecha) between '".$inicio."' and '".$fin."' 
+							group by p.id;";
 		}else{
-					$sql = "select COALESCE(sum(r.pacientes_agendados),0) as total, p.prestacion, p.id from ".$tabla." r join prestaciones p on p.id = r.id_prestacion  where date(r.fecha) between '".$inicio."' and '".$fin."' 
-group by r.id_prestacion;";
+					$sql = "select COALESCE(sum(r.pacientes_agendados),0) as total, p.prestacion, p.id from ".$tabla." r right join prestaciones p on (p.id = r.id_prestacion)  and date(r.fecha) between '".$inicio."' and '".$fin."' 
+group by p.id;";
 		}
 
 		$query = $this->db->query($sql);
