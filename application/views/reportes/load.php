@@ -590,6 +590,59 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       		</div>
       	</div>
 
+
+      	     	<div class="row">
+      		<div class="col-md-12">
+      			<div id="reasignaciones_especialidad">
+      				<h3>Reasignaciones por especialidad</h3>
+      							<table class="table table-bordered table-hover table-condensed">
+		<thead>
+				<tr>
+				<th>Especialidad</th>
+				<th>Pacientes</th>
+			</tr>
+		</thead>
+			<tbody>
+				<?php foreach ($rea_por_especialidad as $row) : ?>
+					<tr><td>
+						<?php echo $row->especialidad; ?></td>
+						<td><?php echo $row->total; ?></td>
+					
+
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+      			</div>
+      		</div>
+      	</div>
+
+      	<div class="row">
+      				<div class="col-md-12">
+      					<h3>Top profesionales con reasignaciones</h3>
+      					<div id="top_profesionales_reasignacion">
+      							<table class="table table-bordered table-hover table-condensed">
+		<thead>
+				<tr>
+				<th>Profesional</th>
+				<th>Pacientes</th>
+			</tr>
+		</thead>
+			<tbody>
+				<?php foreach ($top_p_rea as $row) : ?>
+					<tr><td>
+						<?php echo $row->profesional; ?></td>
+						<td><?php echo $row->total; ?></td>
+					
+
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+      					</div>
+      				</div>
+      	</div>
+
       </div>
 
 
@@ -724,7 +777,8 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         dist_agendamientos_barchart_examen.draw(data_agendamientos_examen,  {title:'Distribucion de agendamientos por examen',
         	chartArea: {width: '35%'},
        				   width:400,
-                       height:300
+                       height:300,
+                       is3D:true
                    		});
 
          var data_agendamientos_ingreso = new google.visualization.DataTable();
@@ -858,7 +912,34 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
                    		});
  
  
-        //graficos para confirmaciones 
+        //graficos informe
+        
+
+      //   var r_por_esp = new google.visualization.arrayToDataTable([
+      //    ['Especialidad', 'Pacientes', { role: 'style' }, { role: 'annotation' } ],
+      //    	<?php 	$cont = 0; ?>
+      //    <?php forEach($rea_por_especialidad as $row) : ?>
+      //    		[<?php echo "'".trim($row->especialidad)."' , ".trim($row->total). ",'blue','".$row->total."'"  ?>]
+      //    		<?php 	$cont++; ?>
+      //    		<?php 	if($cont < count($rea_por_especialidad)) echo ','; ?>
+      //    <?php 	endforeach; ?>
+      //    // ['Copper', 8.94, '#b87333', 'Cu' ],
+      //    // ['Silver', 10.49, 'silver', 'Ag' ],
+      //    // ['Gold', 19.30, 'gold', 'Au' ],
+      //    // ['Platinum', 21.45, 'color: #e5e4e2', 'Pt' ]
+      // ]);
+      
+
+      //  var r_por_esp_chart = new google.visualization.BarChart(document.getElementById('reasignaciones_especialidad'));
+      
+      //   r_por_esp_chart.draw(r_por_esp,  {title:'Reasignaciones por especialidad',
+      //   			   chartArea: { width : '100%'},
+      //   			   bar: {groupWidth: "95%"},
+      //                  width:1024,
+      //                  height:1200,
+      //                  legend: { position: "none" },
+      //              		});
+
 
 
       }
