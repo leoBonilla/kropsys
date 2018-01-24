@@ -506,6 +506,7 @@ $info_r_proced = $dist_reasignaciones[3];
      <div id="confirmaciones" class="tab-pane fade in" ></div>
      <div id="otros" class="tab-pane fade in" ></div>
       <div id="informe" class="tab-pane fade in" >
+
       	      	<div class="row">
       	      		<br>	
       		<div class="col-md-12">	
@@ -513,7 +514,9 @@ $info_r_proced = $dist_reasignaciones[3];
   				<div id="download-area"></div>
       		</div>
       	</div>
+      	<hr>	
       	<div id="content">
+      		<h4>Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h4>
       	<div class="row">
       		<div class="col-md-4">
       			<div id="info_agendamientos_chart"></div>
