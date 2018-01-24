@@ -553,7 +553,7 @@ $info_r_proced = $dist_reasignaciones[3];
 Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
 
       		</div>
-      	</div> <?php 	echo $control_reasig->pacientes_agendados; ?>
+      	</div> 
       		<div class="row">
       		<div class="col-md-4">
       			<div id="info_dist_reasignaciones_ingreso_chart"></div>
