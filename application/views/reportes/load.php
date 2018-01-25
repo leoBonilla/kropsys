@@ -16,7 +16,15 @@ $info_r_proced = $dist_reasignaciones[3];
 		
 		
  ?>
+<style>
+	.chart{
+		text-align: center;
+	}
+	.chart img{
+		margin:auto;
+	}
 
+</style>
 
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
@@ -519,7 +527,7 @@ $info_r_proced = $dist_reasignaciones[3];
       		<h4>Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h4>
       	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_agendamientos_chart"></div>
+      			<div id="info_agendamientos_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
 				<?php 	$ag_total = $ag_no_contestaron->total + $ag_rechazos_anulaciones->total + $ag_n_erroneos->total + $ag_horas_ya_asignadas->total +$ag_pacientes_agendados->total; ?>
@@ -529,7 +537,7 @@ $info_r_proced = $dist_reasignaciones[3];
 
       	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_reasignaciones_chart"></div>
+      			<div id="info_reasignaciones_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php 	$re_total = $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_pacientes_agendados->total + $re_sin_cupo->total; ?>
@@ -539,7 +547,7 @@ $info_r_proced = $dist_reasignaciones[3];
 
       	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_dist_reasignaciones_chart"></div>
+      			<div id="info_dist_reasignaciones_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados , <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
@@ -549,7 +557,7 @@ $info_r_proced = $dist_reasignaciones[3];
 
       	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_dist_reasignaciones_control_chart"></div>
+      			<div id="info_dist_reasignaciones_control_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
@@ -559,7 +567,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       	</div> 
       		<div class="row">
       		<div class="col-md-4">
-      			<div id="info_dist_reasignaciones_ingreso_chart"></div>
+      			<div id="info_dist_reasignaciones_ingreso_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
@@ -568,7 +576,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       	</div>
       	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_dist_reasignaciones_examen_chart"></div>
+      			<div id="info_dist_reasignaciones_examen_chart" class="chart"></div>
       		</div>
       		<div class="col-md-8" style="padding-top: 50px;">
       			<?php 	$total_ingreso_r_examen = $examen_reasig->pacientes_agendados + $examen_reasig->no_contestaron + $examen_reasig->rechazo_anulaciones + $examen_reasig->hora_ya_asignada + $examen_reasig->n_erroneo + $examen_reasig->sin_cupo ; ?>
@@ -579,7 +587,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
       	      	<div class="row">
       		<div class="col-md-4">
-      			<div id="info_confirmaciones_chart"></div>
+      			<div id="info_confirmaciones_chart" class="chart"></div>
       		</div>
       		<?php 	
       				$conf_total = $conf_no_contestaron->total + $conf_rechazos_anulaciones->total + $conf_n_erroneo->total + $conf_horas_ya_asignadas->total +$conf_confirmadas->total
@@ -655,90 +663,110 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 <script>
 	 function drawChart() {
 	 	var list = [];
+
+	 	var options = {
+	 		           title: '',
+	 				   width:'100%',
+                       height:440,
+                       is3D:true,
+                        titleTextStyle: {
+	       						color: '#23527C',    // any HTML string color ('red', '#cc00cc')
+	        					fontName: 'Calibri', // i.e. 'Times New Roman'
+	        					fontSize: 22, // 12, 18 whatever you want (don't specify px)
+	       						bold: true,    // true or false
+	       						italic: false   // true of false
+   					 },
+                       tooltip: {
+                       			text : 'value'
+                       },
+                       legend: {
+        			  	        position: 'right',
+        			  			alignment:'center',
+	      						textStyle: {
+	        						fontName: 'monospace',
+	        						fontSize: 12
+	      						}						
+	   						 },
+	   				 	pieSliceText: 'value',
+	   				 	pieSliceTextStyle: {
+	   				 	fontSize:12
+	   				 				}
+	   				 			};
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
         data.addColumn('number', '');
         data.addRows([
-          ['Pacientes agendados', <?php echo $ag_pacientes_agendados->total; ?>],
-          ['No contestaron', <?php echo $ag_no_contestaron->total; ?>],
-          ['Rechazos / Anulaciones', <?php echo $ag_rechazos_anulaciones->total; ?>],
-          ['Numeros erroneos', <?php echo $ag_n_erroneos->total; ?>],
-          ['Horas ya asignadas', <?php echo $ag_horas_ya_asignadas->total; ?>]
+           [<?php echo "'Agendados (".$ag_pacientes_agendados->total.")'"; ?>,<?php echo $ag_pacientes_agendados->total; ?>],
+            [<?php echo "'No contestaron (".$ag_no_contestaron->total.")'"; ?>,<?php echo $ag_no_contestaron->total; ?>],
+             [<?php echo "'Rechazos/Anul (".$ag_rechazos_anulaciones->total.")'"; ?>,<?php echo $ag_rechazos_anulaciones->total; ?>],
+              [<?php echo "'Num erróneos (".$ag_n_erroneos->total.")'"; ?>,<?php echo $ag_n_erroneos->total; ?>],
+               [<?php echo "'h ya asignadas (".$ag_horas_ya_asignadas->total.")'"; ?>,<?php echo $ag_horas_ya_asignadas->total; ?>]
         ]);
         var agendamientos_piechart = new google.visualization.PieChart(document.getElementById('agendamientos_chart'));
          google.visualization.events.addListener(agendamientos_piechart, 'ready', function () {
      	    document.getElementById('info_agendamientos_chart').innerHTML = '<img src="' + agendamientos_piechart.getImageURI() + '">';
     		});
-
-       agendamientos_piechart.draw(data,  {title:'Agendamientos',
-                       width:400,
-                       height:300,
-                       is3D:true
-                   		});
+       options.title ="Agendamientos";
+       agendamientos_piechart.draw(data, options);
        
 
         var data2 = new google.visualization.DataTable();
         data2.addColumn('string', '');
         data2.addColumn('number', '');
         data2.addRows([
-          ['Pacientes agendados', <?php echo $re_pacientes_agendados->total; ?>],
-          ['No contestaron', <?php echo $re_no_contestaron->total; ?>],
-          ['Rechazos / Anulaciones', <?php echo $re_rechazos_anulaciones->total; ?>],
-          ['Numeros erroneos', <?php echo $re_n_erroneos->total; ?>],
-          ['Horas ya asignadas', <?php echo $re_horas_ya_asignadas->total; ?>],
-          ['Sin cupo', <?php echo $re_sin_cupo->total; ?>]
+          [<?php echo "'Agendados (".$re_pacientes_agendados->total.")'"; ?>,<?php echo $re_pacientes_agendados->total; ?>],
+          [<?php echo "'No contestaron (".$re_no_contestaron->total.")'"; ?>,<?php echo $re_no_contestaron->total; ?>],
+          [<?php echo "'Rechazos/Anulaciones (".$re_rechazos_anulaciones->total.")'"; ?>,<?php echo $re_rechazos_anulaciones->total; ?>],
+           [<?php echo "'Num erróneos (".$re_n_erroneos->total.")'"; ?>,<?php echo $re_n_erroneos->total; ?>],
+            [<?php echo "'Horas ya asignadas (".$re_horas_ya_asignadas->total.")'"; ?>,<?php echo $re_horas_ya_asignadas->total; ?>],
+            	 [<?php echo "'Sin cupo (".$re_sin_cupo->total.")'"; ?>,<?php echo $re_sin_cupo->total; ?>]
         ]);
 
         var reasignaciones_piechart = new google.visualization.PieChart(document.getElementById('reasignaciones_chart'));
-          google.visualization.events.addListener(reasignaciones_piechart, 'ready', function () {
+        google.visualization.events.addListener(reasignaciones_piechart, 'ready', function () {
      	    document.getElementById('info_reasignaciones_chart').innerHTML = '<img src="' + reasignaciones_piechart.getImageURI() + '">';
     		});
-        reasignaciones_piechart.draw(data2,  {title:'Reasignaciones',
-                       width:400,
-                       height:300,
-                       is3D:true
-                   		});
+        options.title="Reasignaciones";
+        reasignaciones_piechart.draw(data2, options);
 
         var confirmaciones = new google.visualization.DataTable();
         confirmaciones.addColumn('string', '');
         confirmaciones.addColumn('number', '');
         confirmaciones.addRows([
-        	['No contestaron', <?php echo $conf_no_contestaron->total; ?>],
-        	['Rechazos / Anulaciones', <?php echo $conf_rechazos_anulaciones->total; ?>],
-        	['Erroneos', <?php echo $conf_n_erroneo->total; ?>],
-        	['Horas ya asignadas', <?php echo $conf_horas_ya_asignadas->total; ?>],
-        	['Confirmadas ', <?php echo $conf_confirmadas->total; ?>],
-        	['Reasignadas ', <?php echo $conf_reasignadas->total; ?>]
+        	[<?php echo "'No contestaron (".$conf_no_contestaron->total.")'"; ?>,<?php echo $conf_no_contestaron->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$conf_rechazos_anulaciones->total.")'"; ?>,<?php echo $conf_rechazos_anulaciones->total; ?>],
+ 			[<?php echo "'Erroneos (".$conf_n_erroneo->total.")'"; ?>,<?php echo $conf_n_erroneo->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$conf_horas_ya_asignadas->total.")'"; ?>,<?php echo $conf_horas_ya_asignadas->total; ?>],
+ 			[<?php echo "'Confirmadas (".$conf_confirmadas->total.")'"; ?>,<?php echo $conf_confirmadas->total; ?>],
+        	[<?php echo "'Reasignadas (".$conf_reasignadas->total.")'"; ?>,<?php echo $conf_reasignadas->total; ?>],
 
         	]);
 
-        var confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart'));
+         var confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart'));
          google.visualization.events.addListener(confirmaciones_piechart, 'ready', function () {
      	    document.getElementById('info_confirmaciones_chart').innerHTML = '<img src="' + confirmaciones_piechart.getImageURI() + '">';
     		});
-       	confirmaciones_piechart.draw(confirmaciones,  {   title:'Confirmaciones',
-										                       width:400,
-										                       height:300,
-										                       is3D:true});
+        options.title = 'Confirmaciones';
+       	confirmaciones_piechart.draw(confirmaciones, options);
 
 
         var otros = new google.visualization.DataTable();
         otros.addColumn('string', '');
         otros.addColumn('number', '');
         otros.addRows([
-        	['No contestaron', <?php echo $otros_no_contestaron->total; ?>],
-        	['Rechazos / Anulaciones', <?php echo $otros_rechazos_anulaciones->total; ?>],
-        	['Erroneos', <?php echo $otros_n_erroneo->total; ?>],
-        	['Horas ya asignadas', <?php echo $otros_horas_ya_asignadas->total; ?>],
-        	['Confirmadas ', <?php echo $otros_confirmadas->total; ?>],
-        	['Reasignadas ', <?php echo $otros_reasignadas->total; ?>]
+        	[<?php echo "'No contestaron (".$otros_no_contestaron->total.")'"; ?>,<?php echo $otros_no_contestaron->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$otros_rechazos_anulaciones->total.")'"; ?>,<?php echo $otros_rechazos_anulaciones->total; ?>],
+ 			[<?php echo "'Erroneos (".$otros_n_erroneo->total.")'"; ?>,<?php echo $otros_n_erroneo->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$otros_horas_ya_asignadas->total.")'"; ?>,<?php echo $otros_horas_ya_asignadas->total; ?>],
+ 			[<?php echo "'Confirmadas (".$otros_confirmadas->total.")'"; ?>,<?php echo $otros_confirmadas->total; ?>],
+        	[<?php echo "'Reasignadas (".$otros_reasignadas->total.")'"; ?>,<?php echo $otros_reasignadas->total; ?>]
 
         	]);
 
          var otros_piechart = new google.visualization.PieChart(document.getElementById('otros_chart'));
-       	otros_piechart.draw(otros,  {   title:'otros', width:400,
-										                       height:300,
-										                       is3D:true});
+        options.title ="Otros";
+       	otros_piechart.draw(otros, options);
 
 
 
