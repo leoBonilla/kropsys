@@ -24,6 +24,12 @@ $info_r_proced = $dist_reasignaciones[3];
 		margin:auto;
 	}
 
+	.chart-explanation{
+		 text-align: justify;
+    	 text-justify: inter-word;
+    	  text-indent: 3em;
+	}
+
 </style>
 
 <ul class="nav nav-tabs">
@@ -526,59 +532,59 @@ $info_r_proced = $dist_reasignaciones[3];
       	<div id="content">
       		<h4>Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h4>
       	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_agendamientos_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
 				<?php 	$ag_total = $ag_no_contestaron->total + $ag_rechazos_anulaciones->total + $ag_n_erroneos->total + $ag_horas_ya_asignadas->total +$ag_pacientes_agendados->total; ?>
       			Durante el periodo , se agendaron un total de <?= $ag_pacientes_agendados->total; ?> pacientes, mientras que <?= $ag_no_contestaron->total; ?> pacientes no contestaron el llamado telefónico, pese a que a lo menos se realizaron 3 llamados a cada número disponible, <?= $ag_rechazos_anulaciones->total; ?> personas rechazaron o anularon su hora y <?= $ag_horas_ya_asignadas->total; ?> personas señalaron que ya tenían  hora asignada. En el período hubo <?= $ag_n_erroneos->total; ?> números erróneos.
       		</div>
       	</div>
 
       	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_reasignaciones_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			<?php 	$re_total = $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_pacientes_agendados->total + $re_sin_cupo->total; ?>
       			En relación a los pacientes reasignados , se gestionaron <?= $re_total; ?> pacientes, de los cuales, se agendaron <?= $re_pacientes_agendados->total; ?> pacientes, mientras que <?= $re_no_contestaron->total; ?> no contestaron el llamado telefónico, <?= $re_rechazos_anulaciones->total; ?> pacientes rechazaron o anularon la hora y <?= $re_horas_ya_asignadas->total; ?> pacientes ya tenían su hora agendada. Aquí se genera una diferencia de <?= $re_sin_cupo->total; ?> pacientes sobre los cuales no se realiza gestión por no haber disponibilidad de cupos. En el período hubo <?= $re_n_erroneos->total; ?> números telefónicos errados.
       		</div>
       	</div>
 
       	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_dist_reasignaciones_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados , <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
       		</div>
       	</div>
 
 
       	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_dist_reasignaciones_control_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
 Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
 
       		</div>
       	</div> 
       		<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_dist_reasignaciones_ingreso_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
       			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos , <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
       		</div>
       	</div>
       	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_dist_reasignaciones_examen_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			<?php 	$total_ingreso_r_examen = $examen_reasig->pacientes_agendados + $examen_reasig->no_contestaron + $examen_reasig->rechazo_anulaciones + $examen_reasig->hora_ya_asignada + $examen_reasig->n_erroneo + $examen_reasig->sin_cupo ; ?>
       			En cuanto a los <?php 	echo $total_ingreso_r_examen; ?> pacientes reasignados de exámenes , <?php 	echo $examen_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $examen_reasig->no_contestaron; ?> no contestaron el llamado telefónico. Hubo <?php 	echo $examen_reasig->rechazo_anulaciones; ?> pacientes que rechazaran o anularan la hora y  hubo <?php 	echo $examen_reasig->hora_ya_asignada; ?> pacientes que señalaran tener ya una hora asignada. Había <?php 	echo $examen_reasig->n_erroneo; ?> números telefónicos errados. Hubo un total de <?php 	echo $examen_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo.
       		</div>
@@ -586,14 +592,14 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
 
       	      	<div class="row">
-      		<div class="col-md-4">
+      		<div class="col-md-6">
       			<div id="info_confirmaciones_chart" class="chart"></div>
       		</div>
       		<?php 	
       				$conf_total = $conf_no_contestaron->total + $conf_rechazos_anulaciones->total + $conf_n_erroneo->total + $conf_horas_ya_asignadas->total +$conf_confirmadas->total
       				+ $conf_reasignadas->total; 
       		?>
-      		<div class="col-md-8" style="padding-top: 50px;">
+      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
       			En relación a las confirmaciones, de un total de <?php 	echo $conf_total; ?> gestiones realizadas, dio como resultado <?php echo $conf_confirmadas->total; ?> pacientes confirmados, <?php echo $conf_rechazos_anulaciones->total; ?>  pacientes que anularon o rechazaron la hora, <?php echo $conf_reasignadas->total; ?>  pacientes con la hora reasignada y <?php echo $conf_no_contestaron->total; ?>  pacientes que no contestaron el llamado telefónico. Se detectaron <?php echo $conf_n_erroneo->total; ?>  números telefónicos erróneos.
       		</div>
       	</div>
@@ -611,6 +617,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 			</tr>
 		</thead>
 			<tbody>
+
 				<?php foreach ($rea_por_especialidad as $row) : ?>
 					<tr><td>
 						<?php echo $row->especialidad; ?></td>
@@ -627,7 +634,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
       	<div class="row">
       				<div class="col-md-12">
-      					<h3>Top profesionales con reasignaciones</h3>
+      					<h3>Top ten profesionales con reasignaciones</h3>
       					<div id="top_profesionales_reasignacion">
       							<table class="table table-bordered table-hover table-condensed">
 		<thead>
@@ -667,7 +674,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 	 	var options = {
 	 		           title: '',
 	 				   width:'100%',
-                       height:440,
+                       height:300,
                        is3D:true,
                         titleTextStyle: {
 	       						color: '#23527C',    // any HTML string color ('red', '#cc00cc')
@@ -676,12 +683,13 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 	       						bold: true,    // true or false
 	       						italic: false   // true of false
    					 },
+   					 chartArea:{left:'0%',top:'20%',width:"100%",height:"60%"},
                        tooltip: {
                        			text : 'value'
                        },
                        legend: {
         			  	        position: 'right',
-        			  			alignment:'center',
+        			  			alignment:'top',
 	      						textStyle: {
 	        						fontName: 'monospace',
 	        						fontSize: 12
@@ -691,7 +699,36 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 	   				 	pieSliceTextStyle: {
 	   				 	fontSize:12
 	   				 				}
+
 	   				 			};
+	   		var barOptions = {
+	   							title: '', 
+	   							titlePosition:'right',
+	   							titleTextStyle: {
+	       						color: '#23527C',    // any HTML string color ('red', '#cc00cc')
+	        					fontName: 'Calibri', // i.e. 'Times New Roman'
+	        					fontSize: 18, // 12, 18 whatever you want (don't specify px)
+	       						bold: true,    // true or false
+	       						italic: false   // true of false
+   					 			},
+	   							width: '100%',
+                				height:300,
+                				bar: {groupWidth: '50%'},
+                				chartArea:{left:'32%',top:'20%', right:'22%'},
+                				hAxis: {title: 'Cantidad de pacientes', titleTextStyle: {color: '#FF0000'}},
+                				vAxis: {
+                						title: '', 
+                						titleTextStyle: {
+                							color: '#FF0000',
+                							fontSize:14
+                						},
+                						
+                					 	textPosition: 'out'
+                					 	
+                					 }
+
+       
+                			};
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
@@ -705,7 +742,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         ]);
         var agendamientos_piechart = new google.visualization.PieChart(document.getElementById('agendamientos_chart'));
          google.visualization.events.addListener(agendamientos_piechart, 'ready', function () {
-     	    document.getElementById('info_agendamientos_chart').innerHTML = '<img src="' + agendamientos_piechart.getImageURI() + '">';
+     	    document.getElementById('info_agendamientos_chart').innerHTML = '<img class="img-responsive" src="' + agendamientos_piechart.getImageURI() + '">';
     		});
        options.title ="Agendamientos";
        agendamientos_piechart.draw(data, options);
@@ -725,7 +762,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
         var reasignaciones_piechart = new google.visualization.PieChart(document.getElementById('reasignaciones_chart'));
         google.visualization.events.addListener(reasignaciones_piechart, 'ready', function () {
-     	    document.getElementById('info_reasignaciones_chart').innerHTML = '<img src="' + reasignaciones_piechart.getImageURI() + '">';
+     	    document.getElementById('info_reasignaciones_chart').innerHTML = '<img class="img-responsive" src="' + reasignaciones_piechart.getImageURI() + '">';
     		});
         options.title="Reasignaciones";
         reasignaciones_piechart.draw(data2, options);
@@ -745,7 +782,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
          var confirmaciones_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart'));
          google.visualization.events.addListener(confirmaciones_piechart, 'ready', function () {
-     	    document.getElementById('info_confirmaciones_chart').innerHTML = '<img src="' + confirmaciones_piechart.getImageURI() + '">';
+     	    document.getElementById('info_confirmaciones_chart').innerHTML = '<img class="img-responsive" src="' + confirmaciones_piechart.getImageURI() + '">';
     		});
         options.title = 'Confirmaciones';
        	confirmaciones_piechart.draw(confirmaciones, options);
@@ -780,71 +817,63 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         dist_agendamientos.addRows([<?php 
               $count = 0;
              foreach($dist_agendamientos as $row) : ?>
-             	[<?php echo "'".$row->prestacion ."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
+             	[<?php echo "'".$row->prestacion . "(".$row->total.")"."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
         ]);
 
         var dist_agendamientos_piechart = new google.visualization.PieChart(document.getElementById('dist_agendamientos_chart'));
-        dist_agendamientos_piechart.draw(dist_agendamientos,  {title:'Distribucion de agendamientos',
-                       width:400,
-                       height:300,
-                       pieHole:0.4
-                   		});
+        options.title = "Distribución de agendamientos";
+        options.is3D = false;
+        options.pieHole = 0.4;
+        dist_agendamientos_piechart.draw(dist_agendamientos, options);
 
 
         var data_agendamientos_examen = new google.visualization.DataTable();
-        data_agendamientos_examen.addColumn('string', '');
-        data_agendamientos_examen.addColumn('number', '');
-        data_agendamientos_examen.addRows([
-            ['Numero erroneo', <?php 	echo $examen_agend->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $examen_agend->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $examen_agend->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $examen_agend->no_contestaron; ?>]
+        data_agendamientos_examen.addColumn('string', 'Nombre');
+        data_agendamientos_examen.addColumn('number', 'Pacientes');
+        data_agendamientos_examen.addColumn({type: 'string', role:'annotation'});
+        data_agendamientos_examen.addRows([ 
+            ['Numero erroneo', <?php 	echo $examen_agend->n_erroneo; ?>, <?php 	echo "'".$examen_agend->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $examen_agend->hora_ya_asignada; ?>, <?php 	echo "'".$examen_agend->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $examen_agend->rechazo_anulaciones; ?>, <?php 	echo "'".$examen_agend->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $examen_agend->no_contestaron; ?>, <?php 	echo "'".$examen_agend->no_contestaron."'"; ?>],
+            ['Agendados', <?php 	echo $examen_agend->pacientes_agendados; ?>, <?php 	echo "'".$examen_agend->pacientes_agendados."'"; ?>]
         	]);
-
+        barOptions.title= "Agendamientos por exámen";
         var dist_agendamientos_barchart_examen = new google.visualization.BarChart(document.getElementById('dist_agendamientos_examen_chart'));
-        dist_agendamientos_barchart_examen.draw(data_agendamientos_examen,  {title:'Distribucion de agendamientos por examen',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300,
-                       is3D:true
-                   		});
+        dist_agendamientos_barchart_examen.draw(data_agendamientos_examen, barOptions);
 
          var data_agendamientos_ingreso = new google.visualization.DataTable();
-        data_agendamientos_ingreso.addColumn('string', '');
-        data_agendamientos_ingreso.addColumn('number', '');
+        data_agendamientos_ingreso.addColumn('string', 'Nombre');
+        data_agendamientos_ingreso.addColumn('number', 'Pacientes');
+        data_agendamientos_ingreso.addColumn({type: 'string', role:'annotation'});
         data_agendamientos_ingreso.addRows([
-            ['Numero erroneo', <?php 	echo $ingreso_agend->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $ingreso_agend->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $ingreso_agend->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $ingreso_agend->no_contestaron; ?>]
+            ['Numero erroneo', <?php 	echo $ingreso_agend->n_erroneo; ?>, <?php 	echo "'".$ingreso_agend->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $ingreso_agend->hora_ya_asignada; ?>, <?php 	echo "'".$ingreso_agend->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $ingreso_agend->rechazo_anulaciones; ?>,<?php 	echo "'".$ingreso_agend->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $ingreso_agend->no_contestaron; ?>,<?php 	echo "'".$ingreso_agend->no_contestaron."'"; ?>],
+            ['Agendados', <?php 	echo $ingreso_agend->pacientes_agendados; ?>, <?php 	echo "'".$ingreso_agend->pacientes_agendados."'"; ?>]
         	]);
 
         var dist_agendamientos_barchart_ingreso = new google.visualization.BarChart(document.getElementById('dist_agendamientos_ingreso_chart'));
-        dist_agendamientos_barchart_ingreso.draw(data_agendamientos_ingreso,  {title:'Distribucion de agendamientos por ingreso',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300
-                   		});
+        barOptions.title= "Agendamientos por ingreso";
+        dist_agendamientos_barchart_ingreso.draw(data_agendamientos_ingreso, barOptions);
 
 
 
          var data_agendamientos_control = new google.visualization.DataTable();
-        data_agendamientos_control.addColumn('string', '');
-        data_agendamientos_control.addColumn('number', '');
+        data_agendamientos_control.addColumn('string', 'Nombre');
+        data_agendamientos_control.addColumn('number', 'Pacientes');
+        data_agendamientos_control.addColumn({type: 'string', role:'annotation'});
         data_agendamientos_control.addRows([
-            ['Numero erroneo', <?php 	echo $control_agend->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $control_agend->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $control_agend->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $control_agend->no_contestaron; ?>],
-            ['Pacientes agendados', <?php 	echo $control_agend->pacientes_agendados; ?>],
+            ['Numero erroneo', <?php 	echo $control_agend->n_erroneo; ?>, <?php 	echo "'".$control_agend->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $control_agend->hora_ya_asignada; ?>, <?php 	echo "'".$control_agend->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $control_agend->rechazo_anulaciones; ?>, <?php 	echo "'".$control_agend->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $control_agend->no_contestaron; ?>, <?php 	echo "'".$control_agend->no_contestaron."'"; ?>],
+            ['Pacientes agendados', <?php 	echo $control_agend->pacientes_agendados; ?>, <?php 	echo "'".$control_agend->pacientes_agendados."'"; ?>],
         	]);
-
+        barOptions.title = "Agendamientos por control";
         var dist_agendamientos_barchart_control = new google.visualization.BarChart(document.getElementById('dist_agendamientos_control_chart'));
-        dist_agendamientos_barchart_control.draw(data_agendamientos_control,  {title:'Distribucion de agendamientos por control',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300
-                   		});
+        dist_agendamientos_barchart_control.draw(data_agendamientos_control,  barOptions);
 
 
 
@@ -856,117 +885,82 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         data3.addRows([<?php 
               $count = 0;
              foreach($dist_reasignaciones as $row) : ?>
-             	[<?php echo "'".$row->prestacion ."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
+             	[<?php echo "'".$row->prestacion . "(".$row->total.")"."' ,". $row->total; ?>]<?php if($count < 3) :?>,<?php endif; ?><?php $count++; ?><?php endforeach; ?>
         ]);
 
         var dist_reasignaciones_piechart = new google.visualization.PieChart(document.getElementById('dist_reasignaciones_chart'));
          google.visualization.events.addListener(dist_reasignaciones_piechart, 'ready', function () {
-     	    document.getElementById('info_dist_reasignaciones_chart').innerHTML = '<img src="' + dist_reasignaciones_piechart.getImageURI() + '">';
+     	    document.getElementById('info_dist_reasignaciones_chart').innerHTML = '<img class="img-responsive" src="' + dist_reasignaciones_piechart.getImageURI() + '">';
     		});
-        dist_reasignaciones_piechart.draw(data3,  {title:'Distribucion de reasignaciones',
-                       width:400,
-                       height:300,
-                       pieHole:0.4
-                   		});
+         options.title = "Distribución de reasignaciones";
+         options.is3D = false;
+         options.pieHole = 0.4;
+        dist_reasignaciones_piechart.draw(data3, options);
 
 
         var data_reasignaciones_examen = new google.visualization.DataTable();
-        data_reasignaciones_examen.addColumn('string', '');
-        data_reasignaciones_examen.addColumn('number', '');
+        data_reasignaciones_examen.addColumn('string', 'Nombre');
+        data_reasignaciones_examen.addColumn('number', 'Pacientes');
+        data_reasignaciones_examen.addColumn({type:'string', role:'annotation'});
         data_reasignaciones_examen.addRows([
-        	['Sin_cupo', <?php 	echo $examen_reasig->sin_cupo; ?>],
-            ['Numero erroneo', <?php 	echo $examen_reasig->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $examen_reasig->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $examen_reasig->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $examen_reasig->no_contestaron; ?>],
-            ['Pacientes agendados', <?php 	echo $examen_reasig->pacientes_agendados; ?>],
+        	['Sin_cupo', <?php 	echo $examen_reasig->sin_cupo; ?>, <?php 	echo "'".$examen_reasig->sin_cupo."'"; ?>],
+            ['Numero erroneo', <?php 	echo $examen_reasig->n_erroneo; ?>, <?php 	echo "'".$examen_reasig->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $examen_reasig->hora_ya_asignada; ?>, <?php 	echo "'".$examen_reasig->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $examen_reasig->rechazo_anulaciones; ?>, <?php 	echo "'".$examen_reasig->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $examen_reasig->no_contestaron; ?>, <?php 	echo "'".$examen_reasig->no_contestaron."'"; ?>],
+            ['Pacientes agendados', <?php 	echo $examen_reasig->pacientes_agendados; ?>, <?php 	echo "'".$examen_reasig->pacientes_agendados."'"; ?>],
         	]);
 
         var dist_reasignaciones_barchart_exaamen = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_examen_chart'));
          google.visualization.events.addListener(dist_reasignaciones_barchart_exaamen, 'ready', function () {
-     	    document.getElementById('info_dist_reasignaciones_examen_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_exaamen.getImageURI() + '">';
+     	    document.getElementById('info_dist_reasignaciones_examen_chart').innerHTML = '<img class="img-responsive" src="' + dist_reasignaciones_barchart_exaamen.getImageURI() + '">';
     		});
-        dist_reasignaciones_barchart_exaamen.draw(data_reasignaciones_examen,  {title:'Distribucion de reasignaciones por examen',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300
-                   		});
+         barOptions.title="Reasignaciones por exámen";
+        dist_reasignaciones_barchart_exaamen.draw(data_reasignaciones_examen,  barOptions);
 
          var data_reasignaciones_ingreso = new google.visualization.DataTable();
-        data_reasignaciones_ingreso.addColumn('string', '');
-        data_reasignaciones_ingreso.addColumn('number', '');
+        data_reasignaciones_ingreso.addColumn('string', 'Nombre');
+        data_reasignaciones_ingreso.addColumn('number', 'Pacientes');
+        data_reasignaciones_ingreso.addColumn({type:'string', role:'annotation'});
         data_reasignaciones_ingreso.addRows([
-        	['Sin_cupo', <?php 	echo $ingreso_reasig->sin_cupo; ?>],
-            ['Numero erroneo', <?php 	echo $ingreso_reasig->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $ingreso_reasig->no_contestaron; ?>],
-            ['Pacientes agendados', <?php 	echo $ingreso_reasig->pacientes_agendados; ?>],
+        	['Sin_cupo', <?php 	echo $ingreso_reasig->sin_cupo; ?>, <?php 	echo "'".$ingreso_reasig->sin_cupo."'"; ?>],
+            ['Numero erroneo', <?php 	echo $ingreso_reasig->n_erroneo; ?>, <?php 	echo "'".$ingreso_reasig->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>, <?php 	echo "'".$ingreso_reasig->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>, <?php 	echo "'".$ingreso_reasig->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $ingreso_reasig->no_contestaron; ?>, <?php 	echo "'".$ingreso_reasig->no_contestaron."'"; ?>],
+            ['Pacientes agendados', <?php 	echo $ingreso_reasig->pacientes_agendados; ?>, <?php 	echo "'".$ingreso_reasig->pacientes_agendados."'"; ?>],
         	]);
 
         var dist_reasignaciones_barchart_ingreso = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_ingreso_chart'));
          google.visualization.events.addListener(dist_reasignaciones_barchart_ingreso, 'ready', function () {
-     	    document.getElementById('info_dist_reasignaciones_ingreso_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_ingreso.getImageURI() + '">';
+     	    document.getElementById('info_dist_reasignaciones_ingreso_chart').innerHTML = '<img class="img-responsive" src="' + dist_reasignaciones_barchart_ingreso.getImageURI() + '">';
     		});
-        dist_reasignaciones_barchart_ingreso.draw(data_reasignaciones_ingreso,  {title:'Distribucion de reasignaciones por ingreso',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300
-                   		});
+         barOptions.title="Reasignaciones por ingreso";
+        dist_reasignaciones_barchart_ingreso.draw(data_reasignaciones_ingreso, barOptions);
 
 
 
          var data_reasignaciones_control = new google.visualization.DataTable();
-        data_reasignaciones_control.addColumn('string', '');
-        data_reasignaciones_control.addColumn('number', '');
+        data_reasignaciones_control.addColumn('string', 'Nombre');
+        data_reasignaciones_control.addColumn('number', 'Pacientes');
+        data_reasignaciones_control.addColumn({type:'string', role:'annotation'});
         data_reasignaciones_control.addRows([
-        	['Sin_cupo', <?php 	echo $control_reasig->sin_cupo; ?>],
-            ['Numero erroneo', <?php 	echo $control_reasig->n_erroneo; ?>],
-            ['Hora ya asignada', <?php 	echo $control_reasig->hora_ya_asignada; ?>],
-            ['Rechazo / anulaciones', <?php 	echo $control_reasig->rechazo_anulaciones; ?>],
-            ['No contestaron', <?php 	echo $control_reasig->no_contestaron; ?>],
-            ['Pacientes agendados', <?php 	echo $control_reasig->pacientes_agendados; ?>],
+        	['Sin_cupo', <?php 	echo $control_reasig->sin_cupo; ?>,  <?php 	echo "'".$control_reasig->sin_cupo."'"; ?>],
+            ['Numero erroneo', <?php 	echo $control_reasig->n_erroneo; ?>,  <?php 	echo "'".$control_reasig->n_erroneo."'"; ?>],
+            ['Hora ya asignada', <?php 	echo $control_reasig->hora_ya_asignada; ?>,  <?php 	echo "'".$control_reasig->hora_ya_asignada."'"; ?>],
+            ['Rechazo / anulaciones', <?php 	echo $control_reasig->rechazo_anulaciones; ?>,  <?php 	echo "'".$control_reasig->rechazo_anulaciones."'"; ?>],
+            ['No contestaron', <?php 	echo $control_reasig->no_contestaron; ?>,  <?php 	echo "'".$control_reasig->no_contestaron."'"; ?>],
+            ['Pacientes agendados', <?php 	echo $control_reasig->pacientes_agendados; ?>,  <?php 	echo "'".$control_reasig->pacientes_agendados."'"; ?>],
         	]);
 
         var dist_reasignaciones_barchart_control = new google.visualization.BarChart(document.getElementById('dist_reasignaciones_control_chart'));
          google.visualization.events.addListener(dist_reasignaciones_barchart_control, 'ready', function () {
-     	    document.getElementById('info_dist_reasignaciones_control_chart').innerHTML = '<img src="' + dist_reasignaciones_barchart_control.getImageURI() + '">';
+     	    document.getElementById('info_dist_reasignaciones_control_chart').innerHTML = '<img class="img-responsive" src="' + dist_reasignaciones_barchart_control.getImageURI() + '">';
     		});
-
-        dist_reasignaciones_barchart_control.draw(data_reasignaciones_control,  {title:'Distribucion de reasignaciones por control',
-        	chartArea: {width: '35%'},
-       				   width:400,
-                       height:300
-                   		});
+        barOptions.title="Reasignaciones por control";
+        dist_reasignaciones_barchart_control.draw(data_reasignaciones_control, barOptions);
  
  
-        //graficos informe
-        
-
-      //   var r_por_esp = new google.visualization.arrayToDataTable([
-      //    ['Especialidad', 'Pacientes', { role: 'style' }, { role: 'annotation' } ],
-      //    	<?php 	$cont = 0; ?>
-      //    <?php forEach($rea_por_especialidad as $row) : ?>
-      //    		[<?php echo "'".trim($row->especialidad)."' , ".trim($row->total). ",'blue','".$row->total."'"  ?>]
-      //    		<?php 	$cont++; ?>
-      //    		<?php 	if($cont < count($rea_por_especialidad)) echo ','; ?>
-      //    <?php 	endforeach; ?>
-      //    // ['Copper', 8.94, '#b87333', 'Cu' ],
-      //    // ['Silver', 10.49, 'silver', 'Ag' ],
-      //    // ['Gold', 19.30, 'gold', 'Au' ],
-      //    // ['Platinum', 21.45, 'color: #e5e4e2', 'Pt' ]
-      // ]);
-      
-
-      //  var r_por_esp_chart = new google.visualization.BarChart(document.getElementById('reasignaciones_especialidad'));
-      
-      //   r_por_esp_chart.draw(r_por_esp,  {title:'Reasignaciones por especialidad',
-      //   			   chartArea: { width : '100%'},
-      //   			   bar: {groupWidth: "95%"},
-      //                  width:1024,
-      //                  height:1200,
-      //                  legend: { position: "none" },
-      //              		});
 
 
 

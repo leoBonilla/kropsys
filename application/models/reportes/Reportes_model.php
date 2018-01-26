@@ -206,7 +206,7 @@ group by p.id;";
 
 	public function reasignacionPorEspecialidad($inicio,$fin){
 		$sql ="select id_especialidad, COALESCE(sum(pacientes_agendados),0) as total , e.especialidad from reasignaciones r join especialidades e on r.id_especialidad = e.id
- where date(fecha) between '".$inicio."'  and '".$fin."' group by 1 order by 2 asc";
+ where date(fecha) between '".$inicio."'  and '".$fin."' group by 1 order by 2 desc";
  	$query = $this->db->query($sql);
 		return $query->result();
 	}
