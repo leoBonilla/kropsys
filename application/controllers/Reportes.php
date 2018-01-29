@@ -116,6 +116,8 @@ class Reportes extends My_Controller
 
 			$rea_por_especialidad = $this->reportes->reasignacionPorEspecialidad($inicio,$fin);
 
+			$fecha = "" .$this->input->post('inicio') . " - " . $this->input->post('fin');
+
 			$this->load->view('reportes/load',array('ag_no_contestaron' => $ag_no_contestaron,
 													'ag_rechazos_anulaciones' => $ag_rechazos_anulaciones,
 													'ag_n_erroneos' => $ag_n_erroneo,
@@ -150,7 +152,9 @@ class Reportes extends My_Controller
 													'top_p_conf' => $top_p_conf,
 													'top_p_otros' => $top_p_otros,
 													'rea_por_especialidad' => $rea_por_especialidad,
-													'rea_por_profesional'  => $reasignacionesPorProfesional
+													'rea_por_profesional'  => $reasignacionesPorProfesional,
+													'periodo' => $fecha
+
 
 		));
 		

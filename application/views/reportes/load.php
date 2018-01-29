@@ -582,7 +582,7 @@ $info_r_proced = $dist_reasignaciones[3];
 
       		<div class="row">
       			<div class="col-md-8 col-md-offset-2">
-      				<h2 style="color: #5E527C; font-family: arial black;margin-bottom:100px;">Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h2>
+      				<h2 style="color: #5E527C; font-family: arial black;margin-bottom:100px;">Informe Operación Call Center Hospital Clínico Metropolitano La Florida <?php echo $periodo; ?> </h2>
       			<div style="text-align: center;">
       				
       				<img  class="img-responsive img-thumbnail" src="<?php echo base_url('assets/word/img_portada_.jpg'); ?>" alt="" >
