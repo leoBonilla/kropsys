@@ -588,10 +588,12 @@ $info_r_proced = $dist_reasignaciones[3];
       				<img  class="img-responsive img-thumbnail" src="<?php echo base_url('assets/word/img_portada_.jpg'); ?>" alt="" >
       			</div>
       			<div  style="text-align:right;margin-top:280px;">
-      				<ul style="float: right;list-style-type: none;">
+      				<p style="text-align:right;font-family:arial;font-size:20px;color:#5E527C;padding:0px;margin:0px;">Sergio Ulloa Valdevenito</p>
+      				<p style="text-align:right;font-family:arial;font-size:20px;color:#5E527C;padding:0px;margin:0px;">Gerente General</p>
+      				<!-- <ul style="float: right;list-style-type: none;">
       					<li style="list-style-type: none;">Sergio Ulloa Valdebenito</li>
       					<li style="list-style-type: none;">Gerente General</li>
-      				</ul>
+      				</ul> -->
       			</div>
       			</div>
       		</div> 
