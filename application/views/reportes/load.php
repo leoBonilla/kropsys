@@ -692,6 +692,8 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+		<br>
+		<p>En este cuadro se muestran todas las reasignaciones realizadas en las distintas especialidades durante el período</p>
     		</div>
     	</div>
     </div>
@@ -719,6 +721,8 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+		<br>
+		<p>En este cuadro se presentan los diez profesionales con mayor cantidad de reasignaciones en el período</p>
 
 
       			</div>
@@ -747,6 +751,8 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+		<br>
+		<p>En estos cuadros se muestran la totalidad de profesionales, ordenados de mayor a menor según la cantidad de reasignaciones realizadas en el período</p>
     		</div>
     	</div>
     </div>

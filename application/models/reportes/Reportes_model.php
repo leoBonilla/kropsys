@@ -213,15 +213,15 @@ group by p.id;";
 
 
 	public function reasignacionesPorProfesional($inicio, $fin){
-		$sql = "select 
-    				p.profesional, ifnull(sum(pacientes), 0) as 'total'
+		$sql = "select i.* from (select p.profesional, ifnull(sum(pacientes), 0) as 'total', p.disabled
 				from
     				profesionales p
         		left join
     				reasignaciones rv ON (p.id = rv.id_medico)
        			 	and date(rv.fecha) between '".$inicio."' and '".$fin."'
 				group by p.id
-				order by 2 desc; ";
+				order by 2 desc
+              ) as i where i.disabled = 0 and total > 0";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
