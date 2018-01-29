@@ -212,6 +212,21 @@ group by p.id;";
 	}
 
 
+	public function reasignacionesPorProfesional($inicio, $fin){
+		$sql = "select 
+    				p.profesional, ifnull(sum(pacientes), 0) as 'total'
+				from
+    				profesionales p
+        		left join
+    				reasignaciones rv ON (p.id = rv.id_medico)
+       			 	and date(rv.fecha) between '".$inicio."' and '".$fin."'
+				group by p.id
+				order by 2 desc; ";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+
 
 
 	

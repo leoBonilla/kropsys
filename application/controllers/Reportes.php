@@ -111,6 +111,7 @@ class Reportes extends My_Controller
 			$top_p_conf =$this->reportes->topProfesionales('confirmaciones_view',$inicio,$fin);
 			$top_p_ag =$this->reportes->topProfesionales('agendamientos_view',$inicio,$fin);
 			$top_p_otros =$this->reportes->topProfesionales('otros_view',$inicio,$fin);
+			$reasignacionesPorProfesional = $this->reportes->reasignacionesPorProfesional($inicio,$fin);
 
 
 			$rea_por_especialidad = $this->reportes->reasignacionPorEspecialidad($inicio,$fin);
@@ -148,24 +149,68 @@ class Reportes extends My_Controller
 													'top_p_ag' => $top_p_ag,
 													'top_p_conf' => $top_p_conf,
 													'top_p_otros' => $top_p_otros,
-													'rea_por_especialidad' => $rea_por_especialidad
+													'rea_por_especialidad' => $rea_por_especialidad,
+													'rea_por_profesional'  => $reasignacionesPorProfesional
 
 		));
 		
 	}
 
-	public function test(){
-			$this->createDoc(array(
-				'fecha_inicio' => '01-12-2017',
-				'fecha_fin' => '31-12-2017',
-				'agend_agendados' => 12,
-				'agend_no_contestaron' => 3,
-				'agend_erroneos'=> 4,
-				'agend_r_anul' => 1,
-				'agend_ya_asig' => 3
 
-			));
+	public function generateDoc(){
+		if($this->input->post()){
+			$inicio = $this->input->post('inicio');
+			$fin = $this->input->post('fin');
+		}
+
 	}
+
+	public function test(){
+		$agend = array(
+				'agendados' => 12,
+				'no_contestaron' => 3,
+				'sin_cupo' => 4,
+				'erroneos' => 3,
+				'rechazados' => 5,
+				'hora_ya_asignada' => 8,
+				'confirmados' => 0,
+				'reasignados' => 0
+			);
+		$reasig = array(
+				'agendados' => 12,
+				'no_contestaron' => 3,
+				'sin_cupo' => 4,
+				'erroneos' => 3,
+				'rechazados' => 5,
+				'hora_ya_asignada' => 8,
+				'confirmados' => 0,
+				'reasignados' => 0
+			);
+
+
+		$t = new TemplateProcessor('templates/docx/informe_operacional.docx');
+		$t->setValue('fecha', 'Diciembre 2017');
+
+		//Agendamientos
+		$t->setValue('agen-p-agendados', $agend['agendados']);
+		$t->setValue('agen-no-contestaron', $agend['no_contestaron']);
+		$t->setValue('agen-rechazados', $agend['rechazados']);
+		$t->setValue('agen-sin-cupo', $agend['sin_cupo']);
+		$t->setValue('agen-h-asignada', $agend['hora_ya_asignada']);
+		$t->setValue('agen-erroneos',$agend['erroneos']);
+
+
+
+		//reasignaciones
+
+
+		$t->saveAs('result.docx');
+	}
+
+public function test2(){
+
+
+}
 
 
 	private function createDoc($data){
@@ -255,4 +300,77 @@ $phpWord = new \PhpOffice\PhpWord\PhpWord();
 	}
 
 
+}
+
+
+
+
+
+/// subclase
+/// 
+class TemplateProcessor extends \PhpOffice\PhpWord\TemplateProcessor
+{
+    /**
+     * Content of document rels (in XML format) of the temporary document.
+     *
+     * @var string
+     */
+    private $temporaryDocumentRels;
+
+    public function __construct($documentTemplate)
+    {
+        parent::__construct($documentTemplate);
+        $this->temporaryDocumentRels = $this->zipClass->getFromName('word/_rels/document.xml.rels');
+    }
+
+    /**
+     * Set a new image
+     *
+     * @param string $search
+     * @param string $replace
+     */
+    public function setImageValue($search, $replace){
+        // Sanity check
+        if (!file_exists($replace)) {
+            throw new \Exception("Image not found at:'$replace'");
+        }
+
+        // Delete current image
+        $this->zipClass->deleteName('word/media/' . $search);
+
+        // Add a new one
+        $this->zipClass->addFile($replace, 'word/media/' . $search);
+    }
+
+    /**
+     * Search for the labeled image's rId
+     *
+     * @param string $search
+     */
+    public function seachImagerId($search){
+        if (substr($search, 0, 2) !== '${' && substr($search, -1) !== '}') {
+            $search = '${' . $search . '}';
+        }
+        $tagPos = strpos($this->temporaryDocumentRels, $search);
+        $rIdStart = strpos($this->temporaryDocumentRels, 'r:embed="',$tagPos)+9;
+        $rId=strstr(substr($this->temporaryDocumentRels, $rIdStart),'"', true);
+        return $rId;
+    }
+
+    /**
+     * Get img filename with it's rId
+     *
+     * @param string $rId
+     */
+    public function getImgFileName($rId){
+        $tagPos = strpos($this->temporaryDocumentRels, $rId);
+        $fileNameStart = strpos($this->temporaryDocumentRels, 'Target="media/',$tagPos)+14;
+        $fileName=strstr(substr($this->temporaryDocumentRels, $fileNameStart),'"', true);
+        return $fileName;
+    }
+
+    public function setImageValueAlt($searchAlt, $replace)
+    {
+        $this->setImageValue($this->getImgFileName($this->seachImagerId($searchAlt)),$replace);
+    }
 }

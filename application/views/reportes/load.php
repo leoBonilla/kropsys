@@ -22,6 +22,7 @@ $info_r_proced = $dist_reasignaciones[3];
 	}
 	.chart img{
 		margin:auto;
+		text-align: center;
 	}
 
 	.chart-explanation{
@@ -382,6 +383,32 @@ $info_r_proced = $dist_reasignaciones[3];
 </div>
 
 
+<div class="row">
+	<div class="col-md-12">
+		<hr>
+		<h3>Reasignaciones por profesional</h3>
+					<table class="table table-bordered table-hover table-condensed">
+		<thead>
+				<tr>
+				<th>Profesional</th>
+				<th>Pacientes</th>
+			</tr>
+		</thead>
+			<tbody>
+				<?php foreach ($rea_por_profesional as $row) : ?>
+					<tr><td>
+						<?php echo $row->profesional; ?></td>
+						<td><?php echo $row->total; ?></td>
+					
+
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
 </div>
 </div>
     <div id="agendamientos" class="tab-pane fade in" >
@@ -530,86 +557,122 @@ $info_r_proced = $dist_reasignaciones[3];
       	</div>
       	<hr>	
       	<div id="content">
-      		<h4>Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h4>
-      	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_agendamientos_chart" class="chart"></div>
+      		
+
+      		<div class="row">
+      			<div class="col-md-8 col-md-offset-2" style="border:1px solid grey;height: 900px;">
+      				<h2 style="color: #5E527C; font-family: arial black;margin-bottom:100px;">Informe Operación Call Center Hospital Clínico Metropolitano La Florida </h2>
+      			<div style="text-align: center;">
+      				
+      				<img  class="img-responsive img-thumbnail" src="<?php echo base_url('assets/word/img_portada_.jpg'); ?>" alt="" >
+      			</div>
+      			<div  style="text-align:right;margin-top:280px;">
+      				<ul style="float: right;list-style-type: none;">
+      					<li style="list-style-type: none;">Sergio Ulloa Valdebenito</li>
+      					<li style="list-style-type: none;">Gerente General</li>
+      				</ul>
       		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      			
+
+
+      		
+      		</div>
+      		</div>
+      	<div class="row" >
+      		      		<div class="col-md-8 col-md-offset-2" style="border: 1px solid grey; height: 850px; margin-top: 5px;">
+      			<h3 style="font-family: arial black; color: #5E527C;">Agendamientos</h3>
+      			<div id="info_agendamientos_chart" class="chart" style="text-align: center;"></div>
+      			<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
 				<?php 	$ag_total = $ag_no_contestaron->total + $ag_rechazos_anulaciones->total + $ag_n_erroneos->total + $ag_horas_ya_asignadas->total +$ag_pacientes_agendados->total; ?>
       			Durante el periodo , se agendaron un total de <?= $ag_pacientes_agendados->total; ?> pacientes, mientras que <?= $ag_no_contestaron->total; ?> pacientes no contestaron el llamado telefónico, pese a que a lo menos se realizaron 3 llamados a cada número disponible, <?= $ag_rechazos_anulaciones->total; ?> personas rechazaron o anularon su hora y <?= $ag_horas_ya_asignadas->total; ?> personas señalaron que ya tenían  hora asignada. En el período hubo <?= $ag_n_erroneos->total; ?> números erróneos.
       		</div>
+      		</div>
+      		
       	</div>
+    
 
       	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_reasignaciones_chart" class="chart"></div>
-      		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      		<div class="col-md-8 col-md-offset-2" style="border: 1px solid grey; height: 890px; margin-top: 5px;">
+      			<h3 style="font-family: arial black; color: #5E527C;">Reasignaciones</h3>
+      			<div id="info_reasignaciones_chart" class="chart" style="text-align: center;"></div>
+      			<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			<?php 	$re_total = $re_no_contestaron->total + $re_rechazos_anulaciones->total + $re_n_erroneos->total + $re_horas_ya_asignadas->total +$re_pacientes_agendados->total + $re_sin_cupo->total; ?>
       			En relación a los pacientes reasignados , se gestionaron <?= $re_total; ?> pacientes, de los cuales, se agendaron <?= $re_pacientes_agendados->total; ?> pacientes, mientras que <?= $re_no_contestaron->total; ?> no contestaron el llamado telefónico, <?= $re_rechazos_anulaciones->total; ?> pacientes rechazaron o anularon la hora y <?= $re_horas_ya_asignadas->total; ?> pacientes ya tenían su hora agendada. Aquí se genera una diferencia de <?= $re_sin_cupo->total; ?> pacientes sobre los cuales no se realiza gestión por no haber disponibilidad de cupos. En el período hubo <?= $re_n_erroneos->total; ?> números telefónicos errados.
       		</div>
-      	</div>
 
-      	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_dist_reasignaciones_chart" class="chart"></div>
+      		<div class="">
+      			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones</h3>
+      			<div id="info_dist_reasignaciones_chart" class="chart" style="text-align: center;"></div>
       		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      		<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			En relación a los <?= $re_pacientes_agendados->total; ?> pacientes reasignados , <?= $info_r_control->total; ?>   correspondió a Controles, <?= $info_r_examen->total; ?>  a Exámenes, <?= $info_r_ingreso->total; ?> a ingresos y <?= $info_r_proced->total; ?> a Procedimientos.
       		</div>
+      		</div>
+
+
+      		
+      	</div>
       	</div>
 
 
+
       	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_dist_reasignaciones_control_chart" class="chart"></div>
-      		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      		<div class="col-md-8 col-md-offset-2" style="border: 1px solid grey; height: 890px; margin-top: 5px;">
+      			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones por control</h3>
+      			<div id="info_dist_reasignaciones_control_chart" class="chart" style="text-align: center;"></div>
+      				<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
 Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
+				
 
+				<div class="">
+      			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones por ingreso</h3>
+      			<div id="info_dist_reasignaciones_ingreso_chart" class="chart" style="text-align: center;"></div>
       		</div>
-      	</div> 
-      		<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_dist_reasignaciones_ingreso_chart" class="chart"></div>
-      		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+
+      			<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
       			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos , <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
       		</div>
-      	</div>
-      	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_dist_reasignaciones_examen_chart" class="chart"></div>
       		</div>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      		</div>
+
+
+
+
+      	</div> 
+
+      	<div class="row">
+      		<div class="col-md-8 col-md-offset-2" style="border: 1px solid grey; height: 890px; margin-top: 5px;">
+      			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones por exámen</h3>
+      			<div id="info_dist_reasignaciones_examen_chart" class="chart" style="text-align: center;"></div>
+      			<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			<?php 	$total_ingreso_r_examen = $examen_reasig->pacientes_agendados + $examen_reasig->no_contestaron + $examen_reasig->rechazo_anulaciones + $examen_reasig->hora_ya_asignada + $examen_reasig->n_erroneo + $examen_reasig->sin_cupo ; ?>
       			En cuanto a los <?php 	echo $total_ingreso_r_examen; ?> pacientes reasignados de exámenes , <?php 	echo $examen_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $examen_reasig->no_contestaron; ?> no contestaron el llamado telefónico. Hubo <?php 	echo $examen_reasig->rechazo_anulaciones; ?> pacientes que rechazaran o anularan la hora y  hubo <?php 	echo $examen_reasig->hora_ya_asignada; ?> pacientes que señalaran tener ya una hora asignada. Había <?php 	echo $examen_reasig->n_erroneo; ?> números telefónicos errados. Hubo un total de <?php 	echo $examen_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo.
       		</div>
-      	</div>
 
-
-      	      	<div class="row">
-      		<div class="col-md-6">
-      			<div id="info_confirmaciones_chart" class="chart"></div>
+      		<div class="">
+      			<h3 style="font-family: arial black; color: #5E527C;">Confirmaciones</h3>
+      			<div id="info_confirmaciones_chart" class="chart" style="text-align: center;"></div>
       		</div>
       		<?php 	
       				$conf_total = $conf_no_contestaron->total + $conf_rechazos_anulaciones->total + $conf_n_erroneo->total + $conf_horas_ya_asignadas->total +$conf_confirmadas->total
       				+ $conf_reasignadas->total; 
       		?>
-      		<div class="col-md-6 chart-explanation" style="padding-top: 50px;">
+      		<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
       			En relación a las confirmaciones, de un total de <?php 	echo $conf_total; ?> gestiones realizadas, dio como resultado <?php echo $conf_confirmadas->total; ?> pacientes confirmados, <?php echo $conf_rechazos_anulaciones->total; ?>  pacientes que anularon o rechazaron la hora, <?php echo $conf_reasignadas->total; ?>  pacientes con la hora reasignada y <?php echo $conf_no_contestaron->total; ?>  pacientes que no contestaron el llamado telefónico. Se detectaron <?php echo $conf_n_erroneo->total; ?>  números telefónicos erróneos.
       		</div>
+      		</div>
+      		
       	</div>
 
 
+
       	     	<div class="row">
-      		<div class="col-md-12">
+      		<div class="col-md-8 col-md-offset-2" style="border: 1px solid grey; margin-top: 5px;">
       			<div id="reasignaciones_especialidad">
-      				<h3>Reasignaciones por especialidad</h3>
-      							<table class="table table-bordered table-hover table-condensed">
+      				<h3 style="font-family: arial black; color: #5E527C;">Reasignaciones por especialidad</h3>
+      							<table class="table table-bordered table-hover table-condensed" style="border: 1px solid grey;">
 		<thead>
 				<tr>
 				<th>Especialidad</th>
@@ -619,9 +682,9 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 			<tbody>
 
 				<?php foreach ($rea_por_especialidad as $row) : ?>
-					<tr><td>
+					<tr style="height:15px; font-size:11px;border: 1px solid grey;"><td>
 						<?php echo $row->especialidad; ?></td>
-						<td><?php echo $row->total; ?></td>
+						<td ><?php echo $row->total; ?></td>
 					
 
 					</tr>
@@ -633,10 +696,10 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       	</div>
 
       	<div class="row">
-      				<div class="col-md-12">
-      					<h3>Top ten profesionales con reasignaciones</h3>
+      				<div class="col-md-8 col-md-offset-2" style="height:890px; border: 1px solid grey; margin-top: 5px;">
+      					<h3 style="font-family: arial black; color: #5E527C;">Top ten profesionales con reasignaciones</h3>
       					<div id="top_profesionales_reasignacion">
-      							<table class="table table-bordered table-hover table-condensed">
+      							<table style="border: 1px solid grey;">
 		<thead>
 				<tr>
 				<th>Profesional</th>
@@ -645,9 +708,9 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 		</thead>
 			<tbody>
 				<?php foreach ($top_p_rea as $row) : ?>
-					<tr><td>
+					<tr><td >
 						<?php echo $row->profesional; ?></td>
-						<td><?php echo $row->total; ?></td>
+						<td ><?php echo $row->total; ?></td>
 					
 
 					</tr>
@@ -972,7 +1035,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       convertImagesToBase64()
       var contentDocument = document.getElementById('content');
       //console.log(contentDocument.outerHTML);
-      var content = '<!DOCTYPE html><html><meta http-equiv="Content-Type" content="text/html; charset=utf-8">' + contentDocument.outerHTML +'</html>';
+      var content = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body id="body">' + contentDocument.outerHTML +'<body></html>';
      // var orientation = document.querySelector('.page-orientation input:checked').value;
       var converted = htmlDocx.asBlob(content, {orientation: 'portrait'});
       var range = $('#date-picker').val();
