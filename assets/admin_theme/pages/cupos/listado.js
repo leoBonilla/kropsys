@@ -1,8 +1,5 @@
 $(document).ready(function(){
- var bswitch = $("[name='my-checkbox']").bootstrapSwitch();
-bswitch.on('switchChange.bootstrapSwitch', function(event, state) {
-    $('#moment_filter').toggle();
-});
+
 $('.datepicker').mask('00/00/0000');  
           $('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
@@ -172,5 +169,15 @@ if(jQuery.isEmptyObject(json) == false){
         ctable.ajax.reload();
         
     });
+
+
+      var bswitch = $("[name='my-checkbox']").bootstrapSwitch();
+        bswitch.on('switchChange.bootstrapSwitch', function(event, state) {
+        $('#moment_filter').toggle();
+        if(!state){
+            $('#momento').val('');
+            ctable.ajax.reload();
+        } 
+});
 
 });
