@@ -1,3 +1,4 @@
+<div class="col-md-12">
           <form action="<?php echo base_url('users/createuser') ?>" role="form" class="" method="post" id="form">
             
             <div class="row">
@@ -82,3 +83,4 @@
             </div>
 
           </form>
+</div>

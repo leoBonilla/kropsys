@@ -1,4 +1,5 @@
-  <form action="<?php echo base_url('api/sendsms') ?>" role="form" class="" method="post" id="form">
+<div class="col-md-12">
+      <form action="<?php echo base_url('api/sendsms') ?>" role="form" class="" method="post" id="form">
             
             <div class="row">
              <div class="col-md-4 form-group">
@@ -71,3 +72,4 @@
 
           </form>
        
+</div>
