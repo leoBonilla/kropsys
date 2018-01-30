@@ -5,7 +5,7 @@
 <div class="row">
                 <div class="col-md-4 form-group">
                                 <label for="especialidad">ESPECIALIDAD</label>
-                                <select name="especialidad" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="select-especialidad-agendamiento" required="required">
+                                <select name="especialidad" id="especialidad" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="select-especialidad-agendamiento" required="required">
                                                 <option value=""></option>
                                                 <?php  foreach($espec as $row) :?>
                                                 <option value="<?php echo $row->id ?>">

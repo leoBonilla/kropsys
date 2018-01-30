@@ -171,4 +171,18 @@ class Registros_model extends CI_Model {
       }
 
 
+      public function findRegistro($tipo, $id){
+        if($tipo == 'agendamientos' ){
+          return $this->findAgendamiento($id);
+        }
+      }
+
+
+      public function update($type, $id, $data){
+        $this->db->where('id',$id);
+            $this->db->update($type,$data);
+            return (bool) ($this->db->affected_rows() > 0);
+      }
+
+
 }

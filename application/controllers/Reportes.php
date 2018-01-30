@@ -161,55 +161,40 @@ class Reportes extends My_Controller
 	}
 
 
-	public function generateDoc(){
-		if($this->input->post()){
-			$inicio = $this->input->post('inicio');
-			$fin = $this->input->post('fin');
-		}
+
+	public function sms(){
+		if($this->require_min_level(ADMIN_LEVEL)){
+			 $css =  array(
+       					'custom.css'
+
+       				);
+
+			             $css =  array(
+       					'custom.css',
+       					'vendor/bootstrap-daterangepicker/daterangepicker.css'
+
+       				);
+
+		             $scripts = array( 
+	
+		    					 
+		    					 'vendor/moments/moment.js',
+		    					 'vendor/bootstrap-daterangepicker/daterangepicker.js',
+		    					 //'vendor/jsdocx/dist/vendor/FileSaver.js',
+		    					 //'vendor/jsdocx/dist/html-docx.js',
+		    					 'pages/reportes/sms.js'
+		    					 );
+					$this->template->set('title', 'Reporte de sms ');
+					$this->template->set('page_header', 'Reporte de sms');
+					$this->template->set('css', $css);
+					$this->template->set('scripts', $scripts);
+					$this->template->load('default_layout', 'contents' , 'reportes/sms', null);
+					}
 
 	}
 
-	public function test(){
-		$agend = array(
-				'agendados' => 12,
-				'no_contestaron' => 3,
-				'sin_cupo' => 4,
-				'erroneos' => 3,
-				'rechazados' => 5,
-				'hora_ya_asignada' => 8,
-				'confirmados' => 0,
-				'reasignados' => 0
-			);
-		$reasig = array(
-				'agendados' => 12,
-				'no_contestaron' => 3,
-				'sin_cupo' => 4,
-				'erroneos' => 3,
-				'rechazados' => 5,
-				'hora_ya_asignada' => 8,
-				'confirmados' => 0,
-				'reasignados' => 0
-			);
 
 
-		$t = new TemplateProcessor('templates/docx/informe_operacional.docx');
-		$t->setValue('fecha', 'Diciembre 2017');
-
-		//Agendamientos
-		$t->setValue('agen-p-agendados', $agend['agendados']);
-		$t->setValue('agen-no-contestaron', $agend['no_contestaron']);
-		$t->setValue('agen-rechazados', $agend['rechazados']);
-		$t->setValue('agen-sin-cupo', $agend['sin_cupo']);
-		$t->setValue('agen-h-asignada', $agend['hora_ya_asignada']);
-		$t->setValue('agen-erroneos',$agend['erroneos']);
-
-
-
-		//reasignaciones
-
-
-		$t->saveAs('result.docx');
-	}
 
 
 

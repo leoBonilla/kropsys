@@ -60,6 +60,43 @@ class Registros extends MY_Controller {
 		}
 
 
+    public function edit($data = null){
+      if($this->require_min_level(EJECUTIVE_LEVEL)){
+        if(isset($data)){
+          $validEdit = array('agendamientos','reasignaciones','confirmaciones','otros','sms','llamadas'); 
+          $data  = explode('-',$data);
+          if(in_array($data[0], $validEdit)){
+            //$tipo = array_search($data[0],$validEdit);
+            //echo $validEdit[$tipo];
+            $id = $data[1];
+            $this->load->model('registros_model');
+            $registro = $this->registros_model->findRegistro($data[0],$id);
+            if($registro != false){
+              $this->load->model('global_model');
+               $especialidades = $this->global_model->getEspecialidades();
+               $profesionales = $this->registros_model->profesionalesByEspecialidad($registro->id_especialidad);
+               $prestaciones = $this->global_model->getPrestaciones();
+
+               $css = array();
+               $scripts = array('pages/registros/edit.js');
+               $params = array('especialidades' => $especialidades, 'registro' => $registro, 'profesionales' => $profesionales, 'prestaciones' => $prestaciones);
+               $this->template->set('title', 'Editar '.$data[0]);
+               $this->template->set('page_header', 'Editar '.$data[0]);
+               $this->template->set('css', $css);
+               $this->template->set('scripts', $scripts);
+               $this->template->load('default_layout', 'contents' , 'registros/edit_'.$data[0], $params);
+            }
+        
+          }                 
+
+
+        }else{
+          echo 'no parametros';
+        }
+      }
+    }
+
+
     public function editarAgendamiento($id){
         if($this->require_min_level(EJECUTIVE_LEVEL)){
             $this->load->model('global_model');
@@ -477,8 +514,7 @@ class Registros extends MY_Controller {
              $row[] = $fila->n_erroneo;
              $row[] = $fila->observaciones;
              $row[] = $fila->usuario;
-             $row[] ='';
-             //$row[] = "<a class='btn btn-warning btn-xs'>Editar</a>";
+             $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/agendamientos-'.$fila->id)."'>Editar</a>";
  
  
             $data[] = $row;
@@ -940,6 +976,36 @@ public function edit_agendamiento_ajax(){
           echo json_encode(false);
         }
       }
+  }
+}
+
+
+
+public function editarRegistro(){
+  header('Content-Type: application/json');
+  if($this->require_min_level(EJECUTIVE_LEVEL)){
+    if ($this->input->post()) {
+            $data = array();
+            $data['id_medico'] = $this->input->post('profesional');
+            $data['id_especialidad'] = $this->input->post('especialidad');
+            $data['id_prestacion'] = $this->input->post('prestacion');
+            $data['pacientes_agendados'] = $this->input->post('agendados');
+            $data['no_contestaron'] = $this->input->post('no_contestaron');
+            $data['rechazo_anulaciones'] = $this->input->post('rechazos');
+            $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
+            $data['n_erroneo'] = $this->input->post('erroneos');
+            $data['actualizada'] =  date("Y-m-d H:i:s");
+            $data['observaciones'] =$this->input->post('observaciones');
+            $id = $this->input->post('registro_id');
+            $tipo = $this->input->post('tipo');
+
+            $this->load->model('registros_model');
+            if($this->registros_model->update($tipo,$id, $data)){
+              echo json_encode(array('result' => true, 'message' => 'DATOS ACTUALIZADOS CORRECTAMENTE'));
+            }else{
+              echo json_encode(array('result' => false, 'message' => 'HUBO UN ERROR AL INTENTAR ACTUALIZAR LOS DATOS'));
+            }
+    }
   }
 }
 		
