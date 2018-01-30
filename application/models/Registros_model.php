@@ -149,6 +149,47 @@ class Registros_model extends CI_Model {
               }
                  return false;
       }
+
+
+     public function findReasignaciones($id){
+            $this->db->select('*');
+              $this->db->from('reasignaciones_view');
+              $this->db->where('id',$id);
+              $this->db->limit($this->limit);
+              $query = $this->db->get();
+
+              if($query->num_rows() > 0){
+                return $query->row() ;
+              }
+                 return false;
+      }
+
+        public function findConfirmaciones($id){
+            $this->db->select('*');
+              $this->db->from('confirmaciones_view');
+              $this->db->where('id',$id);
+              $this->db->limit($this->limit);
+              $query = $this->db->get();
+
+              if($query->num_rows() > 0){
+                return $query->row() ;
+              }
+                 return false;
+      }
+
+
+        public function findOtros($id){
+            $this->db->select('*');
+              $this->db->from('otros_view');
+              $this->db->where('id',$id);
+              $this->db->limit($this->limit);
+              $query = $this->db->get();
+
+              if($query->num_rows() > 0){
+                return $query->row() ;
+              }
+                 return false;
+      }
    
 
       public function profesionalesByEspecialidad($id){
@@ -174,6 +215,16 @@ class Registros_model extends CI_Model {
       public function findRegistro($tipo, $id){
         if($tipo == 'agendamientos' ){
           return $this->findAgendamiento($id);
+        }
+        if($tipo == 'reasignaciones' ){
+          return $this->findReasignaciones($id);
+        }
+
+        if($tipo == 'confirmaciones' ){
+          return $this->findConfirmaciones($id);
+        }
+        if($tipo == 'otros' ){
+          return $this->findOtros($id);
         }
       }
 

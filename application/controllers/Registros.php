@@ -989,15 +989,41 @@ public function editarRegistro(){
             $data['id_medico'] = $this->input->post('profesional');
             $data['id_especialidad'] = $this->input->post('especialidad');
             $data['id_prestacion'] = $this->input->post('prestacion');
-            $data['pacientes_agendados'] = $this->input->post('agendados');
             $data['no_contestaron'] = $this->input->post('no_contestaron');
             $data['rechazo_anulaciones'] = $this->input->post('rechazos');
-            $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
             $data['n_erroneo'] = $this->input->post('erroneos');
             $data['actualizada'] =  date("Y-m-d H:i:s");
             $data['observaciones'] =$this->input->post('observaciones');
             $id = $this->input->post('registro_id');
             $tipo = $this->input->post('tipo');
+            
+            if($tipo == 'reasignaciones'){
+              $data['sin_cupo'] =  $this->input->post('sin_cupo');
+              $data['pacientes'] =  $this->input->post('pacientes');
+              $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
+            }
+
+            if($tipo == 'confirmaciones'){
+              $data['pacientes'] =  $this->input->post('pacientes');
+              $data['confirmadas'] =  $this->input->post('confirmadas');
+              $data['reasignadas'] =  $this->input->post('reasignadas');
+            }
+
+            if($tipo == 'otros'){
+              $data['pacientes'] =  $this->input->post('pacientes');
+              $data['confirmadas'] =  $this->input->post('confirmadas');
+              $data['reasignadas'] =  $this->input->post('reasignadas');
+            }
+
+               if($tipo == 'agendamientos'){
+              $data['pacientes_agendados'] = $this->input->post('agendados');
+              $data['sin_cupo'] =  $this->input->post('sin_cupo');
+              $data['pacientes'] =  $this->input->post('pacientes');
+              $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
+            }
+
+
+
 
             $this->load->model('registros_model');
             if($this->registros_model->update($tipo,$id, $data)){
