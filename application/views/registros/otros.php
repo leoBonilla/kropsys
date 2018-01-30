@@ -42,7 +42,8 @@
                 <th>Reasignadas</th>
                 <th>Número erróneo</th>
                 <th>Observaciones</th>
-                <th clas="none">Ingresado por:</th>
+                <th >Ingresado por:</th>
+                <th>Acciones</th>
   
                 
             </tr>
@@ -61,6 +62,7 @@
                 <th>Número erróneo</th>
                 <th>Observaciones</th>
                 <th></th>
+                <th>Acciones</th>
   
 
                 

@@ -428,6 +428,7 @@ class Registros extends MY_Controller {
              $row[] = $fila->pacientes;
              $row[] = $fila->observaciones;
              $row[] = $fila->usuario;
+             $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/reasignaciones-'.$fila->id)."'>Editar</a>";
  
  
             $data[] = $row;
@@ -606,6 +607,7 @@ public function listar_confirmaciones(){
              $row[] = $fila->n_erroneo;
              $row[] = $fila->observaciones;
              $row[] = $fila->usuario;
+              $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/confirmaciones-'.$fila->id)."'>Editar</a>";
  
  
             $data[] = $row;
@@ -698,6 +700,7 @@ public function listar_confirmaciones(){
              $row[] = $fila->n_erroneo;
              $row[] = $fila->observaciones;
              $row[] = $fila->usuario;
+             $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/otros-'.$fila->id)."'>Editar</a>";
  
  
             $data[] = $row;

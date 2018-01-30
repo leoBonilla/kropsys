@@ -43,6 +43,7 @@
                 <th>Pacientes</th>
                 <th>observaciones</th>
                 <th class="none">Ingresado por</th>
+                <th>Acciones</th>
 
                 
             </tr>
@@ -62,6 +63,7 @@
                 <th>Pacientes</th>
                 <th>observaciones</th>
                 <th>Ingresado por</th>
+                <th>Acciones</th>
 
                 
             </tr>

@@ -8,7 +8,6 @@
 			</div>
 		</div>
 	</div>
-
 	<?php echo form_open(base_url('registros/editarRegistro'), array('method' => 'POST', 'id' => 'edit-form')); ?>
      <div class="row">
      	<div class="form-group col-md-4" >
