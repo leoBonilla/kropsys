@@ -1,8 +1,11 @@
-<?php var_dump($registro); ?>
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-12">
-			<!-- <span class="label label-default">Última actualización</span> -->
+			<div class="well well-sm">
+				Ingresado por : <?php echo $registro->usuario; ?> <br>
+				Fecha: <?php echo $registro->fecha; ?><br>
+				Última modificación: <?php echo $registro->actualizada ; ?>
+			</div>
 		</div>
 	</div>
 

@@ -1,4 +1,13 @@
 <div class="col-md-12">
+		<div class="row">
+		<div class="col-md-12">
+			<div class="well well-sm">
+				Ingresado por : <?php echo $registro->usuario; ?> <br>
+				Fecha: <?php echo $registro->fecha; ?><br>
+				Última modificación: <?php echo $registro->actualizada ; ?>
+			</div>
+		</div>
+	</div>
 	<?php echo form_open(base_url('registros/editarRegistro'), array('method' => 'POST', 'id' => 'edit-form')); ?>
     <div class="row">
     	<div class="form-group col-md-4" >
@@ -33,26 +42,26 @@
 
     <div class="row">
     		<div class="form-group col-md-3" >
-		<label for="agendados">Nº PACIENTES AGENDADOS (*)</label>
+		<label for="agendados">Nº PACIENTES AGENDADOS </label>
 		<input type="text" class="form-control numbersOnly" name="agendados" value="<?php echo $registro->pacientes_agendados; ?>" required="required">
 	</div>
 	<div class="form-group col-md-3" >
-		<label for=no_contestaron">NO CONTESTARON (*)</label>
+		<label for="no_contestaron">NO CONTESTARON</label>
 		<input type="text" class="form-control numbersOnly" name="no_contestaron" value="<?php echo $registro->no_contestaron; ?>" required="required">
 	</div>
 	<div class="form-group col-md-3" >
-		<label for="rechazos">RECHAZOS / ANULACIONES (*)</label>
+		<label for="rechazos">RECHAZOS / ANULACIONES </label>
 		<input type="text" class="form-control numbersOnly" name="rechazos" value="<?php echo $registro->rechazo_anulaciones; ?>" required="required">
 	</div>
 	<div class="form-group col-md-3" >
-		<label for="h_y_asignadas">HORAS YA ASIGNADAS (*)</label>
+		<label for="h_y_asignadas">HORAS YA ASIGNADAS </label>
 		<input type="text" class="form-control numbersOnly" name="h_y_asignadas" value="<?php echo $registro->hora_ya_asignada; ?>" required="required">
 	</div>
     </div>
 
     <div class="row">
     		<div class="form-group col-md-3" >
-		<label for="erroneos">Nº ERRONEO / SIN NUMERO (*)</label>
+		<label for="erroneos">Nº ERRONEO / SIN NUMERO </label>
 		<input type="text" class="form-control numbersOnly" name="erroneos" value="<?php echo $registro->n_erroneo; ?>" required="required">
 	</div>
     </div>
