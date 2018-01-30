@@ -1,12 +1,15 @@
 <div class="col-md-12">
       <div class="row filtros">
 <div class="col-md-4">
-       <div class="row">
+   <!--     <div class="row">
           <div class="input-group input-daterange col-md-12" style="margin-bottom:5px;">
             <input type="text" class="form-control " name="fecha_inicio" id="fecha_inicio" value="" placeholder="01/10/2017">
             <div class="input-group-addon">hasta</div>
             <input type="text" class="form-control " name="fecha_limite" id="fecha_limite" value="" placeholder="01/10/2017">
           </div>
+       </div> -->
+       <div class="form-group">
+         <input type="text" class="form-control" id="date-filter">
        </div>
       </div>
 <?php if($auth_level >= ADMIN_LEVEL ) :?>
@@ -25,8 +28,10 @@
 
        <!--</form> -->
    </div> 
- </div>
-    <table id="agendamientos_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+
+   <div class="row">
+  <div class="col-md-12">
+        <table id="agendamientos_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Especialidad</th>
@@ -68,3 +73,7 @@
         </tbody>
     </table>
 
+
+  </div>
+</div>
+ </div>

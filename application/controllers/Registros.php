@@ -166,6 +166,7 @@ class Registros extends MY_Controller {
 			 $css =  array(
        					'vendor/datatables-plugins/dataTables.bootstrap.css',
        					'vendor/datatables-responsive/dataTables.responsive.css',
+                'vendor/bootstrap-daterangepicker/daterangepicker.css',
                 'custom.css'
 
        				);
@@ -175,6 +176,8 @@ class Registros extends MY_Controller {
     					 'vendor/datatables-plugins/dataTables.bootstrap.min.js',
     					 'vendor/datatables-responsive/dataTables.responsive.min.js',
     					 'vendor/datatables-responsive/responsive.bootstrap.min.js',
+               'vendor/bootstrap-daterangepicker/moment.js',
+               'vendor/bootstrap-daterangepicker/daterangepicker.js',
     					 //buttons js
     					 'vendor/datatables-plugins/dataTables.buttons.min.js',
                'vendor/datatables-plugins/buttons.bootstrap.min.js',
