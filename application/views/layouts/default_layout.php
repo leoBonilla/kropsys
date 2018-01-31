@@ -45,6 +45,7 @@
             <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/table.min.css">
             <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/video.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/daterangepicker.css?v=<?php echo VERSION; ?>">
         
     <?php foreach ($css as $css) :?>
     <link href="<?php echo base_url('assets/admin_theme/').$css.'?v='.VERSION ; ?>" rel="stylesheet" />
@@ -394,6 +395,9 @@
      <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/datepicker/bootstrap-datepicker.js?v=<?php echo VERSION; ?>"></script>
       <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/datepicker/locales/bootstrap-datepicker.es.js?v=<?php echo VERSION; ?>"></script>
      <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/bootstrap-select/dist/js/bootstrap-select.js?v=<?php echo VERSION; ?>"></script>
+
+             <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/moment.js?v=<?php echo VERSION; ?>"></script> 
+        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/daterangepicker.js?v=<?php echo VERSION; ?>"></script> 
      <script src="<?php echo base_url('assets')?>/global.js?v=<?php echo VERSION; ?>"></script>
          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/snow/snowfall.jquery.min.js?v=<?php echo VERSION; ?>"></script>
 
@@ -428,6 +432,8 @@
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
+
+
 
   <script>
  // Enable pusher logging - don't include this in production

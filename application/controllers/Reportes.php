@@ -43,10 +43,7 @@ class Reportes extends My_Controller
 
 		             $scripts = array( 
 	
-		    					 
-		    					 'vendor/moments/moment.js',
-		    					 'vendor/bootstrap-daterangepicker/daterangepicker.js',
-		    					 'vendor/jsdocx/dist/vendor/FileSaver.js',
+    	    					 'vendor/jsdocx/dist/vendor/FileSaver.js',
 		    					 'vendor/jsdocx/dist/html-docx.js',
 		    					 'pages/reportes/index.js'
 		    					 );
