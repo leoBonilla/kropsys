@@ -1023,8 +1023,6 @@ public function editarRegistro(){
 
                if($tipo == 'agendamientos'){
               $data['pacientes_agendados'] = $this->input->post('agendados');
-              $data['sin_cupo'] =  $this->input->post('sin_cupo');
-              $data['pacientes'] =  $this->input->post('pacientes');
               $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
             }
 
