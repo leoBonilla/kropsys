@@ -88,8 +88,8 @@
 
     <div class="row">
     	 <div class="form-group col-md-12">
-      	<button type="submit" class="btn btn-warning">Actualizar</button>
-      </div>
+      	  	<button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> Actualizar</button>
+      	<a href="<?php echo base_url('registros/reasignaciones'); ?>" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Volver</a> </div>
 
     </div>
       <input type="hidden" name="tipo" value="reasignaciones">
