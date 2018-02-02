@@ -144,7 +144,7 @@ class MailReader{
 									}
 
 									//hay adjuntos
-										$this->CI->documents_model->saveEmail(array(
+									$this->CI->documents_model->saveEmail(array(
 											                                 //'id_user' =>$this->userid,
 							     											 'numero_email' =>$messageNumber,
 							     											 'asunto' => $subject,

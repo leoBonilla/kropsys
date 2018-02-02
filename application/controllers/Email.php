@@ -92,36 +92,4 @@ class Email extends MY_Controller
 	
 	
 
-	// private function send($data, $attach = false){
-	// 	    $config = Array(
-	// 			'protocol' => 'smtp',
-	// 			'smtp_host' => 'ssl://smtp.googlemail.com',
-	// 			'smtp_port' => 465,
-	// 			'smtp_user' => 'leobonillab@gmail.com',// your mail name
-	// 			'smtp_pass' => 'leonardo84',
-	// 			'mailtype'  => 'html', 
-	// 			'charset'   => 'iso-8859-1',
-	// 			 'wordwrap' => TRUE
-	// 		);
-	// 		$this->load->library('email',$config);
-	// 		$this->email->set_mailtype("html");
-	// 		$this->email->from('leobonilla@gmail.com', 'Sistema Kropsys');
-	// 		$this->email->to('leobonillab@gmail.com');
-	// 		if(is_array($attach)){
-	// 			foreach ($attach as $e) {
-	// 				$this->email->attach($e);	
-	// 			}
-	// 		}
-			
-	// 		//$this->email->cc('another@another-example.com');
-	// 		//$this->email->bcc('them@their-example.com');
-
-	// 		$this->email->subject($data['subject']);
-	// 		$this->email->message($data['message']);
-
-	// 		if($this->email->send()){
-	// 			return true;
-	// 		}
-	// 		return false;
-	// }
 }

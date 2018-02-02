@@ -14,7 +14,8 @@ class Apicall extends MY_Controller {
 			if($this->input->post()){
 				$telefono = $this->input->post('numero');
 				//$anexo = $this->input->post('anexo');
-				return $this->makeCall($telefono,$anexo);
+				$result =   $this->makeCall($telefono,$anexo);
+				echo json_encode(array('respuestaOk' => $result->respuestaOk, 'message' => $result->message, 'uniqueId' => $result->uniqueId));
 				//echo json_encode(array('respuestaOk' => true, 'message' => 'mensaje', 'uniqueId' => '3434322.3443' ));
 		}
 	}
@@ -29,12 +30,12 @@ class Apicall extends MY_Controller {
 								          		"verify_peer_name"=>false,
 		        							),
 		      							);
-			   	$xml = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension";
-			   	echo $xml;
-				//$xml = file_get_contents("https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension", false, stream_context_create($arrContextOptions));
-	   			//$obj = json_decode($xml);
-	    		
-	    		//echo json_encode($obj);
+			   //	$callUrl = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension";
+			   	$callUrl = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=5543";
+			   	//echo $xml;
+				$xml = file_get_contents($callUrl, false, stream_context_create($arrContextOptions));
+	   			$obj = json_decode($xml);
+	   			return $obj;
 	   } catch (Exception $e) {
 	   	return json_encode(array('result' => false));
 	   }
@@ -73,6 +74,33 @@ class Apicall extends MY_Controller {
 			}
 		}
 }
+
+
+	public function callV2(){
+		header('Content-Type: application/json');
+      if($this->require_min_level(EJECUTIVE_LEVEL)){
+      	if($this->input->post()){
+      		$data = array(
+      			'anexo'=> $this->input->post('anexo'),
+      			'numero' => $this->input->post('numero'),
+      			'documento '=> $this->input->post('documento'),
+      			'user_id' => $this->auth_user_id
+      	);
+
+            $callResult = $this->makeCall($data['numero'], $data['anexo']);
+            echo json_encode(array('result' => true, 'uniqueId' => '3454545.45454' ));
+            // if($callResult->respuestaOk == true){
+            //         echo json_encode(array('result' => true, 'uniqueId' => $callResult->uniqueId ));
+            // }else{
+            // 		// hacer algo si no funciona
+            // 	echo json_encode(array('result' => false, 'uniqueId' => false ));
+            // }
+
+      	}
+      }
+	}
+
+
 	public function closeSubTask(){
 		header('Content-Type: application/json');
 		if($this->require_min_level(EJECUTIVE_LEVEL)){

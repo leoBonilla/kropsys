@@ -1,6 +1,28 @@
-<!--COMIENZO REASIGNACIONES -->
-<h4>REASIGNACIONES</h4>
-      <?php echo form_open(base_url('agendamiento/processreasignaciones'),array('role' => 'form', 'method' => 'post', 'id' => 'form_reasignaciones')); ?>
+<br>
+<?php echo form_open(base_url('agendamiento/processreasignaciones'),array('role' => 'form', 'method' => 'post', 'id' => 'form_reasignaciones')); ?>
+      <div class="row">
+    <div class="col-md-4">
+      <label for="instancia_re" >Guardar registros como nueva instancia&nbsp;</label>
+      <input name="instancia_re" id="chk-instancia_re" type="checkbox" data-size="mini" data-on-text="SI" data-off-text="NO"  >&nbsp;&nbsp;&nbsp;<i class="fa fa-info-circle" data-toggle="tooltip" title="Seleccione para ingresar los registros que se han generado a partir de nuevas instacias"></i>
+    </div>
+
+    <div class="col-md-4" style="display: none" id="instancia-select-re">
+        <label for="select_instancia_re">Seleccione la instancia</label>
+        <select name="select_instancia_re" id="select_instancia_re" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" title="Seleccione una opcion" required="required"
+        
+        >
+            <option value="2">Segunda</option>
+            <option value="3">Tercera</option>
+
+        </select>
+
+        <input type="hidden" name="num-instancia" id="num-instancia_re" value="1" >
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12"><hr></div>
+</div>
 <div class="row">
                 <div class="col-md-4 form-group">
                                 <label for="especialidad">ESPECIALIDAD</label>
@@ -72,7 +94,7 @@
 </div>
 <div class="row">
                 <div class="col-md-3 form-group">
-                               <input type="submit" value="Guardar" class="btn btn-primary btn-submit" />
+                               <input type="submit" value="Guardar reasignaciones" class="btn btn-success btn-submit" />
                 </div>
 </div>
 </form>

@@ -1,7 +1,29 @@
-<!--COMIENZO CONFIRMACIONES <-->
-    <h4>CONFIRMACIONES</h4>
     <br>
       <?php echo form_open(base_url('agendamiento/processconfirmaciones'),array('role' => 'form', 'method' => 'post', 'id' => 'form_confirmaciones')); ?>
+
+      <div class="row">
+    <div class="col-md-4">
+      <label for="instancia" >Guardar registros como nueva instancia&nbsp;</label>
+      <input name="instancia_conf" id="chk-instancia_conf" type="checkbox" data-size="mini" data-on-text="SI" data-off-text="NO"  >&nbsp;&nbsp;&nbsp;<i class="fa fa-info-circle" data-toggle="tooltip" title="Seleccione para ingresar los registros que se han generado a partir de nuevas instacias"></i>
+    </div>
+
+    <div class="col-md-4" style="display: none" id="instancia-select-conf">
+        <label for="select_instancia_conf">Seleccione la instancia</label>
+        <select name="select_instancia_conf" id="select_instancia_conf" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" title="Seleccione una opcion" required="required"
+        
+        >
+            <option value="2">Segunda</option>
+            <option value="3">Tercera</option>
+
+        </select>
+
+        <input type="hidden" name="num-instancia" id="num-instancia_conf" value="1" >
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12"><hr></div>
+</div>
 <div class="row">
                 <div class="col-md-4 form-group">
                                 <label for="especialidad">ESPECIALIDAD</label>
@@ -68,7 +90,7 @@
 </div>
 <div class="row">
                 <div class="col-md-3 form-group">
-                               <input type="submit" value="Guardar" class="btn btn-primary btn-submit" />
+                               <input type="submit" value="Guardar confirmaciones" class="btn btn-success btn-submit" />
                 </div>
 </div>
 </form>

@@ -83,7 +83,7 @@ class Documents_model extends CI_Model {
                    //var_dump();
                         $this->db->where('id_email', $row->id_email);
                         $this->db->where('es_archivo', 1);
-                    $adjuntos = $this->db->get('documents_view');
+                        $adjuntos = $this->db->get('documents_view');
                     $ar = array();
                      if($adjuntos->num_rows()>0){
                       

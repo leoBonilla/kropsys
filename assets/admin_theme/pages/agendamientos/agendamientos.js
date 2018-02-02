@@ -1,4 +1,83 @@
 $(document).ready(function(){
+
+var chkinstancia_ag = $("[name='instancia_ag']").bootstrapSwitch();
+chkinstancia_ag.on('switchChange.bootstrapSwitch', function(event, state) {
+    $('#instancia-select-ag').toggle();
+     if(state){
+      $('#num-instancia_ag').val('1');
+      $('#select_instancia_ag').val('');
+      $('#select_instancia_ag').selectpicker("refresh");
+     }
+
+});
+
+$('#select_instancia_ag').on('changed.bs.select',function(e){
+  console.log();
+  $('#num-instancia_ag').val(($(this).val()));
+});
+
+/* ==========================================================================================*/
+
+var chkinstancia_re = $("[name='instancia_re']").bootstrapSwitch();
+chkinstancia_re.on('switchChange.bootstrapSwitch', function(event, state) {
+    $('#instancia-select-re').toggle();
+     if(state){
+      $('#num-instancia_re').val('1');
+      $('#select_instancia_re').val('');
+      $('#select_instancia_re').selectpicker("refresh");
+     }
+
+});
+
+$('#select_instancia_re').on('changed.bs.select',function(e){
+  $('#num-instancia_re').val(($(this).val()));
+});
+
+
+/* ==========================================================================================*/
+
+
+var chkinstancia_conf = $("[name='instancia_conf']").bootstrapSwitch();
+chkinstancia_conf.on('switchChange.bootstrapSwitch', function(event, state) {
+    $('#instancia-select-conf').toggle();
+     if(state){
+      $('#num-instancia_conf').val('1');
+      $('#select_instancia_conf').val('');
+      $('#select_instancia_conf').selectpicker("refresh");
+     }
+
+});
+
+$('#select_instancia_conf').on('changed.bs.select',function(e){
+  console.log();
+  $('#num-instancia_conf').val(($(this).val()));
+});
+
+
+/* ==========================================================================================*/
+
+var chkinstancia_otr = $("[name='instancia_otr']").bootstrapSwitch();
+chkinstancia_otr.on('switchChange.bootstrapSwitch', function(event, state) {
+    $('#instancia-select-otr').toggle();
+     if(state){
+      $('#num-instancia_otr').val('1');
+      $('#select_instancia_otr').val('');
+      $('#select_instancia_otr').selectpicker("refresh");
+     }
+
+});
+
+$('#select_instancia_otr').on('changed.bs.select',function(e){
+  console.log();
+  $('#num-instancia_otr').val(($(this).val()));
+});
+
+
+/* ==========================================================================================*/
+
+
+
+
              
    $('#myTab a').click(function(e) {
         e.preventDefault();
@@ -54,7 +133,7 @@ $(document).ready(function(){
        var form1 =  $('#form_agendamiento').validate();
 	   var form2 = $('#form_reasignaciones').validate({
         rules:{
-            pacientes : "sumReasignaciones",
+            pacientes : "sumReasignaciones"
         }
        });
 	   var form3 = $('#form_confirmaciones').validate({

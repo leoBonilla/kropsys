@@ -43,6 +43,7 @@ class Agendamiento extends MY_Controller
 						'n_erroneo' => $this->input->post('erroneos'),
 						'observaciones' => $this->input->post('observaciones'),
 						'id_usuario' => $this->auth_user_id,
+						'num_instancia' => $this->input->post('num-instancia')
 					);
 				if($this->agendamientos_model->saveAgendamientos($data)){
 					$this->response['error'] = false;
@@ -85,6 +86,7 @@ class Agendamiento extends MY_Controller
 						'n_erroneo' => $this->input->post('erroneos'),
 						'pacientes' => $this->input->post('pacientes'),
 						'sin_cupo' => $this->input->post('sin_cupo'),
+						'num_instancia' => $this->input->post('num-instancia')
 					);
 				if($this->agendamientos_model->saveReasignaciones($data)){
 					$this->response['error'] = false;
@@ -127,6 +129,7 @@ class Agendamiento extends MY_Controller
 						'n_erroneo' => $this->input->post('erroneos'),
 						'reasignadas' => $this->input->post('reasignadas'),
 						'confirmadas' => $this->input->post('confirmadas'),
+						'num_instancia' => $this->input->post('num-instancia')
 					);
 				if($this->agendamientos_model->saveConfirmaciones($data)){
 					$this->response['error'] = false;
@@ -170,6 +173,7 @@ class Agendamiento extends MY_Controller
 						'id_usuario' => $this->auth_user_id,
 						'reasignadas' => $this->input->post('reasignadas'),
 						'confirmadas' => $this->input->post('confirmadas'),
+						'num_instancia' => $this->input->post('num-instancia')
 					);
 				if($this->agendamientos_model->saveOtros($data)){
 					$this->response['error'] = false;
@@ -198,8 +202,11 @@ class Agendamiento extends MY_Controller
 		$prestaciones= $this->global_model->getPrestaciones();
 			$this->template->set('title', 'Registro de actividad');
 			$this->template->set('page_header', 'Registro de actividad');
-			$this->template->set('css', array());
-			$this->template->set('scripts', array('pages/agendamientos/agendamientos.js'));
+			$this->template->set('css', array('vendor/switch/bootstrap-switch.min.css'));
+			$this->template->set('scripts', array(
+				'vendor/switch/bootstrap-switch.min.js',
+				'pages/agendamientos/agendamientos.js')
+		);
 			$this->template->load('default_layout', 'contents' , 'agendamientos/index.php', array('espec'=> $especialidades,'prestaciones'=> $prestaciones));
 		}
 	}

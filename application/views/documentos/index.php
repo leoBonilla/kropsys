@@ -30,10 +30,10 @@
                     <td><span class="label label-info"><?php echo $row->estado; ?></span>
 
                     </td>
-                    <td><button class="btn btn-primary btn-xs btn-modal" data-toggle="modal" data-id="<?php echo $row->id ?>" data-id_email="<?php echo $row->id_email; ?>"><i class="fa fa-rocket  "></i></button>
-                        <button class="btn btn-success btn-xs btn-call" data-toggle="modal"  data-id="<?php echo $row->id ?>" data-target="#modalCall"><i class="fa fa-phone"></i></button>
+                    <td><button class="btn btn-primary btn-xs btn-modal" data-toggle="modal" data-id="<?php echo $row->id ?>" data-id_email="<?php echo $row->id_email; ?>"><i data-toggle="tooltip" title="REVISAR Y GESTIONAR LA TAREA" class="fa fa-rocket  " ></i></button>
+                        <button class="btn btn-success btn-xs btn-call" data-toggle="modal"  data-id="<?php echo $row->id ?>" data-target="#modalCall"><i data-toggle="tooltip" title="REALIZAR UNA LLAMADA" class="fa fa-phone"></i></button>
 
-                        <button class="btn btn-warning btn-xs btn-history" data-toggle="modal"  data-id="<?php echo $row->id ?>"><i class="fa fa-history"></i></button>
+                        <button class="btn btn-warning btn-xs btn-history" data-toggle="modal"  data-id="<?php echo $row->id ?>"><i data-toggle="tooltip" title="VER EL HISTORIAL DE LA TAREA" class="fa fa-history"></i></button>
                     </td>
                 </tr>
             <?php endforeach; ?>

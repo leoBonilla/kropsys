@@ -77,6 +77,7 @@ $(document).on("click", ".btn-call", function () {
         var btncall = $('#btn-make-call');
 
          btncall.prop('disabled', false);
+         $("#observaciones").summernote("reset");
          $('#numero').prop('readonly', false);
          $('#uniqueId').val('');
          $('#call-options').css('display','none');
