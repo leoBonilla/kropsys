@@ -85,7 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-defined('VERSION')    OR define('VERSION', '1.2.3');
+defined('VERSION')    OR define('VERSION', '1.2.4');
 
 
 defined('EXTERNAL_LEVEL') OR define('EXTERNAL_LEVEL', 1);
