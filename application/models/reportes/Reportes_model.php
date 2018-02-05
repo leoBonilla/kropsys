@@ -8,90 +8,108 @@ class Reportes_model extends CI_Model {
 	}
 
 
-	public function fetchSumPacientesAgendados($tabla,$inicio, $fin){
+	public function fetchSumPacientesAgendados($tabla,$inicio, $fin, $inst = 1){
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 		$sql = "select COALESCE(sum(t.total),0) as total from (
 		
-					select pacientes_agendados as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' 
-		
-					) t";
+					select pacientes_agendados as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
 
-	public function fetchSumNoContestan($tabla,$inicio,$fin){
+	public function fetchSumNoContestan($tabla,$inicio,$fin, $inst = 1){
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 		$sql = "select COALESCE(sum(t.total),0) as total from (
 		
-					select no_contestaron as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' 
-		
-					) t";
+					select no_contestaron as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
 
-	public function fetchSumRechazosAnulaciones($tabla,$inicio,$fin){
+	public function fetchSumRechazosAnulaciones($tabla,$inicio,$fin, $inst = 1){
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 		$sql = "select COALESCE(sum(t.total),0) as total from (
 
-					select rechazo_anulaciones as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' 
-
-					) t";
+					select rechazo_anulaciones as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
 
-	public function fetchSumErroneos($tabla,$inicio,$fin){
+	public function fetchSumErroneos($tabla,$inicio,$fin, $inst = 1){
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 		$sql = "select COALESCE(sum(t.total),0) as total from (
 
-					select n_erroneo as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
-	
-					) t";
+					select n_erroneo as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
 
-		public function fetchSumHorasYaAsignadas($tabla,$inicio,$fin){
-		// $sql = "select COALESCE(sum(t.total),0) as total from (
-		// 			select hora_ya_asignada as total from confirmaciones where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'  union all 
-		// 			select hora_ya_asignada as total from reasignaciones where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' union all
-		// 			select hora_ya_asignada as total from agendamientos where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' union all
-		// 			select hora_ya_asignada as total from otros  where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
-		// 			) t";
-		// 			
-		$sql = "select COALESCE(sum(t.total),0) as total from (
-					select hora_ya_asignada as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
+		public function fetchSumHorasYaAsignadas($tabla,$inicio,$fin, $inst = 1){
 
-					) t";
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
+		$sql = "select COALESCE(sum(t.total),0) as total from (
+					select hora_ya_asignada as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
 
 
-		public function fetchSumSinCupo($tabla,$inicio,$fin){
+		public function fetchSumSinCupo($tabla,$inicio,$fin, $inst = 1){
+		if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 		$sql = "select COALESCE(sum(t.total),0) as total from (
 
-					select sin_cupo as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
-	
-					) t";
+					select sin_cupo as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}  
 
-	  public function fetchSumConfirmadas($tabla, $inicio, $fin){
+	  public function fetchSumConfirmadas($tabla, $inicio, $fin, $inst = 1){
+	  if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 	  	$sql = "select COALESCE(sum(t.total),0) as total from (
 
-					select confirmadas as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
-	
-					) t";
+					select confirmadas as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	  }
 
 
-	 public function fetchSumReasignadas($tabla, $inicio, $fin){
+	 public function fetchSumReasignadas($tabla, $inicio, $fin, $inst = 1){
+	 	if($inst <= 1){
+			$inst = "";
+		}else{
+			$inst = " and (num_instancia = ".$inst.")";
+		}
 	  	$sql = "select COALESCE(sum(t.total),0) as total from (
 
-					select reasignadas  as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."'
-	
-					) t";
+					select reasignadas  as total from ".$tabla." where date(fecha) BETWEEN  '".$inicio."' AND '".$fin."' ".$inst.") t";
 		$query = $this->db->query($sql);
 		return $query->row();
 	  }

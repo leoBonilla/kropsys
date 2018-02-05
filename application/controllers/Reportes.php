@@ -68,6 +68,22 @@ class Reportes extends My_Controller
 			$ag_horas_ya_asignadas = $this->reportes->fetchSumHorasYaAsignadas('agendamientos',$inicio, $fin);
 			$ag_pacientes_agendados = $this->reportes->fetchSumPacientesAgendados('agendamientos',$inicio, $fin);
 
+			//segunda instancia
+
+					$ag_no_contestaron_2 = $this->reportes->fetchSumNoContestan('agendamientos',$inicio, $fin, 2);
+					$ag_rechazos_anulaciones_2 = $this->reportes->fetchSumRechazosAnulaciones('agendamientos',$inicio, $fin, 2);
+					$ag_n_erroneo_2 = $this->reportes->fetchSumErroneos('agendamientos',$inicio, $fin, 2);
+					$ag_horas_ya_asignadas_2 = $this->reportes->fetchSumHorasYaAsignadas('agendamientos',$inicio, $fin, 2);
+					$ag_pacientes_agendados_2 = $this->reportes->fetchSumPacientesAgendados('agendamientos',$inicio, $fin, 2);
+
+			//tercera instancia
+
+					$ag_no_contestaron_3 = $this->reportes->fetchSumNoContestan('agendamientos',$inicio, $fin, 3);
+					$ag_rechazos_anulaciones_3 = $this->reportes->fetchSumRechazosAnulaciones('agendamientos',$inicio, $fin, 3);
+					$ag_n_erroneo_3 = $this->reportes->fetchSumErroneos('agendamientos',$inicio, $fin, 3);
+					$ag_horas_ya_asignadas_3 = $this->reportes->fetchSumHorasYaAsignadas('agendamientos',$inicio, $fin, 3);
+					$ag_pacientes_agendados_3 = $this->reportes->fetchSumPacientesAgendados('agendamientos',$inicio, $fin, 3);
+
 			//datos de reasignaciones
 			$re_no_contestaron = $this->reportes->fetchSumNoContestan('reasignaciones',$inicio, $fin);
 			$re_rechazos_anulaciones = $this->reportes->fetchSumRechazosAnulaciones('reasignaciones',$inicio, $fin);
@@ -76,6 +92,23 @@ class Reportes extends My_Controller
 			$re_pacientes_agendados = $this->reportes->fetchSumPacientesAgendados('reasignaciones',$inicio, $fin);
 			$re_sin_cupo = $this->reportes->fetchSumSinCupo('reasignaciones',$inicio, $fin);
 
+		             //segunda instancia
+					$re_no_contestaron_2 = $this->reportes->fetchSumNoContestan('reasignaciones',$inicio, $fin,2);
+					$re_rechazos_anulaciones_2 = $this->reportes->fetchSumRechazosAnulaciones('reasignaciones',$inicio, $fin,2);
+					$re_n_erroneo_2 = $this->reportes->fetchSumErroneos('reasignaciones',$inicio, $fin,2);
+					$re_horas_ya_asignadas_2 = $this->reportes->fetchSumHorasYaAsignadas('reasignaciones',$inicio, $fin,2);
+					$re_pacientes_agendados_2 = $this->reportes->fetchSumPacientesAgendados('reasignaciones',$inicio, $fin,2);
+					$re_sin_cupo_2 = $this->reportes->fetchSumSinCupo('reasignaciones',$inicio, $fin,2);
+
+					//tercera instancia
+
+					$re_no_contestaron_3 = $this->reportes->fetchSumNoContestan('reasignaciones',$inicio, $fin,3);
+					$re_rechazos_anulaciones_3 = $this->reportes->fetchSumRechazosAnulaciones('reasignaciones',$inicio, $fin,3);
+					$re_n_erroneo_3 = $this->reportes->fetchSumErroneos('reasignaciones',$inicio, $fin,3);
+					$re_horas_ya_asignadas_3 = $this->reportes->fetchSumHorasYaAsignadas('reasignaciones',$inicio, $fin,3);
+					$re_pacientes_agendados_3 = $this->reportes->fetchSumPacientesAgendados('reasignaciones',$inicio, $fin,3);
+					$re_sin_cupo_3 = $this->reportes->fetchSumSinCupo('reasignaciones',$inicio, $fin,3);
+
 			//datos de confirmaciones
 			$conf_no_contestaron = $this->reportes->fetchSumNoContestan('confirmaciones',$inicio, $fin);
 			$conf_rechazos_anulaciones = $this->reportes->fetchSumRechazosAnulaciones('confirmaciones',$inicio, $fin);
@@ -83,6 +116,23 @@ class Reportes extends My_Controller
 			$conf_horas_ya_asignadas = $this->reportes->fetchSumHorasYaAsignadas('confirmaciones',$inicio, $fin);
 			$conf_confirmadas = $this->reportes->fetchSumConfirmadas('confirmaciones',$inicio, $fin);
 			$conf_reasignadas = $this->reportes->fetchSumReasignadas('confirmaciones',$inicio, $fin);
+
+					//segunda instancia
+					$conf_no_contestaron_2 = $this->reportes->fetchSumNoContestan('confirmaciones',$inicio, $fin, 2);
+					$conf_rechazos_anulaciones_2 = $this->reportes->fetchSumRechazosAnulaciones('confirmaciones',$inicio, $fin, 2);
+					$conf_n_erroneo_2 = $this->reportes->fetchSumErroneos('confirmaciones',$inicio, $fin, 2);
+					$conf_horas_ya_asignadas_2 = $this->reportes->fetchSumHorasYaAsignadas('confirmaciones',$inicio, $fin, 2);
+					$conf_confirmadas_2 = $this->reportes->fetchSumConfirmadas('confirmaciones',$inicio, $fin, 2);
+					$conf_reasignadas_2 = $this->reportes->fetchSumReasignadas('confirmaciones',$inicio, $fin, 2);
+
+					//tercera instancia
+					$conf_no_contestaron_3 = $this->reportes->fetchSumNoContestan('confirmaciones',$inicio, $fin, 3);
+					$conf_rechazos_anulaciones_3 = $this->reportes->fetchSumRechazosAnulaciones('confirmaciones',$inicio, $fin, 3);
+					$conf_n_erroneo_3 = $this->reportes->fetchSumErroneos('confirmaciones',$inicio, $fin, 3);
+					$conf_horas_ya_asignadas_3 = $this->reportes->fetchSumHorasYaAsignadas('confirmaciones',$inicio, $fin, 3);
+					$conf_confirmadas_3 = $this->reportes->fetchSumConfirmadas('confirmaciones',$inicio, $fin, 3);
+					$conf_reasignadas_3 = $this->reportes->fetchSumReasignadas('confirmaciones',$inicio, $fin, 3);
+
 
 
 
@@ -93,6 +143,22 @@ class Reportes extends My_Controller
 			$otros_horas_ya_asignadas = $this->reportes->fetchSumHorasYaAsignadas('otros',$inicio, $fin);
 			$otros_confirmadas = $this->reportes->fetchSumConfirmadas('otros',$inicio, $fin);
 			$otros_reasignadas = $this->reportes->fetchSumReasignadas('otros',$inicio, $fin);
+
+					//segunda instancia
+					$otros_no_contestaron_2 = $this->reportes->fetchSumNoContestan('otros',$inicio, $fin, 2);
+					$otros_rechazos_anulaciones_2 = $this->reportes->fetchSumRechazosAnulaciones('otros',$inicio, $fin, 2);
+					$otros_n_erroneo_2 = $this->reportes->fetchSumErroneos('otros',$inicio, $fin, 2);
+					$otros_horas_ya_asignadas_2 = $this->reportes->fetchSumHorasYaAsignadas('otros',$inicio, $fin, 2);
+					$otros_confirmadas_2 = $this->reportes->fetchSumConfirmadas('otros',$inicio, $fin, 2);
+					$otros_reasignadas_2 = $this->reportes->fetchSumReasignadas('otros',$inicio, $fin, 2);
+
+					//tercera instancia
+					$otros_no_contestaron_3 = $this->reportes->fetchSumNoContestan('otros',$inicio, $fin,3);
+					$otros_rechazos_anulaciones_3 = $this->reportes->fetchSumRechazosAnulaciones('otros',$inicio, $fin,3);
+					$otros_n_erroneo_3 = $this->reportes->fetchSumErroneos('otros',$inicio, $fin,3);
+					$otros_horas_ya_asignadas_3 = $this->reportes->fetchSumHorasYaAsignadas('otros',$inicio, $fin,3);
+					$otros_confirmadas_3 = $this->reportes->fetchSumConfirmadas('otros',$inicio, $fin,3);
+					$otros_reasignadas_3 = $this->reportes->fetchSumReasignadas('otros',$inicio, $fin,3);
 
 
 			//distribucion de reasignaciones
@@ -120,24 +186,89 @@ class Reportes extends My_Controller
 													'ag_n_erroneos' => $ag_n_erroneo,
 													'ag_horas_ya_asignadas' =>$ag_horas_ya_asignadas,
 													'ag_pacientes_agendados' => $ag_pacientes_agendados,
+													//segunda instancia
+													'ag_no_contestaron_2' => $ag_no_contestaron_2,
+													'ag_rechazos_anulaciones_2' => $ag_rechazos_anulaciones_2,
+													'ag_n_erroneos_2' => $ag_n_erroneo_2,
+													'ag_horas_ya_asignadas_2' =>$ag_horas_ya_asignadas_2,
+													'ag_pacientes_agendados_2' => $ag_pacientes_agendados_2,
+													//tercera instancia
+													'ag_no_contestaron_3' => $ag_no_contestaron_3,
+													'ag_rechazos_anulaciones_3' => $ag_rechazos_anulaciones_3,
+													'ag_n_erroneos_3' => $ag_n_erroneo_3,
+													'ag_horas_ya_asignadas_3' =>$ag_horas_ya_asignadas_3,
+													'ag_pacientes_agendados_3' => $ag_pacientes_agendados_3,
+
+
 													're_no_contestaron' => $re_no_contestaron,
 													're_rechazos_anulaciones' => $re_rechazos_anulaciones,
 													're_n_erroneos' => $re_n_erroneo,
 													're_horas_ya_asignadas' =>$re_horas_ya_asignadas,
 													're_pacientes_agendados' => $re_pacientes_agendados,
 													're_sin_cupo' => $re_sin_cupo,
+
+													're_no_contestaron_2' => $re_no_contestaron_2,
+													're_rechazos_anulaciones_2' => $re_rechazos_anulaciones_2,
+													're_n_erroneos_2' => $re_n_erroneo_2,
+													're_horas_ya_asignadas_2' =>$re_horas_ya_asignadas_2,
+													're_pacientes_agendados_2' => $re_pacientes_agendados_2,
+													're_sin_cupo_2' => $re_sin_cupo_2,
+
+
+													're_no_contestaron_3' => $re_no_contestaron_3,
+													're_rechazos_anulaciones_3' => $re_rechazos_anulaciones_3,
+													're_n_erroneos_3' => $re_n_erroneo_3,
+													're_horas_ya_asignadas_3' =>$re_horas_ya_asignadas_3,
+													're_pacientes_agendados_3' => $re_pacientes_agendados_3,
+													're_sin_cupo_3' => $re_sin_cupo_3,
+
 													'conf_no_contestaron' => $conf_no_contestaron,
 													'conf_rechazos_anulaciones' => $conf_rechazos_anulaciones,
 													'conf_n_erroneo' => $conf_n_erroneo,
 													'conf_horas_ya_asignadas' => $conf_horas_ya_asignadas,
 													'conf_confirmadas' => $conf_confirmadas,
 													'conf_reasignadas' => $conf_reasignadas,
+
+													'conf_no_contestaron_2' => $conf_no_contestaron_2,
+													'conf_rechazos_anulaciones_2' => $conf_rechazos_anulaciones_2,
+													'conf_n_erroneo_2' => $conf_n_erroneo_2,
+													'conf_horas_ya_asignadas_2' => $conf_horas_ya_asignadas_2,
+													'conf_confirmadas_2' => $conf_confirmadas_2,
+													'conf_reasignadas_2' => $conf_reasignadas_2,
+
+													'conf_no_contestaron_3' => $conf_no_contestaron_3,
+													'conf_rechazos_anulaciones_3' => $conf_rechazos_anulaciones_3,
+													'conf_n_erroneo_3' => $conf_n_erroneo_3,
+													'conf_horas_ya_asignadas_3' => $conf_horas_ya_asignadas_3,
+													'conf_confirmadas_3' => $conf_confirmadas_3,
+													'conf_reasignadas_3' => $conf_reasignadas_3,
+
+
+
 													'otros_no_contestaron' => $otros_no_contestaron,
 													'otros_rechazos_anulaciones' => $otros_rechazos_anulaciones,
 													'otros_n_erroneo' => $otros_n_erroneo,
 													'otros_horas_ya_asignadas' => $otros_horas_ya_asignadas,
 													'otros_confirmadas' => $otros_confirmadas,
 													'otros_reasignadas' => $otros_reasignadas,
+
+													'otros_no_contestaron_2' => $otros_no_contestaron_2,
+													'otros_rechazos_anulaciones_2' => $otros_rechazos_anulaciones_2,
+													'otros_n_erroneo_2' => $otros_n_erroneo_2,
+													'otros_horas_ya_asignadas_2' => $otros_horas_ya_asignadas_2,
+													'otros_confirmadas_2' => $otros_confirmadas_2,
+													'otros_reasignadas_2' => $otros_reasignadas_2,
+
+													'otros_no_contestaron_3' => $otros_no_contestaron_3,
+													'otros_rechazos_anulaciones_3' => $otros_rechazos_anulaciones_3,
+													'otros_n_erroneo_3' => $otros_n_erroneo_3,
+													'otros_horas_ya_asignadas_3' => $otros_horas_ya_asignadas_3,
+													'otros_confirmadas_3' => $otros_confirmadas_3,
+													'otros_reasignadas_3' => $otros_reasignadas_3,
+
+
+
+
 													'dist_reasignaciones' => $dist_reasignaciones,
 													'dist_agendamientos' => $dist_agendamientos,
 													'dist_reasignaciones_bar' => $dist_reasignaciones_bar,

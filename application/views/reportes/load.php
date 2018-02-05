@@ -46,7 +46,25 @@ $info_r_proced = $dist_reasignaciones[3];
 <div class="tab-content">
 	  <div id="home" class="tab-pane fade in active">
 	  	<h3>Gráficos</h3>
-				<div class="row">
+
+<!-- test -->
+
+<div class="panel panel-default">
+                        <div class="panel-heading">
+                            Gráficos
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">Visión General</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                           				<div class="row">
 	<div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -78,7 +96,7 @@ $info_r_proced = $dist_reasignaciones[3];
 </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top:10px;">
 	<div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -110,7 +128,163 @@ $info_r_proced = $dist_reasignaciones[3];
 </div>
 </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false">Pacientes gestionados en segunda instancia</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
+                                        <div class="panel-body">
+                                        	<div class="row">
+													<div class="col-lg-6">
+												                    <div class="panel panel-default">
+												                        <div class="panel-heading">
+												                           Pacientes gestionados agendadamientos
+												                        </div>
+												                        <!-- /.panel-heading -->
+												                        <div class="panel-body">
+												                           <div id="agendamientos_chart_2_inst"></div>
+												                        </div>
+												                        <!-- /.panel-body -->
+												                    </div>
+												                    <!-- /.panel -->
+												    </div>
+									<div class="col-lg-6">
+					                    <div class="panel panel-default">
+					                        <div class="panel-heading">
+					                           Pacientes gestionados reasignaciones
+					                        </div>
+					                        <!-- /.panel-heading -->
+					                        <div class="panel-body">
+					                           <div id="reasignaciones_chart_2_inst">
+					                           	
+					                           </div>
+					                        </div>
+					                        <!-- /.panel-body -->
+					                    </div>
+                    <!-- /.panel -->
+								</div>
+						</div>
 
+						 	<div class="row">
+													<div class="col-lg-6">
+												                    <div class="panel panel-default">
+												                        <div class="panel-heading">
+												                           Pacientes gestionados confirmaciones
+												                        </div>
+												                        <!-- /.panel-heading -->
+												                        <div class="panel-body">
+												                           <div id="confirmaciones_chart_2_inst"></div>
+												                        </div>
+												                        <!-- /.panel-body -->
+												                    </div>
+												                    <!-- /.panel -->
+												    </div>
+									<div class="col-lg-6">
+					                    <div class="panel panel-default">
+					                        <div class="panel-heading">
+					                           Pacientes gestionados otros
+					                        </div>
+					                        <!-- /.panel-heading -->
+					                        <div class="panel-body">
+					                           <div id="otros_chart_2_inst">
+					                           	
+					                           </div>
+					                        </div>
+					                        <!-- /.panel-body -->
+					                    </div>
+                    <!-- /.panel -->
+								</div>
+						</div>
+
+
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">Tercera o mas instancias</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
+                                        <div class="panel-body">
+
+                                        		 	<div class="row">
+													<div class="col-lg-6">
+												                    <div class="panel panel-default">
+												                        <div class="panel-heading">
+												                           Pacientes gestionados Agendamientos
+												                        </div>
+												                        <!-- /.panel-heading -->
+												                        <div class="panel-body">
+												                           <div id="agendamientos_chart_3_inst"></div>
+												                        </div>
+												                        <!-- /.panel-body -->
+												                    </div>
+												                    <!-- /.panel -->
+												    </div>
+									<div class="col-lg-6">
+					                    <div class="panel panel-default">
+					                        <div class="panel-heading">
+					                           Pacientes gestionados Reasignaciones
+					                        </div>
+					                        <!-- /.panel-heading -->
+					                        <div class="panel-body">
+					                           <div id="reasignaciones_chart_3_inst">
+					                           	
+					                           </div>
+					                        </div>
+					                        <!-- /.panel-body -->
+					                    </div>
+                    <!-- /.panel -->
+								</div>
+						</div>
+                                            	 	<div class="row">
+													<div class="col-lg-6">
+												                    <div class="panel panel-default">
+												                        <div class="panel-heading">
+												                           Pacientes gestionados confirmaciones
+												                        </div>
+												                        <!-- /.panel-heading -->
+												                        <div class="panel-body">
+												                           <div id="confirmaciones_chart_3_inst"></div>
+												                        </div>
+												                        <!-- /.panel-body -->
+												                    </div>
+												                    <!-- /.panel -->
+												    </div>
+									<div class="col-lg-6">
+					                    <div class="panel panel-default">
+					                        <div class="panel-heading">
+					                           Pacientes gestionados otros
+					                        </div>
+					                        <!-- /.panel-heading -->
+					                        <div class="panel-body">
+					                           <div id="otros_chart_3_inst">
+					                           	
+					                           </div>
+					                        </div>
+					                        <!-- /.panel-body -->
+					                    </div>
+                    <!-- /.panel -->
+								</div>
+						</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+
+<!-- fin test -->
 
 
 
@@ -848,6 +1022,49 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
     		});
        options.title ="Agendamientos";
        agendamientos_piechart.draw(data, options);
+
+
+       //segunda instancia
+
+       var ag_2_inst = new google.visualization.DataTable();
+        ag_2_inst.addColumn('string', '');
+        ag_2_inst.addColumn('number', '');
+        ag_2_inst.addRows([
+           [<?php echo "'Agendados (".$ag_pacientes_agendados_2->total.")'"; ?>,<?php echo $ag_pacientes_agendados_2->total; ?>],
+            [<?php echo "'No contestaron (".$ag_no_contestaron_2->total.")'"; ?>,<?php echo $ag_no_contestaron_2->total; ?>],
+             [<?php echo "'Rechazos/Anul (".$ag_rechazos_anulaciones_2->total.")'"; ?>,<?php echo $ag_rechazos_anulaciones_2->total; ?>],
+              [<?php echo "'Num erróneos (".$ag_n_erroneos_2->total.")'"; ?>,<?php echo $ag_n_erroneos_2->total; ?>],
+               [<?php echo "'h ya asignadas (".$ag_horas_ya_asignadas_2->total.")'"; ?>,<?php echo $ag_horas_ya_asignadas_2->total; ?>]
+        ]);
+        var agendamientos_2_piechart = new google.visualization.PieChart(document.getElementById('agendamientos_chart_2_inst'));
+         google.visualization.events.addListener(agendamientos_2_piechart, 'ready', function () {
+     	   // document.getElementById('info_agendamientos_chart').innerHTML = '<img class="img-responsive" src="' + agendamientos_piechart.getImageURI() + '">';
+    		});
+       options.title ="Agendamientos";
+       agendamientos_2_piechart.draw(ag_2_inst, options);
+
+       //fin segunda instancia
+
+
+       //tercera instancia agendamientos
+              var ag_3_inst = new google.visualization.DataTable();
+        ag_3_inst.addColumn('string', '');
+        ag_3_inst.addColumn('number', '');
+        ag_3_inst.addRows([
+           [<?php echo "'Agendados (".$ag_pacientes_agendados_3->total.")'"; ?>,<?php echo $ag_pacientes_agendados_3->total; ?>],
+            [<?php echo "'No contestaron (".$ag_no_contestaron_3->total.")'"; ?>,<?php echo $ag_no_contestaron_3->total; ?>],
+             [<?php echo "'Rechazos/Anul (".$ag_rechazos_anulaciones_3->total.")'"; ?>,<?php echo $ag_rechazos_anulaciones_3->total; ?>],
+              [<?php echo "'Num erróneos (".$ag_n_erroneos_3->total.")'"; ?>,<?php echo $ag_n_erroneos_3->total; ?>],
+               [<?php echo "'h ya asignadas (".$ag_horas_ya_asignadas_3->total.")'"; ?>,<?php echo $ag_horas_ya_asignadas_3->total; ?>]
+        ]);
+        var agendamientos_3_piechart = new google.visualization.PieChart(document.getElementById('agendamientos_chart_3_inst'));
+         google.visualization.events.addListener(agendamientos_3_piechart, 'ready', function () {
+     	   // document.getElementById('info_agendamientos_chart').innerHTML = '<img class="img-responsive" src="' + agendamientos_piechart.getImageURI() + '">';
+    		});
+       options.title ="Agendamientos";
+       agendamientos_3_piechart.draw(ag_3_inst, options);
+
+       //fin tercera instancia
        
 
         var data2 = new google.visualization.DataTable();
@@ -869,6 +1086,54 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         options.title="Reasignaciones";
         reasignaciones_piechart.draw(data2, options);
 
+
+        //segunda instancia reasignaciones
+
+         var re_2_inst = new google.visualization.DataTable();
+        re_2_inst.addColumn('string', '');
+        re_2_inst.addColumn('number', '');
+        re_2_inst.addRows([
+          [<?php echo "'Agendados (".$re_pacientes_agendados_2->total.")'"; ?>,<?php echo $re_pacientes_agendados_2->total; ?>],
+          [<?php echo "'No contestaron (".$re_no_contestaron_2->total.")'"; ?>,<?php echo $re_no_contestaron_2->total; ?>],
+          [<?php echo "'Rechazos/Anulaciones (".$re_rechazos_anulaciones_2->total.")'"; ?>,<?php echo $re_rechazos_anulaciones_2->total; ?>],
+           [<?php echo "'Num erróneos (".$re_n_erroneos_2->total.")'"; ?>,<?php echo $re_n_erroneos_2->total; ?>],
+            [<?php echo "'Horas ya asignadas (".$re_horas_ya_asignadas_2->total.")'"; ?>,<?php echo $re_horas_ya_asignadas_2->total; ?>],
+            	 [<?php echo "'Sin cupo (".$re_sin_cupo_2->total.")'"; ?>,<?php echo $re_sin_cupo_2->total; ?>]
+        ]);
+
+        var reasignaciones_2_piechart = new google.visualization.PieChart(document.getElementById('reasignaciones_chart_2_inst'));
+        google.visualization.events.addListener(reasignaciones_2_piechart, 'ready', function () {
+     	    // document.getElementById('info_reasignaciones_chart').innerHTML = '<img class="img-responsive" src="' + reasignaciones_piechart.getImageURI() + '">';
+    		});
+        options.title="Reasignaciones";
+        reasignaciones_2_piechart.draw(re_2_inst, options);
+
+        //fin segunda intancia reasignaciones
+
+          //tercera instancia reasignaciones
+
+         var re_3_inst = new google.visualization.DataTable();
+        re_3_inst.addColumn('string', '');
+        re_3_inst.addColumn('number', '');
+        re_3_inst.addRows([
+          [<?php echo "'Agendados (".$re_pacientes_agendados_3->total.")'"; ?>,<?php echo $re_pacientes_agendados_3->total; ?>],
+          [<?php echo "'No contestaron (".$re_no_contestaron_3->total.")'"; ?>,<?php echo $re_no_contestaron_3->total; ?>],
+          [<?php echo "'Rechazos/Anulaciones (".$re_rechazos_anulaciones_3->total.")'"; ?>,<?php echo $re_rechazos_anulaciones_3->total; ?>],
+           [<?php echo "'Num erróneos (".$re_n_erroneos_3->total.")'"; ?>,<?php echo $re_n_erroneos_3->total; ?>],
+            [<?php echo "'Horas ya asignadas (".$re_horas_ya_asignadas_3->total.")'"; ?>,<?php echo $re_horas_ya_asignadas_3->total; ?>],
+            	 [<?php echo "'Sin cupo (".$re_sin_cupo_3->total.")'"; ?>,<?php echo $re_sin_cupo_3->total; ?>]
+        ]);
+
+        var reasignaciones_3_piechart = new google.visualization.PieChart(document.getElementById('reasignaciones_chart_3_inst'));
+        google.visualization.events.addListener(reasignaciones_3_piechart, 'ready', function () {
+     	    // document.getElementById('info_reasignaciones_chart').innerHTML = '<img class="img-responsive" src="' + reasignaciones_piechart.getImageURI() + '">';
+    		});
+        options.title="Reasignaciones";
+        reasignaciones_3_piechart.draw(re_3_inst, options);
+
+        //fin tercera intancia reasignaciones
+
+      
         var confirmaciones = new google.visualization.DataTable();
         confirmaciones.addColumn('string', '');
         confirmaciones.addColumn('number', '');
@@ -889,6 +1154,55 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
         options.title = 'Confirmaciones';
        	confirmaciones_piechart.draw(confirmaciones, options);
 
+       	
+       	//segunda instancia  confirmaciones
+       	var confirmaciones_2 = new google.visualization.DataTable();
+        confirmaciones_2.addColumn('string', '');
+        confirmaciones_2.addColumn('number', '');
+        confirmaciones_2.addRows([
+        	[<?php echo "'No contestaron (".$conf_no_contestaron_2->total.")'"; ?>,<?php echo $conf_no_contestaron_2->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$conf_rechazos_anulaciones_2->total.")'"; ?>,<?php echo $conf_rechazos_anulaciones_2->total; ?>],
+ 			[<?php echo "'Erroneos (".$conf_n_erroneo_2->total.")'"; ?>,<?php echo $conf_n_erroneo_2->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$conf_horas_ya_asignadas_2->total.")'"; ?>,<?php echo $conf_horas_ya_asignadas_2->total; ?>],
+ 			[<?php echo "'Confirmadas (".$conf_confirmadas_2->total.")'"; ?>,<?php echo $conf_confirmadas_2->total; ?>],
+        	[<?php echo "'Reasignadas (".$conf_reasignadas_2->total.")'"; ?>,<?php echo $conf_reasignadas_2->total; ?>],
+
+        	]);
+
+         var confirmaciones_2_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart_2_inst'));
+         google.visualization.events.addListener(confirmaciones_2_piechart, 'ready', function () {
+     	    // document.getElementById('info_confirmaciones_chart').innerHTML = '<img class="img-responsive" src="' + confirmaciones_piechart.getImageURI() + '">';
+    		});
+        options.title = 'Confirmaciones';
+       	confirmaciones_2_piechart.draw(confirmaciones_2, options);
+       	//fin segunda instancia confirmaciones
+
+
+
+       //tercera instancia  confirmaciones
+       	var confirmaciones_3 = new google.visualization.DataTable();
+        confirmaciones_3.addColumn('string', '');
+        confirmaciones_3.addColumn('number', '');
+        confirmaciones_3.addRows([
+        	[<?php echo "'No contestaron (".$conf_no_contestaron_3->total.")'"; ?>,<?php echo $conf_no_contestaron_3->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$conf_rechazos_anulaciones_3->total.")'"; ?>,<?php echo $conf_rechazos_anulaciones_3->total; ?>],
+ 			[<?php echo "'Erroneos (".$conf_n_erroneo_3->total.")'"; ?>,<?php echo $conf_n_erroneo_3->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$conf_horas_ya_asignadas_3->total.")'"; ?>,<?php echo $conf_horas_ya_asignadas_3->total; ?>],
+ 			[<?php echo "'Confirmadas (".$conf_confirmadas_3->total.")'"; ?>,<?php echo $conf_confirmadas_3->total; ?>],
+        	[<?php echo "'Reasignadas (".$conf_reasignadas_3->total.")'"; ?>,<?php echo $conf_reasignadas_3->total; ?>],
+
+        	]);
+
+         var confirmaciones_3_piechart = new google.visualization.PieChart(document.getElementById('confirmaciones_chart_3_inst'));
+         google.visualization.events.addListener(confirmaciones_3_piechart, 'ready', function () {
+     	    // document.getElementById('info_confirmaciones_chart').innerHTML = '<img class="img-responsive" src="' + confirmaciones_piechart.getImageURI() + '">';
+    		});
+        options.title = 'Confirmaciones';
+       	confirmaciones_3_piechart.draw(confirmaciones_3, options);
+       	//fin tercera instancia confirmaciones
+
+
+
 
         var otros = new google.visualization.DataTable();
         otros.addColumn('string', '');
@@ -906,6 +1220,51 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
          var otros_piechart = new google.visualization.PieChart(document.getElementById('otros_chart'));
         options.title ="Otros";
        	otros_piechart.draw(otros, options);
+
+
+       	//segunda instancia otros
+
+       	var otros_2 = new google.visualization.DataTable();
+        otros_2.addColumn('string', '');
+        otros_2.addColumn('number', '');
+        otros_2.addRows([
+        	[<?php echo "'No contestaron (".$otros_no_contestaron_2->total.")'"; ?>,<?php echo $otros_no_contestaron_2->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$otros_rechazos_anulaciones_2->total.")'"; ?>,<?php echo $otros_rechazos_anulaciones_2->total; ?>],
+ 			[<?php echo "'Erroneos (".$otros_n_erroneo_2->total.")'"; ?>,<?php echo $otros_n_erroneo_2->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$otros_horas_ya_asignadas_2->total.")'"; ?>,<?php echo $otros_horas_ya_asignadas_2->total; ?>],
+ 			[<?php echo "'Confirmadas (".$otros_confirmadas_2->total.")'"; ?>,<?php echo $otros_confirmadas_2->total; ?>],
+        	[<?php echo "'Reasignadas (".$otros_reasignadas_2->total.")'"; ?>,<?php echo $otros_reasignadas_2->total; ?>]
+
+        	]);
+
+         var otros_2_piechart = new google.visualization.PieChart(document.getElementById('otros_chart_2_inst'));
+        options.title ="Otros";
+       	otros_2_piechart.draw(otros_2, options);
+
+       	//fin segunda instancia otros
+
+
+       	//tercera instancia otros
+
+       	var otros_3 = new google.visualization.DataTable();
+        otros_3.addColumn('string', '');
+        otros_3.addColumn('number', '');
+        otros_3.addRows([
+        	[<?php echo "'No contestaron (".$otros_no_contestaron_3->total.")'"; ?>,<?php echo $otros_no_contestaron_3->total; ?>],
+ 			[<?php echo "'Rechazos/Anulaciones (".$otros_rechazos_anulaciones_3->total.")'"; ?>,<?php echo $otros_rechazos_anulaciones_3->total; ?>],
+ 			[<?php echo "'Erroneos (".$otros_n_erroneo_3->total.")'"; ?>,<?php echo $otros_n_erroneo_3->total; ?>],
+ 			[<?php echo "'Horas ya asignadas (".$otros_horas_ya_asignadas_3->total.")'"; ?>,<?php echo $otros_horas_ya_asignadas_3->total; ?>],
+ 			[<?php echo "'Confirmadas (".$otros_confirmadas_3->total.")'"; ?>,<?php echo $otros_confirmadas_3->total; ?>],
+        	[<?php echo "'Reasignadas (".$otros_reasignadas_3->total.")'"; ?>,<?php echo $otros_reasignadas_3->total; ?>]
+
+        	]);
+
+         var otros_3_piechart = new google.visualization.PieChart(document.getElementById('otros_chart_3_inst'));
+        options.title ="Otros";
+       	otros_3_piechart.draw(otros_3, options);
+
+       	//fin tercera instancia otros
+
 
 
 
