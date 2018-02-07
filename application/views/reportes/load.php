@@ -959,21 +959,24 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 	       						bold: true,    // true or false
 	       						italic: false   // true of false
    					 },
-   					 chartArea:{left:'0%',top:'20%',width:"100%",height:"60%"},
+   					 chartArea:{left:'0%',top:'20%',width:"80%",height:"60%"},
                        tooltip: {
                        			text : 'value'
                        },
                        legend: {
+                       	        maxLines: 2,
         			  	        position: 'right',
         			  			alignment:'top',
 	      						textStyle: {
 	        						fontName: 'monospace',
-	        						fontSize: 12
+	        						fontSize: 11
 	      						}						
 	   						 },
 	   				 	pieSliceText: 'value',
 	   				 	pieSliceTextStyle: {
-	   				 	fontSize:12
+	   				 	fontSize:12,
+	   				 	color:'#000',
+	   				 	bold:true
 	   				 				}
 
 	   				 			};
@@ -987,6 +990,19 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 	       						bold: true,    // true or false
 	       						italic: false   // true of false
    					 			},
+   					 			annotations: {
+    								alwaysOutside: true,
+    								 textStyle: {
+
+ 												//fontName: 'monospace',
+  												fontSize: 12,
+  												bold: true,
+  												italic: false,
+  												color: '#000',     // The color of the text.
+  												//auraColor: '#d799ae', // The color of the text outline.
+  												//opacity: 0.8          // The transparency of the text.
+										}
+								},
 	   							width: '100%',
                 				height:300,
                 				bar: {groupWidth: '50%'},
