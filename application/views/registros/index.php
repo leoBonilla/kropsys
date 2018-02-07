@@ -97,7 +97,7 @@
             </div>
 
            <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
+                    <div class="panel panel-yellow animated tada" style="animation-delay 2s; animation-duration: 3s;">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
