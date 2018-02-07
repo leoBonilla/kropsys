@@ -227,7 +227,7 @@
                         </li>
 
                       <li>
-                            <a href="#"><i class="fa fa-calendar fa-fw"></i> Cupos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-ticket fa-fw"></i> Cupos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo base_url('cupos/listado'); ?>">Listado</a>
