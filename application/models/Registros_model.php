@@ -190,6 +190,18 @@ class Registros_model extends CI_Model {
               }
                  return false;
       }
+
+      public function findCupos($id){
+            $this->db->select('*');
+              $this->db->from('cupos_view');
+              $this->db->where('id',$id);
+              $this->db->limit($this->limit);
+              $query = $this->db->get();
+              if($query->num_rows() > 0){
+                return $query->row() ;
+              }
+                 return false;
+      }
    
 
       public function profesionalesByEspecialidad($id){
@@ -225,6 +237,10 @@ class Registros_model extends CI_Model {
         }
         if($tipo == 'otros' ){
           return $this->findOtros($id);
+        }
+
+        if($tipo == 'cupos'){
+          return $this->findCupos($id);
         }
       }
 

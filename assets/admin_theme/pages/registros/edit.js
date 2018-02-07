@@ -79,4 +79,14 @@ var form =  $('#edit-form').validate({ rules:{
  }
 	});
 
+$('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true,
+        todayHighlight: true,
+        title: 'Seleccione fecha',
+        daysOfWeekDisabled: [0, 6],
+        weekStart: 1
+    });
+
 });

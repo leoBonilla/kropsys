@@ -63,7 +63,7 @@ class Registros extends MY_Controller {
     public function edit($data = null){
       if($this->require_min_level(EJECUTIVE_LEVEL)){
         if(isset($data)){
-          $validEdit = array('agendamientos','reasignaciones','confirmaciones','otros','sms','llamadas'); 
+          $validEdit = array('agendamientos','reasignaciones','confirmaciones','otros','sms','llamadas','cupos'); 
           $data  = explode('-',$data);
           if(in_array($data[0], $validEdit)){
             //$tipo = array_search($data[0],$validEdit);
@@ -720,6 +720,89 @@ public function listar_confirmaciones(){
             }
           }
 
+     public function listar_cupos(){
+         if($this->require_min_level(EJECUTIVE_LEVEL)){
+          $inicio = '';
+          $fin= '';
+          $users = null;
+            if($this->input->post()){
+
+                $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
+                $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
+                $users = ($this->input->post('userId') != null) ? $this->input->post('userId') : '';
+                
+               $this->load->model('datatables/cupos_model', 'cupos');
+
+              }
+      if($this->auth_level < ADMIN_LEVEL){
+         $where = "id_usuario = ". $this->auth_user_id;
+          if($inicio != '' and $fin != ''){
+            $where .= " AND ((date(fecha_registro) BETWEEN '".$inicio."' AND '".$fin."')) ";
+          }elseif($inicio != ''){
+            $where .= " AND ((date(fecha_registro) >= '".$inicio."')) ";
+          }elseif($fin != ''){
+            $where .= " AND ((date(fecha_registro) <= '".$fin."')) ";
+          }
+          
+      }else{
+        $where = "";
+        if($inicio != '' and $fin != ''){
+            $where .= " ((date(fecha_registro) BETWEEN '".$inicio."' AND '".$fin."')) ";
+          }elseif($inicio != ''){
+            $where .= " ((date(fecha_registro) >= '".$inicio."')) ";
+          }elseif($fin != ''){
+            $where .= " ((date(fecha_registro) <= '".$fin."')) ";
+          }
+          
+         if(is_array($users)){
+              $in = '';
+              foreach ($users as $id) {
+                if($id != '')
+                $in = $in .' '.$id.',';
+              }
+              $in = substr($in, 0, -1);
+
+                         if($where != ''){
+                         $where = $where. " AND user_id IN (".$in.")"; 
+                       }else{
+                       $where = $where. " user_id IN (".$in.")"; 
+                       }
+               }
+
+
+
+      }
+     
+        $list = $this->cupos->get_datatables($where);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $fila) {
+          //var_dump($tareas);
+            $no++;
+            $row = array();
+            $row[] = $fila->especialidad;
+            $row[] = $fila->profesional;
+            $row[] = $fila->fecha;
+            $row[] = $fila->cupos;
+            $row[] = $fila->observaciones;
+            $row[] = $fila->fecha_registro;
+
+             $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/cupos-'.$fila->id)."'>Editar</a>";
+ 
+ 
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->cupos->count_all($where),
+                        "recordsFiltered" => $this->cupos->count_filtered($where),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+            }
+          }
 
 
 
@@ -1026,11 +1109,22 @@ public function editarRegistro(){
               $data['hora_ya_asignada'] = $this->input->post('h_y_asignadas');
             }
 
+            if($tipo == 'cupos'){
+              $data = array();
+              $data['id_especialidad'] = $this->input->post('especialidad');
+              $data['id_profesional'] = $this->input->post('profesional');
+              $data['cupos'] = $this->input->post('cupos');
+              $data['fecha'] = datepicker_to_mysql($this->input->post('fecha'));
+              $data['observaciones'] = $this->input->post('observaciones');
+              $data['actualizada'] =  date("Y-m-d H:i:s");
+            }
+
 
 
 
             $this->load->model('registros_model');
             if($this->registros_model->update($tipo,$id, $data)){
+
               echo json_encode(array('result' => true, 'message' => 'DATOS ACTUALIZADOS CORRECTAMENTE'));
             }else{
               echo json_encode(array('result' => false, 'message' => 'HUBO UN ERROR AL INTENTAR ACTUALIZAR LOS DATOS'));
@@ -1039,4 +1133,42 @@ public function editarRegistro(){
   }
 }
 		
+public function cupos(){
+        if($this->require_min_level(EJECUTIVE_LEVEL)){
+           $this->load->model('global_model');
+           $users = $this->global_model->getAllUsers();
+       $css =  array(
+                'vendor/datatables-plugins/dataTables.bootstrap.css',
+                'vendor/datatables-responsive/dataTables.responsive.css',
+                'custom.css'
+
+              );
+
+             $scripts = array( 
+                'vendor/datatables/js/jquery.dataTables.min.js',
+               'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+               'vendor/datatables-responsive/dataTables.responsive.min.js',
+               'vendor/datatables-responsive/responsive.bootstrap.min.js',
+               //buttons js
+               'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+               'vendor/datatables-plugins/buttons.flash.min.js',
+               'vendor/datatables-plugins/jszip.min.js',
+               'vendor/datatables-plugins/pdfmake.min.js',
+               'vendor/datatables-plugins/vfs_fonts.js',
+               'vendor/datatables-plugins/buttons.html5.min.js',
+               'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'pages/registros/cupos.js'
+               );
+      $this->template->set('title', 'Cupos');
+      $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
+      $this->template->set('page_header', 'Mis registros | Cupos');
+      $this->template->set('css', $css);
+      $this->template->set('scripts', $scripts);
+      $this->template->load('default_layout', 'contents' , 'registros/cupos', array('users' => $users));
+      }
+}
+
+
 }
