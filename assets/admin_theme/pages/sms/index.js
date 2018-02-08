@@ -1,5 +1,5 @@
-        $(document).ready(function(){
-            $('#form').validate({
+$(document).ready(function(){
+           var form =  $('#form').validate({
                  onkeyup: false,
                  rules:{
                      celular: {
@@ -39,11 +39,7 @@
                             }
                         }
              });
-
-
-        });
-        
-            $('#select-especialidad').on('changed.bs.select',function(e){
+$('#select-especialidad').on('changed.bs.select',function(e){
                  var selector = $(this);
                  $.ajax({
                         url : BASE_URL +'/seleccion/profesionales',
@@ -66,6 +62,36 @@
                             
                         }});
             });
+$('.datepicker').mask('00/00/0000');
+$('.timepicker').mask('00:00');
+$('.timepicker').clockpicker({
+        default: 'now',
+        donetext: 'OK',
+        autoclose: true,
+        placement: 'left',
+    });
+$('.datepicker').datepicker({
+     format: 'dd/mm/yyyy',
+                language: 'es',
+                autoclose:true,
+                todayHighlight: true,
+                title: 'Seleccione fecha',
+                daysOfWeekDisabled: [0,6],
+                weekStart: 1
+});
+
+$('#btn-reset').on('click', function(){
+  $('.selectpicker').val('');
+  $('.selectpicker').selectpicker("refresh");
+  form.resetForm();
+});
+
+
+
+
+        });
+        
+
         
             jQuery.extend(jQuery.validator.messages, {
                                 required: "Este campo es obligatorio.",
@@ -87,22 +113,5 @@
                                 min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
                 });
 
-      $('.datepicker').mask('00/00/0000');
-$('.timepicker').mask('00:00');
-$('.timepicker').clockpicker({
-        default: 'now',
-        donetext: 'OK',
-        autoclose: true,
-        placement: 'left',
-    });
-$('.datepicker').datepicker({
-     format: 'dd/mm/yyyy',
-                language: 'es',
-                autoclose:true,
-                todayHighlight: true,
-                title: 'Seleccione fecha',
-                daysOfWeekDisabled: [0,6],
-                weekStart: 1
-});
 
 

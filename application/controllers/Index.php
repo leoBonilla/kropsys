@@ -46,6 +46,7 @@ class Index extends MY_Controller {
 			$this->template->set('page_header', 'Enviar SMS');
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
+			 $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/sms').'"><i class="fa  fa-paper-plane  "></i> Mis SMS</a>');
 			$this->template->load('default_layout', 'contents' , 'sms/index', array('locations'=> $locations, 'specialties' => $specialties));
 		}
 	}

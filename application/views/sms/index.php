@@ -4,8 +4,7 @@
             <div class="row">
              <div class="col-md-4 form-group">
             <label for="especialidad">ESPECIALIDAD</label>
-            <select name="especialidad" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required" id="select-especialidad">
-            <option value="">ESPECIALIDAD</option>
+            <select name="especialidad" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required" id="select-especialidad" data-title="seleccione especialidad">
                 <?php 
                   foreach($specialties as $row){ ?>
                   <option value="<?php echo $row->id; ?>"><?php echo $row->especialidad; ?></option>
@@ -17,9 +16,7 @@
 
               <div class="col-md-4 form-group">
             <label for="profesional">PROFESIONAL</label>
-            <select name="profesional" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required" id="select-profesional">
-            <option value="">PROFESIONAL</option>
-
+            <select name="profesional" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required" id="select-profesional" data-title="seleccione profesional">
                 </select>
             </div>
 <!-- 
@@ -66,7 +63,7 @@
             </div>
 
             <div class="col-md-4 form-group">
-                <button type="submit" class="btn btn-success" id="submit-btn">Enviar</button>  <input type="reset" class="btn btn-default" value="Limpiar" />
+                <button type="submit" class="btn btn-success" id="submit-btn">Enviar</button>  <input type="reset" class="btn btn-default" id="btn-reset" value="Limpiar" />
             </div>
             </div>
 
