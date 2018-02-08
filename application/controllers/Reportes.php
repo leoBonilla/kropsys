@@ -176,6 +176,8 @@ class Reportes extends My_Controller
 			$top_p_otros =$this->reportes->topProfesionales('otros_view',$inicio,$fin);
 			$reasignacionesPorProfesional = $this->reportes->reasignacionesPorProfesional($inicio,$fin);
 
+			$es_sin_cupo = $this->reportes->especialidadesSinCupo($inicio,$fin);
+
 
 			$rea_por_especialidad = $this->reportes->reasignacionPorEspecialidad($inicio,$fin);
 
@@ -281,7 +283,10 @@ class Reportes extends My_Controller
 													'top_p_otros' => $top_p_otros,
 													'rea_por_especialidad' => $rea_por_especialidad,
 													'rea_por_profesional'  => $reasignacionesPorProfesional,
-													'periodo' => $fecha
+													'periodo' => $fecha,
+													'es_sin_cupo' => $es_sin_cupo,
+													'inicio' => $inicio,
+													'fin' => $fin
 
 
 		));

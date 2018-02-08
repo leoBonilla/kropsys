@@ -13,6 +13,8 @@ $info_r_ingreso = $dist_reasignaciones[0];
 $info_r_examen = $dist_reasignaciones[1];
 $info_r_control = $dist_reasignaciones[2];
 $info_r_proced = $dist_reasignaciones[3];
+
+
 		
 		
  ?>
@@ -924,6 +926,52 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 						<td td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $row->total; ?></td>
 
 					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<br>
+		<p>En estos cuadros se muestran la totalidad de profesionales, ordenados de mayor a menor según la cantidad de reasignaciones realizadas en el período</p>
+    		</div>
+    	</div>
+    </div>
+
+       <div class="row">
+    	<div class="col-md-8 col-md-offset-2" >
+    		<div id="reasignaciones_por_profesional">
+    			<h3 style="font-family: arial black; color: #5E527C;">Especialidades sin cupo</h3>
+    	<table style="border-collapse: collapse;border:1px solid black;width: 100%;">
+		<thead>
+				<tr>
+				<th  td style="border:1px solid #ddd;height: 20px;padding-left: 5px;background-color: #4CAF50;color: white;">Especialidad</th>
+				<th  td style="border:1px solid #ddd;height: 20px;padding-left: 5px;background-color: #4CAF50;color: white;">Nº Pacientes</th>
+
+			</tr>
+		</thead>
+			<tbody>
+				<?php foreach ($es_sin_cupo as $row) : ?>
+					<tr><td  td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">
+						<span style="font-weight: bold;"><?php echo $row->especialidad; ?> </span></td>
+						<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $row->total; ?>
+												
+
+						</td>
+
+					</tr>
+					  <?php $prof = $this->db->query("select id_medico, profesional, especialidad, sum(sin_cupo) as total, id_especialidad from reasignaciones_view where (sin_cupo > 0 and date(fecha) between '".$inicio."' and '".$fin."' and id_especialidad = ".$row->id_especialidad." ) group by id_medico order by total desc;")->result(); 		
+
+							?>
+
+					 <?php foreach($prof as $p) :?>
+					 <tr>
+					 	<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">&emsp;
+					 		<?php echo $p->profesional; ?>
+					 	</td>
+					 	<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $p->total; ?>
+												
+
+						</td>
+					 </tr>
+					 <?php endforeach; ?>
 				<?php endforeach; ?>
 			</tbody>
 		</table>

@@ -245,6 +245,21 @@ group by p.id;";
 	}
 
 
+	public function especialidadesSinCupo($inicio,$fin){
+		$sql = "select especialidad, sum(sin_cupo) as total, id_especialidad from reasignaciones_view where sin_cupo > 0 and date(fecha) between '".$inicio."' and '".$fin."' group by id_especialidad ;";
+
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function cuposPorDoctorEspecialidad($inicio,$fin,$espe){
+		$sql = "select id_medico, profesional, especialidad, sum(sin_cupo) as total, id_especialidad from reasignaciones_view where (sin_cupo > 0 and date(fecha) between '".$inicio."' and '".$fin."' and id_especialidad = ".$espe." ) group by id_medico order by total desc;";
+
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+
 
 
 	
