@@ -764,7 +764,7 @@ $info_r_proced = $dist_reasignaciones[3];
       				<img  class="img-responsive img-thumbnail" src="<?php echo base_url('assets/word/img_portada_.jpg'); ?>" alt="" >
       			</div>
       			<div  style="text-align:right;margin-top:280px;">
-      				<p style="text-align:right;font-family:arial;font-size:20px;color:#5E527C;padding:0px;margin:0px;">Sergio Ulloa Valdevenito</p>
+      				<p style="text-align:right;font-family:arial;font-size:20px;color:#5E527C;padding:0px;margin:0px;">Sergio Ulloa Valdebenito</p>
       				<p style="text-align:right;font-family:arial;font-size:20px;color:#5E527C;padding:0px;margin:0px;">Gerente General</p>
       				<!-- <ul style="float: right;list-style-type: none;">
       					<li style="list-style-type: none;">Sergio Ulloa Valdebenito</li>
@@ -976,7 +976,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 			</tbody>
 		</table>
 		<br>
-		<p>En estos cuadros se muestran la totalidad de profesionales, ordenados de mayor a menor según la cantidad de reasignaciones realizadas en el período</p>
+		<p>En este cuadro, se presentan las especialidades y profesionales que no contaban con cupos disponibles en algún momento del período</p>
     		</div>
     	</div>
     </div>
