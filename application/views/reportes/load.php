@@ -948,10 +948,17 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 			</tr>
 		</thead>
 			<tbody>
+				<?php 
+				$total = 0; 
+				$c_prof = 0;
+				$c_esp = count($es_sin_cupo);
+				 ?>
 				<?php foreach ($es_sin_cupo as $row) : ?>
-					<tr><td  td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">
+					<tr><td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">
 						<span style="font-weight: bold;"><?php echo $row->especialidad; ?> </span></td>
-						<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $row->total; ?>
+						<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $row->total; 
+						$total = $total + $row->total;
+						?>
 												
 
 						</td>
@@ -962,6 +969,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 							?>
 
 					 <?php foreach($prof as $p) :?>
+					 	     <?php $c_prof++; ?>
 					 <tr>
 					 	<td style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">&emsp;
 					 		<?php echo $p->profesional; ?>
@@ -973,10 +981,17 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 					 </tr>
 					 <?php endforeach; ?>
 				<?php endforeach; ?>
+
 			</tbody>
+			<tfoot>
+				<tr>
+					<th style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;">TOTAL SIN CUPO</th>
+					<th style="border:1px solid #ddd;height: 20px;font-size:11px; padding-right:5px; padding-left: 5px;"><?php echo $total ?></th>
+				</tr>
+			</tfoot>
 		</table>
 		<br>
-		<p>En este cuadro, se presentan las especialidades y profesionales que durante el período no tuvieron cupo</p>
+		<p>En este cuadro, se presenta el detalle de las especialidades y profesionales que no tuvieron cupo. Durante el período hubieron <?php echo $c_esp  ?> especialidades y <?php echo $c_esp ?> profesionales sin cupo y un total de <?php echo $total ?> cupos no disponibles</p>
     		</div>
     	</div>
     </div>
