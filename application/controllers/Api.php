@@ -46,9 +46,11 @@ class Api extends MY_Controller {
                   $direccion = $lugar->location;
                   $nombre_doctor = $doctor->profesional;
                  $mensajeria = new Mensajeria($numero,$nombre_doctor,$fecha,$hora,$paciente,$direccion,$especialidad);
-                 $result = $mensajeria->sendMessage();
+                 $batchId = $mensajeria->sendMessage();
+                 $tempId = $batchId;
+                //var_dump($result);
                
-           if($result){
+           if($tempId =! false){
              $this->load->model('tareas_model');
              $data = array(
                'number' => $numero,
@@ -60,23 +62,23 @@ class Api extends MY_Controller {
                'location' => $direccion,
                'message' => $mensajeria->getMessage(),
               'sender_id' => $this->auth_user_id,
-              'doctor_id' => $profesional
+              'doctor_id' => $profesional,
+              'batch_id' =>  $batchId
 			  
                );
-             $this->tareas_model->createLog($data);
+             if($this->tareas_model->createLog($data)){
+              echo json_encode(array('result' => true));
+            }else{
+              echo json_encode(array('result' => false));
+            }
+             
+           }else{
+            echo json_encode(array('result' => false));
            }
+            }
 
-           echo json_encode(array('result' => $result));
-     
-          
-   
           }
-        }
-	
-	
-
-
-	} 
+}
 
 	private function mysql_date($date) { 
 		$year = substr($date,6,4); // 01-12-2007
@@ -101,6 +103,7 @@ class Mensajeria {
 	private $id_lugar;
 	private $message;
 	private $especialidad;
+  private $batchId;
 
 
 	public function __construct($movil,$doctor,$fecha,$hora,$paciente,$lugar,$especialidad){
@@ -152,7 +155,10 @@ class Mensajeria {
 
         	curl_setopt($ch, CURLOPT_POST, true);
         	$response = curl_exec($ch);
-         return ($response !== false) ? true : false;  
+          curl_close($ch);
+          $obj = json_decode($response);
+          
+         return ($response !== false) ? $obj->batchId : false;  
       } catch (Exception $e) {
       	var_dump($e);
 
@@ -160,5 +166,18 @@ class Mensajeria {
     return false;;
 
 	}
+
+  public static function messageState($batchId){
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, 'https://sms.lanube.cl/services/rest/'.$batchId.'/status');
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+          curl_setopt($ch, CURLOPT_USERPWD, "KROPSYS:KROPSYS2017");
+          curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+          $response = curl_exec($ch);
+          return  json_decode($response);
+  }
 
 }
