@@ -87,9 +87,24 @@ class Api extends MY_Controller {
 		return ($date); 
 }  
 
-    
+  public  function messageState($batchId){
+    header('Content-Type: application/json');
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, 'https://sms.lanube.cl/services/rest/'.$batchId.'/status');
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+          curl_setopt($ch, CURLOPT_USERPWD, "KROPSYS:KROPSYS2017");
+          curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+          $response = json_encode(curl_exec($ch));
+          echo  json_decode($response);
+  }    
 	
 }
+
+
+
 
 
 
@@ -167,17 +182,6 @@ class Mensajeria {
 
 	}
 
-  public static function messageState($batchId){
-          $ch = curl_init();
-          curl_setopt($ch, CURLOPT_URL, 'https://sms.lanube.cl/services/rest/'.$batchId.'/status');
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-          curl_setopt($ch, CURLOPT_USERPWD, "KROPSYS:KROPSYS2017");
-          curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-          $response = curl_exec($ch);
-          return  json_decode($response);
-  }
+
 
 }

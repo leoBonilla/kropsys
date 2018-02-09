@@ -28,9 +28,10 @@
                 <th>fecha envio</th>
                 <th>Número</th>
                 <th>Lugar</th>
+               <th>Fecha citación</th>
                 <th>Hora citación</th>
-                <th>Fecha citación</th>
                 <th>Enviado por</th>
+                <th >Estado SMS</th>
                 <th class="none">Mensaje</th>
                 
 
@@ -44,11 +45,14 @@
                 <th>Paciente</th>
                 <th>fecha envio</th>
                 <th>Número</th>
-                <th>Mensaje</th>
                 <th>Lugar</th>
+               <th>Fecha citación</th>
                 <th>Hora citación</th>
-                <th>Fecha citación</th>
                 <th>Enviado por</th>
+                <th >Estado SMS</th>
+                <th class="none">Mensaje</th>
+                
+
                 
 
                 

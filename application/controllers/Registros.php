@@ -808,6 +808,7 @@ public function listar_confirmaciones(){
 
     public function listar_sms(){
          if($this->require_min_level(EJECUTIVE_LEVEL)){
+          $this->load->library('Api');
           $inicio = '';
           $fin= '';
           $users;
@@ -859,7 +860,8 @@ public function listar_confirmaciones(){
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $fila) {
-          //var_dump($tareas);
+              //$state = $this->api->messageState($fila->batch_id);
+              //var_dump($state);
             $no++;
             $row = array();
             $row[] = $fila->especialidad;
@@ -871,7 +873,10 @@ public function listar_confirmaciones(){
             $row[] = $fila->date;
             $row[] = $fila->time;
             $row[] = $fila->enviado_por;
+            $row[] = $fila->batch_id;
             $row[] = $fila->message;
+
+
 
  
  

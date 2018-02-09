@@ -5,7 +5,13 @@ $(document).ready(function(){
 
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
-        "order": [], //Initial no order.
+        "order": [], //Initial no order. 
+        "createdRow": function ( row, data, index ) {
+            // if ( data[5].replace(/[\$,]/g, '') * 1 > 150000 ) {
+            //     $('td', row).eq(5).addClass('highlight');
+            // }
+
+        },
  
         // Load data for the table's content from an Ajax source
         "ajax": {
@@ -25,6 +31,23 @@ $(document).ready(function(){
             "targets": [ 0 ], //first column / numbering column
             "orderable": false, //set not orderable
         },
+        { 
+            "targets": [ 9 ], //first column / numbering column
+            "orderable": false, //set not orderable
+            "createdCell": function (td, cellData, rowData, row, col) {
+                $.get(BASE_URL+"/api/messagestate/"+cellData, function(response){
+                    $.each(response,function(i,v){
+                        console.log(v);
+                        $(td).html(''+v);
+                    });
+                    //console.log(response.value);
+                    
+                })
+      if ( cellData == 1 ) {
+       // $(td).css('color', 'red')
+      }
+    }
+        }
         ],
 
          responsive: {
