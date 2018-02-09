@@ -976,7 +976,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 			</tbody>
 		</table>
 		<br>
-		<p>En este cuadro, se presentan las especialidades y profesionales que no contaban con cupos disponibles en algún momento del período</p>
+		<p>En este cuadro, se presentan las especialidades y profesionales que durante el período no tuvieron cupo</p>
     		</div>
     	</div>
     </div>
