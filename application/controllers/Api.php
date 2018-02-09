@@ -143,13 +143,15 @@ class Mensajeria {
       	$ch = curl_init();
       	 curl_setopt($ch, CURLOPT_URL, 'https://sms.lanube.cl/services/rest/send');
         	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
         	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         	curl_setopt($ch, CURLOPT_USERPWD, "KROPSYS:KROPSYS2017");
         	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+
         	curl_setopt($ch, CURLOPT_POST, true);
         	$response = curl_exec($ch);
-        	//var_export($response);
          return ($response !== false) ? true : false;  
       } catch (Exception $e) {
       	var_dump($e);
