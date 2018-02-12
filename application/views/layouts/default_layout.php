@@ -13,8 +13,10 @@
     <title><?php echo $title;?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url('assets/admin_theme') ?>/vendor/bootstrap/css/bootstrap.min.css?v=<?php echo VERSION; ?>" rel="stylesheet">
+<!--     <link href="<?php echo base_url('assets/admin_theme') ?>/vendor/bootstrap/css/bootstrap.min.css?v=<?php echo VERSION; ?>" rel="stylesheet">
+ -->
 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- MetisMenu CSS -->
     <link href=".<?php echo base_url('assets/admin_theme') ?>/vendor/metisMenu/metisMenu.min.css?v=<?php echo VERSION; ?>" rel="stylesheet">
 
@@ -32,21 +34,16 @@
 	 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
     
 
-<link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/char_counter.min.css?v=<?php echo VERSION; ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/fullscreen.min.css?v=<?php echo VERSION; ?>">
-
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/code_view.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/colors.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/emoticons.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/file.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/image.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/image_manager.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/line_breaker.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/table.min.css">
-            <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/froala/css/plugins/video.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/daterangepicker.css?v=<?php echo VERSION; ?>">
-        
+    <?php if(isset($dt_js)){
+        if($dt_js== true){ ?>
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+                <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css">
+
+
+      <?php  }
+    }?>
     <?php foreach ($css as $css) :?>
     <link href="<?php echo base_url('assets/admin_theme/').$css.'?v='.VERSION ; ?>" rel="stylesheet" />
     <?php endforeach; ?>
@@ -381,10 +378,13 @@
                             <!-- /.modal -->
 
     <!-- jQuery -->
-    <script src="<?php echo base_url('assets/admin_theme') ?>/vendor/jquery/jquery.min.js?v=<?php echo VERSION; ?>"></script>
+   <!-- <script src="<?php echo base_url('assets/admin_theme') ?>/vendor/jquery/jquery.min.js?v=<?php echo VERSION; ?>"></script> -->
+
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url('assets/admin_theme') ?>/vendor/bootstrap/js/bootstrap.min.js?v=<?php echo VERSION; ?>"></script>
+<!--     <script src="<?php echo base_url('assets/admin_theme') ?>/vendor/bootstrap/js/bootstrap.min.js?v=<?php echo VERSION; ?>"></script> -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="<?php echo base_url('assets/admin_theme') ?>/vendor/ajaxform/jquery.form.js?v=<?php echo VERSION; ?>"></script>
     <script src="<?php echo base_url('assets/admin_theme') ?>/dist/js/sb-admin-2.js?v=<?php echo VERSION; ?>"></script>
      <script src="<?php echo base_url('assets/admin_theme/vendor')?>/metisMenu/metisMenu.min.js?v=<?php echo VERSION; ?>"></script>
@@ -403,32 +403,10 @@
 
          <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
          <script src="<?php echo base_url('assets/admin_theme/vendor')?>/timeago/jquery.timeago.js?v=<?php echo VERSION; ?>" type="text/javascript"></script>
-         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.3/js/froala_editor.min.js'></script>
-          <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/char_counter.min.js?v=<?php echo VERSION; ?>'></script>
-           <script type='text/javascript' src='<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/plugins/fullscreen.min.js?v=<?php echo VERSION; ?>'></script>
-          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor') ?>/froala/js/languages/es.js"></script>
+
          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/code_view.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/colors.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/emoticons.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/entities.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/file.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/font_family.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/font_size.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/image.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/image_manager.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/inline_style.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/line_breaker.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/link.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/lists.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/paragraph_format.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/paragraph_style.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/quote.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/save.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/table.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/url.min.js"></script>
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/froala/js/plugins/video.min.js"></script>
+
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
@@ -469,11 +447,30 @@
         });
   
   </script>
+  <!-- CARGAR LOS JS DE DATATABLES -->
+  <?php if(isset($dt_js)){
+        if($dt_js === true) ?>
+ 
+    
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"> </script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script>
+  <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/dataTables.buttons.min.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/buttons.bootstrap.min.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/jszip.min.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/pdfmake.min.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/vfs_fonts.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/buttons.html5.min.js" ></script>
+    <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/buttons.print.min.js" ></script>
+
+  <?php 
+}
+  ?>
   
  <?php foreach ($scripts as $js) :?>
         <script src="<?php echo base_url('assets/admin_theme/').$js.'?v='.VERSION; ?>"></script>
     <?php endforeach; ?>
-
 
 </body>
 

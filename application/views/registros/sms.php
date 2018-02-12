@@ -18,8 +18,7 @@
     
   <?php endif; ?>
    </div> 
-
-    <table id="sms_table" class="table table-striped table-bordered " cellspacing="0" width="100%">
+    <table id="sms_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Especialidad</th>
@@ -38,28 +37,8 @@
                 
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Especialidad</th>
-                <th>Profesional</th>
-                <th>Paciente</th>
-                <th>fecha envio</th>
-                <th>Número</th>
-                <th>Lugar</th>
-               <th>Fecha citación</th>
-                <th>Hora citación</th>
-                <th>Enviado por</th>
-                <th >Estado SMS</th>
-                <th class="none">Mensaje</th>
-                
 
-                
-
-                
-            </tr>
-        </tfoot>
         <tbody>
         </tbody>
     </table>
-
- </div>
+</div>

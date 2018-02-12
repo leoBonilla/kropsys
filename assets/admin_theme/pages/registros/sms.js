@@ -12,6 +12,19 @@ $(document).ready(function(){
             // }
 
         },
+          responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Detalles del sms ';
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table table-striped table-condensed'
+                } )
+            }
+        },
  
         // Load data for the table's content from an Ajax source
         "ajax": {
@@ -48,21 +61,7 @@ $(document).ready(function(){
       }
     }
         }
-        ],
-
-         responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
-                        var data = row.data();
-                        return 'Detalles ';
-                    }
-                } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'table table-striped'
-                } )
-            }
-        },
+        ]
     });
 
 

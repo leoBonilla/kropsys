@@ -27,30 +27,15 @@ class Registros extends MY_Controller {
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
-       					'vendor/datatables-plugins/dataTables.bootstrap.css',
-       					'vendor/datatables-responsive/dataTables.responsive.css',
                 'custom.css'
-
        				);
 
              $scripts = array( 
-       					'vendor/datatables/js/jquery.dataTables.min.js',
-    					 'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-    					 'vendor/datatables-responsive/dataTables.responsive.min.js',
-    					 'vendor/datatables-responsive/responsive.bootstrap.min.js',
-    					 //buttons js
-    					 'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-    					 'vendor/datatables-plugins/buttons.flash.min.js',
-    					 'vendor/datatables-plugins/jszip.min.js',
-    					 'vendor/datatables-plugins/pdfmake.min.js',
-    					 'vendor/datatables-plugins/vfs_fonts.js',
-    					 'vendor/datatables-plugins/buttons.html5.min.js',
-    					 'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
     					 'pages/registros/confirmaciones.js'
     					 );
 			$this->template->set('title', 'Confirmaciones');
+      $this->template->set('dt_js', true);
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->set('page_header', 'Mis registros | Confirmaciones');
 			$this->template->set('css', $css);
@@ -125,30 +110,16 @@ class Registros extends MY_Controller {
            $users = $this->global_model->getAllUsers();
 
        $css =  array(
-                'vendor/datatables-plugins/dataTables.bootstrap.css',
-                'vendor/datatables-responsive/dataTables.responsive.css',
                 'custom.css'
 
               );
 
              $scripts = array( 
-                'vendor/datatables/js/jquery.dataTables.min.js',
-               'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-               'vendor/datatables-responsive/dataTables.responsive.min.js',
-               'vendor/datatables-responsive/responsive.bootstrap.min.js',
-               //buttons js
-               'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-               'vendor/datatables-plugins/buttons.flash.min.js',
-               'vendor/datatables-plugins/jszip.min.js',
-               'vendor/datatables-plugins/pdfmake.min.js',
-               'vendor/datatables-plugins/vfs_fonts.js',
-               'vendor/datatables-plugins/buttons.html5.min.js',
-               'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
                'pages/registros/reasignaciones.js'
                );
       $this->template->set('title', 'Reasignaciones');
+      $this->template->set('dt_js', true);
       $this->template->set('page_header', 'Mis registros | Reasignaciones');
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
       $this->template->set('css', $css);
@@ -164,33 +135,15 @@ class Registros extends MY_Controller {
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
-       					'vendor/datatables-plugins/dataTables.bootstrap.css',
-       					'vendor/datatables-responsive/dataTables.responsive.css',
-                'vendor/bootstrap-daterangepicker/daterangepicker.css',
                 'custom.css'
 
        				);
 
              $scripts = array( 
-       					 'vendor/datatables/js/jquery.dataTables.min.js',
-    					 'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-    					 'vendor/datatables-responsive/dataTables.responsive.min.js',
-    					 'vendor/datatables-responsive/responsive.bootstrap.min.js',
-               'vendor/bootstrap-daterangepicker/moment.js',
-               'vendor/bootstrap-daterangepicker/daterangepicker.js',
-    					 //buttons js
-    					 'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-    					 'vendor/datatables-plugins/buttons.flash.min.js',
-    					 'vendor/datatables-plugins/jszip.min.js',
-    					 'vendor/datatables-plugins/pdfmake.min.js',
-    					 'vendor/datatables-plugins/vfs_fonts.js',
-    					 'vendor/datatables-plugins/buttons.html5.min.js',
-    					 'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
-    					 
     					 'pages/registros/agendamientos.js'
     					 );
+      $this->template->set('dt_js', true);
 			$this->template->set('title', 'Agendamientos');
 			$this->template->set('page_header', 'Mis registros | Agendamientos');
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
@@ -204,31 +157,16 @@ class Registros extends MY_Controller {
          $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
-       					'vendor/datatables-plugins/dataTables.bootstrap.css',
-       					'vendor/datatables-responsive/dataTables.responsive.css',
                 'custom.css'
 
        				);
 
              $scripts = array( 
-       					'vendor/datatables/js/jquery.dataTables.min.js',
-    					 'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-    					 'vendor/datatables-responsive/dataTables.responsive.min.js',
-    					 'vendor/datatables-responsive/responsive.bootstrap.min.js',
-    					 //buttons js
-    					 'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-    					 'vendor/datatables-plugins/buttons.flash.min.js',
-    					 'vendor/datatables-plugins/jszip.min.js',
-    					 'vendor/datatables-plugins/pdfmake.min.js',
-    					 'vendor/datatables-plugins/vfs_fonts.js',
-    					 'vendor/datatables-plugins/buttons.html5.min.js',
-    					 'vendor/datatables-plugins/buttons.print.min.js',
-
-               '../init_tables.js',
+       		               '../init_tables.js',
     					 'pages/registros/otros.js'
     					 );
 			$this->template->set('title', 'Otros');
+       $this->template->set('dt_js', true);
 			$this->template->set('page_header', 'Mis registros | otros');
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
 			$this->template->set('css', $css);
@@ -242,29 +180,15 @@ class Registros extends MY_Controller {
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
 			 $css =  array(
-       					'vendor/datatables-plugins/dataTables.bootstrap.css',
-       					'vendor/datatables-responsive/dataTables.responsive.css',
                 'custom.css');
 
              $scripts = array( 
-       					 'vendor/datatables/js/jquery.dataTables.min.js',
-    					 'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-    					 'vendor/datatables-responsive/dataTables.responsive.min.js',
-    					 'vendor/datatables-responsive/responsive.bootstrap.min.js',
-    					 //buttons js
-    					 'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-    					 'vendor/datatables-plugins/buttons.flash.min.js',
-    					 'vendor/datatables-plugins/jszip.min.js',
-    					 'vendor/datatables-plugins/pdfmake.min.js',
-    					 'vendor/datatables-plugins/vfs_fonts.js',
-    					 'vendor/datatables-plugins/buttons.html5.min.js',
-    					 'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
     					 'pages/registros/sms.js'
     					 );
 			$this->template->set('title', 'SMS ENVIADOS');
 			$this->template->set('page_header', 'Mis registros | SMS');
+      $this->template->set('dt_js', true);
 			$this->template->set('css', $css);
 			$this->template->set('scripts', $scripts);
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
@@ -1143,31 +1067,19 @@ public function cupos(){
            $this->load->model('global_model');
            $users = $this->global_model->getAllUsers();
        $css =  array(
-                'vendor/datatables-plugins/dataTables.bootstrap.css',
-                'vendor/datatables-responsive/dataTables.responsive.css',
+  
                 'custom.css'
 
               );
 
              $scripts = array( 
-                'vendor/datatables/js/jquery.dataTables.min.js',
-               'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-               'vendor/datatables-responsive/dataTables.responsive.min.js',
-               'vendor/datatables-responsive/responsive.bootstrap.min.js',
-               //buttons js
-               'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-               'vendor/datatables-plugins/buttons.flash.min.js',
-               'vendor/datatables-plugins/jszip.min.js',
-               'vendor/datatables-plugins/pdfmake.min.js',
-               'vendor/datatables-plugins/vfs_fonts.js',
-               'vendor/datatables-plugins/buttons.html5.min.js',
-               'vendor/datatables-plugins/buttons.print.min.js',
+      
                '../init_tables.js',
                'pages/registros/cupos.js'
                );
       $this->template->set('title', 'Cupos');
       $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
+       $this->template->set('dt_js', true);
       $this->template->set('page_header', 'Mis registros | Cupos');
       $this->template->set('css', $css);
       $this->template->set('scripts', $scripts);

@@ -10,6 +10,6 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                </div>
+</div>
 
 
