@@ -788,6 +788,7 @@ public function listar_confirmaciones(){
               //var_dump($state);
             $no++;
             $row = array();
+            $row[] = '<span class="label label-default">ENVIADO</span>';
             $row[] = $fila->especialidad;
             $row[] = $fila->profesional;
             $row[] = $fila->patient;
