@@ -17,7 +17,7 @@ $(document).ready(function(){
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Detalles del SMS  ' + '+56'+data[4];
+                        return 'Detalles del SMS  ' + '+56'+data[5];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
