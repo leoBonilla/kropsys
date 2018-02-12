@@ -18,7 +18,7 @@
     
   <?php endif; ?>
    </div> 
-    <table id="sms_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+    <table id="sms_table" class="table table-striped table-bordered table-condensed nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Estado</th>
