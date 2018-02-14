@@ -91,4 +91,6 @@ $(document).ready(function(){
 $('#userId').on('change',function(){
     table.ajax.reload();
 });
+
+
 });
