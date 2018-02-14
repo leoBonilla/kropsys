@@ -70,15 +70,44 @@ $('.timepicker').clockpicker({
         autoclose: true,
         placement: 'left',
     });
-$('.datepicker').datepicker({
-     format: 'dd/mm/yyyy',
-                language: 'es',
-                autoclose:true,
-                todayHighlight: true,
-                title: 'Seleccione fecha',
-                daysOfWeekDisabled: [0,6],
-                weekStart: 1
-});
+$('.datepicker').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "Desde",
+        "toLabel": "Hasta",
+        "customRangeLabel": "Personalizado",
+        "daysOfWeek": [
+            "Dom",
+            "Lun",
+            "Mar",
+            "Mie",
+            "Jue",
+            "Vie",
+            "Sab"
+        ],
+        "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "firstDay": 1
+    }
+    }, function(){});
+
 
 $('#btn-reset').on('click', function(){
   $('.selectpicker').val('');
@@ -112,6 +141,7 @@ $('#btn-reset').on('click', function(){
                                 max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
                                 min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
                 });
+
 
 
 
