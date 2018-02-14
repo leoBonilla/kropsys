@@ -61,7 +61,11 @@ $(document).ready(function(){
                          }
                          if(v == 'PENDIENTE'){
                               $(td).html("<span class='label label-warning'>"+v+"</span>");
-                         }                       
+                         } 
+
+                         if(v == 'CONFIRMACION PENDIENTE'){
+                              $(td).html("<span class='label label-warning'>"+v+"</span>");
+                         }                          
                         rowData[0] =$(td).html();
                     });
                     //console.log(response.value);
