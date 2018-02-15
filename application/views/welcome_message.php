@@ -1,11 +1,11 @@
-
+<!-- 
         <div class="col-md-12">
               <div class="alert alert-info alert-dissmisable animated flash">
                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                  <i class="fa fa-info-circle "></i>
                   Nuevo!! ver estado de mensajes enviados <a href="<?php  echo base_url('registros/sms') ?>">Registros/sms</a>
                  </div>
-        </div>
+        </div> -->
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
