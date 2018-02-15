@@ -125,6 +125,21 @@ $('#select-especialidad').on('changed.bs.select',function(e){
                              $('#loading-indicator').hide();
                         }});
             }); 
+$('input[name="paciente"]').typeahead({
+            source: function (query, result) {
+                $.ajax({
+                    url: BASE_URL + '/seleccion/pacientes',
+                    data: 'query=' + query,            
+                    dataType: "json",
+                    type: "POST",
+                    success: function (data) {
+                        result($.map(data, function (item) {
+                            return item;
+                        }));
+                    }
+                });
+            }
+        });
 $('.datepicker').mask('00/00/0000');
 $('.timepicker').mask('00:00');
 $('.timepicker').clockpicker({
