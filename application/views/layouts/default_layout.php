@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme')?>/vendor/datepicker/datepicker3.css?v=<?php echo VERSION; ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme'); ?>/vendor/bootstrap-select/dist/css/bootstrap-select.css?v=<?php echo VERSION; ?>">
-	 <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
+     <link rel="stylesheet" href="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.css?v=<?php echo VERSION; ?>">
     
 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
@@ -66,9 +66,9 @@
 
 </head>
 
-<body>
-
+<body> 
     <div id="wrapper">
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
@@ -201,7 +201,7 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-	            <!-- /.navbar-top-links -->
+                <!-- /.navbar-top-links -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -343,6 +343,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
+                <img src="<?php echo base_url(); ?>assets/img/ajax-loader.gif" id="loading-indicator" style="display:none" />
               <!-- PAGE CONTENT BEGINS -->
  <?php echo $contents;?>
  <!-- PAGE CONTENT ENDS -->
@@ -390,7 +391,7 @@
      <script src="<?php echo base_url('assets/admin_theme/vendor')?>/metisMenu/metisMenu.min.js?v=<?php echo VERSION; ?>"></script>
      <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/jquery-validation/jquery.validate.js?v=<?php echo VERSION; ?>"></script>
      <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/mask/jquery.mask.js?v=<?php echo VERSION; ?>"></script>
-	 <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.min.js?v=<?php echo VERSION; ?>"></script>
+     <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/toastr/toastr.min.js?v=<?php echo VERSION; ?>"></script>
      <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/timepicker/dist/wickedpicker.min.js?v=<?php echo VERSION; ?>"></script>
      <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/datepicker/bootstrap-datepicker.js?v=<?php echo VERSION; ?>"></script>
       <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/datepicker/locales/bootstrap-datepicker.es.js?v=<?php echo VERSION; ?>"></script>

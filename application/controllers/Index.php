@@ -36,8 +36,17 @@ class Index extends MY_Controller {
 
 			$this->load->model('locations_model');
 			$this->load->model('global_model');
-			$css = array('vendor/clockpicker/dist/bootstrap-clockpicker.css');
+			$css = array(
+				'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+				'vendor/smartwizard/dist/css/smart_wizard.min.css',
+				 'vendor/smartwizard/dist/css/smart_wizard_theme_circles.css',
+				  'vendor/smartwizard/dist/css/smart_wizard_theme_arrows.css',
+				  'vendor/smartwizard/dist/css/smart_wizard_theme_dots.css',
+				  'custom.css'
+		);
 			$scripts = array( 'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+								'vendor/smartwizard/dist/js/jquery.smartWizard.min.js',
+								'vendor/smartwizard/dist/js/validator.min.js',
 				              'pages/sms/index.js');
 		    $locations = $this->locations_model->getAll();
 			$specialties = $this->global_model->getEspecialidades();

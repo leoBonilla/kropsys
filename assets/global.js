@@ -46,6 +46,44 @@ var rangeOptions = {
  }; 
 
 
+var singleDatepickerOpt = {
+        singleDatePicker: true,
+        showDropdowns: true,
+        "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "Desde",
+        "toLabel": "Hasta",
+        "customRangeLabel": "Personalizado",
+        "daysOfWeek": [
+            "Dom",
+            "Lun",
+            "Mar",
+            "Mie",
+            "Jue",
+            "Vie",
+            "Sab"
+        ],
+        "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "firstDay": 1
+    }
+    };
+
 $(function () {
 //efecto de nieve
 //$(document).snowfall({image :BASE_URL + "/assets/img/flake.png", minSize: 5, maxSize:18});
@@ -122,6 +160,9 @@ function randomPassword(length) {
 
 
 
+
+
+
 $(document).ready(function () {
 
        
@@ -180,7 +221,7 @@ jQuery('textarea').summernote({
     lang: 'es-ES' // default: 'en-US'
   });
 
-
+$('.singleDatePicker').daterangepicker(singleDatepickerOpt);
 
     });
 
