@@ -25,7 +25,7 @@
 
             <div class="col-md-2 form-group">
             <label for="fecha">Fecha</label>
-                <input type="text" name="fecha" class="form-control datepicker" data-date-start-date="0d" required="required" placeholder="19/11/2017">
+                <input type="text" name="fecha" class="form-control singleDatePicker" data-date-start-date="0d" required="required" placeholder="19/11/2017">
             </div>
 
              <div class="col-md-2 form-group">
