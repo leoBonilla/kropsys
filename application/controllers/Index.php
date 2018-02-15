@@ -47,6 +47,7 @@ class Index extends MY_Controller {
 			$scripts = array( 'vendor/clockpicker/dist/bootstrap-clockpicker.js',
 								'vendor/smartwizard/dist/js/jquery.smartWizard.min.js',
 								'vendor/smartwizard/dist/js/validator.min.js',
+								'vendor/typehead/typeahead.js',
 				              'pages/sms/index.js');
 		    $locations = $this->locations_model->getAll();
 			$specialties = $this->global_model->getEspecialidades();
