@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-4 form-group">
             <label for="celular">Celular</label>
-                <input type="text" id="celular" name="celular" class="form-control numbersOnly" required="required" placeholder="955423534" data-toggle="tooltip" title="Número celular con 9 digitos" data-minlength="9">
+                <input type="text" id="celular" name="celular" class="form-control numbersOnly" required="required" placeholder="955423534" data-toggle="tooltip" title="Número celular con 9 digitos" data-minlength="9" data-maxlength="9">
             </div>
          </div>
           </div>
