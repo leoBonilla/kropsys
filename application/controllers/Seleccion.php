@@ -37,14 +37,15 @@ class Seleccion extends CI_Controller
 
 	public function pacientes(){
 	header('Content-Type: application/json');
-		$keyword = strval($_POST['query']);
-	//$search_param = "{$keyword}%";
-	//$conn =new mysqli('localhost', 'root', '' , 'blog_samples');
+	$keyword = strval($_POST['query']);
+	$this->db->distinct();
 	$this->db->like('patient',$keyword);
+	$this->db->limit(10);
 	$query = $this->db->get('sms_view');
 	if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
-				$pacientes[] = $row->patient;
+				//$pacientes[] = $row->patient.'-'.$row->number;
+				$pacientes[] = $row;
 			}
 		}
 		echo json_encode($pacientes);

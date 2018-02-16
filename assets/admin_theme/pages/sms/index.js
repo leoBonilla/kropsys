@@ -125,6 +125,7 @@ $('#select-especialidad').on('changed.bs.select',function(e){
                              $('#loading-indicator').hide();
                         }});
             }); 
+var tempPhone = '';
 $('input[name="paciente"]').typeahead({
             source: function (query, result) {
                 $.ajax({
@@ -134,12 +135,35 @@ $('input[name="paciente"]').typeahead({
                     type: "POST",
                     success: function (data) {
                         result($.map(data, function (item) {
-                            return item;
+                            //var array = item.split('-');
+                           // $('input[name="celular"]').val(array[1]);
+                           // return array[0];
+                           return item.patient+ '<span style="display:none;">'+item.number+'</span>';
                         }));
                     }
                 });
+            },
+            updater: function(item){
+                 $('#loading-indicator').show();
+               //console.log(item);
+                var html = '<p>'+ item + '</p>';
+                var element =$(html);
+                numero = element.find('span').html();
+                element.find('span').remove();
+                var name = $.trim(element.html());
+                $('input[name="celular"]').val('');
+                setTimeout(function(){
+                    $('#loading-indicator').hide();
+                    $('input[name="celular"]').val($.trim(numero));
+                },1000);
+                return name;
             }
         });
+$('input[name="paciente').on('keydown', function(e) {
+    if( e.which == 8 || e.which == 46 ) 
+        $('input[name="celular"]').val('');
+        return true;
+});
 $('.datepicker').mask('00/00/0000');
 $('.timepicker').mask('00:00');
 $('.timepicker').clockpicker({
