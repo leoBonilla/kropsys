@@ -37,6 +37,10 @@ class Llamadas extends MY_Controller{
    		if($this->input->post()){
    			$number = $this->input->post('telefono');
    			$extension = $this->input->post('extension');
+   			$especialidad = $this->input->post('especialidad');
+   			$profesional = $this->input->post('profesional');
+   			$prestacion = $this->input->post('prestacion');
+   			$paciente = $this->input->post('paciente');
    			 try {
 
 			   	$arrContextOptions=array(
@@ -53,7 +57,15 @@ class Llamadas extends MY_Controller{
 
 	   			if($obj->respuestaOk){
 	   				$this->load->model('Llamadas_model', 'llamadas');
-	   				$this->llamadas->guardarLLamada($obj->uniqueId,$this->auth_user_id,$number,$extension);
+	   				$this->llamadas->guardarLLamada($obj->uniqueId,
+	   													$this->auth_user_id,
+	   													$number,
+	   													$extension,
+	   													$especialidad,
+	   													$profesional,
+	   													$prestacion,
+	   													$paciente
+	   												);
 	   			}
 	   		    echo json_encode(array('respuestaOk' => $obj->respuestaOk, 'message' => $obj->mensaje, 'uniqueId' => $obj->uniqueId));
 	   } catch (Exception $e) {
