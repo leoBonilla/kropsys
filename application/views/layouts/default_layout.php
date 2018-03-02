@@ -399,6 +399,7 @@
 
              <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/moment.js?v=<?php echo VERSION; ?>"></script> 
         <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/bootstrap-daterangepicker/daterangepicker.js?v=<?php echo VERSION; ?>"></script> 
+     <script src="<?php echo base_url('assets') ?>/kropsys.jquery.js" ></script>
      <script src="<?php echo base_url('assets')?>/global.js?v=<?php echo VERSION; ?>"></script>
          <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor')?>/snow/snowfall.jquery.min.js?v=<?php echo VERSION; ?>"></script>
 
@@ -410,7 +411,7 @@
 
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
-        <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
+                <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
 
 
 
@@ -454,7 +455,7 @@
  
     
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"> </script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script>
   <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/dataTables.buttons.min.js" ></script>
@@ -465,10 +466,11 @@
     <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/buttons.html5.min.js" ></script>
     <script src="<?php echo base_url('assets/admin_theme/vendor') ?>/datatables-plugins/buttons.print.min.js" ></script>
 
+
   <?php 
 }
   ?>
-  
+ 
  <?php foreach ($scripts as $js) :?>
         <script src="<?php echo base_url('assets/admin_theme/').$js.'?v='.VERSION; ?>"></script>
     <?php endforeach; ?>
