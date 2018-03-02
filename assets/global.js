@@ -137,9 +137,11 @@ $('form :input').each(function(){
        });
 });
 
-jQuery('.numbersOnly').keyup(function () { 
-                this.value = this.value.replace(/[^0-9\.]/g,'');
-            });
+// jQuery('.numbersOnly').keyup(function () { 
+//                 this.value = this.value.replace(/[^0-9\.]/g,'');
+//             });
+//             
+$('.numbersOnly').phoneNumber();
 
 $.validator.addMethod("time24", function(value, element) { 
                      if (!/^\d{2}:\d{2}$/.test(value)) return false;
