@@ -1,13 +1,12 @@
 <?php 	echo form_open(base_url('llamadas/generar'),array('method' => 'POST', 'role' => 'form' , 'id' => 'form-llamada')); ?>
 <div class="col-md-12">
-	 <div class="row"> 
-		 <div class="col-md-12">
-		 	<div class="form-group">
-
-			<input type="text" name="telefono" class="form-control numbersOnly" placeholder="951332672" style="padding:20px;font-size:50px;height:90px;" required="required">
+	    <div class="row"> 
+			<div class="col-md-12">
+		 			<div class="form-group">
+		 				<input type="text" name="telefono" class="form-control numbersOnly" placeholder="951332672" style="padding:20px;font-size:50px;height:90px;" required="required">
+		    		</div>
+			</div>
 		</div>
-		</div>
-		 </div>
 		<div class="row">
 			<div class="col-md-12">
 				
@@ -16,9 +15,13 @@
 				<select name="extension" id="extension"  class="form-control selectpicker" data-live-search="true" required="required" >
 			   <?php foreach ($anexos as $row) { ?>
 	
-				   	<option value="<?php echo $row->anexo ?>"  <?php if($row->anexo == $anexo->anexo){ echo 'selected';}  ?>><?php echo $row->anexo; ?></option>
+				   	<option value="<?php echo $row->anexo ?>"  <?php if($row->anexo == $anexo->anexo){ echo 'selected';}  ?>><?php echo $row->anexo; ?>
+				   		<?php if($row->anexo == $anexo->anexo){
+				   			echo " (Mi anexo)";
+				   		} ?>
+				   	</option>
 				  <?php } ?>
-				    
+
 				</select>
 			</div>
 			</div>
