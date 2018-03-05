@@ -1,4 +1,6 @@
 $(document).ready(function(){
+         var rangepicker = $('#date-filter').daterangepicker(rangeOptions);
+    var row_count = $("#row_count").val();
 	var table = $('#llamadas_table').DataTable({
 
         "processing": true, //Feature control the processing indicator.
@@ -10,8 +12,10 @@ $(document).ready(function(){
             "url": "listar_mis_llamadas",
             "type": "POST",
              "data" : function(d){
-                d.inicio = $('#fecha_inicio').val();
-                d.fin = $('#fecha_limite').val();
+                var dates = rangepicker.val().split(' - '); 
+                d.inicio = dates[0].replace("/g", "-");
+                d.fin = dates[1].replace("/g", "-");
+                d.userId = $('#userId').val();
              }
         },
  
@@ -36,20 +40,24 @@ $(document).ready(function(){
                 } )
             }
         },
+
+      
+
 	});
 
-$('#fecha_inicio,#fecha_limite').mask('00/00/0000');
-$('#fecha_inicio,#fecha_limite').datepicker({
-    format: 'dd/mm/yyyy',
-                language: 'es',
-                autoclose:true,
-                todayHighlight: true,
-                title: 'Seleccione fecha',
-                daysOfWeekDisabled: [0,6],
-                weekStart: 1
-}).on('changeDate',function(){
-    table.ajax.reload();
+ rangepicker.on('cancel.daterangepicker', function(ev, picker) {
+ 
+});
+ //cuando se envia una fecha valida
+  rangepicker.on('apply.daterangepicker', function(ev, picker) {
+          table.ajax.reload();
+
 });
 
-$('#fecha_inicio,#fecha_limite').datepicker('update', new Date());
+$('#userId').on('change', function(){
+    table.ajax.reload();
+
+});
+
+
 });
