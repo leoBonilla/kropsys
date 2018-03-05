@@ -199,7 +199,7 @@ class Registros extends MY_Controller {
 
  public function listar_mis_llamadas(){
   if($this->require_min_level(EJECUTIVE_LEVEL)){
-      $this->load->model('datatables/llamadas_model', 'llamadas');
+      $this->load->model('datatables/historial_llamadas_model', 'llamadas');
        $inicio = '';
           $fin= '';
             if($this->input->post()){
@@ -207,33 +207,28 @@ class Registros extends MY_Controller {
                 $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
                 $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
                            
-               $this->load->model('datatables/reasignaciones_model', 'reasignaciones');
 
               }
-      // if($this->auth_level < 9){
-      //    $where = 'id_responsable = '. $this->auth_user_id ;
-      // }else{
-      //   $where = false;
-      // }
+
 
                  if($this->auth_level < ADMIN_LEVEL){
-         $where = "id_responsable = ". $this->auth_user_id;
+         $where = "user_id = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
-            $where .= " AND ((date(fecha_llamada) BETWEEN '".$inicio."' AND '".$fin."')) ";
+            $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
           }elseif($inicio != ''){
-            $where .= " AND ((date(fecha_llamada) >= '".$inicio."')) ";
+            $where .= " AND ((date(fecha) >= '".$inicio."')) ";
           }elseif($fin != ''){
-            $where .= " AND ((date(fecha_llamada) <= '".$fin."')) ";
+            $where .= " AND ((date(fecha) <= '".$fin."')) ";
           }
           
       }else{
         $where = "";
         if($inicio != '' and $fin != ''){
-            $where .= " ((date(fecha_llamada) BETWEEN '".$inicio."' AND '".$fin."')) ";
+            $where .= " ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
           }elseif($inicio != ''){
-            $where .= " ((date(fecha_llamada) >= '".$inicio."')) ";
+            $where .= " ((date(fecha) >= '".$inicio."')) ";
           }elseif($fin != ''){
-            $where .= " ((date(fecha_llamada) <= '".$fin."')) ";
+            $where .= " ((date(fecha) <= '".$fin."')) ";
           }
       }
      
@@ -244,24 +239,21 @@ class Registros extends MY_Controller {
           //var_dump($tareas);
             $no++;
             $row = array();
-            $row[] = $llamadas->id_registro;
-             $row[] = $llamadas->id_subtarea;
-            $row[] = $llamadas->fecha_llamada;
-            $row[] = $llamadas->nombre_paciente;
-            $row[] = $llamadas->rut_paciente . '-'.$llamadas->digito_verif_paciente;
-            $row[] = $llamadas->problema_salud;
-             $row[] = $llamadas->profesional;
-              $row[] = $llamadas->especialidad;
-               $row[] = $llamadas->lugar;
-            $row[] = $llamadas->numero;
-            $row[] = $llamadas->estado;
-            $row[] = $llamadas->fecha_cita;
-            $row[] = $llamadas->hora_cita;
-             $row[] = $llamadas->observaciones_llamada;
-            $row[] = $llamadas->responsable;
-            $row[] = $llamadas->call_unique_id;
+            $row[] = $llamadas->fecha;
+             $row[] = $llamadas->numero;
+             $row[] =strtoupper($llamadas->paciente);
+              $row[] = $llamadas->anexo;
+              $row[] = $llamadas->usuario;
+              $row[] =$llamadas->especialidad;
+              $row[] =$llamadas->profesional;
+              $row[] =$llamadas->prestacion;
+              $row[] = '';
+              
+              
 
-            $row[] = "<a class='btn btn-warning btn-xs' href='editarcita/".$llamadas->id_subtarea."'>Editar</a>";
+
+ 
+            // $row[] = "<a class='btn btn-warning btn-xs' href='editarcita/".$llamadas->id_subtarea."'>Editar</a>";
 
  
             $data[] = $row;
@@ -857,40 +849,27 @@ public function listar_confirmaciones(){
 
        public function llamadas(){
               if($this->require_min_level(EJECUTIVE_LEVEL)){
+                  $this->load->model('global_model');
+           $users = $this->global_model->getAllUsers();
                $css =  array(
-                        'vendor/datatables-plugins/dataTables.bootstrap.css',
-                        'vendor/datatables-responsive/dataTables.responsive.css',
-                         'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                        'vendor/bootstrap3_player/css/bootstrap3_player.css',
                          'custom.css'
 
 
                       );
 
                      $scripts = array( 
-                         'vendor/datatables/js/jquery.dataTables.min.js',
-                       'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-                       'vendor/datatables-responsive/dataTables.responsive.min.js',
-                       'vendor/datatables-responsive/responsive.bootstrap.min.js',
-                       'vendor/clockpicker/dist/bootstrap-clockpicker.js',
-                       //buttons js
-                       'vendor/datatables-plugins/dataTables.buttons.min.js',
-                       'vendor/datatables-plugins/buttons.bootstrap.min.js',
-
-                       'vendor/datatables-plugins/buttons.flash.min.js',
-                       'vendor/datatables-plugins/jszip.min.js',
-                       'vendor/datatables-plugins/pdfmake.min.js',
-                       'vendor/datatables-plugins/vfs_fonts.js',
-                       'vendor/datatables-plugins/buttons.html5.min.js',
-                       'vendor/datatables-plugins/buttons.print.min.js',
+                       'vendor/bootstrap3_player/js/bootstrap3_player.js',
                        '../init_tables.js',
                        'pages/registros/llamadas.js'
                        );
               $this->template->set('title', 'LLamadas registrados');
+              $this->template->set('dt_js', true);
               $this->template->set('page_header', 'Mis registros | LLAMADAS');
               $this->template->set('buttons', '<a class="btn btn-default" href="'.base_url('registros/').'"><i class="fa  fa-chevron-left"></i></a>');
               $this->template->set('css', $css);
               $this->template->set('scripts', $scripts);
-              $this->template->load('default_layout', 'contents' , 'registros/llamados', null);
+              $this->template->load('default_layout', 'contents' , 'registros/llamados', array('users' => $users));
               }
     }
 
