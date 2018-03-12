@@ -4,6 +4,7 @@ $examen_reasig = $dist_reasignaciones_bar[1];
 $control_reasig = $dist_reasignaciones_bar[2];
 $procedimiento_reasig = $dist_reasignaciones_bar[3];
 
+
 $ingreso_agend = $dist_agendamientos_bar[0];
 $examen_agend = $dist_agendamientos_bar[1];
 $control_agend = $dist_agendamientos_bar[2];
@@ -13,6 +14,7 @@ $info_r_ingreso = $dist_reasignaciones[0];
 $info_r_examen = $dist_reasignaciones[1];
 $info_r_control = $dist_reasignaciones[2];
 $info_r_proced = $dist_reasignaciones[3];
+
 
 
 		
@@ -810,7 +812,10 @@ $info_r_proced = $dist_reasignaciones[3];
       			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones por control</h3>
       			<div id="info_dist_reasignaciones_control_chart" class="chart" style="text-align: center;"></div>
       				<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
-      			En relación a los <?= $info_r_control->total; ?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
+      					<?php $total_r_control  =  $control_reasig->pacientes_agendados + $control_reasig->no_contestaron + $control_reasig->rechazo_anulaciones + $control_reasig->hora_ya_asignada + $control_reasig->n_erroneo + $control_reasig->sin_cupo;  ?>
+      			En relación a los <?= //$info_r_control->total; 
+      						$total_r_control;
+      			?>  pacientes de reasignación de Controles ,  <?php 	echo $control_reasig->pacientes_agendados; ?> fueron agendados,  <?php 	echo $control_reasig->no_contestaron; ?> pacientes no contestaron el llamado telefónico,  <?php 	echo $control_reasig->rechazo_anulaciones; ?> pacientes rechazaron o anularon la hora, y  <?php 	echo $control_reasig->hora_ya_asignada; ?> pacientes señalaron tener una hora ya asignada. Había  <?php 	echo $control_reasig->n_erroneo; ?> números telefónicos errados.
 Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre los cuales no se realizó gestión, debido a que no se disponía de cupo. 
 				
       			<h3 style="font-family: arial black; color: #5E527C;">Distribución de reasignaciones por ingreso</h3>
@@ -818,8 +823,8 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
       		
 
       			<div class="chart-explanation" style="padding-top:5px;text-align: justify; text-justify:inter-word;text-indent: 3em;">
-      			<?php $total_ingreso_r_control = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
-      			En relación a los <?php echo $total_ingreso_r_control ?> pacientes reasignados de Ingresos , <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
+      			<?php $total_ingreso_r_ingresos = $ingreso_reasig->pacientes_agendados + $ingreso_reasig->no_contestaron + $ingreso_reasig->rechazo_anulaciones + $ingreso_reasig->hora_ya_asignada + $ingreso_reasig->n_erroneo +$ingreso_reasig->sin_cupo;  ?>
+      			En relación a los <?= $total_ingreso_r_ingresos; ?> pacientes reasignados de Ingresos , <?php 	echo $ingreso_reasig->pacientes_agendados; ?> fueron agendados, <?php 	echo $ingreso_reasig->no_contestaron; ?>  pacientes no contestaron el llamado telefónico, hubo <?php 	echo $ingreso_reasig->rechazo_anulaciones; ?>  pacientes que rechazaron o anularon la hora, <?php 	echo $ingreso_reasig->hora_ya_asignada; ?>  pacientes que señalaron tener una hora ya asignada. Había <?php 	echo $ingreso_reasig->n_erroneo; ?>  números telefónicos errados. Existe una falta de <?php 	echo $ingreso_reasig->sin_cupo; ?>  pacientes sobre los cuales no se realizó gestión, producto que no se disponía de cupo
       		</div>
       		</div>
       		</div>
@@ -1400,7 +1405,7 @@ Por otra parte, hubo  <?php 	echo $control_reasig->sin_cupo; ?> pacientes sobre 
 
 
 
-         var data_agendamientos_control = new google.visualization.DataTable();
+        var data_agendamientos_control = new google.visualization.DataTable();
         data_agendamientos_control.addColumn('string', 'Nombre');
         data_agendamientos_control.addColumn('number', 'Pacientes');
         data_agendamientos_control.addColumn({type: 'string', role:'annotation'});
