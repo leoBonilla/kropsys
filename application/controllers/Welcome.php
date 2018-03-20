@@ -29,4 +29,8 @@ class Welcome extends MY_Controller {
 			$this->template->load('default_layout', 'contents' , 'welcome_message', null);
 	     }
 	}
+
+	public function test(){
+		$cdrdb = $this->load->database('cdr', TRUE);
+	}
 }
