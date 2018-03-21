@@ -199,7 +199,7 @@ class Registros extends MY_Controller {
 
  public function listar_mis_llamadas(){
   if($this->require_min_level(EJECUTIVE_LEVEL)){
-      $this->load->model('datatables/historial_llamadas_model', 'llamadas');
+      $this->load->model('datatables/asterisk_llamadas_model', 'llamadas');
        $inicio = '';
           $fin= '';
             if($this->input->post()){
@@ -211,7 +211,8 @@ class Registros extends MY_Controller {
               }
 
 
-                 if($this->auth_level < ADMIN_LEVEL){
+    if($this->auth_level < ADMIN_LEVEL){
+     
          $where = "user_id = ". $this->auth_user_id;
           if($inicio != '' and $fin != ''){
             $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
@@ -220,16 +221,23 @@ class Registros extends MY_Controller {
           }elseif($fin != ''){
             $where .= " AND ((date(fecha) <= '".$fin."')) ";
           }
+    
+     
+    //
           
       }else{
-        $where = "";
+       
+        $where = "dst <> 's' and ";
+
         if($inicio != '' and $fin != ''){
-            $where .= " ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
+            $where .= " ((date(calldate) BETWEEN '".$inicio."' AND '".$fin."')) ";
           }elseif($inicio != ''){
-            $where .= " ((date(fecha) >= '".$inicio."')) ";
+            $where .= " ((date(calldate) >= '".$inicio."')) ";
           }elseif($fin != ''){
-            $where .= " ((date(fecha) <= '".$fin."')) ";
+            $where .= " ((date(calldate) <= '".$fin."')) ";
           }
+
+        
       }
      
         $list = $this->llamadas->get_datatables($where);
@@ -239,15 +247,45 @@ class Registros extends MY_Controller {
           //var_dump($tareas);
             $no++;
             $row = array();
-            $row[] = $llamadas->fecha;
-             $row[] = $llamadas->numero;
-             $row[] =strtoupper($llamadas->paciente);
-              $row[] = $llamadas->anexo;
-              $row[] = $llamadas->usuario;
-              $row[] =$llamadas->especialidad;
-              $row[] =$llamadas->profesional;
-              $row[] =$llamadas->prestacion;
-              $row[] = '';
+            // $row[] = $llamadas->fecha;
+            //  $row[] = $llamadas->numero;
+            //  $row[] =strtoupper($llamadas->paciente);
+            //   $row[] = $llamadas->anexo;
+            //   $row[] = $llamadas->usuario;
+            //   $row[] =$llamadas->especialidad;
+            //   $row[] =$llamadas->profesional;
+            //   $row[] =$llamadas->prestacion;
+            //   $row[] = '';
+            //   
+            //   
+              $tmp = explode(' ', $llamadas->calldate);
+              $date = explode('-', $tmp[0]);
+              $file = explode('/',$llamadas->recordingfile);
+             $file = array_reverse($file);
+              $url = 'http://192.168.0.150/grabaciones/'.$date[0].'/'.$date[1].'/'.$date[2].'/'.$file[0];
+            if($llamadas->disposition == 'ANSWERED'){
+                $estado = '<span class="label label-success">CONTESTADA</span>';
+            }elseif($llamadas->disposition == 'NO ANSWER'){
+                $estado = '<span class="label label-danger">NO CONTESTADA</span>';
+            }elseif($llamadas->disposition == 'FAILED'){
+                $estado = '<span class="label label-default">FALLO</span>';
+            }
+             
+             
+
+            
+             $row[] = $llamadas->calldate;
+             $row[] = $llamadas->dst;
+             $row[] = $estado;
+             $row[] = $llamadas->src;
+              //$row[] = '--';
+              //$row[] = '--';
+             // $row[] ='--';
+             // $row[] ='--';
+              $row[] = '<audio controls>
+    <source src="'.$url.'" type="audio/mp3">
+    Tu navegador no soporta HTML5 audio.
+</audio>';
               
               
 
