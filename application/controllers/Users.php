@@ -55,7 +55,10 @@ class Users extends MY_Controller
     	if( $this->require_min_level(ADMIN_LEVEL) )
 		{
 			if($this->input->post()){
-         $nac = ($this->input->post('nacimiento') !== NULL) ? datepicker_to_mysql($this->input->post('nacimiento')) : NULL;
+          $nac = (!empty($this->input->post('nacimiento')) ) ? datepicker_to_mysql($this->input->post('nacimiento')) : NULL;
+         
+
+
 
 	    $user_data = array(
 	    'username' => $this->input->post('username'),
