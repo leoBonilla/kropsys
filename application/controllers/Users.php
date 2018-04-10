@@ -67,7 +67,7 @@ class Users extends MY_Controller
 	    'extension_id' => $this->input->post('anexo'),
 	    'number' => $this->input->post('number'),
 	    'rut' => $this->input->post('rut'),
-	    'fecha_nac' => )
+	    'fecha_nac' => $nac)
 
 	    );			
         
