@@ -67,6 +67,7 @@ class Users extends MY_Controller
 	    'extension_id' => $this->input->post('anexo'),
 	    'number' => $this->input->post('number'),
 	    'rut' => $this->input->post('rut'),
+	    'fecha_nac' => datepicker_to_mysql($this->input->post('nacimiento'))
 
 	    );			
         
@@ -107,7 +108,7 @@ class Users extends MY_Controller
 			[
 				'field' => 'auth_level',
 				'label' => 'tipo',
-				'rules' => 'required|integer|in_list[1,2,6,9,12]'
+				'rules' => 'required|integer|in_list[1,2,3,4,,5,6,,7,8,9,,11,12]'
 			]
 		];
 

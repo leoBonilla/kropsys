@@ -225,6 +225,16 @@ jQuery('textarea').summernote({
 
 $('.singleDatePicker').daterangepicker(singleDatepickerOpt);
 
+$('.boostrapDatePicker').datepicker({
+     format: 'dd/mm/yyyy',
+     language:'es',
+     autoclose: true,
+     clearBtn:true,
+     orientation:'bottom'
+});
+
     });
+
+
 
 
