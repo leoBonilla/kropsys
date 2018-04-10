@@ -55,7 +55,7 @@ class Users extends MY_Controller
     	if( $this->require_min_level(ADMIN_LEVEL) )
 		{
 			if($this->input->post()){
-
+         $nac = ($this->input->post('nacimiento') !== NULL) ? datepicker_to_mysql($this->input->post('nacimiento') : NULL;
 
 	    $user_data = array(
 	    'username' => $this->input->post('username'),
@@ -67,7 +67,7 @@ class Users extends MY_Controller
 	    'extension_id' => $this->input->post('anexo'),
 	    'number' => $this->input->post('number'),
 	    'rut' => $this->input->post('rut'),
-	    'fecha_nac' => datepicker_to_mysql($this->input->post('nacimiento'))
+	    'fecha_nac' => )
 
 	    );			
         
