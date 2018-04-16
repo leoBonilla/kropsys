@@ -122,8 +122,8 @@ $(document).ready(function(){
         viewformat: 'DD/MM/YYYY',    
         template: 'D / MMMM / YYYY',    
         combodate: {
-                minYear: 2000,
-                maxYear: 2015,
+                minYear: 1940,
+                maxYear: 2018,
                 minuteStep: 1
            }
     });
