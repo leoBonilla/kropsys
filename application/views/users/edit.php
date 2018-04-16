@@ -45,5 +45,12 @@
             <td><a href="#" class="editable-active"  data-type="select2" id="banned" data-pk="<?php echo $user->user_id; ?>" data-value="<?php echo $user->banned; ?>" data-url="<?php echo base_url('users/editable') ?>" ><?php echo ($user->banned == 0  ) ?  'Activo' : 'Inactivo'; ?></a></td>
         
         </tr>
+
+        <tr>
+          <th>Fecha nacimiento</th>
+          <td>
+            <a href="#" id="fecha_nac" data-type="combodate" data-pk="<?php echo $user->user_id; ?>" data-url="<?php echo base_url('users/editable') ?>" data-value="<?php echo $user->fecha_nac; ?>" data-title="Select date"></a>
+          </td>
+        </tr>
     </tbody>
 </table>

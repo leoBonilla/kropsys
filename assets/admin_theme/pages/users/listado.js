@@ -116,6 +116,18 @@ $(document).ready(function(){
           // $(this).text(sourceData);  
         }
     });
+
+               $('#fecha_nac').editable({
+        format: 'YYYY-MM-DD',    
+        viewformat: 'DD/MM/YYYY',    
+        template: 'D / MMMM / YYYY',    
+        combodate: {
+                minYear: 2000,
+                maxYear: 2015,
+                minuteStep: 1
+           }
+    });
+
           });
             });
 
