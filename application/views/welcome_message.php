@@ -64,9 +64,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo base_url('users/nuevo'); ?>">
+                        <a href="<?php echo base_url('users/listado'); ?>">
                             <div class="panel-footer">
-                                <span class="pull-left">Crear usuarios</span>
+                                <span class="pull-left">Usuarios</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

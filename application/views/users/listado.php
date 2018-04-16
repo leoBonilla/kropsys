@@ -1,3 +1,10 @@
+<div class="row">
+  <div class="col-md-1">
+    <a href="<?php echo base_url('users/nuevo'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Agregar usuario </a > 
+  </div>
+
+</div>
+<p></p>
 <table id="users_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>

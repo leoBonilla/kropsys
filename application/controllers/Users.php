@@ -22,7 +22,7 @@ class Users extends MY_Controller
 	}
 
 	public function index(){
-
+             redirect(base_url('users/listado'));
 	}
 
     public function nuevo(){
