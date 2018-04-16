@@ -1,7 +1,7 @@
 
 <!-- <button class="btn btn-success btn-xs">Editar</button> <button class="btn btn-danger btn-xs">Eliminar</button> -->
 <p></p>
-<table class="table">
+<table class="table table-striped table-condensed table-responsive">
 
     <tbody>
         <tr>
