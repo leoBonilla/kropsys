@@ -222,9 +222,9 @@ class Users extends MY_Controller
 					            $row[] = $fila->email;
 					           // $row[] = $fila->banned;
 					            if($fila->banned == 1){
-					            	$estado = '<span class="label label-danger">ACTIVO</span>';
+					            	$estado = '<span class="label label-danger">INACTIVO</span>';
 					            }else{
-					            	$estado = '<span class="label label-success">INACTIVO</span>';
+					            	$estado = '<span class="label label-success">ACTIVO</span>';
 					            }
 					            
 					            $row[] = $estado;
@@ -257,7 +257,11 @@ public function editUserHtml(){
 	if($this->require_min_level(ADMIN_LEVEL)){
 		$this->load->model('global_model', 'global');
 		if($this->input->post()){
-			$id = $this->input->post('user_id');
+			 $this->load->model('anexos_model');
+			 $anexos = $this->anexos_model->getAll();
+			$id = $this->input->post('id');
+			$user = $this->global->findUser($id);
+			$this->load->view('users/edit',array('user' => $user, 'anexos' => $anexos));
 		}
 	}
 }
@@ -274,6 +278,50 @@ public function perfil(){
             $result = $sql->row();
              $this->template->load('default_layout', 'contents' , 'users/perfil', array('user' => $result));
 	}
+}
+
+
+public function editable(){
+	header('Content-Type: application/json');
+	$response = array('status' => null, 'msg' > null);
+   if($this->input->post()){
+   	$name = $this->input->post('name');
+   	$value = $this->input->post('value');
+   	$id = $this->input->post('pk');
+   	$this->load->model('users_model','users');
+   	$result = $this->users->update($id, array($name => $value));
+   	 if($result){
+   	 	  $response['status'] = 'success';
+   	 	  $response['msg'] = 'Actualizado con exito';
+   	 	 
+   	 }else{
+   	 	$response['status'] = 'error';
+   	 	  $response['msg'] = 'Error actualizando el registro';
+   	 }
+
+   	 echo json_encode($response);
+   }	
+}
+
+public function extensions(){
+	header('Content-Type: application/json');
+	$json = [];
+		
+		if(!empty($this->input->get("q"))){
+			$this->db->like('anexo', $this->input->get("q"));
+			$query = $this->db->select('id,anexo as text')
+						->limit(10)
+						->get("extension_phones");
+			$json = $query->result();
+			header("HTTP/1.1 200 OK", true, 200);
+			echo json_encode($json);
+		}else {
+        header('HTTP/1.0 400 Bad Request', true, 400);
+        echo "This field is required!";
+    }
+
+		
+		
 }
 
 }

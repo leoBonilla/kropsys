@@ -54,6 +54,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
   integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
   crossorigin="anonymous">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,7 +62,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/admin_theme/vendor/select2/select2.css') ?>">
 
 
 </head>
@@ -422,8 +423,8 @@
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script> 
                 <script src="<?php echo base_url('assets/admin_theme/vendor'); ?>/summernote/lang/summernote-es-ES.js?v=<?php echo VERSION; ?>"></script> 
-
-
+        <script src="<?php echo base_url('assets/admin_theme/vendor/editable/editable/js/bootstrap-editable.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/admin_theme/vendor/select2/select2.js') ?>"></script>
 
   <script>
  // Enable pusher logging - don't include this in production
@@ -480,7 +481,7 @@
   <?php 
 }
   ?>
- 
+
  <?php foreach ($scripts as $js) :?>
         <script src="<?php echo base_url('assets/admin_theme/').$js.'?v='.VERSION; ?>"></script>
     <?php endforeach; ?>
