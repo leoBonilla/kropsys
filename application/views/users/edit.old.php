@@ -1,4 +1,4 @@
-<!-- <?php echo form_open('', array('id' => 'form-edit', 'role' => 'form')) ?>
+<?php echo form_open('', array('id' => 'form-edit', 'role' => 'form')) ?>
 
  <div class="row">
                    <div class="col-md-3 form-group">
@@ -90,4 +90,4 @@
             </div>
 
 
-</form> -->
+</form>

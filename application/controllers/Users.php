@@ -200,7 +200,7 @@ class Users extends MY_Controller
 
 
         public function listar_usuarios(){
-         if($this->require_min_level(EJECUTIVE_LEVEL)){
+         if($this->require_min_level(ADMIN_LEVEL)){
           $inicio = '';
           $fin= '';
           $users;
