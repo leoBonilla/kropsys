@@ -6,6 +6,8 @@
                   Nuevo!! ver estado de mensajes enviados <a href="<?php  echo base_url('registros/sms') ?>">Registros/sms</a>
                  </div>
         </div> -->
+<div class="col-md-12">
+    <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -192,4 +194,9 @@
             </div> 
 
         <?php } ?>
- 
+ </div>
+ <div class="row">
+     <div class="col-md-8"></div>
+     <div class="col-md-4"></div>
+ </div>
+</div>

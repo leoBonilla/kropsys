@@ -16,6 +16,7 @@ class Llamadas extends MY_Controller{
 		    $especialidades = $this->global_model->getEspecialidades();
 		    $prestaciones= $this->global_model->getPrestaciones();
 		    $anexos = $this->anexos_model->getAll();
+		   // var_dump($currAnexo);
 			$this->template->set('title', 'Nueva llamada');
 			$this->template->set('page_header', 'Nueva llamada');
 			$this->template->set('css', array(

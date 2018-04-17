@@ -94,6 +94,7 @@ class Global_model extends CI_Model {
       public function findAnexoByUser($userid){
               $this->db->select('anexo');
               $this->db->from('users_anexos_view');
+              $this->db->where('user_id',$userid);
               $query = $this->db->get();
               if($query->num_rows() > 0){
                 return $query->row() ;
