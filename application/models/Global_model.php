@@ -18,8 +18,6 @@ class Global_model extends CI_Model {
             $this->db->from('especialidades');
             $this->db->where('disabled', 0 );
             return $this->db->get()->result();
-            
-           //return $this->db->get('especialidades',200)->result(); 
   		}
 		
 		  public function getByEspecialidad($id){
@@ -37,6 +35,17 @@ class Global_model extends CI_Model {
       public function findProfesional($id){
              $this->db->select('*');
               $this->db->from('profesionales');
+              $this->db->where('id',$id);
+              
+              $query = $this->db->get();
+              if($query->num_rows() > 0){
+                return $query->row() ;
+              }
+    }
+
+    public function findProfesionalV2($id){
+             $this->db->select('*');
+              $this->db->from('profesionales_view');
               $this->db->where('id',$id);
               
               $query = $this->db->get();

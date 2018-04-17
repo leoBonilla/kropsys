@@ -35,7 +35,7 @@ class Users extends MY_Controller
 	   $css = array();
 	   $scripts = array('pages/users/create.js');		
 	   $this->template->set('title', 'Usuarios');
-       $this->template->set('page_header', 'Usuarios');
+       $this->template->set('page_header', 'Agregar usuario');
        $this->template->set('css', $css);
        $this->template->set('scripts', $scripts);
        $this->template->load('default_layout', 'contents' , 'users/index',  array('anexos' => $anexos));

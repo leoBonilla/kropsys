@@ -1,4 +1,5 @@
-<div class="row">
+<div class="col-md-12">
+  <div class="row">
   <div class="col-md-1">
     <a href="<?php echo base_url('profesionales/nuevo'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Agregar profesional </a > 
   </div>
@@ -59,4 +60,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>

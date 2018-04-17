@@ -1,4 +1,5 @@
-<div class="row">
+<div class="col-md-12">
+  <div class="row">
   <div class="col-md-1">
     <a href="<?php echo base_url('users/nuevo'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Agregar usuario </a > 
   </div>
@@ -63,4 +64,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>

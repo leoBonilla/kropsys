@@ -50,7 +50,7 @@
                         </a>
                     </div>
             </div>
-         <?php if($auth_level >= ADMIN_LEVEL) {?>
+<!--          <?php if($auth_level >= ADMIN_LEVEL) {?>
             <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                   <!-- <div class="huge">26</div> -->
-                                    <div>Usuarios</div>
+                                 <!--    <div>Usuarios</div>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +72,8 @@
                             </div>
                         </a>
                     </div>
-            </div>
-         <?php } ?>
+            </div> -->
+        <!-- <?php } ?> -->
             <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">

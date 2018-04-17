@@ -240,8 +240,14 @@
                             
                         <?php if($auth_level >= ADMIN_LEVEL) :?>
                               <li>
-                            <a href="#">Administrador<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-suitcase"></i> Administrador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                 <li>
+                                    <a href="<?php echo base_url('users'); ?>"><i class="fa fa-users "></i> Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('profesionales'); ?>"><i class="fa fa-user-md "></i> Profesionales</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url('reportes'); ?>"><i class="fa fa-bar-chart-o "></i>  Reportes</a>
                                 </li>
@@ -249,6 +255,8 @@
                                 <li>
                                     <a href="<?php echo base_url('registros/llamadas'); ?>"><i class="fa fa-phone "></i> Llamadas</a>
                                 </li>
+
+                               
                             </ul>
                         </li>
                         <?php endif; ?>

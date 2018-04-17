@@ -26,6 +26,14 @@ class Profesionales_model extends CI_Model {
         	}
         	return FALSE;
         }
+
+      public function create($data){
+           $this->db->insert($this->table, $data);
+        if ( $this->db->affected_rows() == '1' ) {
+                     return TRUE;
+                  }
+                return FALSE;
+      }
    
 
  

@@ -22,7 +22,7 @@ class Profesionales extends MY_Controller
 	}
 
 	public function index(){
-
+        redirect(base_url('profesionales/listado'));
 	}
 
 	public function listado(){
@@ -123,7 +123,7 @@ class Profesionales extends MY_Controller
         if($this->input->post()){
             $esp = '';
             $id = $this->input->post('id');
-            $prof = $this->global->findProfesional($id);
+            $prof = $this->global->findProfesionalV2($id);
 
             $this->load->view('profesionales/edit',array('prof' => $prof, 'espe' => $esp));
         }
@@ -170,10 +170,36 @@ public function especialidades(){
         }else {
         header('HTTP/1.0 400 Bad Request', true, 400);
         echo "This field is required!";
-    }
+    }      
+}
 
+
+public function nuevo(){
+     if($this->require_min_level(ADMIN_LEVEL)){
+        $this->load->model('global_model');
+       $css = array();
+       $scripts = array('pages/profesionales/create.js');   
+       $especialidades = $this->global_model->getEspecialidades();    
+       $this->template->set('title', 'Profesionales');
+       $this->template->set('page_header', 'Nuevo profesional');
+       $this->template->set('css', $css);
+       $this->template->set('scripts', $scripts);
+       $this->template->load('default_layout', 'contents' , 'profesionales/nuevo', array('especialidades' => $especialidades));
+     }
+}
+
+public function create(){
+     header('Content-Type: application/json');
+    if($this->require_min_level(ADMIN_LEVEL)){
+        if($this->input->post()){
+            $this->load->model('profesionales_model', 'profesionales');
+            $profesional = $this->input->post('profesional');
+            $nombre_agenda = $this->input->post('nombre_agenda');
+            $especialidad = $this->input->post('especialidad');
+            echo json_encode(array('result' => $this->profesionales->create(array('profesional' => $profesional, 'nombre_agenda' => $nombre_agenda, 'id_especialidad' =>$especialidad ))));
+        }
         
-        
+    }
 }
 
 }
