@@ -310,7 +310,7 @@ public function extensions(){
 		if(!empty($this->input->get("q"))){
 			$this->db->like('anexo', $this->input->get("q"));
 			$query = $this->db->select('id,anexo as text')
-						->limit(10)
+						//->limit(10)
 						->get("extension_phones");
 			$json = $query->result();
 			header("HTTP/1.1 200 OK", true, 200);
