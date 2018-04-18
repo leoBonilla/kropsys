@@ -233,6 +233,20 @@ $('.boostrapDatePicker').datepicker({
      orientation:'bottom'
 });
 
+var url = window.location;
+var element = $('ul.nav a').filter(function() {
+return this.href == url || url.href.indexOf(this.href) == 0;
+}).addClass('active');//.parent().parent().addClass('in').parent();
+$(element.parents()).each(function() {
+if(this.className.indexOf('collapse') != -1) {
+$(this).addClass('in');
+}
+});
+element = element.parent().parent().parent();
+if (element.is('li')) {
+element.addClass('active');
+}
+
     });
 
 
