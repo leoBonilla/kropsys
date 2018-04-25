@@ -170,7 +170,7 @@ $('#select_instancia_otr').on('changed.bs.select',function(e){
 
 $('#select-especialidad-agendamiento,#select-especialidad-reasignaciones,#select-especialidad-confirmaciones,#select-especialidad-otros').on('changed.bs.select',function(e){
                  var form = $(this).parents('form:first');
-var selector = $(this);
+                 var selector = $(this);
                         $.ajax({
                         url : BASE_URL +'/seleccion/profesionales',
                          data : {id : selector.val()},

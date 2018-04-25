@@ -1,50 +1,91 @@
 <div class="col-md-12">
-<!--   <div class="row">
-  <div class="col-md-1">
-    <a href="<?php echo base_url('users/nuevo'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Agregar usuario </a > 
-  </div>
+      <div class="row filtros">
+  <div class="col-md-3">
+       <div class="form-group">
+         <input type="text" class="form-control" id="date-filter">
+       </div>
+      </div>
 
-</div> -->
-<p></p>
-<table id="inmunomedica_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+  <!--   <div class="col-md-3">
+       <div class="form-group">
+        <select name="state-filter" id="state-filter" class="selectpicker" title="MOSTRAR..." data-live-search="true">
+          <option value="0" selected="selected">TODAS</option>
+          <option value="1">CONFIRMADAS</option>
+          <option value="2">SIN CONFIRMAR</option>
+        </select>
+       </div>
+      </div> -->
+   </div> 
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#por_confirmar">POR CONFIRMAR</a></li>
+  <li><a data-toggle="tab" href="#confirmadas">CONFIRMADAS</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="por_confirmar" class="tab-pane fade in active">
+    <br>
+    <table id="inmunomedica_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
-               <th>Paciente</th>
-               <th>Rut</th>
-                <th>Numero</th>
-                <th></th>
-                <th>Especialidad</th>
-                  <th>Profesional</th>
-                  <th>Fecha</th>
-                  <th>hora</th>
-                <th>Lugar</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+               <th>FOLIO</th>
+               
+               <th>FECHA</th>
+                <th>HORA</th>
+                <th>RUT_PRESTADOR</th>
+                <th>PRESTADOR</th>
+                <th>SUCURSAL</th>
+                <th>PACIENTE</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>EJECUTIVO</th>
+                <th>FECHA_REALIZACION</th>
+                <th>CELULAR</th>
+                <th>PREVISION</th> 
+                 <th>ACCIONES</th>
 
                 
+
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-               <th>Paciente</th>
-               <th>Rut</th>
-                <th>Numero</th>
-                <th></th>
-                <th>Especialidad</th>
-                  <th>Profesional</th>
-                  <th>Fecha</th>
-                  <th>hora</th>
-                <th>Lugar</th>
-                <th>Estado</th>
-                <th>Acciones</th>
 
-
-                
-            </tr>
-        </tfoot>
         <tbody>
         </tbody>
     </table>
+
+  </div>
+  <div id="confirmadas" class="tab-pane fade">
+    <br>
+      <table id="inmunomedica_confirmados_table" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+               <th>FOLIO</th>
+               <th>FECHA</th>
+                <th>HORA</th>
+                <th>RUT_PRESTADOR</th>
+                <th>PRESTADOR</th>
+                <th>SUCURSAL</th>
+                <th>PACIENTE</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>EJECUTIVO</th>
+                <th>FECHA_REALIZACION</th>
+                <th>CELULAR</th>
+                <th>PREVISION</th>
+                <th>FECHA CONFIRMACION</th>
+                <th>CONFIRMADO POR</th>
+
+                
+
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="asignarModalLabel" aria-hidden="true">
