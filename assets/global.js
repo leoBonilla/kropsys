@@ -233,10 +233,7 @@ $('.boostrapDatePicker').datepicker({
      orientation:'bottom'
 });
 
-$('[data-toggle=confirmation]').confirmation({
-  rootSelector: '[data-toggle=confirmation]',
-  // other options
-});
+
 
 var url = window.location;
 var element = $('ul.nav a').filter(function() {
