@@ -32,4 +32,24 @@ class Inmunomedica_model extends CI_Model {
     	}
     	return false;
     }
+
+    public function isBlocked($folio){
+    			$this->db->select('*');
+    		$this->db->from('inmunomedica_bloqueos_llamadas');
+    		$this->db->where('folio',$folio);
+    		$result = $this->db->get();
+    		if($result->num_rows()>0){
+    			return true;
+    		}
+    		return false;			
+    }
+
+
+    public function guardarLLamada($data){
+    	$this->db->insert('inmunomedica_historial_llamada', $data);
+            if ( $this->db->affected_rows() == '1' ) {
+                 return TRUE;
+              }
+            return FALSE;
+    }
 }
