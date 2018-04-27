@@ -88,27 +88,26 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="asignarModalLabel" aria-hidden="true">
+<div class="modal fade" id="call-modal" tabindex="-1" role="dialog" aria-labelledby="asignarModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="historyModalLabel">Editar usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h5 class="modal-title" id="call-modal">Generar LLamada</h5>
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+        <!--   <span aria-hidden="true">&times;</span> -->
         </button>
       </div>
         <div class="modal-body">
         
-           <div style="height:200px">
-                      <span id="searching_spinner_center" style="position: absolute;display: block;top: 50%;left: 50%;">
-                          <i class="fa fa-refresh fa-spin" style="font-size:46px"></i>
 
-                      </span>
-                    </div>
         </div>
             
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger btn-close" data-dismiss="modal" data-toggle="confirmation" data-title="Desea cerrar esta ventana?"
+        data-btn-ok-label="Si"
+        data-btn-cancel-label="No"
+        data-placement="left"
+        >Cerrar</button>
 
       </div>
     </div>

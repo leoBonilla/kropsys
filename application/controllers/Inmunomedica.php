@@ -15,11 +15,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Inmunomedica extends MY_Controller
 {
-
+   
+  private $servicio;
 	public function __construct()
 	{
 		parent::__construct();
     $this->load->model('inmunomedica_model', 'inmuno');
+    $this->servicio="http://190.151.33.10:3010/reservaService.asmx?wsdl";  
 		$this->response = array('error' => false, 'data' => array() );
 
 	}
@@ -72,10 +74,10 @@ class Inmunomedica extends MY_Controller
                 switch ($estado) {
                   case '1':
                     
-                              $servicio="http://190.151.33.10:3010/reservaService.asmx?wsdl"; //url del servicio
+                             
                               $parametros=array(); //parametros de la llamada
                               $parametros['fecha']=$fecha;
-                              $client = new SoapClient($servicio, $parametros);
+                              $client = new SoapClient($this->servicio, $parametros);
                               $result = $client->obtenerReservas($parametros);//llamamos al métdo que nos interesa con los parámetros                            
                                if(isset($result->ObtenerReservasResult->reserva)){
                                         $data = $result->ObtenerReservasResult->reserva;
@@ -120,30 +122,27 @@ class Inmunomedica extends MY_Controller
       
   }
 
-  public function test(){
-    header('Content-Type: application/json');
-
-
-  }
-
 
 
   public function confirm(){
     header('Content-Type: application/json');
-    if($this->require_min_level(1)){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
       if($this->input->post()){
           $output = array('result' => false);
            $obj = false;
-           $servicio="http://190.151.33.10:3010/reservaService.asmx?wsdl"; //url del servicio
+              $this->load->model('global_model', 'global');
+              $anexo = $this->global->findAnexoByUser($this->auth_user_id);
+
                               $parametros=array(); //parametros de la llamada
                               $fecha = trim($this->input->post('fecha'));
                               $folio = $this->input->post('id');
+                              $number = $this->input->post('number');
                               $date_format = trim($fecha);
                               $parts = explode('-', $date_format);
 
                               $date_format = "$parts[2]-$parts[1]-$parts[0]";
                               $parametros['fecha']=$fecha;
-                              $client = new SoapClient($servicio, $parametros);
+                              $client = new SoapClient($this->servicio, $parametros);
                               $result = $client->obtenerReservas($parametros);//llamamos al métdo que nos interesa con los parámetros 
                               if(isset($result->ObtenerReservasResult->reserva)){
                                         $data = $result->ObtenerReservasResult->reserva;
@@ -159,8 +158,126 @@ class Inmunomedica extends MY_Controller
              if($obj == false){
                   echo json_encode(array('result' => false));
              }else{
-                        //$output['result'] = $row;
-                                $insertado =  $this->inmuno->confirmar(array(
+                               if($this->inmuno->isBlocked($obj->FOLIO)){
+                                   echo json_encode(array('respuestaOk' => false, 'message' => 'Otro usuario está realizando una llamada a este numero, intentelo mas tarde', 'uniqueId' => ''));
+                               }
+                               else{
+                                   $this->generarLlamada($number,$anexo->anexo,$obj->FOLIO); 
+                                // var_dump($number);
+                                // var_dump($anexo);
+                                // var_dump($obj);
+                               }
+             }
+       }
+    }
+  }
+
+
+private function generarLlamada($number, $extension,$folio){
+    header('Content-Type: application/json');
+      if($this->input->post()){
+       
+
+         try {
+
+          $arrContextOptions=array(
+                          "ssl"=>array(
+                            "verify_peer"=>false,
+                              "verify_peer_name"=>false,
+                          ),
+                        );
+          ini_set('max_execution_time', 300);
+          $callUrl = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension";
+         // var_dump($callUrl);
+        $xml = file_get_contents($callUrl, false, stream_context_create($arrContextOptions));
+          $obj = json_decode($xml);
+            if($obj->respuestaOk == true){
+              $this->inmuno->guardarLLamada(
+                array(
+                  'unique_id' => $obj->uniqueId,
+                  'fecha' => date('Y-m-d H:i:s'),
+                  'user_id' => $this->auth_user_id,
+                  'anexo' => $extension,
+                  'folio' => $folio,
+                  'telefono' => $number
+                ));
+            }
+          
+            echo json_encode(array('respuestaOk' => $obj->respuestaOk, 'message' => $obj->mensaje, 'uniqueId' => $obj->uniqueId));
+     } catch (Exception $e) {
+      var_dump($e);
+      echo json_encode(array('result' => false));
+     }
+      
+    }
+   }
+
+
+   public function preparamodal(){
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
+       if($this->input->post()){
+        $obj = false;
+                              $parametros=array(); //parametros de la llamada
+                              $fecha = trim($this->input->post('fecha'));
+                              $folio = $this->input->post('id');
+                              $date_format = trim($fecha);
+                              $parts = explode('-', $date_format);
+
+                              $date_format = "$parts[2]-$parts[1]-$parts[0]";
+                              $parametros['fecha']=$fecha;
+                              $client = new SoapClient($this->servicio, $parametros);
+                              $result = $client->obtenerReservas($parametros);//llamamos al métdo que nos interesa con los parámetros 
+                              if(isset($result->ObtenerReservasResult->reserva)){
+                                        $data = $result->ObtenerReservasResult->reserva;
+                                           foreach ($data as $key => $row) {
+                                            if($row->FOLIO == $folio){
+                                                $tmp = (array) $row;
+                                                $tmp['FECHA'] = $fecha;
+                                                $obj = (object) $tmp;
+                                                break;
+                                            }
+                                                 
+                                              }
+                                      } 
+                         $this->load->view('inmunomedica/modal_call', array('obj' => $obj));
+
+       }
+    }
+   }
+
+
+   public function markConfirmed(){
+    header('Content-Type: application/json');
+    if($this->require_min_level(EJECUTIVE_LEVEL)){
+      if($this->input->post()){
+          $output = array('result' => false);
+           $obj = false;
+
+                              $parametros=array(); //parametros de la llamada
+                              $fecha = trim($this->input->post('fecha'));
+                              $folio = $this->input->post('id');
+                              $date_format = trim($fecha);
+                              $parts = explode('-', $date_format);
+
+                              $date_format = "$parts[2]-$parts[1]-$parts[0]";
+                              $parametros['fecha']=$fecha;
+                              $client = new SoapClient($this->servicio, $parametros);
+                              $result = $client->obtenerReservas($parametros);//llamamos al métdo que nos interesa con los parámetros 
+                              if(isset($result->ObtenerReservasResult->reserva)){
+                                        $data = $result->ObtenerReservasResult->reserva;
+                                           foreach ($data as $key => $row) {
+                                            if($row->FOLIO == $folio){
+                                                $tmp = (array) $row;
+                                                $tmp['FECHA'] = $fecha;
+                                                $obj = (object) $tmp;
+                                                break;
+                                            }
+                                                 
+                                              }
+                                      } 
+
+                           if($obj != false){
+                               $insertado =  $this->inmuno->confirmar(array(
                                                   'folio' => $obj->FOLIO,
                                                    'confirmado_por' => $this->auth_user_id,
                                                    'fecha_confirmacion' => date('Y-m-d H:i:s'),
@@ -186,10 +303,15 @@ class Inmunomedica extends MY_Controller
                                 }else{
                                     echo json_encode(array('result' => false));
                                 }
-             }
+                           }
+
+
+
+         }
        }
-    }
-  }
+
+   }
+   
 
 
 }

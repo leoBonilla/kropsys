@@ -49,7 +49,7 @@ $(document).ready(function(){
                 "mData": "ACCIONES",
                 "mRender": function (data, type, row) {
                    // return '<input type="checkbox" class="state-checkbox" '+"data-id='"+row.FOLIO+"'"+' data-fecha= "'+row.FECHA+'"checked>';
-                   return '<button type="button" data-toggle="confirmation" class="btn btn-xs btn-primary btn-confirm" data-id="'+row.FOLIO+'" data-fecha="'+row.FECHA+'  "checked">Confirmar</button>';
+                   return '<button type="button" data-toggle="confirmation" class="btn btn-xs btn-primary btn-confirm" data-id="'+row.FOLIO+'" data-fecha="'+row.FECHA+'  "checked"><i class="fa  fa-arrow-right"></i></button>';
                 }
             }
              
@@ -136,23 +136,35 @@ $(document).ready(function(){
 
    var sendpost = function(id, fecha) {
 
-      updateTable();
-      $.post(BASE_URL + "/inmunomedica/confirm", {id : id, fecha: fecha }, function(data){
-        if(data.result == true){
-            updateTable();
-        }
+     
+
+          var __modal = $('#call-modal').modal('show');
+
+          __modal.find('.modal-body').html('<div style="height:200px"><span id="searching_spinner_center" style="position: absolute;display: block;top: 50%;left: 50%;"><i class="fa fa-refresh fa-spin" style="font-size:46px"></i></span></div>');
+          __modal.find('.modal-body').load(BASE_URL+'/inmunomedica/preparamodal',{fecha:fecha, id:id}, function(){
+          __modal.find('.btn-close').confirmation();
+          __modal.find('#btn-call').on('click', function(){
+                          toastr['info']("GENERANDO LLAMADA...");
+                        $.post(BASE_URL + "/inmunomedica/confirm", {id : id, fecha: fecha, number: $('#tocall').val() }, function(data){
+                             if(data.respuestaOk == true){
+                                    __modal.find('#btn-confirm').toggle().bootstrapSwitch().on('switchChange.bootstrapSwitch', function(event, state) {
+                                        if(state == true){
+                                          toastr['success']("LLAMADA CONECTADA");
+                                          $.post(BASE_URL + "/inmunomedica/markconfirmed", {id : id, fecha: fecha }, function(data){
+                                           if(data.result== true){
+                                              updateTable();
+                                              __modal.modal('hide');
+                                           }
+                                          });
+                                        }
+                                      });
+                                }
+                             });
+
+          });
+
       });
    }
-
-   $(window).on('shown.bs.modal', function() { 
-    var modal = $('.modal.fade.dtr-bs-modal.in');
-    modal.find('.btn-confirm').on('click', function(){
-            sendpost($(this).data('id'),$(this).data('fecha'));
-            modal.modal('hide');
-    });
-
-});
-
 
     var updateTable =function (){
          table.clear().draw();
