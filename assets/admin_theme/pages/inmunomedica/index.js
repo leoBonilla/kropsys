@@ -178,7 +178,7 @@ $(document).ready(function(){
   $( $.fn.dataTable.tables(true) ).DataTable().responsive.recalc();
 });
 
-    
+    ///
 });
 
 
