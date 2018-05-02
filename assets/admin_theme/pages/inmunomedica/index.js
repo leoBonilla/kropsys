@@ -143,22 +143,54 @@ $(document).ready(function(){
           __modal.find('.modal-body').html('<div style="height:200px"><span id="searching_spinner_center" style="position: absolute;display: block;top: 50%;left: 50%;"><i class="fa fa-refresh fa-spin" style="font-size:46px"></i></span></div>');
           __modal.find('.modal-body').load(BASE_URL+'/inmunomedica/preparamodal',{fecha:fecha, id:id}, function(){
           __modal.find('.btn-close').confirmation();
-          __modal.find('#btn-call').on('click', function(){
-                          toastr['info']("GENERANDO LLAMADA...");
-                        $.post(BASE_URL + "/inmunomedica/confirm", {id : id, fecha: fecha, number: $('#tocall').val() }, function(data){
-                             if(data.respuestaOk == true){
-                                    __modal.find('#btn-confirm').toggle().bootstrapSwitch().on('switchChange.bootstrapSwitch', function(event, state) {
-                                        if(state == true){
-                                          toastr['success']("LLAMADA CONECTADA");
-                                          $.post(BASE_URL + "/inmunomedica/markconfirmed", {id : id, fecha: fecha }, function(data){
+          __modal.find('#observaciones').summernote({
+                    lang: 'es-ES' 
+              });
+          var form = __modal.find('#confirmar_form');
+                                   __modal.find('#btn-save').on('click', function(){
+                                    var boton = $(this);
+                                    boton.children().removeClass('fa-phone').addClass('fa-spinner fa-spin');
+                                     $.post(BASE_URL + "/inmunomedica/markconfirmed", {id : id, fecha: fecha, uniqueId : $('#unique_id').val(), estado : $('#estado').val(), observaciones: $('#observaciones').val()  }, function(data){
                                            if(data.result== true){
                                               updateTable();
                                               __modal.modal('hide');
                                            }
-                                          });
-                                        }
-                                      });
+                                          }).always(function(){
+                            //  alert('done');
+                              boton.children().removeClass('fa-spinner fa-spin').addClass('fa-save');
+                             });
+;
+                                    
+                                   });
+          __modal.find('#btn-call').on('click', function(){
+                        var boton = $(this);
+                          boton.children().removeClass('fa-phone').addClass('fa-spinner fa-spin');
+                          toastr['success']("GENERANDO LLAMADA, POR FAVOR ACEPTE PARA CONTINUAR...");
+                        $.post(BASE_URL + "/inmunomedica/confirm", {id : id, fecha: fecha, number: $('#tocall').val() }, function(data){
+
+                             if(data.respuestaOk == true){
+                              toastr['info']("CONECTANDO CON NUMERO DE DESTINO...");
+                                   __modal.find('#unique_id').val(data.uniqueId);
+                                   __modal.find('#unique_id').val(data.uniqueId);
+
+                                    // __modal.find('#btn-confirm').toggle().bootstrapSwitch().on('switchChange.bootstrapSwitch', function(event, state) {
+                                    //     if(state == true){
+                                          
+                                    //       $.post(BASE_URL + "/inmunomedica/markconfirmed", {id : id, fecha: fecha }, function(data){
+                                    //        if(data.result== true){
+                                    //           updateTable();
+                                    //           __modal.modal('hide');
+                                    //        }
+                                    //       });
+                                    //     }
+                                    //   });
+
+                                }else{
+                                   toastr['error']("PROBLEMAS GENERANDO LA LLAMADA...");
                                 }
+                             }).always(function(){
+                            //  alert('done');
+                              boton.children().removeClass('fa-spinner fa-spin').addClass('fa-phone');
                              });
 
           });
