@@ -260,6 +260,7 @@ private function generarLlamada($number, $extension,$folio){
                               $parts = explode('-', $date_format);
                               $id_llamada = trim($this->input->post('uniqueId'));
                               $estado = trim($this->input->post('estado'));
+                              $destino = trim($this->input->post('destino'));
                               $observaciones = trim($this->input->post('observaciones'));
                               $date_format = "$parts[2]-$parts[1]-$parts[0]";
                               $parametros['fecha']=$fecha;
@@ -298,7 +299,8 @@ private function generarLlamada($number, $extension,$folio){
                                                     'especialidad' => $obj->ESPECIALIDAD,
                                                     'id_llamada' => $id_llamada,
                                                     'estado' => $estado,
-                                                    'observaciones' => $observaciones
+                                                    'observaciones' => $observaciones,
+                                                    'numero_destino' => $destino
 
 
                                               ));

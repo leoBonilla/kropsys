@@ -150,7 +150,13 @@ $(document).ready(function(){
                                    __modal.find('#btn-save').on('click', function(){
                                     var boton = $(this);
                                     boton.children().removeClass('fa-phone').addClass('fa-spinner fa-spin');
-                                     $.post(BASE_URL + "/inmunomedica/markconfirmed", {id : id, fecha: fecha, uniqueId : $('#unique_id').val(), estado : $('#estado').val(), observaciones: $('#observaciones').val()  }, function(data){
+                                     $.post(BASE_URL + "/inmunomedica/markconfirmed", {
+                                      id : id, fecha: 
+                                      fecha, uniqueId : $('#unique_id').val(), 
+                                      estado : $('#estado').val(), 
+                                      observaciones: $('#observaciones').val(),
+                                      destino : $('#tocall').val()  },
+                                       function(data){
                                            if(data.result== true){
                                               updateTable();
                                               __modal.modal('hide');
