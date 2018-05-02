@@ -258,7 +258,9 @@ private function generarLlamada($number, $extension,$folio){
                               $folio = $this->input->post('id');
                               $date_format = trim($fecha);
                               $parts = explode('-', $date_format);
-
+                              $id_llamada = trim($this->input->post('uniqueId'));
+                              $estado = trim($this->input->post('estado'));
+                              $observaciones = trim($this->input->post('observaciones'));
                               $date_format = "$parts[2]-$parts[1]-$parts[0]";
                               $parametros['fecha']=$fecha;
                               $client = new SoapClient($this->servicio, $parametros);
@@ -293,7 +295,10 @@ private function generarLlamada($number, $extension,$folio){
                                                     'prevision' => $obj->PREVISION,
                                                     'rut_prestador' => $obj->RUT_PRESTADOR,
                                                     'ejecutivo' => $obj->EJECUTIVO,
-                                                    'especialidad' => $obj->ESPECIALIDAD
+                                                    'especialidad' => $obj->ESPECIALIDAD,
+                                                    'id_llamada' => $id_llamada,
+                                                    'estado' => $estado,
+                                                    'observaciones' => $observaciones
 
 
                                               ));
@@ -302,6 +307,8 @@ private function generarLlamada($number, $extension,$folio){
                                     echo json_encode(array('result' => true));
                                 }else{
                                     echo json_encode(array('result' => false));
+                   
+
                                 }
                            }
 

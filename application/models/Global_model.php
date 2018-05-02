@@ -52,7 +52,7 @@ class Global_model extends CI_Model {
               if($query->num_rows() > 0){
                 return $query->row() ;
               }
-    }
+            }
 
 
      public function getAllUsers(){
@@ -69,10 +69,8 @@ class Global_model extends CI_Model {
       public function findUser($id){
         $this->db->select('u.*, a.anexo');
               $this->db->from('users u');
-              
               $this->db->join('extension_phones a','u.extension_id = a.id','left');
               $this->db->where('u.user_id',$id);
-              
               $query = $this->db->get();
               if($query->num_rows() > 0){
                 return $query->row() ;
