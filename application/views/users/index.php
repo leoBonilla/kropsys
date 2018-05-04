@@ -35,7 +35,7 @@
                <select name="anexo" id="" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required" >
               <option value="">SELECCIONE ANEXO</option>
                 <?php foreach ($anexos as $row): ?>
-                    <option value="<?php echo $row->id ?>"><?php echo $row->anexo; ?></option>
+                    <option value="<?php echo $row->id  ?>"><?php echo $row->anexo.' '.$row->central; ?></option>
                 <?php endforeach ?>
               </select>
             </div>

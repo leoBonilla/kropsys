@@ -15,7 +15,10 @@ class Anexos_model extends CI_Model {
         }
 
     public function getAll(){
-       return $this->db->get($this->table)->result(); 
+       $this->db->select('e.*, c.central');
+              $this->db->from('extension_phones e');
+              $this->db->join('central c','c.id = e.id_central');
+       return $this->db->get()->result(); 
     }
 
     public function find($id){
