@@ -187,7 +187,7 @@ private function generarLlamada($number, $extension,$folio){
                           ),
                         );
           ini_set('max_execution_time', 300);
-          $callUrl = "https://192.168.0.150/generaLlamada.php?telefono=$number&anexo=$extension";
+          $callUrl = "https://192.168.0.205/generaLlamada.php?telefono=$number&anexo=$extension";
          // var_dump($callUrl);
         $xml = file_get_contents($callUrl, false, stream_context_create($arrContextOptions));
           $obj = json_decode($xml);
