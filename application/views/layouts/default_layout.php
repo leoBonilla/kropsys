@@ -281,7 +281,7 @@
 
                          <?php if($auth_role  == 'admin' || $auth_role == 'ej_inmunomedica' || $auth_role == 'superuser') :?>
                               <li>
-                            <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="label label-default">En desarrollo</span><span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                  <li>
                                     <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-arrow-circle-right"></i> Panel</a>
