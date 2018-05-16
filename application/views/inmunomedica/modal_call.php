@@ -95,8 +95,12 @@
                  <div class="form-group col-md-4">
                     <label for="estado">ESTADO</label>
                      <select name="estado" id="estado" class="form-control">
-                         <option value="CONFIRMADO">CONFIRMADO</option>
+                         <option value="CONFIRMADO">CONFIRMA</option>
+                         <option value="CONFIRMA TERCERO">CONFIRMA TERCERO</option>
+                         <option value="NO CONTESTA">NO CONTESTA</option>
                          <option value="NO ASISTIRA">NO ASISTIRA</option>
+                         <option value="NUMERO EQUIVOCADO">NUMERO EQUIVOCADO</option>
+                         <option value="OTRO">OTRO</option>
                      </select>
                  </div>
              </div>
