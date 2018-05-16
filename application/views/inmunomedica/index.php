@@ -18,8 +18,8 @@
    </div> 
 
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#por_confirmar">POR CONFIRMAR</a></li>
-  <li><a data-toggle="tab" href="#confirmadas">CONFIRMADAS</a></li>
+  <li class="active"><a data-toggle="tab" href="#por_confirmar">PENDIENTES</a></li>
+  <li><a data-toggle="tab" href="#confirmadas">GESTIONADAS</a></li>
 </ul>
 
 <div class="tab-content">
