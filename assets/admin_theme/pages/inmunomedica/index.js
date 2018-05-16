@@ -97,6 +97,7 @@ $(document).ready(function(){
 
         "columns": [
                  {"data": "folio"},
+                  {"data": "estado"},
                  {"data": "fecha"},
                  {"data": "hora"},
                 {"data": "rut_prestador"},
