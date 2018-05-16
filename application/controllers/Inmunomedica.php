@@ -27,7 +27,7 @@ class Inmunomedica extends MY_Controller
 	}
 
 	public function index(){
-           if($this->require_group('inmunomedica')){
+           if($this->require_min_level(EJECUTIVE_LEVEL)){
            		    $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
@@ -71,6 +71,9 @@ class Inmunomedica extends MY_Controller
                 $fecha = str_replace('/', '-',$this->input->post('fecha'));
                 $estado = $this->input->post('state');
                 $data = array();
+                $sucursales = array();
+                $especialidades = array();
+                $doctores = array();
                 switch ($estado) {
                   case '1':
                     
@@ -81,9 +84,18 @@ class Inmunomedica extends MY_Controller
                               $result = $client->obtenerReservas($parametros);//llamamos al métdo que nos interesa con los parámetros                            
                                if(isset($result->ObtenerReservasResult->reserva)){
                                         $data = $result->ObtenerReservasResult->reserva;
-                                       // sacar los registros que han sido confirmados
+
+
+                                       // sacar los registros que han sido confirmados, obtener sucursales , especialidades y medicos para poder filtrar
                                         foreach ($data as $key => $row) {
                                             $folio = $row->FOLIO;
+                                             if(!in_array($row->SUCURSAL, $sucursales)){
+                                              $sucursales[] = $row->SUCURSAL;
+                                             }
+
+                                              if(!in_array($row->ESPECIALIDAD, $especialidades)){
+                                              $especialidades[] = $row->ESPECIALIDAD;
+                                             }
                                             //si está en la base de datos es porque esta confirmado
                                             if($this->inmuno->exists($row->FOLIO)){
                                               //quitar de la lista actual porque solo traer los que no han sido confirmados
@@ -118,7 +130,7 @@ class Inmunomedica extends MY_Controller
                 
             }
              
-         echo json_encode(array('data' => $data));
+         echo json_encode(array('data' => $data, 'sucursales' => $sucursales, 'especialidades' => $especialidades));
       
   }
 
