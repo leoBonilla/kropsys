@@ -279,7 +279,7 @@
                         <?php endif; ?>
 
 
-                         <?php if($auth_role  == 'admin' || $auth_role == 'ej_inmunomedica' || $auth_role == 'superuser') :?>
+                         <?php if($auth_level  >= 3) :?>
                               <li>
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
