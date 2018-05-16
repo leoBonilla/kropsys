@@ -60,6 +60,7 @@
         <thead>
             <tr>
                <th>FOLIO</th>
+               <th>ESTADO</th>
                <th>FECHA</th>
                 <th>HORA</th>
                 <th>RUT_PRESTADOR</th>
