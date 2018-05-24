@@ -20,13 +20,20 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-		if( $this->require_min_level(EJECUTIVE_LEVEL) )
+		if( $this->require_min_level(1) )
 		{
 			$this->template->set('title', 'Inicio');
 			$this->template->set('page_header', 'Inicio');
 			$this->template->set('css', array());
 			$this->template->set('scripts', array());
-			$this->template->load('default_layout', 'contents' , 'welcome_message', null);
+			if($this->auth_level >= 3){
+				$this->template->load('default_layout', 'contents' , 'welcome_message', null);
+			}else{
+				if($this->auth_level == 2){
+					redirect(base_url('inmunomedica/home'));
+				}
+			}
+			
 	     }
 	}
 

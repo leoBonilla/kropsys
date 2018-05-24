@@ -29,8 +29,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['levels_and_roles'] = [
 	'1' => 'usuario_externo',
-	'2' => 'ej_inmunomedica' , //ejecutiva inmunomedica
-	'3' => 'ej_hlf',   //ejecutiva hlf
+	'2' => 'ej_inmunomedica',   //ejecutiva hlf
+	'3' => 'sup_inmunomedica' , //ejecutiva inmunomedica
+	'4' => 'ej_hlf',   //ejecutiva hlf
 	'9' => 'admin',
 	'12' => 'superuser'
 ];
@@ -43,11 +44,12 @@ $config['levels_and_roles'] = [
 |
 */
 
-$config['groups'] = [
-	'hlf' => 'admin,eje_hlf',
-	'inmunomedica' => 'aej_inmunomedica, admin, superuser',
+$config['groups'] = array(
+	'hlf' => 'admin,ej_hlf,superuser',
+	'inmunomedica' => 'admin,ej_inmunomedica,sup_inmunomedica,superuser',
+	'admin_inmunomedica' => 'sup_inmunomedica, admin, superuser',
 	'administradores' => 'admin,superuser'
-];
+);
 
 /*
 | -----------------------------------------------------------------

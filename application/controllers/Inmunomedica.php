@@ -27,7 +27,7 @@ class Inmunomedica extends MY_Controller
 	}
 
 	public function index(){
-           if($this->require_min_level(EJECUTIVE_LEVEL)){
+            if($this->require_group('inmunomedica')){
            		    $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
@@ -62,6 +62,44 @@ class Inmunomedica extends MY_Controller
 			       $this->template->load('default_layout', 'contents' , 'inmunomedica/index',  array('data' => null));
            }
 	}
+
+  public function home(){
+                if($this->require_group('inmunomedica')){
+           
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'custom.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'pages/inmunomedica/index.js');    
+           $this->template->set('title', 'Inmunomedica');
+             $this->template->set('page_header', 'Inmunomedica');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/index',  array('data' => null));
+           }
+  }
 
 
   public function listar(){
@@ -335,7 +373,7 @@ private function generarLlamada($number, $extension,$folio){
 
 
    public function reportes(){
-          if($this->require_min_level(EJECUTIVE_LEVEL)){
+          if($this->require_group('inmunomedica')){
                   $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
