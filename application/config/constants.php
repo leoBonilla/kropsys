@@ -89,6 +89,8 @@ defined('VERSION')    OR define('VERSION', '1.2.4.8');
 
 
 defined('EXTERNAL_LEVEL') OR define('EXTERNAL_LEVEL', 1);
-defined('EJECUTIVE_LEVEL') OR define('EJECUTIVE_LEVEL', 3);
+defined('INMUNOMEDICA_ADMIN_LEVEL') OR define('EXTERNAL_LEVEL', 'INMUNOMEDICA_ADMIN_LEVEL',2);
+defined('EJECUTIVE_LEVEL_INMUNO') OR define('EJECUTIVE_LEVEL_INMUNO', 3);
+defined('EJECUTIVE_LEVEL') OR define('EJECUTIVE_LEVEL', 4);
 defined('ADMIN_LEVEL') OR define('ADMIN_LEVEL', 9);
 defined('ROOT_LEVEL') OR define('ROOT_LEVEL', 12);

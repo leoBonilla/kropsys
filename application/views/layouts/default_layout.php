@@ -235,7 +235,8 @@
                             </div>
                         
                         </li> -->
-                        <li>
+                        <?php if(in_array($auth_level, array(4,9,12))): ?>
+                                      <li>
                             <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                         </li>
                            <li>
@@ -254,6 +255,7 @@
                        </ul>
                           
                         </li> 
+                        <?php endif; ?>
                             
                         <?php if($auth_level >= ADMIN_LEVEL) :?>
                               <li>
@@ -280,7 +282,8 @@
 
 
                  
-                              <li>
+                    <?php if(in_array($auth_level, array(2, 9,12))): ?>
+                               <li>
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                  <li>
@@ -295,7 +298,7 @@
                                
                             </ul>
                         </li>
-                  
+                     <?php endif; ?>
                         <!-- <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
