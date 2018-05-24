@@ -26,10 +26,10 @@ class Welcome extends MY_Controller {
 			$this->template->set('page_header', 'Inicio');
 			$this->template->set('css', array());
 			$this->template->set('scripts', array());
-			if($this->auth_level >= 3){
+			if($this->auth_level >= 4){
 				$this->template->load('default_layout', 'contents' , 'welcome_message', null);
 			}else{
-				if($this->auth_level == 2){
+				if($this->auth_level == 2 || $this->auth_level == 3){
 					redirect(base_url('inmunomedica/home'));
 				}
 			}

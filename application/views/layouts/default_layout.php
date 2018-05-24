@@ -282,7 +282,7 @@
 
 
                  
-                    <?php if(in_array($auth_level, array(2, 9,12))): ?>
+                    <?php if(in_array($auth_level, array(2,3, 9,12))): ?>
                                <li>
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

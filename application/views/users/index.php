@@ -44,8 +44,9 @@
             <label for="tipo">Tipo de usuario</label>
                <select name="tipo" id="" class="form-control selectpicker" data-show-subtext="true" data-live-search="true" required="required">
                 <option value="">SELECCIONE TIPO</option>
-                <option value="3">EJECUTIVA HLF</option>
+                <option value="4">EJECUTIVA HLF</option>
                 <option value="2">EJECUTIVA INMUNOMEDICA</option>
+                <option value="3">ADMIN INMUNOMEDICA</option>
                 <option value="9">ADMIN</option>
                 <option value="1">USUARIO EXTERNO</option>
               </select>
