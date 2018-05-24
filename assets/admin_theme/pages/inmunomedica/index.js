@@ -64,8 +64,31 @@ $(document).ready(function(){
        "fnDrawCallback": function() {
                      
                             $(".state-checkbox").bootstrapSwitch({size: "mini", onColor:"success", offColor:"danger"});
-                        }
-    } );
+                        },
+         "initComplete": function(settings, json) {
+    //alert( 'DataTables has finished its initialisation.' );
+    // console.log(json);
+
+         $.each(json.sucursales, function (i, item) {
+          $('#sucursal-filter').append($('<option>', { 
+                value: item,
+                text : item 
+           }));
+        });
+
+          $.each(json.especialidades, function (i, item) {
+          $('#especialidad-filter').append($('<option>', { 
+                value: item,
+                text : item 
+           }));
+        });
+
+          
+  }
+    }
+
+
+     );
 
       var table2 = $('#inmunomedica_confirmados_table').DataTable( {
         "ajax": {
