@@ -52,4 +52,8 @@ class Inmunomedica_model extends CI_Model {
               }
             return FALSE;
     }
+
+
+
+
 }

@@ -279,19 +279,23 @@
                         <?php endif; ?>
 
 
-                         <?php if($auth_level  >= 3) :?>
+                 
                               <li>
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                  <li>
                                     <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-arrow-circle-right"></i> Panel</a>
                                 </li>
+                                 <li>
+                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Reportes</a>
+                                </li>
+                             
                              
 
                                
                             </ul>
                         </li>
-                        <?php endif; ?>
+                  
                         <!-- <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
