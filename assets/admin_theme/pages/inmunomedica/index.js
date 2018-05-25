@@ -196,6 +196,7 @@ $(document).ready(function(){
                         var boton = $(this);
                           boton.children().removeClass('fa-phone').addClass('fa-spinner fa-spin');
                           toastr['success']("GENERANDO LLAMADA, POR FAVOR ACEPTE PARA CONTINUAR...");
+                           $("[href='#menu1']").tab('show');
                         $.post(BASE_URL + "/inmunomedica/confirm", {id : id, fecha: fecha, number: $('#tocall').val() }, function(data){
 
                              if(data.respuestaOk == true){
