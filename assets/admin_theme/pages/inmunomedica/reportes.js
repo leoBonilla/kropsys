@@ -4,7 +4,8 @@ $(document).ready(function(){
     startView: "months", 
     minViewMode: "months",
     immediateUpdates:true,
-    autoclose:true
+    autoclose:true,
+    language: 'es'
 });
 
 $('#date-filter').on('changeDate', function() {
