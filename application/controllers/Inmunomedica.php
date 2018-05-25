@@ -93,7 +93,7 @@ class Inmunomedica extends MY_Controller
                          'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
                'pages/inmunomedica/index.js');    
-           $this->template->set('title', 'Inmunomedica');
+             $this->template->set('title', 'Inmunomedica');
              $this->template->set('page_header', 'Inmunomedica');
              $this->template->set('css', $css);
              $this->template->set('scripts', $scripts);
@@ -402,6 +402,9 @@ private function generarLlamada($number, $extension,$folio){
                          'vendor/datatables-plugins/buttons.print.min.js',
                          'vendor/fullcalendar/fullcalendar.js',
                          'vendor/fullcalendar/locale/es.js',
+                         'vendor/flot/jquery.flot.js',
+                         'vendor/flot/jquery.flot.resize.js',
+                         'vendor/flot-tooltip/jquery.flot.tooltip.min.js',
                '../init_tables.js',
                'pages/inmunomedica/reportes.js');    
            $this->template->set('title', 'Inmunomedica - Reportes');
