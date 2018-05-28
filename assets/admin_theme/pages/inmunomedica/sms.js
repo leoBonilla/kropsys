@@ -13,10 +13,10 @@
             "url": "listar_sms",
             "type": "POST",
              "data" : function(d){
-                // var dates = rangepicker.val().split(' - '); 
-                // d.inicio = dates[0].replace("/g", "-");
-                // d.fin = dates[1].replace("/g", "-");
-                // d.userId = $('#userId').val();
+                var dates = rangepicker.val().split(' - '); 
+                d.inicio = dates[0].replace("/g", "-");
+                d.fin = dates[1].replace("/g", "-");
+                d.userId = $('#userId').val();
              }
         },
  
@@ -45,14 +45,14 @@
 
 
 
-//  rangepicker.on('cancel.daterangepicker', function(ev, picker) {
+ rangepicker.on('cancel.daterangepicker', function(ev, picker) {
  
-// });
-//  //cuando se envia una fecha valida
-//   rangepicker.on('apply.daterangepicker', function(ev, picker) {
-//           table.ajax.reload();
+});
+ //cuando se envia una fecha valida
+  rangepicker.on('apply.daterangepicker', function(ev, picker) {
+          table.ajax.reload();
 
-// });
+});
 })(jQuery);
 
 $(document).ready(function(){

@@ -290,8 +290,12 @@
                                     <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-arrow-circle-right"></i> Panel</a>
                                 </li>
                                  <li>
-                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Reportes</a>
+                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Llamadas entrantes</a>
                                 </li>
+                                <li>
+                                    <a href="<?php echo base_url('inmunomedica/sms'); ?>"><i class="fa fa-paper-plane"></i> Sms enviados</a>
+                                </li>
+
                              
                              
 

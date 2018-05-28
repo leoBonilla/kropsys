@@ -474,26 +474,25 @@ private function generarLlamada($number, $extension,$folio){
           $users = null;
             if($this->input->post()){
 
-               //  $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
-               //  $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
-               // // $userId = ($this->input->post('userId') != '') ? $this->input->post('userId') : '';
-               //  $users = ($this->input->post('userId') != null) ? $this->input->post('userId') : ''; 
+                $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
+                 $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
+                 $where = "date(fecha_envio) between '".$inicio."' and '".$fin."'";
                            
                $this->load->model('datatables/inmuno_sms_model', 'sms');
-                       $list = $this->sms->get_datatables();
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $fila) {
-          //var_dump($tareas);
-            $no++;
-            $row = array();
-            $row[] = $fila->numero;
-            $row[] = $fila->mensaje;
-            $row[] = $fila->fecha_envio;
-             $row[] = $fila->motivo;
-              $row[] = $fila->fecha_cita;
-               $row[] = $fila->hora_cita;
-            // $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/sms-'.$fila->id)."'>Editar</a>";
+                       $list = $this->sms->get_datatables($where);
+           $data = array();
+           $no = $_POST['start'];
+           foreach ($list as $fila) {
+              //var_dump($tareas);
+                $no++;
+                $row = array();
+                $row[] = $fila->numero;
+                $row[] = $fila->mensaje;
+                $row[] = $fila->fecha_envio;
+                 $row[] = $fila->motivo;
+                  $row[] = $fila->fecha_cita;
+                   $row[] = $fila->hora_cita;
+             $row[] = "<a class='btn btn-warning btn-xs' href='#'></a>";
  
  
             $data[] = $row;
@@ -501,8 +500,8 @@ private function generarLlamada($number, $extension,$folio){
  
         $output = array(
                         "draw" => $_POST['draw'],
-                        "recordsTotal" => $this->sms->count_all(),
-                        "recordsFiltered" => $this->sms->count_filtered(),
+                        "recordsTotal" => $this->sms->count_all($where),
+                        "recordsFiltered" => $this->sms->count_filtered($where),
                         "data" => $data,
                 );
         //output to json format
