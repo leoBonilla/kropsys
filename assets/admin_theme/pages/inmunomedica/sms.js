@@ -17,6 +17,7 @@
                 d.inicio = dates[0].replace("/g", "-");
                 d.fin = dates[1].replace("/g", "-");
                 d.userId = $('#userId').val();
+                d.motivo = $('#motivo').val();
              }
         },
  
@@ -44,7 +45,7 @@
     });
 
 
-
+$('#motivo').on('change', function(){  table.ajax.reload(); });
  rangepicker.on('cancel.daterangepicker', function(ev, picker) {
  
 });
