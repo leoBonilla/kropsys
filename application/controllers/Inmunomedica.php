@@ -476,7 +476,12 @@ private function generarLlamada($number, $extension,$folio){
 
                 $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
                  $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
+                  $motivo = ($this->input->post('motivo') != '') ? $this->input->post('motivo') : '';
+                 
                  $where = "date(fecha_envio) between '".$inicio."' and '".$fin."'";
+                  if($motivo != 'TODOS'){
+                    $where = $where. " AND motivo = '".$motivo."'";
+                  }
                            
                $this->load->model('datatables/inmuno_sms_model', 'sms');
                        $list = $this->sms->get_datatables($where);
