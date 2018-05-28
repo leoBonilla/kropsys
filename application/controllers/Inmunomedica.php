@@ -415,6 +415,45 @@ private function generarLlamada($number, $extension,$folio){
            }
    }
 
+   public function sms(){
+              if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/fullcalendar/fullcalendar.css',
+                         'custom.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'pages/inmunomedica/sms.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - Visor de sms');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/sms',  array('data' => null));
+           }
+
+   }
+
 
    public function sendReminder(){
          $database = $this->load->database('kropsys_service',TRUE);
@@ -424,6 +463,91 @@ private function generarLlamada($number, $extension,$folio){
                      echo $row->mensaje;
                   }
            }
+   }
+
+
+   public function listar_sms(){
+    $this->load->database('kropsys_service');
+             if($this->require_min_level(EJECUTIVE_LEVEL)){
+          $inicio = '';
+          $fin= '';
+          $users = null;
+            if($this->input->post()){
+
+               //  $inicio = ($this->input->post('inicio') != '') ? datepicker_to_mysql($this->input->post('inicio')) : '';
+               //  $fin = ($this->input->post('fin') != '') ? datepicker_to_mysql($this->input->post('fin')) : '';
+               // // $userId = ($this->input->post('userId') != '') ? $this->input->post('userId') : '';
+               //  $users = ($this->input->post('userId') != null) ? $this->input->post('userId') : ''; 
+                           
+               $this->load->model('datatables/inmuno_sms_model', 'sms');
+                       $list = $this->sms->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $fila) {
+          //var_dump($tareas);
+            $no++;
+            $row = array();
+            $row[] = $fila->numero;
+            $row[] = $fila->mensaje;
+            $row[] = $fila->fecha_envio;
+             $row[] = $fila->motivo;
+              $row[] = $fila->fecha_cita;
+               $row[] = $fila->hora_cita;
+            // $row[] = "<a class='btn btn-warning btn-xs' href='".base_url('registros/edit/sms-'.$fila->id)."'>Editar</a>";
+ 
+ 
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->sms->count_all(),
+                        "recordsFiltered" => $this->sms->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+            }
+
+              }
+      // if($this->auth_level < ADMIN_LEVEL){
+      //    $where = "id_usuario = ". $this->auth_user_id;
+      //     if($inicio != '' and $fin != ''){
+      //       $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
+      //     }elseif($inicio != ''){
+      //       $where .= " AND ((date(fecha) >= '".$inicio."')) ";
+      //     }elseif($fin != ''){
+      //       $where .= " AND ((date(fecha) <= '".$fin."')) ";
+      //     }
+          
+      // }else{
+      //   $where = "";
+      //   if($inicio != '' and $fin != ''){
+      //       $where .= " ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
+      //     }elseif($inicio != ''){
+      //       $where .= " ((date(fecha) >= '".$inicio."')) ";
+      //     }elseif($fin != ''){
+      //       $where .= " ((date(fecha) <= '".$fin."')) ";
+      //     }
+
+         
+      //     if(is_array($users)){
+      //         $in = '';
+      //         foreach ($users as $id) {
+      //           if($id != '')
+      //           $in = $in .' '.$id.',';
+      //         }
+      //         $in = substr($in, 0, -1);
+
+      //                    if($where != ''){
+      //                    $where = $where. " AND id_usuario IN (".$in.")"; 
+      //                  }else{
+      //                  $where = $where. " id_usuario IN (".$in.")"; 
+      //                  }
+      //          }
+      // }
+     
+
    }
    
 
