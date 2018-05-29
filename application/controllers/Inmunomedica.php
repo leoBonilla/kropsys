@@ -37,22 +37,22 @@ class Inmunomedica extends MY_Controller
 
                     );
 				   $scripts = array( 
-				   		 'vendor/datatables/js/jquery.dataTables.min.js',
-                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-                         'vendor/datatables-responsive/dataTables.responsive.min.js',
-                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
-                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
-                         'vendor/confirmation/bootstrap-confirmation.js',
-                         'vendor/switch/bootstrap-switch.min.js',
-                         //buttons js
-                         'vendor/datatables-plugins/dataTables.buttons.min.js',
-               'vendor/datatables-plugins/buttons.bootstrap.min.js',
-                         'vendor/datatables-plugins/buttons.flash.min.js',
-                         'vendor/datatables-plugins/jszip.min.js',
-                         'vendor/datatables-plugins/pdfmake.min.js',
-                         'vendor/datatables-plugins/vfs_fonts.js',
-                         'vendor/datatables-plugins/buttons.html5.min.js',
-                         'vendor/datatables-plugins/buttons.print.min.js',
+				   		 // 'vendor/datatables/js/jquery.dataTables.min.js',
+          //                'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+          //                'vendor/datatables-responsive/dataTables.responsive.min.js',
+          //                'vendor/datatables-responsive/responsive.bootstrap.min.js',
+          //                'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+          //                'vendor/confirmation/bootstrap-confirmation.js',
+          //                'vendor/switch/bootstrap-switch.min.js',
+          //                //buttons js
+          //                'vendor/datatables-plugins/dataTables.buttons.min.js',
+          //      'vendor/datatables-plugins/buttons.bootstrap.min.js',
+          //                'vendor/datatables-plugins/buttons.flash.min.js',
+          //                'vendor/datatables-plugins/jszip.min.js',
+          //                'vendor/datatables-plugins/pdfmake.min.js',
+          //                'vendor/datatables-plugins/vfs_fonts.js',
+          //                'vendor/datatables-plugins/buttons.html5.min.js',
+          //                'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
                'pages/inmunomedica/index.js');		
 				   $this->template->set('title', 'Inmunomedica');
@@ -492,12 +492,14 @@ private function generarLlamada($number, $extension,$folio){
               //var_dump($tareas);
                 $no++;
                 $row = array();
+                $row[] = '<span class="label label-default">ENVIADO</span>';
                 $row[] = $fila->numero;
-                $row[] = $fila->mensaje;
                 $row[] = $fila->fecha_envio;
-                 $row[] = $fila->motivo;
-                  $row[] = $fila->fecha_cita;
-                   $row[] = $fila->hora_cita;
+                $row[] = $fila->motivo;
+                $row[] = $fila->fecha_cita;
+                $row[] = $fila->hora_cita;
+                $row[] = $fila->mensaje;
+                $row[] = $fila->id_batch;
              $row[] = "<a class='btn btn-warning btn-xs' href='#'></a>";
  
  
