@@ -37,26 +37,28 @@ class Inmunomedica extends MY_Controller
 
                     );
 				   $scripts = array( 
-				   		 // 'vendor/datatables/js/jquery.dataTables.min.js',
-          //                'vendor/datatables-plugins/dataTables.bootstrap.min.js',
-          //                'vendor/datatables-responsive/dataTables.responsive.min.js',
-          //                'vendor/datatables-responsive/responsive.bootstrap.min.js',
-          //                'vendor/clockpicker/dist/bootstrap-clockpicker.js',
-          //                'vendor/confirmation/bootstrap-confirmation.js',
-          //                'vendor/switch/bootstrap-switch.min.js',
-          //                //buttons js
-          //                'vendor/datatables-plugins/dataTables.buttons.min.js',
-          //      'vendor/datatables-plugins/buttons.bootstrap.min.js',
-          //                'vendor/datatables-plugins/buttons.flash.min.js',
-          //                'vendor/datatables-plugins/jszip.min.js',
-          //                'vendor/datatables-plugins/pdfmake.min.js',
-          //                'vendor/datatables-plugins/vfs_fonts.js',
-          //                'vendor/datatables-plugins/buttons.html5.min.js',
-          //                'vendor/datatables-plugins/buttons.print.min.js',
+				   		 'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
                'pages/inmunomedica/index.js');		
 				   $this->template->set('title', 'Inmunomedica');
+
 			       $this->template->set('page_header', 'Gestión de confirmaciones');
+            // $this->template->set('dt_js', true);
 			       $this->template->set('css', $css);
 			       $this->template->set('scripts', $scripts);
 			       $this->template->load('default_layout', 'contents' , 'inmunomedica/index',  array('data' => null));
