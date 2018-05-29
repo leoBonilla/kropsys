@@ -286,15 +286,24 @@
                                <li>
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
+                                
+                              <?php if(in_array($auth_level, array(3,9,12))) :?>
+                                <li>
+                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Reportes </a>
+                                </li>
+                                 <?php endif; ?>
+
+                              <?php if($auth_level != 3 ) :?>
                                  <li>
                                     <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-check-square"></i> Gestión de confirmaciones</a>
                                 </li>
-                                 <li>
-                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Reportes </a>
-                                </li>
+                           
+
                                 <li>
                                     <a href="<?php echo base_url('inmunomedica/sms'); ?>"><i class="fa fa-paper-plane"></i> Sms enviados</a>
                                 </li>
+                          <?php endif; ?>
 
                              
                              
