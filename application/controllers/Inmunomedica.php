@@ -28,6 +28,10 @@ class Inmunomedica extends MY_Controller
 
 	public function index(){
             if($this->require_group('inmunomedica')){
+              if($this->auth_level == 3){
+                    redirect(base_url('inmunomedica/reportes'));
+                  }
+           
            		    $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
                         'vendor/datatables-responsive/dataTables.responsive.css',
@@ -67,6 +71,9 @@ class Inmunomedica extends MY_Controller
 
   public function home(){
                 if($this->require_group('inmunomedica')){
+                  if($this->auth_level == 3){
+                    redirect(base_url('inmunomedica/reportes'));
+                  }
            
                   $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
@@ -538,6 +545,21 @@ private function generarLlamada($number, $extension,$folio){
 
    }
    
+
+      public function getDataByMonthDebug($date){
+    $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'http://192.168.0.205/aplicaciones/index.php/reportes/getdatabymonthDebug/'.$date
+    ));
+
+      $response = curl_exec($curl);
+      if($response != false){
+        echo $response;
+      }
+
+
+   }
 
 
 }
