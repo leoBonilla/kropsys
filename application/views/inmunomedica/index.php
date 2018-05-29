@@ -5,21 +5,21 @@
          <input type="text" class="form-control" id="date-filter">
        </div>
       </div>
-      <div class="col-md-2">
+     <!--  <div class="col-md-2">
        <div class="form-group">
          <select name="sucursal-filter" id="sucursal-filter" class="form-control selectpicker"></select>
        </div>
-      </div>
-  <div class="col-md-2">
+      </div> -->
+<!--   <div class="col-md-2">
        <div class="form-group">
          <select name="especialidad-filter" id="especialidad-filter" class="form-control selectpicker"></select>
        </div>
-      </div>
-    <div class="col-md-2">
+      </div> -->
+ <!--    <div class="col-md-2">
        <div class="form-group">
          <select name="medico-filter" id="medico-filter" class="form-control"></select>
        </div>
-      </div>
+      </div> -->
 
   <!--   <div class="col-md-3">
        <div class="form-group">
