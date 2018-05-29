@@ -176,7 +176,7 @@ class Inmunomedica extends MY_Controller
 
   public function confirm(){
     header('Content-Type: application/json');
-    if($this->require_min_level(EJECUTIVE_LEVEL)){
+    if($this->require_group('inmunomedica')){
       if($this->input->post()){
           $output = array('result' => false);
            $obj = false;
@@ -264,7 +264,7 @@ private function generarLlamada($number, $extension,$folio){
 
 
    public function preparamodal(){
-    if($this->require_min_level(EJECUTIVE_LEVEL)){
+    if($this->require_group('inmunomedica')){
        if($this->input->post()){
         $obj = false;
                               $parametros=array(); //parametros de la llamada
@@ -298,7 +298,7 @@ private function generarLlamada($number, $extension,$folio){
 
    public function markConfirmed(){
     header('Content-Type: application/json');
-    if($this->require_min_level(EJECUTIVE_LEVEL)){
+    if($this->require_group('inmunomedica')){
       if($this->input->post()){
           $output = array('result' => false);
            $obj = false;
