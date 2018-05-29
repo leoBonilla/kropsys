@@ -517,43 +517,22 @@ private function generarLlamada($number, $extension,$folio){
             }
 
               }
-      // if($this->auth_level < ADMIN_LEVEL){
-      //    $where = "id_usuario = ". $this->auth_user_id;
-      //     if($inicio != '' and $fin != ''){
-      //       $where .= " AND ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
-      //     }elseif($inicio != ''){
-      //       $where .= " AND ((date(fecha) >= '".$inicio."')) ";
-      //     }elseif($fin != ''){
-      //       $where .= " AND ((date(fecha) <= '".$fin."')) ";
-      //     }
-          
-      // }else{
-      //   $where = "";
-      //   if($inicio != '' and $fin != ''){
-      //       $where .= " ((date(fecha) BETWEEN '".$inicio."' AND '".$fin."')) ";
-      //     }elseif($inicio != ''){
-      //       $where .= " ((date(fecha) >= '".$inicio."')) ";
-      //     }elseif($fin != ''){
-      //       $where .= " ((date(fecha) <= '".$fin."')) ";
-      //     }
-
          
-      //     if(is_array($users)){
-      //         $in = '';
-      //         foreach ($users as $id) {
-      //           if($id != '')
-      //           $in = $in .' '.$id.',';
-      //         }
-      //         $in = substr($in, 0, -1);
 
-      //                    if($where != ''){
-      //                    $where = $where. " AND id_usuario IN (".$in.")"; 
-      //                  }else{
-      //                  $where = $where. " id_usuario IN (".$in.")"; 
-      //                  }
-      //          }
-      // }
-     
+   }
+
+   public function getDataByMonth($date){
+    $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'http://192.168.0.205/aplicaciones/index.php/reportes/getdatabymonth/'.$date
+    ));
+
+      $response = curl_exec($curl);
+      if($response != false){
+        echo $response;
+      }
+
 
    }
    
