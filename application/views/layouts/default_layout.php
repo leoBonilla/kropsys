@@ -287,10 +287,10 @@
                             <a href="#"><i class="fa  fa-building "></i> Inmunomedica <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                  <li>
-                                    <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-arrow-circle-right"></i> Panel</a>
+                                    <a href="<?php echo base_url('inmunomedica/'); ?>"><i class="fa fa-check-square"></i> Gestión de confirmaciones</a>
                                 </li>
                                  <li>
-                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Llamadas entrantes</a>
+                                    <a href="<?php echo base_url('inmunomedica/reportes'); ?>"><i class="fa fa-bar-chart-o"></i> Reportes </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('inmunomedica/sms'); ?>"><i class="fa fa-paper-plane"></i> Sms enviados</a>
