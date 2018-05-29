@@ -15,7 +15,7 @@ $('#date-filter').on('changeDate', function() {
    $('#html').load(url, function(){
       var offset = 0;
       plot();
-
+   var dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
     function plot() {
        var options = {
             series: {
@@ -34,8 +34,11 @@ $('#date-filter').on('changeDate', function() {
                 max: 1500
             },
             xaxis: {
-                min: 0,
-                max: 31
+                 min: 0,
+                 max: 31,
+                 show:true,
+                
+                tickDecimals: 0
             },
             tooltip: true,
             tooltipOpts: {
@@ -49,14 +52,14 @@ $('#date-filter').on('changeDate', function() {
 
         var plotObj = $.plot($("#flot-line-chart"), [{
                 data: terminadas,
-                label: "Llamadas terminadas"
+                label: "Terminadas"
             }, {
                 data: abandonadas,
-                label: "Llamadas abandonadas"
+                label: "Abandonadas"
             },
             {
                 data: totales,
-                label: "Llamadas totales"
+                label: "Totales"
             }
 
             ],

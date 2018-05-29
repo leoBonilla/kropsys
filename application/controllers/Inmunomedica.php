@@ -405,6 +405,7 @@ private function generarLlamada($number, $extension,$folio){
                          'vendor/flot/jquery.flot.js',
                          'vendor/flot/jquery.flot.resize.js',
                          'vendor/flot-tooltip/jquery.flot.tooltip.min.js',
+                         'vendor/flot/jquery.flot.time.js',
                '../init_tables.js',
                'pages/inmunomedica/reportes.js');    
            $this->template->set('title', 'Inmunomedica - Reportes');
@@ -468,7 +469,7 @@ private function generarLlamada($number, $extension,$folio){
 
    public function listar_sms(){
     $this->load->database('kropsys_service');
-             if($this->require_min_level(EJECUTIVE_LEVEL)){
+            if($this->require_group('inmunomedica')){
           $inicio = '';
           $fin= '';
           $users = null;
