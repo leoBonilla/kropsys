@@ -21,12 +21,43 @@
              }
         },
  
-        //Set column definition initialisation properties.
-        "columnDefs": [
+               "columnDefs": [
         { 
             "targets": [ 0 ], //first column / numbering column
             "orderable": false, //set not orderable
         },
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+            "createdCell": function (td, cellData, rowData, row, col) {
+                console.log(rowData);
+
+                $.get(BASE_URL+"/api/messagestate/"+rowData[7], function(response){
+                    $.each(response,function(i,v){
+                        var label = 'label-default';
+                         if(v == 'RECIBIDO'){
+                           $(td).html("<span class='label label-success'>"+v+"</span>");
+                         }
+                         if(v == 'ENVIADO'){
+                            $(td).html("<span class='label label-primary'>"+v+"</span>");
+                         }
+                         if(v == 'PENDIENTE'){
+                              $(td).html("<span class='label label-warning'>"+v+"</span>");
+                         } 
+
+                         if(v == 'CONFIRMACION PENDIENTE'){
+                              $(td).html("<span class='label label-warning'>"+v+"</span>");
+                         }                          
+                        rowData[0] =$(td).html();
+                    });
+                    //console.log(response.value);
+                    
+                })
+       // if ( cellData == 1 ) {
+       // $(td).css('color', 'red')
+     // }
+    }
+        }
         ],
 
          responsive: {

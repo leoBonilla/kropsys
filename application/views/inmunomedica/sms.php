@@ -18,13 +18,14 @@
     <table id="sms_table" class="table table-striped table-bordered table-condensed nowrap" cellspacing="0" width="100%">
         <thead>
             <tr>
+                  <th>Estado</th>
                 <th>Numero</th>
-                <th>Mensaje</th>
                 <th>Fecha envio</th>
                 <th>Motivo</th>
                 <th>Fecha cita</th>
                 <th>Hora cita</th>
-                <th>Estado</th>
+                <th>Mensaje</th>
+              
 
                 
 
