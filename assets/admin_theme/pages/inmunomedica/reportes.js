@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+    var d = new Date();
+    var day = d.getDate();
+    var month = d.getDate();
+    console.log(month);
 	$('#date-filter').datepicker( {
     format: "mm-yyyy",
     startView: "months", 
@@ -10,7 +15,8 @@ $(document).ready(function(){
 
 $('#date-filter').on('changeDate', function() {
    if ($(this).val() != '') {
-   	var url = 'http://192.168.0.205/aplicaciones/index.php/reportes/getdatabymonth/'+ $(this).val();
+   	//var url = 'http://192.168.0.205/aplicaciones/index.php/reportes/getdatabymonth/'+ $(this).val();
+        var url = 'https://190.208.16.35:9600/aplicaciones/index.php/reportes/getdatabymonth/'+ $(this).val();
 	 $('#html').html('<i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>');
    $('#html').load(url, function(){
       var offset = 0;
