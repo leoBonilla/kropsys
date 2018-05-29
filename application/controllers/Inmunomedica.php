@@ -56,7 +56,7 @@ class Inmunomedica extends MY_Controller
                '../init_tables.js',
                'pages/inmunomedica/index.js');		
 				   $this->template->set('title', 'Inmunomedica');
-			       $this->template->set('page_header', 'Inmunomedica');
+			       $this->template->set('page_header', 'Gestión de confirmaciones');
 			       $this->template->set('css', $css);
 			       $this->template->set('scripts', $scripts);
 			       $this->template->load('default_layout', 'contents' , 'inmunomedica/index',  array('data' => null));
