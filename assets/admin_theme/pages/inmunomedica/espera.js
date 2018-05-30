@@ -7,6 +7,8 @@ $(document).ready(function(){
         var data = { inicio: inicio, fin:fin };
         post(BASE_URL+ '/inmunomedica/reporte_espera_p', data);
       });
+
+      rangepicker.trigger( "apply.daterangepicker" );
 });
 
 
