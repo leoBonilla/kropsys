@@ -469,6 +469,50 @@ private function generarLlamada($number, $extension,$folio){
            }
    }
 
+         public function reporte_duracion(){
+          if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/fullcalendar/fullcalendar.css',
+                         'custom.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+                         'vendor/fullcalendar/fullcalendar.js',
+                         'vendor/fullcalendar/locale/es.js',
+                         'vendor/flot/jquery.flot.js',
+                         'vendor/flot/jquery.flot.resize.js',
+                         'vendor/flot-tooltip/jquery.flot.tooltip.min.js',
+                         'vendor/flot/jquery.flot.time.js',
+               '../init_tables.js',
+               'pages/inmunomedica/duracion.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - Reporte duracion de llamadas');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/reporte_duracion',  array('data' => null));
+           }
+   }
+
 
    public function reporte_espera_p(){
     
@@ -493,6 +537,32 @@ private function generarLlamada($number, $extension,$folio){
          }
          }
    }
+
+
+     public function reporte_duracion_p(){
+    
+         if($this->input->post()){
+            $inicio = $this->input->post('inicio');
+            $fin = $this->input->post('fin');
+            $t_inicio = explode('/', $inicio);
+            $t_fin = explode('/', $fin);
+            $inicio = $t_inicio[2].'-'.$t_inicio[1].'-'.$t_inicio[0];
+            $fin = $t_fin[2].'-'.$t_fin[1].'-'.$t_fin[0];
+          try {
+            $curl = curl_init('http://192.168.0.205/aplicaciones/index.php/reportes/duracion/');
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query(array('inicio' => $inicio , 'fin' => $fin)));
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($curl);
+            curl_close($curl);
+            echo $response;
+
+         } catch (Exception $e) {
+           
+         }
+         }
+   }
+
 
 
    public function sms(){
