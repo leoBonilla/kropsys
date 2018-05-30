@@ -12,11 +12,11 @@ $(document).ready(function(){
 
     $('#date-filter').val(current);
 
-    update(BASE_URL+'/inmunomedica/getdatabymonth/'+ current);
+    update(BASE_URL+'/inmunomedica/getdatabymonthdebug/'+ current);
 
 $('#date-filter').on('changeDate', function() {
    if ($(this).val() != '') {
-   	var url = BASE_URL+'/inmunomedica/getdatabymonth/'+ $(this).val();
+   	var url = BASE_URL+'/inmunomedica/getdatabymonthdebug/'+ $(this).val();
       //  var url = 'https://190.208.16.35:9600/aplicaciones/index.php/reportes/getdatabymonth/'+ $(this).val();
       update(url);
    }
