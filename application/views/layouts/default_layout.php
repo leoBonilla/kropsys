@@ -296,10 +296,13 @@
                                     <a href="#"><i class="fa fa-bar-chart-o"></i> Reportes  <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level collapse in" aria-expanded="true" style="">
                                         <li>
-                                            <a href="<?php echo base_url('inmunomedica/reporte_llamadas'); ?>"><i class="fa fa-phone"></i> LLamadas entrantes  </a>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_llamadas'); ?>">LLamadas entrantes  </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url('inmunomedica/reporte_espera'); ?>"><i class="fa fa-clock-o"></i> Tiempos de espera</a>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_espera'); ?>">Tiempos de espera</a>
+                                        </li>
+                                         <li>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_duracion'); ?>">Duracion de llamadas</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
