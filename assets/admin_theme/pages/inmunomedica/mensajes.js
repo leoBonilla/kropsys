@@ -18,7 +18,7 @@ function post(url , data){
 	  url: url,
 	  data: data,
 	  beforeSend: function () {
-                        $("#html").html("Procesando, espere por favor...");
+                        $("#html").html("<i class='fa fa-refresh fa-spin fa-3x' style='color:#2F78B6;'></i><br/><br /><p>Obteniendo datos...</p>");
                 },
 	  success: function(response){
 	  		 $("#html").html(response);
