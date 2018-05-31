@@ -28,7 +28,7 @@ $('#date-filter').on('changeDate', function() {
 });
 
 function update(url){
-  $('#html').html('<i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>');
+  $('#html').html("<i class='fa fa-refresh fa-spin fa-3x' style='color:#2F78B6;'></i><br/><br /><p>Obteniendo datos...</p>");
    $('#html').load(url, function(){
       var offset = 0;
       plot();
