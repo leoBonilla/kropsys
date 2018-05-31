@@ -514,6 +514,52 @@ private function generarLlamada($number, $extension,$folio){
    }
 
 
+  public function reporte_mensajes(){
+          if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/fullcalendar/fullcalendar.css',
+                         'custom.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+                         'vendor/fullcalendar/fullcalendar.js',
+                         'vendor/fullcalendar/locale/es.js',
+                         'vendor/flot/jquery.flot.js',
+                         'vendor/flot/jquery.flot.resize.js',
+                         'vendor/flot-tooltip/jquery.flot.tooltip.min.js',
+                         'vendor/flot/jquery.flot.time.js',
+               '../init_tables.js',
+               'pages/inmunomedica/mensajes.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - Reporte de mensajes');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+              $this->load->database('kropsys_service');
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/reporte_mensajes',  array('data' => null));
+           }
+   }
+
+
    public function reporte_espera_p(){
     
          if($this->input->post()){
@@ -533,7 +579,7 @@ private function generarLlamada($number, $extension,$folio){
             echo $response;
 
          } catch (Exception $e) {
-           
+             
          }
          }
    }
@@ -560,6 +606,22 @@ private function generarLlamada($number, $extension,$folio){
          } catch (Exception $e) {
            
          }
+         }
+   }
+
+  public function reporte_mensajes_p(){
+    
+         if($this->input->post()){
+            $inicio = $this->input->post('inicio');
+            $fin = $this->input->post('fin');
+            $t_inicio = explode('/', $inicio);
+            $t_fin = explode('/', $fin);
+            $inicio = $t_inicio[2].'-'.$t_inicio[1].'-'.$t_inicio[0];
+            $fin = $t_fin[2].'-'.$t_fin[1].'-'.$t_fin[0];
+            $this->load->database('kropsys_service');
+            $this->load->model('inmunomedica_model', 'x');
+            $data = $this->x->cantidad_mensajes($inicio, $fin);
+            $this->load->view('inmunomedica/sms_partial', array('data' => $data));
          }
    }
 
