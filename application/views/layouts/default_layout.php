@@ -302,7 +302,10 @@
                                             <a href="<?php echo base_url('inmunomedica/reporte_espera'); ?>">Tiempos de espera</a>
                                         </li>
                                          <li>
-                                            <a href="<?php echo base_url('inmunomedica/reporte_duracion'); ?>">Duracion de llamadas</a>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_duracion'); ?>">Duración de llamadas</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_mensajes'); ?>">Mensajes enviados</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
