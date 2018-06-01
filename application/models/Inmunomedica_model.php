@@ -54,7 +54,7 @@ class Inmunomedica_model extends CI_Model {
     }
 
     public function cantidad_mensajes($inicio, $fin){
-          $query = $this->db->query("SELECT sum(case when motivo='agendado' then 0 else 1 end) as 'agendados', sum(case when motivo='recordatorio' then 0 else 1 end) as 'recordatorios', count(*) as total FROM `kropsys_service`.`sms` WHERE Date(fecha_envio) BETWEEN '".$inicio."' and '".$fin."'");
+          $query = $this->db->query("SELECT sum(case when motivo='agendado' then 1 else 0 end) as 'agendados', sum(case when motivo='recordatorio' then 1 else 0 end) as 'recordatorios', count(*) as total FROM `kropsys_service`.`sms` WHERE Date(fecha_envio) BETWEEN '".$inicio."' and '".$fin."'");
         if($query->num_rows() > 0){
           return  $query->row();
         }
