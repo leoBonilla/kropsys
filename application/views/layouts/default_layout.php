@@ -310,7 +310,11 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                                                 <li>
+                                    <a href="<?php echo base_url('inmunomedica/busqueda'); ?>"><i class=""></i> Busqueda de examenes</a>
+                                </li>
                                  <?php endif; ?>
+
 
                               <?php if($auth_level != 3 ) :?>
                                  <li>

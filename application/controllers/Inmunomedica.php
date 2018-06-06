@@ -764,4 +764,88 @@ private function generarLlamada($number, $extension,$folio){
    }
 
 
+   public function mantenedor(){
+                  if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/multi-select/css/multi-select.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'vendor/multi-select/js/jquery.multi-select.js',
+               'pages/inmunomedica/mantenedor.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - mantenedor');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+              $this->load->database('kropsys_service');
+              $this->load->model('examen_model', 'examen');
+              $previsiones = $this->examen->getAllPrevisiones();
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/mantenedor',  array('previsiones' => $previsiones));
+           }
+   }
+
+
+      public function busqueda(){
+                  if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/multi-select/css/multi-select.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+               'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+               '../init_tables.js',
+               'vendor/typehead/bootstrap3-typeahead.js',
+               'pages/inmunomedica/busqueda.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - buscar examen');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+              $this->load->database('kropsys_service');
+              $this->load->model('examen_model', 'examen');
+              $previsiones = $this->examen->getAllPrevisiones();
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/busqueda',  array('previsiones' => $previsiones));
+           }
+   }
+
+
 }
