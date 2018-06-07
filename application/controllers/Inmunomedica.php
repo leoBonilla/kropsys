@@ -835,6 +835,7 @@ private function generarLlamada($number, $extension,$folio){
                          'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
                'vendor/typehead/bootstrap3-typeahead.js',
+               'vendor/pdfobject/pdfobject.js',
                'pages/inmunomedica/busqueda.js');    
            $this->template->set('title', 'Inmunomedica - Reportes');
              $this->template->set('page_header', 'Inmunomedica - buscar examen');
