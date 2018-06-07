@@ -1,6 +1,8 @@
 <?php if ($data == false): ?>
 	<p>SIN RESULTADOS</p>
 <?php else : ?>
+
+	<?php $instructivo = (is_null($data->instructivo) or $data->instructivo == '0' ) ? false : true; ?>
     <hr>
 	<ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Datos del exámen</a></li>
@@ -11,7 +13,6 @@
   <div id="home" class="tab-pane fade in active">
 
    <div class="panel panel-default">
-   	<div class="panel-heading">Resultado de busqueda</div>
   <div class="panel-body">
       	   	<dl class="dl-horizontal">
   <dt>Examen</dt>
@@ -89,12 +90,20 @@
 </div>
   </div>
   <div id="menu1" class="tab-pane fade">
-<div id="pdfviewer" style="height:500px;"></div>
 
-<script>PDFObject.embed("<?php echo base_url('files/inmunomedica/'.$data->archivo) ?>", "#pdfviewer");</script>
+<?php if($instructivo): ?>
+	<div id="pdfviewer" style="height:1000px;"></div>
+	<script>PDFObject.embed("<?php echo base_url('files/inmunomedica/'.$data->archivo) ?>", "#pdfviewer");</script>
+<?php else : ?>
+	<br>
+	<p>NINGUN INSTRUCTIVO ASOCIADO</p>
+<?php endif; ?>
+
   </div>
 
 </div>
+
+
 
 
 	
