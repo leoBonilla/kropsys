@@ -1,7 +1,15 @@
 <?php if ($data == false): ?>
 	<p>SIN RESULTADOS</p>
 <?php else : ?>
-	<hr>
+    <hr>
+	<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Datos del exámen</a></li>
+  <li><a data-toggle="tab" href="#menu1">Instructivo</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+
    <div class="panel panel-default">
    	<div class="panel-heading">Resultado de busqueda</div>
   <div class="panel-body">
@@ -34,6 +42,8 @@
   <dd><?php echo $data->indicaciones; ?></dd>
   <dt>Observaciones</dt>
   <dd><?php echo $data->observaciones; ?></dd>
+ <!--  <dt>Instructivo</dt>
+  <dd><?php echo "<a href='".base_url('files/inmunomedica/'.$data->archivo)."' target='_blank'>".$data->archivo."</a>" ?></dd> -->
 </dl>
  <hr>
 
@@ -77,5 +87,16 @@
   </div>
   <div class="panel-footer"></div>
 </div>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+<div id="pdfviewer" style="height:500px;"></div>
+
+<script>PDFObject.embed("<?php echo base_url('files/inmunomedica/'.$data->archivo) ?>", "#pdfviewer");</script>
+  </div>
+
+</div>
+
+
+	
 
 <?php endif ?>

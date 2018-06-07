@@ -82,12 +82,13 @@ class Examenes extends MY_Controller
 	public function loadresults(){
 	
 		    $keyword = strval($_POST['query']);
-	        $this->db->select('*');
-	        $this->db->from('kropsys_service.examenes');
-            $this->db->where('id', $keyword);
+	        //$this->db->select('*');
+	        //$this->db->from('kropsys_service.examenes');
+           // $this->db->where('id', $keyword);
+            $sql = "select e.*, i.archivo from kropsys_service.examenes e left join kropsys_service.instructivos i on e.instructivo = i.instructivo where e.id = ".$keyword;
 
 	        //$query = $this->db->get('kropsys_service.examenes');
-	        $query = $this->db->get();
+	        $query = $this->db->query($sql);
 	        $resultado =  array();
 	        $convenio = false;
 	        if ($query->num_rows() > 0) {
