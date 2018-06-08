@@ -14,6 +14,8 @@
               $('#html').find('#confirm_convenio').ajaxForm();
     }
   }
+
+  examenes_table = $('#examenes_table').DataTable();
     );
 
   // var m2 = $('#optgroup1').multiSelect({ selectableOptgroup: true,

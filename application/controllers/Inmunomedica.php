@@ -764,7 +764,7 @@ private function generarLlamada($number, $extension,$folio){
    }
 
 
-   public function mantenedor(){
+   public function crear_convenios(){
                   if($this->require_group('inmunomedica')){
                   $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
@@ -806,7 +806,7 @@ private function generarLlamada($number, $extension,$folio){
    }
 
 
-      public function busqueda(){
+public function convenios(){
                   if($this->require_group('inmunomedica')){
                   $css =  array(
                         'vendor/datatables-plugins/dataTables.bootstrap.css',
@@ -834,9 +834,118 @@ private function generarLlamada($number, $extension,$folio){
                          'vendor/datatables-plugins/buttons.html5.min.js',
                          'vendor/datatables-plugins/buttons.print.min.js',
                '../init_tables.js',
-               'vendor/typehead/bootstrap3-typeahead.js',
-               'vendor/pdfobject/pdfobject.js',
-               'pages/inmunomedica/busqueda.js');    
+               'vendor/multi-select/js/jquery.multi-select.js',
+               'pages/inmunomedica/mantenedor.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - listado convenios');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+              $this->load->database('kropsys_service');
+              $this->load->model('examen_model', 'examen');
+              $previsiones = $this->examen->getAllPrevisiones();
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/mantenedor',  array('previsiones' => $previsiones));
+           }
+   }
+
+
+   public function examenes(){
+              if($this->require_group('inmunomedica')){
+                 $scripts = array(
+                '../init_tables.js',
+                'vendor/editable/editable/js/boostrap-editable.js',
+               'pages/inmunomedica/examenes.js');
+               $css = array(
+                'vendor/editable/editable/css/boostrap-editable.css',
+                'custom.css'
+
+              );
+               $this->template->set('title', 'Inmunomedica - Examenes');
+               $this->template->set('page_header', 'Inmunomedica - Examenes');
+               $this->template->set('dt_js', true);
+               $this->template->set('css', $css);
+               $this->template->set('scripts', $scripts);
+               $this->load->database('kropsys_service');
+               $this->load->model('examen_model', 'examen');
+                $previsiones = $this->examen->getAllPrevisiones();
+
+                $this->template->load('default_layout', 'contents' , 'inmunomedica/examenes',  array('previsiones' => $previsiones));
+              }
+   }
+
+   public function listar_examenes(){
+     $this->load->model('datatables/inmuno_examenes_model', 'examenes');
+       $list = $this->examenes->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $fila) {
+              //$state = $this->api->messageState($fila->batch_id);
+              //var_dump($state);
+            $no++;
+            $row = array();
+            $row[] = '<a href="#" id="codigo" data-type="text" data-pk="'.$fila->id.'" data-url="/post" data-title="Ingrese codigo">'.$fila->codigo.'</a>';
+            $row[] = $fila->examen;
+            $row[] = $fila->preparacion;
+            $row[] = $fila->instructivo;
+            $row[] = $fila->muestra;
+            $row[] = $fila->plazo_entrega;
+            $row[] = $fila->tipo;
+            $row[] = $fila->indicaciones;
+            $row[] = $fila->observaciones;
+            $row[] = $fila->tipo_examen;
+            $row[] = $fila->valor_particular;
+            $row[] = $fila->valor_bono_fonasa;
+            $row[] = $fila->agenda;
+            $row[] = $fila->piso;
+            $row[] = $fila->lugar;
+            $row[] = $fila->telefono;
+            $row[] = $fila->id_convenio;
+            $row[] = '';
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->examenes->count_all(),
+                        "recordsFiltered" => $this->examenes->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+   }
+
+
+
+      public function busqueda(){
+                  if($this->require_group('inmunomedica')){
+                  $css =  array(
+                        'vendor/datatables-plugins/dataTables.bootstrap.css',
+                        'vendor/datatables-responsive/dataTables.responsive.css',
+                        'vendor/clockpicker/dist/bootstrap-clockpicker.css',
+                         'vendor/switch/bootstrap-switch.min.css',
+                         'vendor/multi-select/css/multi-select.css'
+
+                    );
+           $scripts = array( 
+               'vendor/datatables/js/jquery.dataTables.min.js',
+                         'vendor/datatables-plugins/dataTables.bootstrap.min.js',
+                         'vendor/datatables-responsive/dataTables.responsive.min.js',
+                         'vendor/datatables-responsive/responsive.bootstrap.min.js',
+                         'vendor/clockpicker/dist/bootstrap-clockpicker.js',
+                         'vendor/confirmation/bootstrap-confirmation.js',
+                         'vendor/switch/bootstrap-switch.min.js',
+                         //buttons js
+                         'vendor/datatables-plugins/dataTables.buttons.min.js',
+                         'vendor/datatables-plugins/buttons.bootstrap.min.js',
+                         'vendor/datatables-plugins/buttons.flash.min.js',
+                         'vendor/datatables-plugins/jszip.min.js',
+                         'vendor/datatables-plugins/pdfmake.min.js',
+                         'vendor/datatables-plugins/vfs_fonts.js',
+                         'vendor/datatables-plugins/buttons.html5.min.js',
+                         'vendor/datatables-plugins/buttons.print.min.js',
+                         '../init_tables.js',
+                         'vendor/typehead/bootstrap3-typeahead.js',
+                         'vendor/pdfobject/pdfobject.js',
+                         'pages/inmunomedica/busqueda.js');    
            $this->template->set('title', 'Inmunomedica - Reportes');
              $this->template->set('page_header', 'Inmunomedica - buscar examen');
              $this->template->set('css', $css);
@@ -844,9 +953,48 @@ private function generarLlamada($number, $extension,$folio){
               $this->load->database('kropsys_service');
               $this->load->model('examen_model', 'examen');
               $previsiones = $this->examen->getAllPrevisiones();
-             $this->template->load('default_layout', 'contents' , 'inmunomedica/busqueda',  array('previsiones' => $previsiones));
+              $this->template->load('default_layout', 'contents' , 'inmunomedica/busqueda',  array('previsiones' => $previsiones));
            }
    }
+
+
+  public function enviarInstructivo(){
+    header('Content-Type: application/json');
+         if($this->input->post()){
+
+             $file = $this->input->post('file');
+             $email = $this->input->post('email');
+             $examen = $this->input->post('examen');
+              $this->load->library('email');
+              // echo $file;
+        // configuracion para gmail
+        // $file = 'INS.GP1 2.1-1 SIN PREPARACION.2017.pdf'
+          $file = $_SERVER["DOCUMENT_ROOT"]."/kropsys/files/Inmunomedica/".$file;
+          //echo $file;
+           $configGmail = array(
+                     'protocol' => 'smtp',
+                     'smtp_host' => 'ssl://smtp.gmail.com',
+                     'smtp_port' => 465,
+                     'smtp_user' => 'soporte@kropsys.cl',
+                     'smtp_pass' => 'pandora!x2012',
+                     'mailtype' => 'html',
+                     'charset' => 'utf-8',
+                     'newline' => "\r\n"
+           );
+          $this->email->initialize($configGmail);
+          $this->email->from('inmunomedical@kropsys.cl', 'Instructivo Inmunomedica');
+          $this->email->to($email);
+          $this->email->subject('Envio de instructivo');
+          $this->email->message('Se adjunta instructivo para examen '.$examen);
+          $this->email->attach($file);
+           if($this->email->send()){
+            echo json_encode(array('result' => true));
+           }else{
+             echo json_encode(array('result' => false));           
+           }
+          //var_dump($this->email->print_debugger());
+         }
+       }
 
 
 }
