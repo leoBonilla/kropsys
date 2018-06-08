@@ -982,10 +982,10 @@ public function convenios(){
                      'newline' => "\r\n"
            );
           $this->email->initialize($configGmail);
-          $this->email->from('inmunomedica@kropsys.cl', 'Instructivo Inmunomedica');
+          $this->email->from('inmunomedica@kropsys.cl', 'Inmunomedica');
           $this->email->to($email);
           $this->email->subject('Envio de instructivo');
-          $this->email->message('Se adjunta instructivo para examen '.$examen);
+          $this->email->message('Estimado paciente. <br> Adjuntamos instructivo para examen.');
           $this->email->attach($file);
            if($this->email->send()){
             echo json_encode(array('result' => true));
