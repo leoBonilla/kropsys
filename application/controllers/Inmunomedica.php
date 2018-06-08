@@ -965,7 +965,7 @@ public function convenios(){
              $file = $this->input->post('file');
              $email = $this->input->post('email');
              $examen = $this->input->post('examen');
-              $this->load->library('email');
+             $this->load->library('email');
               // echo $file;
         // configuracion para gmail
         // $file = 'INS.GP1 2.1-1 SIN PREPARACION.2017.pdf'
@@ -982,7 +982,7 @@ public function convenios(){
                      'newline' => "\r\n"
            );
           $this->email->initialize($configGmail);
-          $this->email->from('inmunomedical@kropsys.cl', 'Instructivo Inmunomedica');
+          $this->email->from('inmunomedica@kropsys.cl', 'Instructivo Inmunomedica');
           $this->email->to($email);
           $this->email->subject('Envio de instructivo');
           $this->email->message('Se adjunta instructivo para examen '.$examen);
