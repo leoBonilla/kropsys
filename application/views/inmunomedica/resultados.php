@@ -92,6 +92,35 @@
   <div id="menu1" class="tab-pane fade">
 
 <?php if($instructivo): ?>
+	<div class="email-control row">
+            <div class="col-md-12">
+
+            					<!-- 	<button  id="toggle-email" class="btn btn-primary btn-xs" >Enviar por correo</button> -->
+              <?php echo form_open(base_url('inmunomedica/enviarinstructivo'), array('id' => 'file-send-form')); ?>
+									<idv class="row" id="email-fields" >
+							<div  class="col-md-4" >
+			<input type="email" class="form-control" name="email" required="required" placeholder="email@dominio.cl">	
+		</div>
+
+		     <input type="hidden" name="file" value="<?php echo $data->archivo; ?>">
+		     <input type="hidden" name="examen" value="<?php echo $data->examen; ?>">
+				<div  class="col-md-4" >
+			<button class="btn btn-success">Enviar <i class="fa fa-send"></i></button>
+		</div>
+	</div>
+              <?php echo form_close(); ?>
+
+              
+            </div>
+
+	</div>
+	<div class="row" id="email-info" style="display: none;">
+		<div class="col-md-12">
+			                          	<div class="alert alert-success">
+  <strong>Enviado con exito!</strong> Correo enviado exitosamente
+</div>
+		</div>
+	</div>
 	<div id="pdfviewer" style="height:1000px;"></div>
 	<script>PDFObject.embed("<?php echo base_url('files/inmunomedica/'.$data->archivo) ?>", "#pdfviewer");</script>
 <?php else : ?>
