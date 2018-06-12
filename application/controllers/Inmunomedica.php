@@ -973,16 +973,18 @@ public function convenios(){
           //echo $file;
            $configGmail = array(
                      'protocol' => 'smtp',
-                     'smtp_host' => 'ssl://smtp.gmail.com',
-                     'smtp_port' => 465,
+                     'smtp_host' => 'smtp-relay.gmail.com',
+                     'smtp_port' => 587,
                      'smtp_user' => 'soporte@kropsys.cl',
                      'smtp_pass' => 'pandora!x2012',
                      'mailtype' => 'html',
                      'charset' => 'utf-8',
                      'newline' => "\r\n"
            );
+
+    
           $this->email->initialize($configGmail);
-          $this->email->from('inmunomedica@kropsys.cl', 'Inmunomedica');
+          $this->email->from('noreply@inmunomedica.cl', 'Inmunomedica');
           $this->email->to($email);
           $this->email->subject('Envio de instructivo');
           $this->email->message('Estimado paciente. <br> Adjuntamos instructivo para examen.');
@@ -992,8 +994,21 @@ public function convenios(){
            }else{
              echo json_encode(array('result' => false));           
            }
-          //var_dump($this->email->print_debugger());
+          var_dump($this->email->print_debugger());
          }
+       }
+
+       public function test(){
+
+$to = "leobonillab@gmail.com";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: soporte@kropsys.cl" . "\r\n" .
+"CC: somebodyelse@example.com";
+
+mail($to,$subject,$txt,$headers);
+
+
        }
 
 
