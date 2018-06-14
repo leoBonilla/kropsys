@@ -50,8 +50,14 @@
 						<option value="CONGRESO">CONGRESO</option>
 							<option value="VACACIONES">VACACIONES</option>
 								</select>
-			</div>   <button id="selected" class="btn btn-warning">Anular</button>
+			</div>   
+
+  <div class="col-md-2">
+        <input type="text" name="number" value="" id="number" class="form-control">
+    </div>
+            <button id="selected" class="btn btn-warning">Anular</button>
 			</div>
+  
 <!-- <button id="select-invert" class="btn button-default">Invertir</button>
 <button id="selected" class="btn button-default">GetSelected</button> -->
 
@@ -120,7 +126,11 @@
         }
 
         function sendPost(data, motivo){
-        	$.post(BASE_URL +'/agenda/anular_horas', {data: data , motivo: motivo} , function(data){ } );
+        	$.post(BASE_URL +'/agenda/anular_horas', {data: data , motivo: motivo, numero: $('#number').val()} , function(data){ 
+                     if(data.result==true){
+                        alert('horas anuladas');
+                     }
+            } );
         }
     });
 </script>

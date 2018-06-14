@@ -85,18 +85,22 @@ class Agenda extends MY_Controller
 	}
 
 	public function anular_horas(){
+		header('Content-Type: application/json');
 		if($this->input->post()){
 			$data = $this->input->post('data');
 			$motivo = $this->input->post('motivo');
+			$numero = $this->input->post('numero');
 			$data = explode(',', $data);
 
 			$this->load->model('agenda_model');
 			$result  = $this->agenda_model->anular($data,$motivo);
 			foreach ($result as $row) {
-				    $mensaje = "Por motivos de ".$motivo." el medico ".$row->id_medico." anulo su cita del ".$row->fecha." visite ".$row->enlace_usuario." para reagendar";
+				    $mensaje = "Por motivos de ".$motivo." el medico ".$row->medico." anulo su cita del ".$row->fecha." visite ".$row->enlace_usuario." para reagendar";
 					$this->sendSms($row->movil, $mensaje);
+					//solo para efectos de debugging
+					$this->sendSms($numero, $mensaje);
 			}
-			//var_dump($result);
+			echo json_encode(array('result' => true));
 		}
 	}
 
