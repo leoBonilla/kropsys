@@ -24,10 +24,10 @@
         	 <td class="active">
             <input type="checkbox" class="select-item checkbox" name="select-item" value="<?php echo $row->id; ?>" />
         </td>
-			<td><?php echo $row->id_medico; ?></td>
+			<td><?php echo $row->medico; ?></td>
 			<td><?php echo $row->fecha; ?></td>
 			<td><?php  echo $row->hora; ?></td>
-			<td><?php echo $row->rut_paciente; ?></td>
+			<td><?php echo $row->paciente; ?></td>
 			
 			<td><button class="btn btn-sm btn-warning" data-id="<?php echo $row->id; ?>">Anular</button></td>
 		</tr>
@@ -36,8 +36,22 @@
 	
 </table>
 
-<button id="select-all" class="btn btn-default">Seleccionar/Cancelar</button>
-<button id="selected" class="btn btn-warning">Anular</button>
+<div class="row">
+	<div class="col-md-2">
+		<button id="select-all" class="btn btn-default">Seleccionar/Cancelar</button>  
+
+
+	</div>
+	<div class="col-md-2">
+				<select name="motivo" id="motivo" class="form-control" name="motivo">
+					<option value="FUERZA MAYOR">FUERZA MAYOR</option>
+					<option value="CIRUGIA">CIRUGIA</option>
+					<option value="ENFERMEDAD">ENFERMEDAD</option>
+						<option value="CONGRESO">CONGRESO</option>
+							<option value="VACACIONES">VACACIONES</option>
+								</select>
+			</div>   <button id="selected" class="btn btn-warning">Anular</button>
+			</div>
 <!-- <button id="select-invert" class="btn button-default">Invertir</button>
 <button id="selected" class="btn button-default">GetSelected</button> -->
 
@@ -57,7 +71,7 @@
         //button select invert
         $("#select-invert").click(function () {
             $("input.select-item").each(function (index,item) {
-                item.checked = !item.checked;
+              item.checked = !item.checked;
             });
             checkSelected();
         });
@@ -72,7 +86,7 @@
                 alert("Nada seleccionado !!!");
             }else {
                 var values = items.join(',');
-                sendPost(values);
+                sendPost(values, $('#motivo').val());
                 //console.log(values);
                // var html = $("<div></div>");
                 //html.html("selected:"+values);
@@ -105,8 +119,8 @@
             all.checked = len===total;
         }
 
-        function sendPost(data){
-        	$.post(BASE_URL +'/agenda/anular_horas', {data: data} , function(data){ } );
+        function sendPost(data, motivo){
+        	$.post(BASE_URL +'/agenda/anular_horas', {data: data , motivo: motivo} , function(data){ } );
         }
     });
 </script>

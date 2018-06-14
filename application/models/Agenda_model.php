@@ -20,12 +20,12 @@ class Agenda_model extends CI_Model {
   		}
 
 
-      public function anular($data){
+      public function anular($data,$motivo){
          foreach ($data as $row) {
                    $codigo = $this->update_code();
                    $enlace = $this->acortar_enlace('http://190.208.16.35/reservas/reservapaciente/'.$codigo);
                    $this->db->where('id', $row); 
-                   $this->db->update('citas', array('codigo_anulacion' => $codigo, 'anulada' => 1, 'enlace_usuario' => $enlace));
+                   $this->db->update('citas', array('codigo_anulacion' => $codigo, 'anulada' => 1, 'enlace_usuario' => $enlace, 'motivo_anulacion' => $motivo));
          }
 
         $query = $this->db->select('*');
