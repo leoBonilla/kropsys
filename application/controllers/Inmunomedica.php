@@ -560,6 +560,25 @@ private function generarLlamada($number, $extension,$folio){
    }
 
 
+     public function reporte_motivos_llamadas(){
+          if($this->require_group('inmunomedica')){
+                  $css =  array(
+                         'custom.css'
+
+                    );
+           $scripts = array( 
+
+               'pages/inmunomedica/motivos.js');    
+           $this->template->set('title', 'Inmunomedica - Reportes');
+             $this->template->set('page_header', 'Inmunomedica - Reporte motivo llamadas entrantes');
+             $this->template->set('css', $css);
+             $this->template->set('scripts', $scripts);
+              $this->load->database('kropsys_service');
+             $this->template->load('default_layout', 'contents' , 'inmunomedica/reporte_motivos',  array('data' => null));
+           }
+   }
+
+
    public function reporte_espera_p(){
     
          if($this->input->post()){
@@ -624,6 +643,31 @@ private function generarLlamada($number, $extension,$folio){
             $this->load->view('inmunomedica/sms_partial', array('data' => $data));
          }
    }
+
+  public function reporte_motivos_p(){
+
+         if($this->input->post()){
+            $inicio = $this->input->post('inicio');
+            $fin = $this->input->post('fin');
+            $t_inicio = explode('/', $inicio);
+            $t_fin = explode('/', $fin);
+            $inicio = $t_inicio[2].'-'.$t_inicio[1].'-'.$t_inicio[0];
+            $fin = $t_fin[2].'-'.$t_fin[1].'-'.$t_fin[0];
+          try {
+            $curl = curl_init('http://192.168.0.205/aplicaciones/index.php/reportes/motivos/');
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query(array('inicio' => $inicio , 'fin' => $fin)));
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($curl);
+            curl_close($curl);
+            echo $response;
+
+         } catch (Exception $e) {
+              var_dump($e); 
+         }
+         }
+
+  }
 
 
 
