@@ -280,7 +280,9 @@
                         </li>
                         <?php endif; ?>
 
-
+                                                      <li>
+                                    <a href="<?php echo base_url('callcenter'); ?>"><i class="fa fa-headphones"></i> Consola de Agente</a>
+                                </li>
                  
                     <?php if(in_array($auth_level, array(2,3, 9,12))): ?>
                                <li>
@@ -313,10 +315,12 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+
                               
                                  <?php endif; ?>
+
                              <li>
-                                    <a href="<?php echo base_url('inmunomedica/busqueda'); ?>"><i class=""></i> Busqueda de examenes</a>
+                                    <a href="<?php echo base_url('inmunomedica/busqueda'); ?>"><i class="fa fa-search"></i> Busqueda de examenes</a>
                                 </li>
 
 
