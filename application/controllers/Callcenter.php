@@ -32,7 +32,7 @@ class Callcenter extends MY_Controller
            	             'vendor/fullcalendar/fullcalendar.js',
            	             'vendor/fullcalendar/locale/es.js',
                          'pages/callcenter/index.js');    
-           $this->template->set('title', 'Agenda ');
+           $this->template->set('title', 'Consola agente');
              $this->template->set('page_header', 'Call center');
              $this->template->set('css', $css);
              $this->template->set('scripts', $scripts);
