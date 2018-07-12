@@ -1017,10 +1017,10 @@ public function convenios(){
           //echo $file;
            $configGmail = array(
                      'protocol' => 'smtp',
-                     'smtp_host' => 'smtp-relay.gmail.com',
+                     'smtp_host' => 'smtp.gmail.com',
                      'smtp_port' => 587,
-                     'smtp_user' => 'soporte@kropsys.cl',
-                     'smtp_pass' => 'pandora!x2012',
+                     'smtp_user' => 'indicaciones@inmunomedica.cl',
+                     'smtp_pass' => 'Mod04049',
                      'mailtype' => 'html',
                      'charset' => 'utf-8',
                      'newline' => "\r\n"
@@ -1028,7 +1028,7 @@ public function convenios(){
 
     
           $this->email->initialize($configGmail);
-          $this->email->from('noreply@inmunomedica.cl', 'Inmunomedica');
+          $this->email->from('indicaciones@inmunomedica.cl', 'Inmunomedica');
           $this->email->to($email);
           $this->email->subject('Envio de instructivo');
           $this->email->message('Estimado paciente. <br> Adjuntamos instructivo para examen.');
