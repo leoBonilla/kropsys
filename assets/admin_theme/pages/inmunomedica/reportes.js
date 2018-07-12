@@ -54,6 +54,7 @@ function update(url){
                  min: 0,
                  max: 31,
                  show:true,
+                 tickSize:1,
                 
                 tickDecimals: 0
             },

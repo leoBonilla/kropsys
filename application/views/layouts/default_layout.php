@@ -310,7 +310,7 @@
                                             <a href="<?php echo base_url('inmunomedica/reporte_mensajes'); ?>">Mensajes enviados</a>
                                         </li>
                                                                                 <li>
-                                            <a href="<?php echo base_url('inmunomedica/reporte_motivos'); ?>">Motivos de llamadas</a>
+                                            <a href="<?php echo base_url('inmunomedica/reporte_motivos_llamadas'); ?>">Motivos de llamadas</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->

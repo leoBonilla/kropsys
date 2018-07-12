@@ -1016,11 +1016,14 @@ public function convenios(){
           $file = $_SERVER["DOCUMENT_ROOT"]."/kropsys/files/Inmunomedica/".$file;
           //echo $file;
            $configGmail = array(
+                     //'smtp_crypto' => 'tls',
                      'protocol' => 'smtp',
-                     'smtp_host' => 'smtp.gmail.com',
-                     'smtp_port' => 587,
+                     'smtp_host' => 'smtp.office365.com',
+                     'smtp_port' => '587',
                      'smtp_user' => 'indicaciones@inmunomedica.cl',
-                     'smtp_pass' => 'Mod04049',
+                     'smtp_pass' => 'inmuno!#2018',
+                     'smtp_crypto' => 'tls',
+                     'smtp_timeout' => '30',
                      'mailtype' => 'html',
                      'charset' => 'utf-8',
                      'newline' => "\r\n"
@@ -1038,7 +1041,7 @@ public function convenios(){
            }else{
              echo json_encode(array('result' => false));           
            }
-          var_dump($this->email->print_debugger());
+         // var_dump($this->email->print_debugger());
          }
        }
 
